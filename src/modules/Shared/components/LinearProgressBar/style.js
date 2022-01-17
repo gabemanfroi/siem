@@ -1,16 +1,17 @@
 import styled from 'styled-components';
+import { dark100, textGray, white } from '../../stylesHelpers/colorVariables';
 
 export const Container = styled.div`
-  .progress-bar{
+  .progress-bar {
     width: 100%;
     height: ${({ strokeHeight }) => `${strokeHeight}px`};
     position: relative;
-    background: #1A1A1A;
-    border-radius: 999px;
-    
+    background: ${dark100};
+
+
     &:before {
       content: '';
-      border-radius: 999px;
+
       position: absolute;
       top: 0;
       left: 0;
@@ -19,11 +20,20 @@ export const Container = styled.div`
       background: ${({ strokeColor }) => strokeColor};
     }
   }
-  
-  
-  
-  .bar-header{
+
+  .bar-header {
     display: flex;
     justify-content: space-between;
+
+    h5 {
+      span {
+        color: ${textGray};
+      }
+    }
+
+    span {
+      color: ${white};
+      text-align: right;
+    }
   }
 `;

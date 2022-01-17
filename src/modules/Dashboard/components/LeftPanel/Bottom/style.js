@@ -1,8 +1,4 @@
 import styled from 'styled-components';
+import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
 
-export const Container = styled.div`
-  height: 33%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+export const Container = styled(ColumnContainer)``;

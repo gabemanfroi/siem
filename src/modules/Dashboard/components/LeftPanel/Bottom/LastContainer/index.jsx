@@ -1,5 +1,12 @@
 import { Container } from './style';
+import Left from './Left';
+import Right from './Right';
 
 export function LastContainer() {
-  return <Container />;
+  return (
+    <Container>
+      <Left />
+      <Right />
+    </Container>
+  );
 }

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { dark500 } from 'modules/Shared/stylesHelpers/colorVariables';
 import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
 
 export const Container = styled(ColumnContainer)`
-  gap: 16px;
-  background: ${dark500};
-  padding: 16px 32px;
+  flex: 0.6;
+  border: 1px solid white;
 `;

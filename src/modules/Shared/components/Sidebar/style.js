@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { variables } from 'modules/Shared/stylesHelpers/variables';
+import { primary700 } from 'modules/Shared/stylesHelpers/colorVariables';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Container = styled.aside`
-  height: 100%;
-  background: ${variables.primary700};
-  width: 5%;
+  flex: 0 0 5%;
+  background: ${primary700};
 `;

@@ -1,7 +1,11 @@
 import { Container } from './style';
 
 export default function LinearProgressBar({
-  value, strokeHeight = 5, title = 'teste', strokeColor = 'green', total = 'teste2',
+  value,
+  strokeHeight = 8,
+  title = 'teste',
+  strokeColor = 'green',
+  total = 'teste2',
 }) {
   return (
     <Container value={value} strokeHeight={strokeHeight} strokeColor={strokeColor}>

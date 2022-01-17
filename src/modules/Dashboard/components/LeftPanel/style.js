@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { dark200 } from 'modules/Shared/stylesHelpers/colorVariables';
+import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
 
-export const Container = styled.div`
-  position: relative;
-  height: 100%;
-  width: 15%;
+export const Container = styled(ColumnContainer)`
+  flex: 0 0 15%;
   padding: 32px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background: #242424;
+  background: ${dark200};
+
+  > * {
+    flex: 1;
+  }
 `;

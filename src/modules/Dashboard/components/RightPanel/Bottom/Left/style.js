@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
+import { textWhite } from 'modules/Shared/stylesHelpers/colorVariables';
 
-export const Container = styled.div`
-  flex: 0 0 50%;
-  height: 100%;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
+export const Container = styled(ColumnContainer)`
   overflow-y: scroll;
-  
+
+  h5 {
+    color: ${textWhite};
+  }
 `;

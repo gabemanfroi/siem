@@ -8,6 +8,14 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import {
+  chartDarkBlue,
+  chartGreen,
+  chartGrid,
+  chartRed,
+  textWhite,
+} from 'modules/Shared/stylesHelpers/colorVariables';
+
 import { Container } from './style';
 
 ChartJS.register(
@@ -21,6 +29,7 @@ ChartJS.register(
 
 export default function Top() {
   const options = {
+
     elements: {
       bar: {
         borderWidth: 1,
@@ -32,7 +41,10 @@ export default function Top() {
     scales: {
       y: {
         grid: {
-          color: 'white',
+          color: chartGrid,
+        },
+        ticks: {
+          color: textWhite,
         },
       },
     },
@@ -54,28 +66,26 @@ export default function Top() {
       {
         label: 'Dataset 1',
         data: [1000, 800, 50, 200],
-        borderColor: 'red',
-        backgroundColor: 'red',
+        borderColor: chartRed,
+        backgroundColor: chartRed,
       },
       {
         label: 'Dataset 2',
         data: [700, 350, 120, 275],
-        borderColor: 'green',
-        backgroundColor: 'green',
+        borderColor: chartGreen,
+        backgroundColor: chartGreen,
       },
       {
         label: 'Dataset 2',
         data: [150, 700, 500, 600],
-        borderColor: 'blue',
-        backgroundColor: 'blue',
+        borderColor: chartDarkBlue,
+        backgroundColor: chartDarkBlue,
       },
     ],
   };
   return (
     <Container>
-      <div>
-        <Bar options={options} data={data} />
-      </div>
+      <Bar options={options} data={data} />
     </Container>
   );
 }
