@@ -9,7 +9,7 @@ export default function Top() {
   const { lastJsonMessage } = useWebSocket(
     process.env.REACT_APP_OVERALL_INFO_URL,
     {
-      onOpen: () => console.log('Connected'),
+      onOpen: () => {},
       onMessage: () => {
         if (lastJsonMessage) {
           setTestState(lastJsonMessage.teste);
