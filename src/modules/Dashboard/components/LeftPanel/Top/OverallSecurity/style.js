@@ -7,9 +7,4 @@ export const Container = styled(ColumnContainer)`
   h2 {
     color: ${textGray};
   }
-
-  svg {
-    align-self: center;
-    width: 60%;
-  }
 `;

@@ -1,26 +1,17 @@
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import { Typography } from '@mui/material';
+import LabeledCircularProgress from 'modules/Shared/components/LabeledCircularProgress';
 import 'react-circular-progressbar/dist/styles.css';
-import {
-  dark100,
-  primaryBlue,
-  white,
-} from 'modules/Shared/stylesHelpers/colorVariables';
 import { Container } from './style';
 
 export function OverallSecurity({ level }) {
   return (
     <Container>
-      <h2>Overall Security</h2>
-      <CircularProgressbar
-        value={level}
-        text={`${level}%`}
-        strokeWidth={5}
-        styles={buildStyles({
-          pathColor: primaryBlue,
-          trailColor: dark100,
-          textColor: white,
-        })}
-      />
+      <Typography variant="h2">Overall Security</Typography>
+      <LabeledCircularProgress value={level}>
+        <Typography fontSize={20} component="div" color="text.primary">
+          {`${level}%`}
+        </Typography>
+      </LabeledCircularProgress>
     </Container>
   );
 }

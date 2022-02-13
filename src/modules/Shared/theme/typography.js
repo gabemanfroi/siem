@@ -1,15 +1,15 @@
-import { white } from '../stylesHelpers/colorVariables';
-
 const typography = {
   h1: {},
-  h2: {},
+  h2: {
+    fontWeight: 600,
+    fontSize: '1.5rem'
+  },
   h3: {},
   h4: {},
   h5: {},
   h6: {},
   button: {
     fontWeight: 600,
-    color: white,
   },
   body1: {},
   body2: {},

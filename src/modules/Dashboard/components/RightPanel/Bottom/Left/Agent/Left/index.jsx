@@ -1,23 +1,17 @@
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import {
-  dark100,
-  primaryBlue,
-  textWhite,
-} from 'modules/Shared/stylesHelpers/colorVariables';
+import { Typography } from '@mui/material';
+import LabeledCircularProgress from 'modules/Shared/components/LabeledCircularProgress';
 import { Container } from './style';
 
 export default function Left({ reliabilityLevel }) {
   return (
     <Container>
-      <CircularProgressbar
-        value={reliabilityLevel.toFixed(0)}
-        text={`${reliabilityLevel.toFixed(0)}%`}
-        styles={buildStyles({
-          trailColor: dark100,
-          pathColor: primaryBlue,
-          textColor: textWhite,
-        })}
-      />
+      <LabeledCircularProgress size={90} value={reliabilityLevel.toFixed(0)}>
+        <Typography>
+          <Typography fontSize={16} component="div" color="text.secondary">
+            {`${reliabilityLevel.toFixed(0)}%`}
+          </Typography>
+        </Typography>
+      </LabeledCircularProgress>
     </Container>
   );
 }

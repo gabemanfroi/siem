@@ -6,8 +6,4 @@ export const Container = styled(RowContainer)`
   display: flex;
   justify-content: center;
   padding: 8px;
-
-  svg {
-    width: 75%;
-  }
 `;
