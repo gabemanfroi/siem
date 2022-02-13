@@ -1,13 +1,11 @@
+import { Box, LinearProgress, Tooltip, Typography } from '@mui/material';
+import { eventTypeConfig } from 'modules/Shared/config';
 import { FaNetworkWired } from 'react-icons/fa';
 import { GoDeviceDesktop } from 'react-icons/go';
-import {
-  primaryGreen,
-  textGray,
-} from '../../../../../../../Shared/stylesHelpers/colorVariables';
-import LinearProgressBar from '../../../../../../../Shared/components/LinearProgressBar';
+import { textGray } from '../../../../../../../Shared/stylesHelpers/colorVariables';
 import { Container } from './style';
 
-export default function Middle({ reliabilityLevel, name, ipAddress }) {
+export default function Middle({ name, ipAddress, eventAmounts }) {
   return (
     <Container>
       <div className="header">
@@ -25,10 +23,42 @@ export default function Middle({ reliabilityLevel, name, ipAddress }) {
         </div>
       </div>
       <div className="metrics">
-        <LinearProgressBar
+        {eventAmounts.map((event) => (
+          <Tooltip
+            title={
+              <Box display="flex" flexDirection="column">
+                <Typography component="span">
+                  Nível:
+                  <Typography component="span" fontWeight={600}>
+                    {` ${eventTypeConfig[event.type].label}`}
+                  </Typography>
+                </Typography>
+                <Typography component="span">
+                  Quantidade:
+                  <Typography component="span" fontWeight={600}>
+                    {` ${event.quantity}`}
+                  </Typography>
+                </Typography>
+              </Box>
+            }
+          >
+            <LinearProgress
+              key={event.type}
+              value={100}
+              variant="determinate"
+              sx={{
+                flex: event.quantity,
+                '& .MuiLinearProgress-bar': {
+                  backgroundColor: eventTypeConfig[event.type].color,
+                },
+              }}
+            />
+          </Tooltip>
+        ))}
+        {/* <LinearProgressBar
           value={reliabilityLevel}
           strokeColor={primaryGreen}
-        />
+        /> */}
       </div>
     </Container>
   );

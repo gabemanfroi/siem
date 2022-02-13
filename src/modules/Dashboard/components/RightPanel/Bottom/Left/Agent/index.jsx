@@ -4,19 +4,12 @@ import Middle from './Middle';
 import Right from './Right';
 
 export default function Agent({ agent }) {
-  const {
-    reliabilityLevel,
-    ipAddress,
-    name,
-    amountOfHighLevelEvents,
-    amountOfLowLevelEvents,
-    amountOfMediumLevelEvents,
-  } = agent;
+  const { reliabilityLevel, ipAddress, name, eventAmounts } = agent;
 
-  const totalOfEvents =
-    parseFloat(amountOfMediumLevelEvents) +
-    parseFloat(amountOfLowLevelEvents) +
-    parseFloat(amountOfHighLevelEvents);
+  const totalOfEvents = eventAmounts.reduce(
+    (prevValue, event) => prevValue + event.quantity,
+    0
+  );
 
   return (
     <Container>
@@ -25,6 +18,7 @@ export default function Agent({ agent }) {
         ipAddress={ipAddress}
         name={name}
         reliabilityLevel={reliabilityLevel}
+        eventAmounts={eventAmounts}
       />
       <Right totalOfEvents={totalOfEvents} agent={agent} />
     </Container>

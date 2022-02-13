@@ -22,7 +22,5 @@ export const Container = styled(ColumnContainer)`
 
   .metrics {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
   }
 `;
