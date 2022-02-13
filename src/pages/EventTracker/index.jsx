@@ -1,11 +1,8 @@
 import DataTable from 'react-data-table-component';
 import Events from 'modules/Shared/assets/data/events.json';
-import { useState } from 'react';
 import { Container } from './style';
 
 export default function EventTracker() {
-  const [selectedEvent, setSelectedEvent] = useState();
-  console.log(selectedEvent);
   const columns = [
     {
       name: 'Active IP',
@@ -34,10 +31,6 @@ export default function EventTracker() {
       selector: (row) => row.level,
     },
     {
-      // eslint-disable-next-line react/no-unstable-nested-components
-      cell: (self) => (
-        <TestButton setSelectedEvent={setSelectedEvent} event={self} />
-      ),
       ignoreRowClick: true,
       allowOverflow: true,
       button: true,
@@ -49,18 +42,5 @@ export default function EventTracker() {
       <h1>Central de Eventos</h1>
       <DataTable data={Events} columns={columns} pagination />
     </Container>
-  );
-}
-
-function TestButton({ setSelectedEvent, event }) {
-  return (
-    <button
-      onClick={() => {
-        setSelectedEvent(event);
-      }}
-      type="button"
-    >
-      Detalhes
-    </button>
   );
 }

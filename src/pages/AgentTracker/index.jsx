@@ -1,6 +1,4 @@
 import DataTable from 'react-data-table-component';
-import useWebSocket from 'react-use-websocket';
-import { useEffect } from 'react';
 import { Container } from './style';
 
 function ExpandedComponent({ data }) {
@@ -8,14 +6,6 @@ function ExpandedComponent({ data }) {
 }
 
 export default function AgentTracker() {
-  const { lastJsonMessage } = useWebSocket(
-    process.env.REACT_APP_EVENTS_BY_AGENT_URL
-  );
-
-  useEffect(() => {
-    if (lastJsonMessage) console.log(lastJsonMessage);
-  }, [lastJsonMessage]);
-
   const columns = [
     {
       name: 'Title',
