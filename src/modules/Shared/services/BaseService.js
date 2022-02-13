@@ -10,7 +10,7 @@ export default class BaseService {
   }
 
   getDynamicRoute(url) {
-    return HttpClient.axiosInstance.get(url);
+    return HttpClient.axiosInstance.get(`${this.baseEndpoint}${url}`);
   }
 
   post(data) {

@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Berkly",
+    "ipAddress": "198.250.206.156",
+    "amountOfLowLevelEvents": 9920,
+    "amountOfMediumLevelEvents": 4014,
+    "amountOfHighLevelEvents": 124,
+    "reliabilityLevel": 76.39
+  },
+  {
+    "id": 2,
+    "name": "Elane",
+    "ipAddress": "81.254.141.156",
+    "amountOfLowLevelEvents": 5880,
+    "amountOfMediumLevelEvents": 808,
+    "amountOfHighLevelEvents": 271,
+    "reliabilityLevel": 11.7
+  },
+  {
+    "id": 3,
+    "name": "Dodi",
+    "ipAddress": "68.237.158.118",
+    "amountOfLowLevelEvents": 1812,
+    "amountOfMediumLevelEvents": 3639,
+    "amountOfHighLevelEvents": 901,
+    "reliabilityLevel": 40.1
+  },
+  {
+    "id": 4,
+    "name": "Feliza",
+    "ipAddress": "116.182.233.95",
+    "amountOfLowLevelEvents": 9594,
+    "amountOfMediumLevelEvents": 9688,
+    "amountOfHighLevelEvents": 389,
+    "reliabilityLevel": 52.52
+  },
+  {
+    "id": 5,
+    "name": "Lesley",
+    "ipAddress": "173.39.130.253",
+    "amountOfLowLevelEvents": 3125,
+    "amountOfMediumLevelEvents": 7807,
+    "amountOfHighLevelEvents": 342,
+    "reliabilityLevel": 15.26
+  },
+  {
+    "id": 6,
+    "name": "Guy",
+    "ipAddress": "84.210.95.134",
+    "amountOfLowLevelEvents": 8368,
+    "amountOfMediumLevelEvents": 7967,
+    "amountOfHighLevelEvents": 373,
+    "reliabilityLevel": 30.06
+  },
+  {
+    "id": 7,
+    "name": "Michelle",
+    "ipAddress": "128.212.150.111",
+    "amountOfLowLevelEvents": 2447,
+    "amountOfMediumLevelEvents": 408,
+    "amountOfHighLevelEvents": 263,
+    "reliabilityLevel": 2.7
+  }
+]

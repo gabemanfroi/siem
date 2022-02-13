@@ -1,24 +1,21 @@
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 import {
   dark100,
   primaryBlue,
-  white,
+  textWhite,
 } from 'modules/Shared/stylesHelpers/colorVariables';
 import { Container } from './style';
 
-export function OverallSecurity({ level }) {
+export default function Left({ reliabilityLevel }) {
   return (
     <Container>
-      <h2>Overall Security</h2>
       <CircularProgressbar
-        value={level}
-        text={`${level}%`}
-        strokeWidth={5}
+        value={reliabilityLevel.toFixed(0)}
+        text={`${reliabilityLevel.toFixed(0)}%`}
         styles={buildStyles({
-          pathColor: primaryBlue,
           trailColor: dark100,
-          textColor: white,
+          pathColor: primaryBlue,
+          textColor: textWhite,
         })}
       />
     </Container>

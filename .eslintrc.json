@@ -40,6 +40,11 @@
     "react/prop-types": "off",
     "no-param-reassign": "off",
     "class-methods-use-this": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "react/jsx-wrap-multilines": "off",
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
+    "object-curly-newline": "off",
+    "react/jsx-no-useless-fragment": "off"
   }
 }
