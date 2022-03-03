@@ -5,14 +5,14 @@ import { GoDeviceDesktop } from 'react-icons/go';
 import { textGray } from '../../../../../../../Shared/stylesHelpers/colorVariables';
 import { Container } from './style';
 
-export default function Middle({ name, ipAddress, eventAmounts }) {
+export default function Middle({ name, ip, eventsByLevel }) {
   return (
     <Container>
       <div className="header">
         <div className="group-name">
           <FaNetworkWired size={24} color={textGray} />
           <h5>
-            <span>{ipAddress || ' - '}</span>
+            <span>{ip || ' - '}</span>
           </h5>
         </div>
         <div className="device-name">
@@ -23,33 +23,33 @@ export default function Middle({ name, ipAddress, eventAmounts }) {
         </div>
       </div>
       <div className="metrics">
-        {eventAmounts.map((event) => (
+        {Object.keys(eventsByLevel).map((key) => (
           <Tooltip
             title={
               <Box display="flex" flexDirection="column">
                 <Typography component="span">
                   Nível:
                   <Typography component="span" fontWeight={600}>
-                    {` ${eventTypeConfig[event.type].label}`}
+                    {` ${eventTypeConfig[key].label}`}
                   </Typography>
                 </Typography>
                 <Typography component="span">
                   Quantidade:
                   <Typography component="span" fontWeight={600}>
-                    {` ${event.quantity}`}
+                    {` ${eventsByLevel[key]}`}
                   </Typography>
                 </Typography>
               </Box>
             }
           >
             <LinearProgress
-              key={event}
+              key={key}
               value={100}
               variant="determinate"
               sx={{
-                flex: event.quantity,
+                flex: eventsByLevel[key],
                 '& .MuiLinearProgress-bar': {
-                  backgroundColor: eventTypeConfig[event.type].color,
+                  backgroundColor: eventTypeConfig[key].color,
                   height: '8px',
                 },
               }}
