@@ -26,3 +26,4 @@ export const white = '#e5e5e5';
 export const primaryBlue = '#0181ff';
 export const primaryGreen = '#05C589';
 export const primaryRed = '#F6373B';
+export const primaryBg = '#001724';
