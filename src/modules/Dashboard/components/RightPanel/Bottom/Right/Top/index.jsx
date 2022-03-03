@@ -13,7 +13,7 @@ export default function Top() {
       {eventsByLevel && (
         <Container>
           <Typography variant="h4" color="text.primary">
-            Total:{' '}
+            Total:
             {eventsByLevel.high + eventsByLevel.low + eventsByLevel.medium}
           </Typography>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
