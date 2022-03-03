@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
+import { ColumnContainer } from 'modules/Shared/components/Containers/Containers';
 
 export const Container = styled(ColumnContainer)`
   margin-left: 104px;
-  overflow-y: scroll;
+
   padding: 32px;
 `;

@@ -5,15 +5,15 @@
     "ipAddress": "198.250.206.156",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 9920
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 4014
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],
@@ -25,15 +25,15 @@
     "ipAddress": "81.254.141.156",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 120
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 1000
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],
@@ -45,15 +45,15 @@
     "ipAddress": "68.237.158.118",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 9920
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 4014
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],
@@ -65,15 +65,15 @@
     "ipAddress": "116.182.233.95",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 9920
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 4014
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],
@@ -85,15 +85,15 @@
     "ipAddress": "173.39.130.253",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 9920
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 4014
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],
@@ -105,15 +105,15 @@
     "ipAddress": "84.210.95.134",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 9920
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 4014
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],
@@ -125,15 +125,15 @@
     "ipAddress": "128.212.150.111",
     "eventAmounts": [
       {
-        "type": "LOW",
+        "type": "low",
         "quantity": 9920
       },
       {
-        "type": "MEDIUM",
+        "type": "medium",
         "quantity": 4014
       },
       {
-        "type": "HIGH",
+        "type": "high",
         "quantity": 124
       }
     ],

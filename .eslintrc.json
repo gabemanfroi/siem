@@ -45,6 +45,7 @@
     "operator-linebreak": "off",
     "implicit-arrow-linebreak": "off",
     "object-curly-newline": "off",
-    "react/jsx-no-useless-fragment": "off"
+    "react/jsx-no-useless-fragment": "off",
+    "linebreak-style": "off"
   }
 }

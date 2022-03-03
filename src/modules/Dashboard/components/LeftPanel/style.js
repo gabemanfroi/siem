@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { dark200 } from 'modules/Shared/stylesHelpers/colorVariables';
-import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
+import { ColumnContainer } from 'modules/Shared/components/Containers/Containers';
 
 export const Container = styled(ColumnContainer)`
   flex: 0 0 15%;

@@ -1,17 +1,26 @@
 import { Typography } from '@mui/material';
 import LabeledCircularProgress from 'modules/Shared/components/LabeledCircularProgress';
 import 'react-circular-progressbar/dist/styles.css';
+import { useSelector } from 'react-redux';
 import { Container } from './style';
 
-export function OverallSecurity({ level }) {
+export function OverallSecurity() {
+  const {
+    metrics: { trustLevel },
+  } = useSelector(({ overallMetrics }) => overallMetrics);
+
   return (
-    <Container>
-      <Typography variant="h2">Overall Security</Typography>
-      <LabeledCircularProgress value={level}>
-        <Typography fontSize={20} component="div" color="text.primary">
-          {`${level}%`}
-        </Typography>
-      </LabeledCircularProgress>
-    </Container>
+    <>
+      {trustLevel && (
+        <Container>
+          <Typography variant="h2">Trust Level</Typography>
+          <LabeledCircularProgress value={trustLevel}>
+            <Typography fontSize={20} component="div" color="text.primary">
+              {`${trustLevel.toFixed(2)}%`}
+            </Typography>
+          </LabeledCircularProgress>
+        </Container>
+      )}
+    </>
   );
 }

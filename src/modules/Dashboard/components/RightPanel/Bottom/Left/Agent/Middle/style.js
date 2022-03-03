@@ -1,4 +1,4 @@
-import { ColumnContainer } from 'modules/Shared/stylesHelpers/components/Containers';
+import { ColumnContainer } from 'modules/Shared/components/Containers/Containers';
 import styled from 'styled-components';
 
 export const Container = styled(ColumnContainer)`

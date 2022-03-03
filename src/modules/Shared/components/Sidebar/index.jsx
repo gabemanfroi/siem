@@ -55,7 +55,7 @@ export default function Sidebar() {
           <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
             <MdDashboard size={30} color={theme.palette.text.primary} />
           </ListItemIcon>
-          <Typography>Dashboard</Typography>
+          <Typography>Eventos</Typography>
         </ListItem>
         <ListItem
           button
@@ -70,7 +70,7 @@ export default function Sidebar() {
           <ListItemIcon sx={{ display: 'flex', justifyContent: 'center' }}>
             <MdDashboard size={30} color={theme.palette.text.primary} />
           </ListItemIcon>
-          <Typography>Dashboard</Typography>
+          <Typography>Agentes</Typography>
         </ListItem>
       </List>
     </Drawer>

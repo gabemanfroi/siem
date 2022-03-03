@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { RowContainer } from 'modules/Shared/stylesHelpers/components/Containers';
+import { RowContainer } from 'modules/Shared/components/Containers/Containers';
 
-export const Container = styled(RowContainer)`
-  
-`;
+export const Container = styled(RowContainer)``;

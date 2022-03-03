@@ -5,15 +5,15 @@ import {
 } from '../stylesHelpers/colorVariables';
 
 const eventTypeConfig = {
-  LOW: {
+  low: {
     color: chartAqua,
     label: 'Baixo',
   },
-  MEDIUM: {
+  medium: {
     color: chartYellow,
     label: 'Médio',
   },
-  HIGH: {
+  high: {
     color: chartRed,
     label: 'Alto',
   },

@@ -43,22 +43,19 @@ export default function Middle({ name, ipAddress, eventAmounts }) {
             }
           >
             <LinearProgress
-              key={event.type}
+              key={event}
               value={100}
               variant="determinate"
               sx={{
                 flex: event.quantity,
                 '& .MuiLinearProgress-bar': {
                   backgroundColor: eventTypeConfig[event.type].color,
+                  height: '8px',
                 },
               }}
             />
           </Tooltip>
         ))}
-        {/* <LinearProgressBar
-          value={reliabilityLevel}
-          strokeColor={primaryGreen}
-        /> */}
       </div>
     </Container>
   );
