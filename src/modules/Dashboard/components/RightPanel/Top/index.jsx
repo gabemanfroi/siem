@@ -1,91 +1,51 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import {
-  chartDarkBlue,
-  chartGreen,
-  chartGrid,
-  chartRed,
-  textWhite,
-} from 'modules/Shared/stylesHelpers/colorVariables';
+import Chart from 'react-apexcharts';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
+import { DateTimePicker, LocalizationProvider } from '@mui/lab';
+import { TextField } from '@mui/material';
+import { useState } from 'react';
 import { Container } from './style';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-);
 
 export default function Top() {
   const options = {
-
-    elements: {
-      bar: {
-        borderWidth: 1,
-      },
+    chart: {
+      id: 'basic-bar',
     },
-    maintainAspectRatio: true,
-    aspectRatio: 4,
-    responsive: true,
-    scales: {
-      y: {
-        grid: {
-          color: chartGrid,
-        },
-        ticks: {
-          color: textWhite,
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        position: 'bottom',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Horizontal Bar Chart',
-      },
+    xaxis: {
+      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
     },
   };
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [1000, 800, 50, 200],
-        borderColor: chartRed,
-        backgroundColor: chartRed,
-      },
-      {
-        label: 'Dataset 2',
-        data: [700, 350, 120, 275],
-        borderColor: chartGreen,
-        backgroundColor: chartGreen,
-      },
-      {
-        label: 'Dataset 2',
-        data: [150, 700, 500, 600],
-        borderColor: chartDarkBlue,
-        backgroundColor: chartDarkBlue,
-      },
-    ],
-  };
+  const series = [
+    {
+      name: 'series-1',
+      data: [30, 40, 45, 50, 49, 60, 70, 91],
+    },
+  ];
+
+  const [initialDate, setInitialDate] = useState(new Date());
+
   return (
     <Container>
-      <Bar options={options} data={data} />
+      <div>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DateTimePicker
+            renderInput={(props) => <TextField {...props} />}
+            label="DateTimePicker"
+            value={initialDate}
+            onChange={(newValue) => {
+              setInitialDate(newValue);
+            }}
+          />
+        </LocalizationProvider>
+      </div>
+      <Chart
+        options={options}
+        series={series}
+        type="bar"
+        height="200%"
+        width="100%"
+      />
     </Container>
   );
 }

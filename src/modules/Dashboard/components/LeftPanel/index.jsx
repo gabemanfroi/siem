@@ -12,7 +12,6 @@ export default function LeftPanel() {
 
   useEffect(() => {
     if (lastJsonMessage) {
-      console.log(lastJsonMessage);
       dispatch(setOverallMetrics(lastJsonMessage));
     }
   }, [lastJsonMessage]);

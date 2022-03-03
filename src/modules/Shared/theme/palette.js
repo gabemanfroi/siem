@@ -7,7 +7,7 @@ import {
   primaryRed,
   primaryYellow,
   textGray,
-  white,
+  white
 } from '../stylesHelpers/colorVariables';
 
 const palette = {
