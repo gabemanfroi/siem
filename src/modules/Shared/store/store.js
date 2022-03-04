@@ -5,6 +5,7 @@ import loadingReducer from '../reducers/loadingReducer';
 import agentReducer from '../reducers/agentReducer';
 import metricsReducer from '../reducers/metricsReducer';
 import errorReducer from '../reducers/errorReducer';
+import filterReducer from '../reducers/filterReducer';
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     agent: agentReducer,
     metrics: metricsReducer,
     error: errorReducer,
+    filter: filterReducer,
   },
 });

@@ -5,17 +5,21 @@ export const metricsSlice = createSlice({
   initialState: {
     overallMetrics: {},
     groupedByAgentMetrics: [],
+    dateHistogram: [],
   },
   reducers: {
-    setOverallMetrics: (state, { payload: overallMetrics }) => {
-      state.overallMetrics = overallMetrics;
+    setOverallMetrics: (state, { payload: metrics }) => {
+      state.overallMetrics = metrics;
     },
-    setGroupedByAgentMetrics: (state, { payload: overallMetrics }) => {
-      state.groupedByAgentMetrics = overallMetrics;
+    setGroupedByAgentMetrics: (state, { payload: metrics }) => {
+      state.groupedByAgentMetrics = metrics;
+    },
+    setDateHistogram: (state, { payload: histogram }) => {
+      state.groupedByAgentMetrics = histogram;
     },
   },
 });
-export const { setOverallMetrics, setGroupedByAgentMetrics } =
+export const { setOverallMetrics, setGroupedByAgentMetrics, setDateHistogram } =
   metricsSlice.actions;
 
 export default metricsSlice.reducer;
