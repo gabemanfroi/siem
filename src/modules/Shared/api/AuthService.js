@@ -2,7 +2,7 @@ import BaseService from '../services/BaseService';
 
 class AuthService extends BaseService {
   constructor() {
-    super('login/');
+    super('login/access-token/');
   }
 
   async authenticate(username, password) {

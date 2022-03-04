@@ -4,21 +4,21 @@ import Middle from './Middle';
 import Right from './Right';
 
 export default function Agent({ agent }) {
-  const { reliabilityLevel, ipAddress, name, eventAmounts } = agent;
+  const { trustLevel, ip, name, eventsByLevel } = agent;
 
-  const totalOfEvents = eventAmounts.reduce(
-    (prevValue, event) => prevValue + event.quantity,
+  const totalOfEvents = Object.keys(eventsByLevel).reduce(
+    (prevValue, key) => prevValue + eventsByLevel[key],
     0
   );
 
   return (
     <Container>
-      <Left reliabilityLevel={reliabilityLevel} />
+      <Left reliabilityLevel={trustLevel} />
       <Middle
-        ipAddress={ipAddress}
+        ip={ip}
         name={name}
-        reliabilityLevel={reliabilityLevel}
-        eventAmounts={eventAmounts}
+        reliabilityLevel={trustLevel}
+        eventsByLevel={eventsByLevel}
       />
       <Right totalOfEvents={totalOfEvents} agent={agent} />
     </Container>

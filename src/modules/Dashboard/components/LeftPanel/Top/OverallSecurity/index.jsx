@@ -6,8 +6,8 @@ import { Container } from './style';
 
 export function OverallSecurity() {
   const {
-    metrics: { trustLevel },
-  } = useSelector(({ overallMetrics }) => overallMetrics);
+    overallMetrics: { trustLevel },
+  } = useSelector(({ metrics }) => metrics);
 
   return (
     <>

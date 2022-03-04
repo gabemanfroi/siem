@@ -5,8 +5,8 @@ import { eventTypeConfig } from '../../../../../../Shared/config';
 
 export default function Top() {
   const {
-    metrics: { eventsByLevel },
-  } = useSelector(({ overallMetrics }) => overallMetrics);
+    overallMetrics: { eventsByLevel },
+  } = useSelector(({ metrics }) => metrics);
 
   return (
     <>

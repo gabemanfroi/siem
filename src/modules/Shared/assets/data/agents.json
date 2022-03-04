@@ -2,141 +2,78 @@
   {
     "id": 1,
     "name": "Berkly",
-    "ipAddress": "198.250.206.156",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 9920
-      },
-      {
-        "type": "medium",
-        "quantity": 4014
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 76.39
+    "ip": "198.250.206.156",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 76.39
   },
   {
     "id": 2,
     "name": "Elane",
-    "ipAddress": "81.254.141.156",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 120
-      },
-      {
-        "type": "medium",
-        "quantity": 1000
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 11.7
+    "ip": "81.254.141.156",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 11.7
   },
   {
     "id": 3,
     "name": "Dodi",
-    "ipAddress": "68.237.158.118",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 9920
-      },
-      {
-        "type": "medium",
-        "quantity": 4014
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 40.1
+    "ip": "68.237.158.118",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 40.1
   },
   {
     "id": 4,
     "name": "Feliza",
-    "ipAddress": "116.182.233.95",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 9920
-      },
-      {
-        "type": "medium",
-        "quantity": 4014
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 52.52
+    "ip": "116.182.233.95",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 52.52
   },
   {
     "id": 5,
     "name": "Lesley",
-    "ipAddress": "173.39.130.253",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 9920
-      },
-      {
-        "type": "medium",
-        "quantity": 4014
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 15.26
+    "ip": "173.39.130.253",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 15.26
   },
   {
     "id": 6,
     "name": "Guy",
-    "ipAddress": "84.210.95.134",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 9920
-      },
-      {
-        "type": "medium",
-        "quantity": 4014
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 30.06
+    "ip": "84.210.95.134",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 30.06
   },
   {
     "id": 7,
     "name": "Michelle",
-    "ipAddress": "128.212.150.111",
-    "eventAmounts": [
-      {
-        "type": "low",
-        "quantity": 9920
-      },
-      {
-        "type": "medium",
-        "quantity": 4014
-      },
-      {
-        "type": "high",
-        "quantity": 124
-      }
-    ],
-    "reliabilityLevel": 2.7
+    "ip": "128.212.150.111",
+    "eventsByLevel": {
+      "low": 9920,
+      "medium": 4014,
+      "high": 124
+    },
+    "trustLevel": 2.7
   }
 ]
