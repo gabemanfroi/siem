@@ -1,8 +1,10 @@
 [
   {
-    "id": 1,
-    "name": "Berkly",
-    "ip": "198.250.206.156",
+    "generalData": {
+      "id": 1,
+      "name": "Berkly",
+      "ip": "198.250.206.156"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
@@ -11,9 +13,11 @@
     "trustLevel": 76.39
   },
   {
-    "id": 2,
-    "name": "Elane",
-    "ip": "81.254.141.156",
+    "generalData": {
+      "id": 2,
+      "name": "Elane",
+      "ip": "81.254.141.156"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
@@ -22,9 +26,11 @@
     "trustLevel": 11.7
   },
   {
-    "id": 3,
-    "name": "Dodi",
-    "ip": "68.237.158.118",
+    "generalData": {
+      "id": 3,
+      "name": "Dodi",
+      "ip": "68.237.158.118"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
@@ -33,9 +39,11 @@
     "trustLevel": 40.1
   },
   {
-    "id": 4,
-    "name": "Feliza",
-    "ip": "116.182.233.95",
+    "generalData": {
+      "id": 4,
+      "name": "Feliza",
+      "ip": "116.182.233.95"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
@@ -44,9 +52,11 @@
     "trustLevel": 52.52
   },
   {
-    "id": 5,
-    "name": "Lesley",
-    "ip": "173.39.130.253",
+    "generalData": {
+      "id": 5,
+      "name": "Lesley",
+      "ip": "173.39.130.253"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
@@ -55,9 +65,11 @@
     "trustLevel": 15.26
   },
   {
-    "id": 6,
-    "name": "Guy",
-    "ip": "84.210.95.134",
+    "generalData": {
+      "id": 6,
+      "name": "Guy",
+      "ip": "84.210.95.134"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
@@ -66,9 +78,11 @@
     "trustLevel": 30.06
   },
   {
-    "id": 7,
-    "name": "Michelle",
-    "ip": "128.212.150.111",
+    "generalData": {
+      "id": 7,
+      "name": "Michelle",
+      "ip": "128.212.150.111"
+    },
     "eventsByLevel": {
       "low": 9920,
       "medium": 4014,
