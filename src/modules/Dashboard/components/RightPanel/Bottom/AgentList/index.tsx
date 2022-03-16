@@ -11,9 +11,16 @@ export default function AgentList() {
     <Container>
       <h5>Agentes</h5>
       {isLoading && (
-        <Skeleton variant="rectangular" sx={{ flex: 1 }} animation="wave" />
+        <Skeleton
+          variant="rectangular"
+          sx={{ flex: 1, borderRadius: '5px' }}
+          animation="wave"
+        />
       )}
-      {!isLoading && groupedByAgent.map((agent) => <Agent agent={agent} />)}
+      {!isLoading &&
+        groupedByAgent.map((agent) => (
+          <Agent key={agent.generalData.id} agent={agent} />
+        ))}
     </Container>
   );
 }

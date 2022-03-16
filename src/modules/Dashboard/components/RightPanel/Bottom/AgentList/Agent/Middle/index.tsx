@@ -2,7 +2,7 @@ import { Box, LinearProgress, Tooltip, Typography } from '@mui/material';
 import { eventTypeConfig } from 'modules/Shared/config';
 import { FaNetworkWired } from 'react-icons/fa';
 import { GoDeviceDesktop } from 'react-icons/go';
-import { textGray } from '../../../../../../../Shared/stylesHelpers/colorVariables';
+import { gray300 } from '../../../../../../../Shared/stylesHelpers/colorVariables';
 import { Container } from './style';
 
 interface MiddleInterface {
@@ -24,13 +24,13 @@ export default function Middle({
     <Container>
       <div className="header">
         <div className="group-name">
-          <FaNetworkWired size={24} color={textGray} />
+          <FaNetworkWired size={24} color={gray300} />
           <h5>
             <span>{ip || ' - '}</span>
           </h5>
         </div>
         <div className="device-name">
-          <GoDeviceDesktop size={24} color={textGray} />
+          <GoDeviceDesktop size={24} color={gray300} />
           <h5>
             <span>{name}</span>
           </h5>
@@ -39,6 +39,7 @@ export default function Middle({
       <div className="metrics">
         {Object.keys(eventsByLevel).map((key) => (
           <Tooltip
+            key={key}
             title={
               <Box display="flex" flexDirection="column">
                 <Typography component="span">

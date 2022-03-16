@@ -1,4 +1,7 @@
 import {
+  Box,
+  Collapse,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -6,79 +9,86 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
+  useTheme,
 } from '@mui/material';
 import React from 'react';
+import { MdChevronRight } from 'react-icons/md';
+import { CgChevronDown } from 'react-icons/cg';
+import { AgentType } from '../../../../types/AgentType';
+import { EventType } from '../../../../types/EventType';
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-  price: number
-) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      {
-        date: '2020-01-05',
-        customerId: '11091700',
-        amount: 3,
-      },
-      {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
-        amount: 1,
-      },
-    ],
-  };
+interface EventsProps {
+  agent: AgentType;
 }
 
-const Events = () => {
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-  ];
+function Row({ event }: { event: EventType }) {
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? (
+              <CgChevronDown color={theme.palette.text.primary} />
+            ) : (
+              <MdChevronRight color={theme.palette.text.primary} />
+            )}
+          </IconButton>
+        </TableCell>
+        <TableCell align="right">{event.level}</TableCell>
+        <TableCell align="right">{event.firedTimes}</TableCell>
+        <TableCell align="right">{event.description}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div">
+                History
+              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Customer</TableCell>
+                    <TableCell align="right">Amount</TableCell>
+                    <TableCell align="right">Total price ($)</TableCell>
+                  </TableRow>
+                </TableHead>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </>
   );
-};
+}
+
+const Events = ({ agent }: EventsProps) => (
+  <TableContainer component={Paper}>
+    <Table size="small" aria-label="collapsible table">
+      <TableHead>
+        <TableRow>
+          <TableCell />
+          <TableCell align="right">Level</TableCell>
+          <TableCell align="right">Fired Times</TableCell>
+          <TableCell align="right">Total Price</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {agent.events.map((event) => (
+          <Row key={event.firedTimes} event={event} />
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+);
 
 export default Events;

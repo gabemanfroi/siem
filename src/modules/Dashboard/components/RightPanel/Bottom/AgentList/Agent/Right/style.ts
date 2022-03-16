@@ -1,6 +1,6 @@
 import { ColumnContainer } from 'modules/Shared/components/Containers/Containers';
 import styled from 'styled-components';
-import { textGray } from 'modules/Shared/stylesHelpers/colorVariables';
+import { gray300 } from 'modules/Shared/stylesHelpers/colorVariables';
 
 export const Container = styled(ColumnContainer)`
   flex: 1;
@@ -14,7 +14,7 @@ export const Container = styled(ColumnContainer)`
     justify-content: flex-start;
 
     .wrapper {
-      color: ${textGray};
+      color: ${gray300};
       display: flex;
       flex-direction: column;
 

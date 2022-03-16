@@ -129,7 +129,11 @@ export default function Top() {
         </LocalizationProvider>
       </div>
       {isLoading && (
-        <Skeleton variant="rectangular" sx={{ flex: 1 }} animation="wave" />
+        <Skeleton
+          variant="rectangular"
+          sx={{ flex: 1, borderRadius: '5px' }}
+          animation="wave"
+        />
       )}
       {!isLoading && (
         <Chart

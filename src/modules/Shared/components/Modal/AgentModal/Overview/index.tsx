@@ -37,8 +37,19 @@ const Overview = ({ agent }: OverviewProps) => {
       height: 350,
       type: 'radialBar',
     },
+
     plotOptions: {
       radialBar: {
+        dataLabels: {
+          value: {
+            formatter(val: number): string {
+              return `${val.toLocaleString('pt-BR', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}%`;
+            },
+          },
+        },
         hollow: {
           size: '70%',
         },

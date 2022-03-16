@@ -1,4 +1,10 @@
-import { Box, LinearProgress, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  LinearProgress,
+  Skeleton,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import { eventTypeConfig } from 'modules/Shared/config';
 import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
 import { Container } from './style';
@@ -8,9 +14,18 @@ export default function Top() {
     overall: { eventsByLevel },
   } = useAppSelector(({ dashboard }) => dashboard);
 
+  const { isLoading } = useAppSelector(({ loading }) => loading);
+
   return (
     <>
-      {eventsByLevel && (
+      {isLoading && (
+        <Skeleton
+          variant="rectangular"
+          sx={{ flex: 1, borderRadius: '5px' }}
+          animation="wave"
+        />
+      )}
+      {!isLoading && (
         <Container>
           <Typography variant="h4" color="text.primary">
             Total:
@@ -19,6 +34,7 @@ export default function Top() {
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             {Object.keys(eventsByLevel).map((key) => (
               <Tooltip
+                key={key}
                 title={
                   <Box display="flex" flexDirection="column">
                     <Typography component="span">

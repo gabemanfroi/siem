@@ -7,11 +7,12 @@ import {
   primaryBlue,
   primaryRed,
   primaryYellow,
-  textGray,
+  gray300,
   white,
 } from '../stylesHelpers/colorVariables';
 
 const palette: PaletteOptions = {
+  mode: 'dark',
   primary: {
     main: primary700,
     contrastText: white,
@@ -34,7 +35,7 @@ const palette: PaletteOptions = {
   },
   text: {
     primary: white,
-    secondary: textGray,
+    secondary: gray300,
   },
   background: {
     default: dark500,

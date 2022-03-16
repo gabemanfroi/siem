@@ -10,7 +10,7 @@ export default function Top() {
       <h1>Dashboard</h1>
       {isLoading && (
         <Skeleton
-          sx={{ height: '25%' }}
+          sx={{ height: '25%', borderRadius: '5px' }}
           variant="rectangular"
           animation="pulse"
         />
