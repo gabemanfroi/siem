@@ -1,7 +1,6 @@
 import { Box, Modal, Tab, Tabs, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { TabContext, TabPanel } from '@mui/lab';
-import useWebSocket from 'react-use-websocket';
 
 import { setIsAgentModalOpen } from 'modules/Shared/reducers/modalReducer';
 import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
@@ -20,11 +19,6 @@ export default function AgentModal() {
   const dispatch = useAppDispatch();
   const [selectedTab, setSelectedTab] = useState('1');
   const [modalAgent, setModalAgent] = useState<AgentType | null>(selectedAgent);
-  const { lastJsonMessage, sendJsonMessage } = useWebSocket(
-    `${process.env.REACT_APP_AGENT_URL!}?agent_id=${
-      selectedAgent?.generalData.id
-    }&token=${TokenUtil.getToken()}`
-  );
 
   const handleClose = () => {
     dispatch(setIsAgentModalOpen(false));
@@ -35,16 +29,27 @@ export default function AgentModal() {
   };
 
   useEffect(() => {
-    if (lastJsonMessage) {
-      if (!(JSON.stringify(lastJsonMessage) === JSON.stringify(modalAgent))) {
-        setModalAgent(lastJsonMessage);
-      }
-    }
-  }, [lastJsonMessage]);
+    const ws = new WebSocket(
+      `${process.env.REACT_APP_AGENT_URL!}?agent_id=${
+        selectedAgent?.generalData.id
+      }&token=${TokenUtil.getToken()}`
+    );
 
-  useEffect(() => {
-    sendJsonMessage(filterToSend);
-  }, [filterToSend]);
+    ws.addEventListener('open', () => {
+      ws.send(JSON.stringify(filterToSend));
+    });
+
+    ws.addEventListener('message', (e) => {
+      if (JSON.stringify(JSON.parse(e.data)) !== JSON.stringify(modalAgent)) {
+        // TODO: Check out why modal agent is being reset
+        setModalAgent(JSON.parse(e.data));
+      }
+    });
+
+    return () => {
+      ws.close();
+    };
+  }, []);
 
   if (!modalAgent) return <></>;
 
@@ -66,7 +71,7 @@ export default function AgentModal() {
               <Tab label="Eventos" value="2" />
             </Tabs>
           </Box>
-          <TabPanel value="1">
+          <TabPanel sx={{ flex: 1 }} value="1">
             <Overview agent={modalAgent} />
           </TabPanel>
           <TabPanel value="2">
