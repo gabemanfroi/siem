@@ -2,11 +2,11 @@ FROM node:14.17-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn
+COPY build ./build
+COPY .env ./
 
-COPY . ./
+RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD serve -s build
