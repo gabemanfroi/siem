@@ -3,7 +3,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 import { DateTimePicker, LocalizationProvider } from '@mui/lab';
 import { IconButton, Skeleton, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MdOutlineFilterAlt } from 'react-icons/md';
 import { setFilter } from 'modules/Shared/reducers/filterReducer';
 import { useAppDispatch } from 'modules/Shared/hooks/useAppDispatch';
@@ -14,41 +14,61 @@ import { Container } from './style';
 
 export default function Top() {
   const { isLoading } = useAppSelector(({ loading }) => loading);
-  const { dateHistogram } = useAppSelector(({ dashboard }) => dashboard);
-  const [categories, setCategories] = useState<string[]>([]);
-  const [series, setSeries] = useState<{ name: string; data?: number[] }[]>([
-    { name: 'series-1' },
+  // const { dateHistogram } = useAppSelector(({ dashboard }) => dashboard);
+  const [categories] = useState<string[]>([
+    '2011 Q1',
+    '2011 Q2',
+    '2011 Q3',
+    '2011 Q4',
+    '2012 Q1',
+    '2012 Q2',
+    '2012 Q3',
+    '2012 Q4',
+  ]);
+  const [series] = useState<{ name: string; data?: number[] }[]>([
+    {
+      name: 'Baixo',
+      data: [44, 55, 41, 67, 22, 43, 21, 49],
+    },
+    {
+      name: 'Médio',
+      data: [13, 23, 20, 8, 13, 27, 33, 12],
+    },
+    {
+      name: 'Alto',
+      data: [11, 17, 15, 15, 21, 14, 15, 13],
+    },
   ]);
 
-  useEffect(() => {
-    if (dateHistogram) {
-      const chartDate = {
-        categories: [] as string[],
-        series: { low: [], high: [], medium: [] } as {
-          low: number[];
-          medium: number[];
-          high: number[];
-        },
-      };
-      dateHistogram.forEach((date) => {
-        const createdDate = new Date(date.timestamp);
-        chartDate.categories.push(
-          `${createdDate.getDate()} - ${createdDate.toLocaleString('pt-BR', {
-            month: 'long',
-          })}`
-        );
-        chartDate.series.low.push(date.eventsByLevel.low);
-        chartDate.series.medium.push(date.eventsByLevel.medium);
-        chartDate.series.high.push(date.eventsByLevel.high);
-      });
-      setCategories(chartDate.categories);
-      setSeries([
-        { name: 'Baixo', data: chartDate.series.low },
-        { name: 'Médio', data: chartDate.series.medium },
-        { name: 'Alto', data: chartDate.series.high },
-      ]);
-    }
-  }, [dateHistogram]);
+  // useEffect(() => {
+  //   if (dateHistogram) {
+  //     const chartDate = {
+  //       categories: [] as string[],
+  //       series: { low: [], high: [], medium: [] } as {
+  //         low: number[];
+  //         medium: number[];
+  //         high: number[];
+  //       },
+  //     };
+  //     dateHistogram.forEach((date) => {
+  //       const createdDate = new Date(date.timestamp);
+  //       chartDate.categories.push(
+  //         `${createdDate.getDate()} - ${createdDate.toLocaleString('pt-BR', {
+  //           month: 'long',
+  //         })}`
+  //       );
+  //       chartDate.series.low.push(date.eventsByLevel.low);
+  //       chartDate.series.medium.push(date.eventsByLevel.medium);
+  //       chartDate.series.high.push(date.eventsByLevel.high);
+  //     });
+  //     setCategories(chartDate.categories);
+  //     setSeries([
+  //       { name: 'Baixo', data: chartDate.series.low },
+  //       { name: 'Médio', data: chartDate.series.medium },
+  //       { name: 'Alto', data: chartDate.series.high },
+  //     ]);
+  //   }
+  // }, [dateHistogram]);
 
   const options: ApexOptions = {
     chart: {

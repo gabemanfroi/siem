@@ -11,7 +11,7 @@ interface LabeledCircularProgressInterface {
 export default function LabeledCircularProgress({
   size = 150,
   thickness = 2.5,
-  value,
+  value = 50,
   children,
 }: LabeledCircularProgressInterface) {
   return (

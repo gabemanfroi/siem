@@ -5,7 +5,7 @@ interface ErrorSliceInterface {
 }
 
 const initialState: ErrorSliceInterface = {
-  isAuthenticated: false,
+  isAuthenticated: true,
 };
 
 export const authSlice = createSlice({

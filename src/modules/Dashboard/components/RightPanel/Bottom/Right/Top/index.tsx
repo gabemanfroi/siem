@@ -10,11 +10,17 @@ import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
 import { Container } from './style';
 
 export default function Top() {
-  const {
-    overall: { eventsByLevel },
-  } = useAppSelector(({ dashboard }) => dashboard);
+  // const {
+  //   overall: { eventsByLevel },
+  // } = useAppSelector(({ dashboard }) => dashboard);
 
   const { isLoading } = useAppSelector(({ loading }) => loading);
+
+  const eventsByLevel = {
+    low: 1764,
+    medium: 300,
+    high: 500,
+  };
 
   return (
     <>
