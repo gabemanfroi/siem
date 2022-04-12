@@ -7,7 +7,7 @@ class HttpClient {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: process.env.REACT_APP_API_BASE_URL,
+      baseURL: process.env.REACT_APP_HTTP_API_URL,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',

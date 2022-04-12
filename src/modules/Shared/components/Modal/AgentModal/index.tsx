@@ -30,7 +30,7 @@ export default function AgentModal() {
 
   useEffect(() => {
     const ws = new WebSocket(
-      `${process.env.REACT_APP_AGENT_URL!}?agent_id=${
+      `${process.env.REACT_APP_WS_API_URL}?agent_id=${
         selectedAgent?.generalData.id
       }&token=${TokenUtil.getToken()}`
     );
@@ -41,7 +41,6 @@ export default function AgentModal() {
 
     ws.addEventListener('message', (e) => {
       if (JSON.stringify(JSON.parse(e.data)) !== JSON.stringify(modalAgent)) {
-        // TODO: Check out why modal agent is being reset
         setModalAgent(JSON.parse(e.data));
       }
     });

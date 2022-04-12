@@ -2,23 +2,19 @@ import BaseService from '../services/BaseService';
 
 class AuthService extends BaseService {
   constructor() {
-    super('login/access-token/');
+    super('/auth');
   }
 
   async authenticate(
     username: string,
     password: string
   ): Promise<{ accessToken: string }> {
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
     // @ts-ignore
-    return this.post(formData);
+    return this.post({ email: username, password }, '/login');
   }
 
-  async verifyToken(): Promise<{ status: string }> {
-    // @ts-ignore
-    return this.postDynamicRoute('login/verify-token');
+  async verifyToken() {
+    return this.post(null, '/verifyToken');
   }
 }
 

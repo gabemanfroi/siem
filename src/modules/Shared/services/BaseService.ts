@@ -15,11 +15,10 @@ export default class BaseService {
     return HttpClient.axiosInstance.get(`${this.baseEndpoint}${url}`);
   }
 
-  protected post(data: any) {
-    return HttpClient.axiosInstance.post(this.baseEndpoint, data);
-  }
-
-  protected postDynamicRoute(url: string) {
-    return HttpClient.axiosInstance.post(`${url}`);
+  protected post(data?: any, url = '') {
+    if (data) {
+      return HttpClient.axiosInstance.post(`${this.baseEndpoint}${url}`, data);
+    }
+    return HttpClient.axiosInstance.post(`${this.baseEndpoint}${url}`);
   }
 }
