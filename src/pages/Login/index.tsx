@@ -2,15 +2,12 @@ import { Button, Card, TextField, useTheme } from '@mui/material';
 import { useFormik } from 'formik';
 import loginSchema from 'modules/Login/schemas';
 import AuthService from 'modules/Shared/api/AuthService';
-import { login } from 'modules/Shared/reducers/authReducer';
-import { setErrorMessage } from 'modules/Shared/reducers/errorReducer';
+
 import TokenUtil from 'modules/Shared/util/TokenUtil';
 import { useNavigate } from 'react-router-dom';
 import { Form, StyledContainer } from './style';
-import { useAppDispatch } from '../../modules/Shared/hooks/useAppDispatch';
 
 export default function Login() {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { spacing } = useTheme();
@@ -23,12 +20,9 @@ export default function Login() {
         .then((res) => {
           const { accessToken: token } = res;
           TokenUtil.setToken(token);
-          dispatch(login());
           navigate('/');
         })
-        .catch(() => {
-          dispatch(setErrorMessage({ errorMessage: 'Teste' }));
-        });
+        .catch(() => {});
     },
   });
 

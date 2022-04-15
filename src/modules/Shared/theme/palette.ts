@@ -9,7 +9,7 @@ import {
   primaryYellow,
   gray300,
   white,
-} from '../stylesHelpers/colorVariables';
+} from '../helpers/styles/Colors';
 
 const palette: PaletteOptions = {
   mode: 'dark',

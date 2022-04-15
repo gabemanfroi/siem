@@ -1,67 +1,30 @@
-import { Box, Modal, Tab, Tabs, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import { TabContext, TabPanel } from '@mui/lab';
 
-import { setIsAgentModalOpen } from 'modules/Shared/reducers/modalReducer';
-import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
-import { useAppDispatch } from 'modules/Shared/hooks/useAppDispatch';
-import TokenUtil from 'modules/Shared/util/TokenUtil';
-import { AgentType } from 'modules/Shared/types/AgentType';
-
+import { useAgent } from 'modules/Shared/contexts/AgentContext';
+import { AgentType } from 'modules/Shared/types';
 import Overview from './Overview';
 import Events from './Events';
-import { AgentModalCard } from './style';
+import { AgentModalCard, StyledModal } from './style';
 
 export default function AgentModal() {
-  const { filter: filterToSend } = useAppSelector(({ filter }) => filter);
-  const { selectedAgent } = useAppSelector(({ agent }) => agent);
-  const { isAgentModalOpen } = useAppSelector(({ modal }) => modal);
-  const dispatch = useAppDispatch();
   const [selectedTab, setSelectedTab] = useState('1');
-  const [modalAgent, setModalAgent] = useState<AgentType | null>(selectedAgent);
-
-  const handleClose = () => {
-    dispatch(setIsAgentModalOpen(false));
-  };
+  const { selectedAgent, isAgentModalOpen } = useAgent();
+  const [modalAgent] = useState<AgentType | null>(selectedAgent);
 
   const handleChange = (event: React.SyntheticEvent, newVal: string) => {
     setSelectedTab(newVal);
   };
 
-  useEffect(() => {
-    const ws = new WebSocket(
-      `${process.env.REACT_APP_WS_API_URL}?agent_id=${
-        selectedAgent?.generalData.id
-      }&token=${TokenUtil.getToken()}`
-    );
-
-    ws.addEventListener('open', () => {
-      ws.send(JSON.stringify(filterToSend));
-    });
-
-    ws.addEventListener('message', (e) => {
-      if (JSON.stringify(JSON.parse(e.data)) !== JSON.stringify(modalAgent)) {
-        setModalAgent(JSON.parse(e.data));
-      }
-    });
-
-    return () => {
-      ws.close();
-    };
-  }, []);
-
-  if (!modalAgent) return <></>;
+  if (!isAgentModalOpen || !modalAgent) return <></>;
 
   return (
-    <Modal
-      open={isAgentModalOpen}
-      onClose={handleClose}
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-    >
+    <StyledModal open={isAgentModalOpen}>
       <AgentModalCard>
         <Typography color="#c3c3c3" variant="h2" sx={{ textAlign: 'center' }}>
-          {`${modalAgent.generalData.name.toUpperCase()} - `}
-          {modalAgent.generalData.ip || ''}
+          {`${modalAgent?.generalData?.name.toUpperCase() || ''} - `}
+          {modalAgent?.generalData?.ip || ''}
         </Typography>
         <TabContext value={selectedTab}>
           <Box>
@@ -78,6 +41,6 @@ export default function AgentModal() {
           </TabPanel>
         </TabContext>
       </AgentModalCard>
-    </Modal>
+    </StyledModal>
   );
 }

@@ -9,20 +9,22 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { BiRadar } from 'react-icons/bi';
-import { drawerWidth } from '../../stylesHelpers/constants';
+import { drawerWidth } from '../../helpers/Constants';
 
 export default function Sidebar() {
   const theme = useTheme();
   const navigate = useNavigate();
   return (
     <Drawer
-      variant="permanent"
+      variant="persistent"
       sx={{
         display: { xs: 'none', sm: 'block' },
+
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
           width: drawerWidth,
           backgroundColor: 'primary.main',
+          position: 'relative',
         },
       }}
       open

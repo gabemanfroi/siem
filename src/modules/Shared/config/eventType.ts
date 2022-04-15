@@ -1,8 +1,4 @@
-import {
-  chartAqua,
-  chartRed,
-  chartYellow,
-} from '../stylesHelpers/colorVariables';
+import { chartAqua, chartRed, chartYellow } from '../helpers/styles/Colors';
 
 const eventTypeConfig = {
   low: {

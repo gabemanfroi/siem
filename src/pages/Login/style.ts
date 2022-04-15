@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { primaryBg } from 'modules/Shared/stylesHelpers/colorVariables';
+import { primaryBg } from 'modules/Shared/helpers/styles/Colors';
 import styled from 'styled-components';
 
 export const StyledContainer = styled(Box)`

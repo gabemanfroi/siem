@@ -2,7 +2,7 @@ import {
   dark100,
   primaryBlue,
   white,
-} from 'modules/Shared/stylesHelpers/colorVariables';
+} from 'modules/Shared/helpers/styles/Colors';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import { Container } from './style';
 
