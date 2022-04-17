@@ -1,22 +1,19 @@
 import { AgentType } from 'modules/Shared/types/AgentType';
-import { Skeleton } from '@mui/material';
-import { Container } from './style';
-import Left from './Left';
+import { Grid } from '@mui/material';
+import AgentTrustLevel from './AgentTrustLeft';
 import Middle from './Middle';
 import Right from './Right';
-import { useAppSelector } from '../../../../../../Shared/hooks/useAppSelector';
 
 interface AgentInterface {
   agent: AgentType;
 }
-
+// TODO: Descobrir qual div está como child de P
 export default function Agent({ agent }: AgentInterface) {
   const {
     trustLevel,
     generalData: { ip = '', name },
     eventsByLevel,
   } = agent;
-  const { isLoading } = useAppSelector(({ loading }) => loading);
 
   const totalOfEvents = Object.keys(eventsByLevel).reduce(
     (prevValue, key) =>
@@ -25,20 +22,10 @@ export default function Agent({ agent }: AgentInterface) {
   );
 
   return (
-    <Container>
-      {isLoading && (
-        <Skeleton
-          variant="rectangular"
-          sx={{ width: '100%', height: '75px' }}
-        />
-      )}
-      {!isLoading && (
-        <>
-          <Left reliabilityLevel={trustLevel} />
-          <Middle ip={ip} name={name} eventsByLevel={eventsByLevel} />
-          <Right totalOfEvents={totalOfEvents} agent={agent} />
-        </>
-      )}
-    </Container>
+    <Grid container>
+      <AgentTrustLevel trustLevel={trustLevel} />
+      <Middle ip={ip} name={name} eventsByLevel={eventsByLevel} />
+      <Right totalOfEvents={totalOfEvents} agent={agent} />
+    </Grid>
   );
 }

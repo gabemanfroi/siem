@@ -2,7 +2,8 @@ import { Box, LinearProgress, Tooltip, Typography } from '@mui/material';
 import { eventTypeConfig } from 'modules/Shared/config';
 import { FaNetworkWired } from 'react-icons/fa';
 import { GoDeviceDesktop } from 'react-icons/go';
-import { gray300 } from '../../../../../../../Shared/stylesHelpers/colorVariables';
+
+import { gray300 } from 'modules/Shared/helpers/styles/Colors';
 import { Container } from './style';
 
 interface MiddleInterface {

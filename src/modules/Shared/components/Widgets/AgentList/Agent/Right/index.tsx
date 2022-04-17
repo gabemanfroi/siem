@@ -1,12 +1,9 @@
 import { IconButton } from '@mui/material';
 import { MdMoreHoriz } from 'react-icons/md';
 
-import { setSelectedAgent } from 'modules/Shared/reducers/agentReducer';
-import { setIsAgentModalOpen } from 'modules/Shared/reducers/modalReducer';
-
 import { AgentType } from 'modules/Shared/types/AgentType';
+import { useAgent } from 'modules/Shared/contexts/AgentContext';
 import { Container } from './style';
-import { useAppDispatch } from '../../../../../../../Shared/hooks/useAppDispatch';
 
 interface RightProps {
   totalOfEvents: number;
@@ -14,10 +11,10 @@ interface RightProps {
 }
 
 export default function Right({ agent, totalOfEvents }: RightProps) {
-  const dispatch = useAppDispatch();
+  const { setSelectedAgent, setIsAgentModalOpen } = useAgent();
   const onButtonClick = () => {
-    dispatch(setSelectedAgent({ selectedAgent: agent }));
-    dispatch(setIsAgentModalOpen(true));
+    setSelectedAgent(agent);
+    setIsAgentModalOpen(true);
   };
 
   return (

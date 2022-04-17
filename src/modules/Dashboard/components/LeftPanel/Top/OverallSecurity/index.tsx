@@ -4,6 +4,7 @@ import ReactApexChart from 'react-apexcharts';
 import React from 'react';
 import { ApexOptions } from 'apexcharts';
 import { Paper } from '@mui/material';
+import { defaultRadialBarOptions } from 'modules/Shared/config/ChartsOptions';
 import { Container } from './style';
 
 export function OverallSecurity() {
@@ -11,36 +12,8 @@ export function OverallSecurity() {
     overall: { trustLevel },
   } = useAppSelector(({ dashboard }) => dashboard);
   const radialBarOptions: ApexOptions = {
-    chart: {
-      height: 800,
-      type: 'radialBar',
-    },
-    plotOptions: {
-      radialBar: {
-        track: {
-          background: '#cc4455',
-        },
-        dataLabels: {
-          name: {
-            color: '#fff',
-          },
-          value: {
-            color: '#fff',
-            formatter(val: number): string {
-              return `${val.toLocaleString('pt-BR', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}%`;
-            },
-          },
-        },
-        hollow: {
-          size: '70%',
-        },
-      },
-    },
-    grid: {},
-    labels: ['Confiabilidade'],
+    ...defaultRadialBarOptions,
+    chart: { ...defaultRadialBarOptions.chart, height: 800 },
   };
 
   return (
@@ -50,7 +23,7 @@ export function OverallSecurity() {
           <ReactApexChart
             options={radialBarOptions}
             series={[trustLevel]}
-            type="radialBar"
+            type='radialBar'
           />
         </Paper>
       </Container>

@@ -1,8 +1,6 @@
 import { cleanup, render } from '@testing-library/react';
-import { faker } from '@faker-js/faker';
+import { createRandomAgent } from 'modules/Shared/helpers/tests/factories/AgentFactory';
 import AgentModal from './index';
-import { useAgent } from '../../../contexts/AgentContext';
-import { AgentType } from '../../../types';
 
 const mockIsAgentModalOpen = jest.fn();
 const mockSelectedAgent = jest.fn();
@@ -32,35 +30,32 @@ afterAll(() => {
 
 describe('AgentModal', () => {
   it('must not render anything initially', () => {
-    console.log(useAgent());
+    const { queryByRole } = render(<AgentModal />);
+
+    expect(queryByRole('presentation')).toBeNull();
+  });
+
+  it('must not render anything if isAgentModalOpen is false', () => {
+    mockSelectedAgent.mockImplementation(() => createRandomAgent());
+    mockIsAgentModalOpen.mockImplementation(() => false);
 
     const { queryByRole } = render(<AgentModal />);
 
     expect(queryByRole('presentation')).toBeNull();
   });
 
-  it('must render if isAgentModalOpen is true', () => {
-    mockSelectedAgent.mockImplementation(
-      () =>
-        ({
-          generalData: {
-            id: faker.datatype.number({ min: 1, max: 999999, precision: 1 }),
-            ip: '192.168.1.254',
-            name: 'Test Agent',
-            alias: '',
-          },
-          eventsByLevel: {
-            low: faker.datatype.number({ min: 1, max: 999999, precision: 1 }),
-            medium: faker.datatype.number({
-              min: 1,
-              max: 999999,
-              precision: 1,
-            }),
-            high: faker.datatype.number({ min: 1, max: 999999, precision: 1 }),
-          },
-          trustLevel: 50,
-        } as AgentType)
-    );
+  it('must not render anything if it does not have any selectedAgent is false', () => {
+    mockSelectedAgent.mockImplementation(() => null);
+
+    mockIsAgentModalOpen.mockImplementation(() => true);
+
+    const { queryByRole } = render(<AgentModal />);
+
+    expect(queryByRole('presentation')).toBeNull();
+  });
+
+  it('must render if isAgentModalOpen is true and if if it has a selectedAgent', () => {
+    mockSelectedAgent.mockImplementation(() => createRandomAgent());
     mockIsAgentModalOpen.mockImplementation(() => true);
 
     const { getByRole } = render(<AgentModal />);
