@@ -1,16 +1,21 @@
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
-import DateHistogram from 'modules/Shared/components/Widgets/DateHistogram';
 import GridItem from 'modules/Shared/components/GridItem';
+import {
+  CriticalityDateHistogram,
+  PackagesByCVE,
+} from 'modules/Shared/components/Widgets/';
+import MostCommonCVE from '../../../../Shared/components/Widgets/Vulnerability/MostCommonCVE';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const WidgetsGrid = () => {
   const layouts = {
     lg: [
-      { i: 'a', x: 0, y: 0, w: 12, h: 3 },
-      { i: 'b', x: 1, y: 0, w: 12, h: 2 },
-      { i: 'c', x: 4, y: 0, w: 12, h: 1 },
+      { i: 'a', x: 0, y: 0, w: 6, h: 2 },
+      { i: 'b', x: 6, y: 0, w: 6, h: 2 },
+      { i: 'c', x: 0, y: 3, w: 6, h: 2 },
+      { i: 'd', x: 6, y: 3, w: 6, h: 2 },
     ],
   };
 
@@ -24,7 +29,16 @@ const WidgetsGrid = () => {
       layouts={layouts}
     >
       <GridItem key="a">
-        <DateHistogram />
+        <CriticalityDateHistogram />
+      </GridItem>
+      <GridItem key="b">
+        <MostCommonCVE />
+      </GridItem>
+      <GridItem key="c">
+        <PackagesByCVE />
+      </GridItem>
+      <GridItem key="d">
+        <PackagesByCVE />
       </GridItem>
     </ResponsiveGridLayout>
   );

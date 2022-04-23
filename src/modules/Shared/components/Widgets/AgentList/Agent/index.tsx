@@ -1,12 +1,13 @@
 import { AgentType } from 'modules/Shared/types/AgentType';
 import { Grid } from '@mui/material';
-import AgentTrustLevel from './AgentTrustLeft';
+import AgentTrustLevel from './AgentTrust';
 import Middle from './Middle';
 import Right from './Right';
 
 interface AgentInterface {
   agent: AgentType;
 }
+
 // TODO: Descobrir qual div está como child de P
 export default function Agent({ agent }: AgentInterface) {
   const {

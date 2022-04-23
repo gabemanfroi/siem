@@ -1,15 +1,15 @@
+import { ReactNode } from 'react';
+
 import { Navigate, useLocation } from 'react-router-dom';
-import React from 'react';
-import { Sidebar } from '..';
-import TokenUtil from '../../util/TokenUtil';
+import { Sidebar } from 'modules/Shared/components/';
+import TokenUtil from 'modules/Shared/utils/TokenUtil';
 
 interface PrivateRouteInterface {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export default function PrivateRoute({ children }: PrivateRouteInterface) {
+const PrivateRoute = ({ children }: PrivateRouteInterface) => {
   const location = useLocation();
-
   return TokenUtil.getToken() ? (
     <>
       <Sidebar />
@@ -18,4 +18,5 @@ export default function PrivateRoute({ children }: PrivateRouteInterface) {
   ) : (
     <Navigate to="/login" state={{ from: location }} />
   );
-}
+};
+export default PrivateRoute;

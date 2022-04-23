@@ -1,6 +1,6 @@
 import { BaseService } from '../services/BaseService';
 
-export const AuthService = () => {
+const AuthService = () => {
   const service = BaseService('/auth');
 
   const authenticate = async (username: string, password: string) =>
@@ -13,3 +13,5 @@ export const AuthService = () => {
     verifyToken,
   };
 };
+
+export default AuthService;

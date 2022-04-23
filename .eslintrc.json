@@ -71,6 +71,8 @@
     "jsx-quotes": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-curly-newline": "off",
+    "react/require-default-props": "off",
+    "function-paren-newline": "off",
     "react/jsx-filename-extension": [
       1,
       {

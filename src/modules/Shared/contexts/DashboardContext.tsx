@@ -1,18 +1,47 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import { AgentType } from 'modules/Shared/types';
+import { EventsByLevelType } from 'modules/Shared/types/MetricsType';
+import { CriticalityByTimeType } from '../types/HistogramTypes';
+
+interface OverallInterface {
+  eventsByLevel: EventsByLevelType;
+}
 
 interface DashboardContextInterface {
   groupedByAgent: AgentType[];
   setGroupedByAgent: Dispatch<SetStateAction<AgentType[]>>;
+  dateHistogram: CriticalityByTimeType[];
+  setDateHistogram: Dispatch<SetStateAction<CriticalityByTimeType[]>>;
+  overall: OverallInterface;
+  setOverall: Dispatch<SetStateAction<OverallInterface>>;
 }
 
 const dashboardContextDefaultValues = {
   groupedByAgent: [],
-  setGroupedByAgent: () => {
+  setGroupedByAgent: () => {},
+  dateHistogram: [],
+  setDateHistogram: () => {},
+  overall: {
+    eventsByLevel: {
+      low: 0,
+      medium: 0,
+      high: 0,
+    },
   },
+  setOverall: () => {},
 };
 
-const DashboardContext = createContext<DashboardContextInterface>(dashboardContextDefaultValues);
+const DashboardContext = createContext<DashboardContextInterface>(
+  dashboardContextDefaultValues
+);
 
 interface DashboardProviderInterface {
   children: ReactNode;
@@ -20,11 +49,27 @@ interface DashboardProviderInterface {
 
 export const DashboardProvider = ({ children }: DashboardProviderInterface) => {
   const [groupedByAgent, setGroupedByAgent] = useState<AgentType[]>([]);
-
-  const value = useMemo(() => ({
-    groupedByAgent,
-    setGroupedByAgent,
-  }), []);
+  const [dateHistogram, setDateHistogram] = useState<CriticalityByTimeType[]>(
+    []
+  );
+  const [overall, setOverall] = useState<OverallInterface>({
+    eventsByLevel: {
+      low: 0,
+      medium: 0,
+      high: 0,
+    },
+  });
+  const value = useMemo(
+    () => ({
+      groupedByAgent,
+      setGroupedByAgent,
+      dateHistogram,
+      setDateHistogram,
+      overall,
+      setOverall,
+    }),
+    []
+  );
 
   return (
     <DashboardContext.Provider value={value}>

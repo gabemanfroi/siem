@@ -1,33 +1,54 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useMemo, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
-interface LoadingContextInterface{
+interface LoadingContextInterface {
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 const loadingContextDefaultValue = {
   isLoading: false,
-  setIsLoading: () => {}
+  setIsLoading: () => {},
 };
 
-interface LoadingProviderInterface{
-  children: ReactNode
+interface LoadingProviderInterface {
+  children: ReactNode;
 }
 
-const LoadingContext = createContext<LoadingContextInterface>(loadingContextDefaultValue);
+const LoadingContext = createContext<LoadingContextInterface>(
+  loadingContextDefaultValue
+);
 
 export const LoadingProvider = ({ children }: LoadingProviderInterface) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const value = useMemo(() => ({
-    isLoading,
-    setIsLoading
-  }), []);
+  useEffect(() => {
+    if (process.env.REACT_APP_ENVIRONMENT === 'development') {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      isLoading,
+      setIsLoading,
+    }),
+    [isLoading]
+  );
 
   return (
-    <LoadingContext.Provider value={value}>
-      {children}
-    </LoadingContext.Provider>
+    <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
   );
 };
 

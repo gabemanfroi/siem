@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { BiRadar } from 'react-icons/bi';
-import { drawerWidth } from '../../helpers/Constants';
+import { DRAWER_WIDTH } from '../../core/Constants';
 
 export default function Sidebar() {
   const theme = useTheme();
@@ -22,7 +22,7 @@ export default function Sidebar() {
 
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           backgroundColor: 'primary.main',
           position: 'relative',
         },

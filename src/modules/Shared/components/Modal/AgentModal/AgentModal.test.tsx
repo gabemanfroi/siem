@@ -1,5 +1,5 @@
 import { cleanup, render } from '@testing-library/react';
-import { createRandomAgent } from 'modules/Shared/helpers/tests/factories/AgentFactory';
+import { createRandomAgent } from 'modules/Shared/helpers/factories/tests/AgentFactory';
 import AgentModal from './index';
 
 const mockIsAgentModalOpen = jest.fn();

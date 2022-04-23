@@ -1,4 +1,4 @@
-import { AxiosClient } from '../config/AxiosClient';
+import { AxiosClient } from './AxiosClient';
 
 export const BaseService = (baseEndpoint: string) => {
   const axios = AxiosClient();

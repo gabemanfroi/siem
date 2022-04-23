@@ -17,6 +17,7 @@ export const StyledContainer = styled(Box)`
     background-repeat: no-repeat;
     background-color: ${primaryBg};
   }
+
   display: flex;
   align-items: center;
   justify-content: center;

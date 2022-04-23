@@ -5,15 +5,17 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { eventTypeConfig } from 'modules/Shared/config';
-import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
+import { eventTypeConfig } from 'modules/Shared/core';
+
+import { useDashboard } from 'modules/Shared/contexts/DashboardContext';
+import { useLoading } from 'modules/Shared/contexts/LoadingContext';
 import { Container } from './style';
 
 export default function OverallEventsCategory() {
   const {
     overall: { eventsByLevel },
-  } = useAppSelector(({ dashboard }) => dashboard);
-  const { isLoading } = useAppSelector(({ loading }) => loading);
+  } = useDashboard();
+  const { isLoading } = useLoading();
 
   return (
     <>

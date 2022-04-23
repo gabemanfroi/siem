@@ -1,5 +1,5 @@
 import { Box, LinearProgress, Tooltip, Typography } from '@mui/material';
-import { eventTypeConfig } from 'modules/Shared/config';
+import { eventTypeConfig } from 'modules/Shared/core';
 import { FaNetworkWired } from 'react-icons/fa';
 import { GoDeviceDesktop } from 'react-icons/go';
 

@@ -1,6 +1,6 @@
 import { cleanup, render } from '@testing-library/react';
-import { createRandomAgent } from 'modules/Shared/helpers/tests/factories/AgentFactory';
-import AgentList from './index';
+import { createRandomAgent } from 'modules/Shared/helpers/factories/tests/AgentFactory';
+import AgentList from '.';
 
 const mockIsLoading = jest.fn();
 const mockGroupedByAgent = jest.fn();
@@ -8,12 +8,17 @@ const mockGroupedByAgent = jest.fn();
 jest.mock('modules/Shared/contexts/LoadingContext', () => ({
   useLoading: () => ({
     isLoading: mockIsLoading(),
-  })
+  }),
 }));
 jest.mock('modules/Shared/contexts/DashboardContext', () => ({
   useDashboard: () => ({
-    groupedByAgent: mockGroupedByAgent()
-  })
+    groupedByAgent: mockGroupedByAgent(),
+  }),
+}));
+
+jest.mock('react-apexcharts', () => ({
+  __esModule: true,
+  default: () => <div />,
 }));
 
 beforeEach(() => {
@@ -47,7 +52,10 @@ describe('AgentList', () => {
   });
 
   it('must not render Agent if in Loading State', () => {
-    mockGroupedByAgent.mockImplementation(() => [createRandomAgent(), createRandomAgent()]);
+    mockGroupedByAgent.mockImplementation(() => [
+      createRandomAgent(),
+      createRandomAgent(),
+    ]);
     mockIsLoading.mockImplementation(() => true);
 
     const { container } = render(<AgentList />);
@@ -57,7 +65,10 @@ describe('AgentList', () => {
 
   it('must render Agent if not in Loading State', () => {
     mockIsLoading.mockImplementation(() => false);
-    mockGroupedByAgent.mockImplementation(() => [createRandomAgent(), createRandomAgent()]);
+    mockGroupedByAgent.mockImplementation(() => [
+      createRandomAgent(),
+      createRandomAgent(),
+    ]);
 
     const { container } = render(<AgentList />);
 

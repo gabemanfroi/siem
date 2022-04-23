@@ -4,6 +4,10 @@ export type EventsByLevelType = {
   high: number;
 };
 
+export type EventsByGdprType = {
+  [key: string]: number;
+};
+
 export type MetricsType = {
   trustLevel: number;
   eventsByLevel: EventsByLevelType;

@@ -1,7 +1,7 @@
 import Dashboard from 'pages/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from 'pages/Login';
-import PrivateRoute from 'modules/Shared/components/PrivateRoute';
+import { PrivateRoute } from 'modules/Shared/components/';
 import EventTracker from 'pages/EventTracker';
 import AgentTracker from 'pages/AgentTracker';
 
