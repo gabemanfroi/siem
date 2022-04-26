@@ -8,7 +8,7 @@ export type EventsByGdprType = {
   [key: string]: number;
 };
 
-export type MetricsType = {
+export type MetricsTypes = {
   trustLevel: number;
   eventsByLevel: EventsByLevelType;
 };

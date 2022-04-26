@@ -1,7 +1,6 @@
-import {
+import React, {
   createContext,
   Dispatch,
-  ReactNode,
   SetStateAction,
   useContext,
   useMemo,
@@ -17,18 +16,15 @@ interface AgentContextInterface {
   setIsAgentModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AgentContext = createContext<AgentContextInterface>({
+const defaultValue = {
   selectedAgent: null,
   setSelectedAgent: () => {},
   isAgentModalOpen: false,
   setIsAgentModalOpen: () => {},
-});
+};
+export const AgentContext = createContext<AgentContextInterface>(defaultValue);
 
-interface AgentProviderPropsInterface {
-  children: ReactNode;
-}
-
-export const AgentProvider = ({ children }: AgentProviderPropsInterface) => {
+export const AgentProvider: React.FC = ({ children }) => {
   const [selectedAgent, setSelectedAgent] = useState<AgentType | null>(null);
   const [isAgentModalOpen, setIsAgentModalOpen] = useState<boolean>(false);
 

@@ -1,12 +1,12 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { PackagesByCVEMockFactory } from 'modules/Shared/helpers/factories';
 import { ApexOptions } from 'apexcharts';
+import { PackagesByCVEMockFactory } from 'modules/Shared/helpers/factories';
 
-const PackagesByCVE = () => {
+const TechniquesByAgent = () => {
   const { categories, series } = PackagesByCVEMockFactory();
   const options: ApexOptions = {
     title: {
-      text: 'Packages by CVE',
+      text: 'Techniques By Agent',
     },
     dataLabels: {
       enabled: false,
@@ -23,4 +23,4 @@ const PackagesByCVE = () => {
   return <Histogram options={options} />;
 };
 
-export default PackagesByCVE;
+export default TechniquesByAgent;

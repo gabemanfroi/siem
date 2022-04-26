@@ -8,7 +8,6 @@ interface AgentInterface {
   agent: AgentType;
 }
 
-// TODO: Descobrir qual div está como child de P
 export default function Agent({ agent }: AgentInterface) {
   const {
     trustLevel,

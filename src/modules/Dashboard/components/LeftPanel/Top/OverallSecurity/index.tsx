@@ -6,7 +6,9 @@ import { RadialBarOptionsFactory } from 'modules/Shared/helpers/factories/charts
 import { Container } from './style';
 
 export function OverallSecurity() {
-  const radialBarOptions = RadialBarOptionsFactory({ chart: { height: 800 } });
+  const radialBarOptions = RadialBarOptionsFactory({
+    labels: ['Confiabilidade'],
+  });
   const trustLevel = 50;
   return (
     <>

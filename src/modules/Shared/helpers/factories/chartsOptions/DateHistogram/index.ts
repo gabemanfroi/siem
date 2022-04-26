@@ -8,6 +8,9 @@ const DateHistogramOptionsFactory = (options?: ApexOptions): ApexOptions =>
       type: 'bar',
       stackType: '100%',
     },
+    dataLabels: {
+      enabled: false,
+    },
     ...options,
   });
 

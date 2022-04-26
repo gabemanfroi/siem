@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material';
 
-import { useLoading } from 'modules/Shared/contexts/LoadingContext';
+import { useLoading } from 'modules/Shared/contexts';
 import { Container } from './style';
 import { OverallSecurity } from './OverallSecurity';
 

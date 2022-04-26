@@ -2,7 +2,6 @@ import { ApexOptions } from 'apexcharts';
 
 const RadialBarOptionsFactory = (options?: ApexOptions): ApexOptions => ({
   chart: {
-    height: 300,
     type: 'radialBar',
   },
   plotOptions: {
@@ -26,10 +25,6 @@ const RadialBarOptionsFactory = (options?: ApexOptions): ApexOptions => ({
       },
     },
   },
-  stroke: {
-    lineCap: 'round',
-  },
-  labels: ['Confiabilidade'],
   ...options,
 });
 

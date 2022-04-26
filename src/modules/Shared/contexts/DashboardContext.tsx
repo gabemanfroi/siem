@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 import { AgentType } from 'modules/Shared/types';
-import { EventsByLevelType } from 'modules/Shared/types/MetricsType';
+import { EventsByLevelType } from 'modules/Shared/types/MetricsTypes';
 import { CriticalityByTimeType } from '../types/HistogramTypes';
 
 interface OverallInterface {

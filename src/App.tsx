@@ -3,9 +3,12 @@ import { ErrorSnackbar } from 'modules/Shared/components/';
 import Router from 'modules/Shared/components/Router';
 import theme from 'modules/Shared/theme';
 import './sass/main.scss';
-import { AgentProvider } from 'modules/Shared/contexts/AgentContext';
-import { LoadingProvider } from 'modules/Shared/contexts/LoadingContext';
-import { DashboardProvider } from 'modules/Shared/contexts/DashboardContext';
+import {
+  AgentProvider,
+  LoadingProvider,
+  DashboardProvider,
+  WidgetsProvider,
+} from 'modules/Shared/contexts';
 
 export default function App() {
   return (
@@ -13,8 +16,10 @@ export default function App() {
       <LoadingProvider>
         <AgentProvider>
           <DashboardProvider>
-            <Router />
-            <ErrorSnackbar />
+            <WidgetsProvider>
+              <Router />
+              <ErrorSnackbar />
+            </WidgetsProvider>
           </DashboardProvider>
         </AgentProvider>
       </LoadingProvider>

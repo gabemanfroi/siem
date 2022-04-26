@@ -4,8 +4,9 @@ import styled from 'styled-components';
 export const Container = styled(ColumnContainer)`
   display: flex;
   flex-direction: column;
-  flex: 0 0 60%;
+  flex: 1;
   gap: 4px;
+  justify-content: center;
 
   .header {
     .group-name,

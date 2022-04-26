@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { gray300 } from 'modules/Shared/helpers/styles/Colors';
 
 export const Container = styled(ColumnContainer)`
-  flex: 1;
-  height: 100%;
+  flex: 0 0 20%;
   justify-content: flex-start;
 
   .total-events {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -23,7 +21,6 @@ export const Container = styled(ColumnContainer)`
 
       span {
         font-size: 18px;
-        margin-left: 8px;
       }
     }
 `;

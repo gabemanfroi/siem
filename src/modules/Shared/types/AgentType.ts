@@ -1,7 +1,7 @@
-import { MetricsType } from './MetricsType';
+import { MetricsTypes } from './MetricsTypes';
 import { EventType } from './EventType';
 
-export interface AgentType extends MetricsType {
+export interface AgentType extends MetricsTypes {
   generalData: {
     id: number;
     name: string;

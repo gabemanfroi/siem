@@ -7,8 +7,7 @@ import {
 } from '@mui/material';
 import { eventTypeConfig } from 'modules/Shared/core';
 
-import { useDashboard } from 'modules/Shared/contexts/DashboardContext';
-import { useLoading } from 'modules/Shared/contexts/LoadingContext';
+import { useDashboard, useLoading } from 'modules/Shared/contexts';
 import { Container } from './style';
 
 export default function OverallEventsCategory() {

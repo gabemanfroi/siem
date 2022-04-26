@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoading } from 'modules/Shared/contexts/LoadingContext';
+import { useLoading } from 'modules/Shared/contexts';
 import { Skeleton, SkeletonProps } from '@mui/material';
 
 interface LoadingHandlerPropsInterface extends SkeletonProps {

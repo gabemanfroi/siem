@@ -6,9 +6,20 @@ interface LeftProps {
   trustLevel: number;
 }
 
-export default function AgentTrustLevel({ trustLevel }: LeftProps) {
-  const radialBarOptions = RadialBarOptionsFactory();
+const radialBarOptions = RadialBarOptionsFactory({
+  chart: {
+    sparkline: {
+      enabled: false,
+    },
+  },
+  plotOptions: {
+    radialBar: {
+      hollow: { size: '70%' },
+    },
+  },
+});
 
+export default function AgentTrustLevel({ trustLevel }: LeftProps) {
   return (
     <Container>
       <ReactApexChart

@@ -2,7 +2,7 @@ import { IconButton } from '@mui/material';
 import { MdMoreHoriz } from 'react-icons/md';
 
 import { AgentType } from 'modules/Shared/types/AgentType';
-import { useAgent } from 'modules/Shared/contexts/AgentContext';
+import { useAgent } from 'modules/Shared/contexts';
 import { Container } from './style';
 
 interface RightProps {
@@ -31,10 +31,7 @@ export default function Right({ agent, totalOfEvents }: RightProps) {
       </IconButton>
       <div className="total-events">
         <div className="wrapper">
-          <span>Total:</span>
-          <span style={{ fontSize: '26px', color: 'white' }}>
-            {totalOfEvents}
-          </span>
+          <span>Total: {totalOfEvents}</span>
         </div>
       </div>
     </Container>

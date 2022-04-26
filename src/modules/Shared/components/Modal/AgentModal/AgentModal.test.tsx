@@ -5,7 +5,7 @@ import AgentModal from './index';
 const mockIsAgentModalOpen = jest.fn();
 const mockSelectedAgent = jest.fn();
 
-jest.mock('modules/Shared/contexts/AgentContext', () => ({
+jest.mock('modules/Shared/contexts', () => ({
   useAgent: () => ({
     selectedAgent: mockSelectedAgent(),
     isAgentModalOpen: mockIsAgentModalOpen(),
@@ -25,7 +25,7 @@ beforeEach(() => {
 afterEach(cleanup);
 
 afterAll(() => {
-  jest.unmock('modules/Shared/contexts/AgentContext');
+  jest.unmock('modules/Shared/contexts');
 });
 
 describe('AgentModal', () => {

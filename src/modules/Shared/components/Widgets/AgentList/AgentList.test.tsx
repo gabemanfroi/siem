@@ -5,12 +5,12 @@ import AgentList from '.';
 const mockIsLoading = jest.fn();
 const mockGroupedByAgent = jest.fn();
 
-jest.mock('modules/Shared/contexts/LoadingContext', () => ({
+jest.mock('modules/Shared/contexts', () => ({
   useLoading: () => ({
     isLoading: mockIsLoading(),
   }),
 }));
-jest.mock('modules/Shared/contexts/DashboardContext', () => ({
+jest.mock('modules/Shared/contexts', () => ({
   useDashboard: () => ({
     groupedByAgent: mockGroupedByAgent(),
   }),
@@ -29,8 +29,8 @@ beforeEach(() => {
 afterEach(cleanup);
 
 afterAll(() => {
-  jest.unmock('modules/Shared/contexts/LoadingContext');
-  jest.unmock('modules/Shared/contexts/DashboardContext');
+  jest.unmock('modules/Shared/contexts');
+  jest.unmock('modules/Shared/contexts');
 });
 
 describe('AgentList', () => {

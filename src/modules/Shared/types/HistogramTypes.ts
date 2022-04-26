@@ -1,4 +1,4 @@
-import { EventsByGdprType, EventsByLevelType } from './MetricsType';
+import { EventsByGdprType, EventsByLevelType } from './MetricsTypes';
 
 type DefaultHistogramType = {
   timestamp: number;
