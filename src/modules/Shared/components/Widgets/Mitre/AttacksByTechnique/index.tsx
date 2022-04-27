@@ -8,15 +8,15 @@ const AttacksByTechnique = () => {
   const options: ApexOptions = {
     title: {
       text: 'Attacks By Technique',
+      style: {
+        color: '#fff',
+      },
     },
     chart: {
       stacked: true,
     },
     xaxis: {
       categories,
-    },
-    dataLabels: {
-      enabled: false,
     },
     series,
   };

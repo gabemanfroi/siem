@@ -5,7 +5,7 @@ const Header = () => {
   const { widgetsList } = useWidgets();
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box>
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: 'flex-end', padding: '16px' }}>
           <Autocomplete
@@ -17,7 +17,6 @@ const Header = () => {
                 {...params}
                 label="Adicionar Widget"
                 placeholder="Adicionar Widget"
-                sx={{ display: 'flex', justifyContent: 'flex-end' }}
               />
             )}
             options={widgetsList}

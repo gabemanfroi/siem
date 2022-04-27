@@ -1,9 +1,13 @@
-import Dashboard from 'pages/Dashboard';
+import {
+  Dashboard,
+  EventTracker,
+  AgentTracker,
+  Login,
+  Mitre,
+  Vulnerability,
+} from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from 'pages/Login';
 import { PrivateRoute } from 'modules/Shared/components/';
-import EventTracker from 'pages/EventTracker';
-import AgentTracker from 'pages/AgentTracker';
 
 const Router = () => (
   <BrowserRouter>
@@ -29,6 +33,22 @@ const Router = () => (
         element={
           <PrivateRoute>
             <AgentTracker />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/mitre"
+        element={
+          <PrivateRoute>
+            <Mitre />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/vulnerabilidades"
+        element={
+          <PrivateRoute>
+            <Vulnerability />
           </PrivateRoute>
         }
       />

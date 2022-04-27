@@ -16,11 +16,12 @@ import {
   TechniquesByAgent,
 } from 'modules/Shared/components';
 import { Layout } from 'react-grid-layout';
+import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
 import {
   CoreWidgetsConfig,
   WidgetsMapType,
   WidgetType,
-} from '../types/WidgetsTypes';
+} from 'modules/Shared/types/WidgetsTypes';
 
 const widgetsMap: WidgetsMapType = {
   mostAffectedAgents: {
@@ -45,6 +46,13 @@ const widgetsMap: WidgetsMapType = {
   },
 };
 
+type WidgetsMapKeys =
+  | 'mostAffectedAgents'
+  | 'mostCommonCVE'
+  | 'packagesByCVE'
+  | 'attacksByTechnique'
+  | 'techniquesByAgent';
+
 interface WidgetsContextInterface {
   defaultWidgets: WidgetsMapType;
   setDefaultWidgets: Dispatch<SetStateAction<WidgetsMapType>>;
@@ -64,35 +72,34 @@ const defaultValue = {
 
 const WidgetsContext = createContext<WidgetsContextInterface>(defaultValue);
 
-// eslint-disable-next-line consistent-return
-const getLocalStorageConfig = () => {
+interface FormattedWidgetsInterface {
+  [key: string]: {};
+}
+
+const getLocalStorageConfig = (): WidgetsMapType | null => {
   const localStorageStringified = localStorage.getItem(
-    process.env.REACT_APP_WIDGETS_CONFIG_NAME || '@seclab_widgets_config'
+    process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
+      LOCAL_STORAGE_WIDGETS_CONFIG_NAME
   );
-  if (localStorageStringified) {
-    const localStorageWidgets = JSON.parse(localStorageStringified);
-    // @ts-ignore
-    const formattedWidgets = {};
-    Object.keys(localStorageWidgets).forEach((k) => {
-      // @ts-ignore
-      formattedWidgets[k] = {
-        // @ts-ignore
-        ...widgetsMap[k],
-        options: {
-          // @ts-ignore
-          ...widgetsMap[k].options,
-          lg: { ...localStorageWidgets[k] },
-        },
-      };
-    });
-    return formattedWidgets;
-  }
+  if (!localStorageStringified) return null;
+
+  const localStorageWidgets = JSON.parse(localStorageStringified);
+  const formattedWidgets: FormattedWidgetsInterface = {};
+
+  Object.keys(localStorageWidgets).forEach((k) => {
+    formattedWidgets[k] = {
+      ...widgetsMap[k as WidgetsMapKeys],
+      options: {
+        ...widgetsMap[k as WidgetsMapKeys]?.options,
+        lg: { ...localStorageWidgets[k] },
+      },
+    };
+  });
+  return formattedWidgets;
 };
 
 export const WidgetsProvider: React.FC = ({ children }) => {
   const [defaultWidgets, setDefaultWidgets] = useState<WidgetsMapType>(
-    // @ts-ignore
-    // eslint-disable-next-line no-bitwise
     getLocalStorageConfig() || widgetsMap
   );
 
@@ -103,14 +110,14 @@ export const WidgetsProvider: React.FC = ({ children }) => {
   const saveCurrentLayout = (layouts: Layout[]) => {
     const auxiliaryMap: { [key: string]: Layout } = {};
     layouts.forEach((l) => {
-      auxiliaryMap[l.i as string] = l;
+      auxiliaryMap[l.i] = l;
     });
-    if (process.env.REACT_APP_WIDGETS_CONFIG_NAME) {
-      localStorage.setItem(
-        process.env.REACT_APP_WIDGETS_CONFIG_NAME,
-        JSON.stringify(auxiliaryMap)
-      );
-    }
+
+    localStorage.setItem(
+      process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
+        LOCAL_STORAGE_WIDGETS_CONFIG_NAME,
+      JSON.stringify(auxiliaryMap)
+    );
   };
 
   useEffect(() => {

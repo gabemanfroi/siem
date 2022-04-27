@@ -3,12 +3,18 @@ import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/Constants';
 
 const DonutChartOptionsFactory = (options?: ApexOptions): ApexOptions => ({
   chart: {
+    ...options?.chart,
     height: 300,
     type: 'donut',
   },
   legend: {
+    ...options?.legend,
     position: 'right',
+    labels: {
+      colors: '#fff',
+    },
   },
+  labels: options?.labels || [],
   theme: {
     palette: DEFAULT_CHARTS_PALETTE,
   },
@@ -16,13 +22,13 @@ const DonutChartOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     enabled: false,
   },
   title: {
-    text: 'Eventos Por Criticidade',
+    ...options?.title,
     align: 'left',
     style: {
-      color: '#000',
+      color: '#fff',
     },
   },
-  ...options,
+  series: options?.series || [],
 });
 
 export default DonutChartOptionsFactory;
