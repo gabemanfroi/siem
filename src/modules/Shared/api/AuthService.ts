@@ -1,21 +1,17 @@
-import BaseService from '../services/BaseService';
+import { BaseService } from '../services/BaseService';
 
-class AuthService extends BaseService {
-  constructor() {
-    super('/auth');
-  }
+const AuthService = () => {
+  const service = BaseService('/auth');
 
-  async authenticate(
-    username: string,
-    password: string
-  ): Promise<{ accessToken: string }> {
-    // @ts-ignore
-    return this.post({ email: username, password }, '/login');
-  }
+  const authenticate = async (username: string, password: string) =>
+    service.post('/login', { email: username, password });
 
-  async verifyToken() {
-    return this.post(null, '/verifyToken');
-  }
-}
+  const verifyToken = async () => service.post('/login');
 
-export default new AuthService();
+  return {
+    authenticate,
+    verifyToken,
+  };
+};
+
+export default AuthService;

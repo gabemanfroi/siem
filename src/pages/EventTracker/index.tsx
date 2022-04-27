@@ -1,9 +1,9 @@
-import { Container } from './style';
+import { DefaultPageContainer } from 'modules/Shared/components';
 
 export default function EventTracker() {
   return (
-    <Container>
+    <DefaultPageContainer>
       <h1>Central de Eventos</h1>
-    </Container>
+    </DefaultPageContainer>
   );
 }

@@ -1,9 +1,9 @@
-import { Container } from './style';
+import { DefaultPageContainer } from 'modules/Shared/components';
 
 export default function AgentTracker() {
   return (
-    <Container>
+    <DefaultPageContainer>
       <h1>Central de Agentes</h1>
-    </Container>
+    </DefaultPageContainer>
   );
 }

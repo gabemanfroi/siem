@@ -1,23 +1,25 @@
-import { Typography } from '@mui/material';
-import LabeledCircularProgress from 'modules/Shared/components/LabeledCircularProgress';
 import 'react-circular-progressbar/dist/styles.css';
-import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
+import ReactApexChart from 'react-apexcharts';
+import React from 'react';
+import { Paper } from '@mui/material';
+import { RadialBarOptionsFactory } from 'modules/Shared/helpers/factories/chartsOptions';
 import { Container } from './style';
 
 export function OverallSecurity() {
-  const {
-    overall: { trustLevel },
-  } = useAppSelector(({ dashboard }) => dashboard);
-
+  const radialBarOptions = RadialBarOptionsFactory({
+    labels: ['Confiabilidade'],
+  });
+  const trustLevel = 50;
   return (
     <>
       <Container>
-        <Typography variant="h2">Trust Level</Typography>
-        <LabeledCircularProgress value={trustLevel} size={150} thickness={2.5}>
-          <Typography fontSize={20} component="div" color="text.primary">
-            {`${trustLevel.toFixed(2)}%`}
-          </Typography>
-        </LabeledCircularProgress>
+        <Paper sx={{ flex: 0 }}>
+          <ReactApexChart
+            options={radialBarOptions}
+            series={[trustLevel]}
+            type="radialBar"
+          />
+        </Paper>
       </Container>
     </>
   );

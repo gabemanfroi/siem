@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { primaryBg } from 'modules/Shared/stylesHelpers/colorVariables';
+import { primaryBg } from 'modules/Shared/helpers/styles/Colors';
 import styled from 'styled-components';
 
 export const StyledContainer = styled(Box)`
@@ -17,6 +17,7 @@ export const StyledContainer = styled(Box)`
     background-repeat: no-repeat;
     background-color: ${primaryBg};
   }
+
   display: flex;
   align-items: center;
   justify-content: center;
