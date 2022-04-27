@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { DefaultLayout } from 'modules/Shared/components/DefaultLayout/style';
 
-export const Container = styled(DefaultLayout)`
+export const Container = styled.main`
   flex: 1;
   display: flex;
 `;

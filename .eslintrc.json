@@ -40,6 +40,19 @@
     "react",
     "@typescript-eslint"
   ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "import/prefer-default-export": "off",
@@ -58,6 +71,8 @@
     "jsx-quotes": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-curly-newline": "off",
+    "react/require-default-props": "off",
+    "function-paren-newline": "off",
     "react/jsx-filename-extension": [
       1,
       {

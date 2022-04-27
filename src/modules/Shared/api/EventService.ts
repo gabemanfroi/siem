@@ -1,9 +1,5 @@
-import BaseService from '../services/BaseService';
+import { BaseService } from 'modules/Shared/services/BaseService';
 
-class EventService extends BaseService {
-  constructor() {
-    super('event/');
-  }
-}
+export const EventService = () => BaseService('/event');
 
-export default new EventService();
+export default EventService;

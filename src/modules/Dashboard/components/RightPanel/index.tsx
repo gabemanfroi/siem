@@ -1,12 +1,12 @@
 import { Container } from './style';
-import Top from './Top';
-import Bottom from './Bottom';
+import WidgetsGrid from './WidgetsGrid';
+import Header from './Header';
 
 export default function RightPanel() {
   return (
     <Container>
-      <Top />
-      <Bottom />
+      <Header />
+      <WidgetsGrid />
     </Container>
   );
 }

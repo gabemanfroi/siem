@@ -1,10 +1,11 @@
 import { Skeleton } from '@mui/material';
-import { useAppSelector } from 'modules/Shared/hooks/useAppSelector';
+
+import { useLoading } from 'modules/Shared/contexts';
 import { Container } from './style';
 import { OverallSecurity } from './OverallSecurity';
 
 export default function Top() {
-  const { isLoading } = useAppSelector(({ loading }) => loading);
+  const { isLoading } = useLoading();
   return (
     <Container>
       <h1>Dashboard</h1>
