@@ -26,6 +26,7 @@ afterEach(cleanup);
 
 afterAll(() => {
   jest.unmock('modules/Shared/contexts');
+  jest.unmock('react-apexcharts');
 });
 
 describe('AgentModal', () => {
