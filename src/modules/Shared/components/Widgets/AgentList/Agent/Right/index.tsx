@@ -6,16 +6,20 @@ import { useAgent } from 'modules/Shared/contexts';
 import { Container } from './style';
 
 interface RightProps {
-  totalOfEvents: number;
   agent: AgentType;
 }
 
-export default function Right({ agent, totalOfEvents }: RightProps) {
+export default function Right({ agent }: RightProps) {
   const { setSelectedAgent, setIsAgentModalOpen } = useAgent();
   const onButtonClick = () => {
     setSelectedAgent(agent);
     setIsAgentModalOpen(true);
   };
+
+  const totalOfEvents = Object.entries(agent.eventsByLevel).reduce(
+    (prevValue, curr) => prevValue + curr[1],
+    0
+  );
 
   return (
     <Container>
