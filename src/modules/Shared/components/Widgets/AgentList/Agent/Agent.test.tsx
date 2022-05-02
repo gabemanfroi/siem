@@ -11,6 +11,6 @@ describe('Agent', () => {
   it('must render the component', () => {
     const { container } = render(<Agent agent={createRandomAgent()} />);
 
-    expect(container).not.toBeNull();
+    expect(container);
   });
 });
