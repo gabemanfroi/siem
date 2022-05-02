@@ -1,12 +1,13 @@
-FROM node:14.17-alpine
+FROM node:16-alpine
 
 WORKDIR /app
+COPY package.json /app/package.json
+COPY .env /app/.env
+RUN yarn
+COPY . /app
+RUN yarn build
 
-COPY build ./build
-COPY .env ./
-
-RUN npm install -g serve
-
-EXPOSE 3000
-
-CMD serve -s build
+FROM nginx:1.16.0-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD [“nginx”, “-g”, “daemon off;”
