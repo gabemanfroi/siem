@@ -3,6 +3,7 @@ import ReactApexChart from 'react-apexcharts';
 import React from 'react';
 import { Paper } from '@mui/material';
 import { RadialBarOptionsFactory } from 'modules/Shared/helpers/factories/chartsOptions';
+import { LoadingHandler } from 'modules/Shared/components';
 import { Container } from './style';
 
 export function OverallSecurity() {
@@ -11,8 +12,8 @@ export function OverallSecurity() {
   });
   const trustLevel = 50;
   return (
-    <>
-      <Container>
+    <Container>
+      <LoadingHandler sx={{ flex: '0 0 20%' }}>
         <Paper sx={{ flex: 0 }}>
           <ReactApexChart
             options={radialBarOptions}
@@ -20,7 +21,7 @@ export function OverallSecurity() {
             type="radialBar"
           />
         </Paper>
-      </Container>
-    </>
+      </LoadingHandler>
+    </Container>
   );
 }

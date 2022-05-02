@@ -13,7 +13,7 @@ const WidgetsGrid = () => {
     lg: widgetsList.map((w) => w.options.lg),
   });
 
-  if (!layouts) return <></>;
+  if (widgetsList.length === 0) return <></>;
 
   return (
     <ResponsiveGridLayout

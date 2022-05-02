@@ -1,16 +1,30 @@
 import { ApexOptions } from 'apexcharts';
-import { HEXADECIMAL_REGEX } from 'modules/Shared/core/Constants';
+import {
+  DEFAULT_CHARTS_PALETTE,
+  HEXADECIMAL_REGEX,
+} from 'modules/Shared/core/Constants';
 import DonutChartOptionsFactory from '.';
 
 const defaultExpectedObject = {
   chart: { height: expect.any(Number), type: 'donut' },
   labels: expect.any(Array),
-  legend: { position: 'bottom' },
-  title: {
-    align: 'center',
-    style: { color: expect.stringMatching(HEXADECIMAL_REGEX) },
-    text: expect.any(String),
+  legend: {
+    position: 'right',
+    labels: {
+      colors: '#fff',
+    },
   },
+  theme: {
+    palette: DEFAULT_CHARTS_PALETTE,
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  title: {
+    align: 'left',
+    style: { color: expect.stringMatching(HEXADECIMAL_REGEX) },
+  },
+  series: expect.any(Array),
 };
 
 describe('DonutChartOptionsFactory', () => {
