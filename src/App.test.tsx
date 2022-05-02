@@ -7,6 +7,6 @@ describe('App', () => {
   it('should render the component', () => {
     const { container } = appRender;
 
-    expect(container);
+    expect(container).toBeNull();
   });
 });
