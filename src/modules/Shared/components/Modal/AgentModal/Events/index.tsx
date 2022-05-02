@@ -1,7 +1,6 @@
 import {
   Box,
   Collapse,
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -9,11 +8,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  useTheme,
 } from '@mui/material';
 import React from 'react';
-import { MdChevronRight } from 'react-icons/md';
-import { CgChevronDown } from 'react-icons/cg';
 import { AgentType, EventType } from 'modules/Shared/types';
 
 interface EventsProps {
@@ -21,35 +17,16 @@ interface EventsProps {
 }
 
 function Row({ event }: { event: EventType }) {
-  const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-
   return (
     <>
-      <TableRow
-        onClick={() => console.log(event)}
-        sx={{ '& > *': { borderBottom: 'unset' } }}
-      >
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? (
-              <CgChevronDown color={theme.palette.text.primary} />
-            ) : (
-              <MdChevronRight color={theme.palette.text.primary} />
-            )}
-          </IconButton>
-        </TableCell>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell align="right">{event.level}</TableCell>
         <TableCell align="right">{event.firedTimes}</TableCell>
         <TableCell align="right">{event.description}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Table size="small" aria-label="purchases">
                 <TableHead>

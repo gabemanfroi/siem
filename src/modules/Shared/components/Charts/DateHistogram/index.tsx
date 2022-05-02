@@ -10,6 +10,8 @@ interface DateHistogramPropsInterface {
 }
 
 const DateHistogram = ({ data }: DateHistogramPropsInterface) => {
+  if (!data) return <></>;
+
   const { options } = useDateHistogram(data);
 
   return <Histogram options={options} />;

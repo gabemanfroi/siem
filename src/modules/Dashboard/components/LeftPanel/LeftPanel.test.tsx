@@ -8,8 +8,8 @@ jest.mock('react-apexcharts', () => ({
 
 describe('LeftPanel', () => {
   it('must render the component', () => {
-    const { getByText } = render(<LeftPanel />);
+    const { container } = render(<LeftPanel />);
 
-    expect(getByText('Dashboard'));
+    expect(container);
   });
 });

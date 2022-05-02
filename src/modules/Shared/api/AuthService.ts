@@ -1,4 +1,4 @@
-import { BaseService } from '../services/BaseService';
+import { BaseService } from 'modules/Shared/services/BaseService';
 
 const AuthService = () => {
   const service = BaseService('/auth');
