@@ -4,14 +4,10 @@ import RadialBarOptionsFactory from './index';
 
 const defaultExpectedObject = {
   chart: {
-    height: expect.any(Number),
     type: 'radialBar',
   },
   plotOptions: {
     radialBar: {
-      track: {
-        background: expect.stringMatching(HEXADECIMAL_REGEX),
-      },
       dataLabels: {
         name: {
           color: expect.stringMatching(HEXADECIMAL_REGEX),
@@ -26,10 +22,6 @@ const defaultExpectedObject = {
       },
     },
   },
-  stroke: {
-    lineCap: 'round',
-  },
-  labels: expect.any(Array),
 };
 
 describe('RadialBarOptionsFactory', () => {
