@@ -1,26 +1,20 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  pull_request:
-    branches: [ main, develop ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+on: pull_request
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      # Checkout the Repo
       - uses: actions/checkout@v2
-      - name: Set up node 
+
+      # Install Node 12
+      - name: Setup Node
         uses: actions/setup-node@v1
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests 
-        run: npm test
+        with:
+          node-version: 12
+
+      # Install dependencies
+      - run: npm install
+
+      # Run tests
+      - run: npm test
