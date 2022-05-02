@@ -3,6 +3,8 @@ import AgentList from '.';
 
 const mockIsLoading = jest.fn();
 const mockGroupedByAgent = jest.fn();
+const mockSetSelectedAgent = jest.fn();
+const mockSetIsAgentModalOpen = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
   useDashboard: () => ({
@@ -10,6 +12,10 @@ jest.mock('modules/Shared/contexts', () => ({
   }),
   useLoading: () => ({
     isLoading: mockIsLoading(),
+  }),
+  useAgent: () => ({
+    setSelectedAgent: mockSetSelectedAgent(),
+    setIsAgentModalOpen: mockSetIsAgentModalOpen(),
   }),
 }));
 
