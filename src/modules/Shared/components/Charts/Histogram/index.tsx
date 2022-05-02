@@ -10,6 +10,8 @@ interface HistogramPropsInterface {
 const Histogram = ({ options }: HistogramPropsInterface) => {
   const { series } = options;
 
+  if (!series) return <></>;
+
   return (
     <LoadingHandler>
       <ReactApexChart
