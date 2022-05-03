@@ -8,7 +8,7 @@ import { Container } from './style';
 
 interface MiddleInterface {
   name: string;
-  ip: string | '';
+  ip: string;
   eventsByLevel: {
     low: number;
     medium: number;
@@ -16,18 +16,14 @@ interface MiddleInterface {
   };
 }
 
-export default function Middle({
-  name,
-  ip = '',
-  eventsByLevel,
-}: MiddleInterface) {
+export default function Middle({ name, ip, eventsByLevel }: MiddleInterface) {
   return (
     <Container>
       <div className="header">
         <div className="group-name">
           <FaNetworkWired size={24} color={gray300} />
           <h5>
-            <span>{ip || ' - '}</span>
+            <span>{ip}</span>
           </h5>
         </div>
         <div className="device-name">
