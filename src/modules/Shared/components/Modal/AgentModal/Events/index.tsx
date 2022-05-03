@@ -10,11 +10,8 @@ import {
   TableRow,
 } from '@mui/material';
 import React from 'react';
-import { AgentType, EventType } from 'modules/Shared/types';
-
-interface EventsProps {
-  agent: AgentType;
-}
+import { EventType } from 'modules/Shared/types';
+import { useAgent } from 'modules/Shared/contexts';
 
 function Row({ event }: { event: EventType }) {
   return (
@@ -52,8 +49,10 @@ function Row({ event }: { event: EventType }) {
   );
 }
 
-const Events = ({ agent }: EventsProps) => {
-  if (!agent.events) return <></>;
+const Events = () => {
+  const { selectedAgent } = useAgent();
+
+  if (!selectedAgent) return <></>;
 
   return (
     <TableContainer component={Paper}>
@@ -67,7 +66,7 @@ const Events = ({ agent }: EventsProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {agent.events.map((event) => (
+          {selectedAgent.events.map((event) => (
             <Row key={event.id} event={event} />
           ))}
         </TableBody>
