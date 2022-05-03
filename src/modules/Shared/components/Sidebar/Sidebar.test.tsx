@@ -1,34 +1,29 @@
 import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import Sidebar from './index';
+
+const routerRender = () =>
+  render(
+    <MemoryRouter>
+      <Sidebar />
+    </MemoryRouter>
+  );
 
 describe('Sidebar', () => {
   it('must render the component', () => {
-    const { container } = render(
-      <BrowserRouter>
-        <Sidebar />
-      </BrowserRouter>
-    );
+    const { container } = routerRender();
 
     expect(container);
   });
 
   it('must contain buttons to be the navigation items', () => {
-    const { queryAllByRole } = render(
-      <BrowserRouter>
-        <Sidebar />
-      </BrowserRouter>
-    );
+    const { queryAllByRole } = routerRender();
 
     expect(queryAllByRole('button').length).toBeGreaterThan(0);
   });
 
   it('must contain the Dashboard navigation button', () => {
-    const { queryByText } = render(
-      <BrowserRouter>
-        <Sidebar />
-      </BrowserRouter>
-    );
+    const { queryByText } = routerRender();
 
     expect(queryByText('Dashboard')).toBeInTheDocument();
   });
