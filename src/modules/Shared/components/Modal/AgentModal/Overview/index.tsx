@@ -1,21 +1,19 @@
 import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { AgentType } from 'modules/Shared/types/AgentType';
+import { useAgent } from 'modules/Shared/contexts';
 import GeneralData from './GeneralData';
 import Charts from './Charts';
 
-interface OverviewProps {
-  agent: AgentType;
-}
-
-const Overview = ({ agent }: OverviewProps) => {
-  const [agentState, setAgentState] = useState<AgentType>(agent);
+const Overview = () => {
+  const { selectedAgent } = useAgent();
+  const [agentState, setAgentState] = useState<AgentType | null>(selectedAgent);
 
   useEffect(() => {
-    setAgentState(agent);
-  }, [agent]);
+    if (selectedAgent) setAgentState(selectedAgent);
+  }, [selectedAgent]);
 
-  if (!agent) return <></>;
+  if (!agentState) return <></>;
 
   return (
     <Grid container sx={{ height: '100%' }} spacing={2}>

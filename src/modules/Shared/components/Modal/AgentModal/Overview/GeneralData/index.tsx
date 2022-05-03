@@ -19,7 +19,7 @@ import React, { useState } from 'react';
 interface GeneralDataPropsInterface {
   agent: AgentType;
   agentState: AgentType;
-  setAgentState: React.Dispatch<React.SetStateAction<AgentType>>;
+  setAgentState: React.Dispatch<React.SetStateAction<AgentType | null>>;
 }
 
 const GeneralData = ({
