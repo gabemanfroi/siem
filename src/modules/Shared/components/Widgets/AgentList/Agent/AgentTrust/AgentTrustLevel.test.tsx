@@ -7,7 +7,7 @@ jest.mock('react-apexcharts', () => ({
 }));
 
 describe('AgentTrustLevel', () => {
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = render(<AgentTrustLevel trustLevel={50} />);
 
     expect(container).not.toBeNull();

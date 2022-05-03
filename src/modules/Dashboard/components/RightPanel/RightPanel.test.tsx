@@ -3,7 +3,7 @@ import RightPanel from './index';
 
 describe('RightPanel', () => {
   const rightPanelRender = render(<RightPanel />);
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = rightPanelRender;
 
     expect(container);

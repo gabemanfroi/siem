@@ -9,12 +9,12 @@ const mockData = createCriticalityDateHistogramMock({
 });
 
 describe('DateHistogram', () => {
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = render(<DateHistogram data={mockData} />);
 
     expect(container.children.length).toBeGreaterThan(0);
   });
-  it('should render an empty div if no data is passed', () => {
+  it('must render an empty div if no data is passed', () => {
     const { container } = render(
       <DateHistogram data={null as unknown as CriticalityByTimeType[]} />
     );

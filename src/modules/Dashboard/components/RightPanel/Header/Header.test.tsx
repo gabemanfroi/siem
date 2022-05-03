@@ -3,7 +3,7 @@ import Header from './index';
 
 describe('Header', () => {
   const headerRender = render(<Header />);
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = headerRender;
 
     expect(container);
