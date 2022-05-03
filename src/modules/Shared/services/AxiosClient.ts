@@ -17,7 +17,7 @@ export const AxiosClient = (baseURL?: string) => {
   );
 
   axiosInstance.interceptors.request.use(async (config) => {
-    const token = TokenUtil.getToken();
+    const token = TokenUtil().getToken();
 
     if (config.headers) config.headers.Authorization = `Bearer ${token}`;
     return config;

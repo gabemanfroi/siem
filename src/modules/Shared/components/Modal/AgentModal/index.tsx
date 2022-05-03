@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { TabContext, TabPanel } from '@mui/lab';
 
 import { useAgent } from 'modules/Shared/contexts';
-import { AgentType } from 'modules/Shared/types';
 import Overview from './Overview';
 import Events from './Events';
 import { AgentModalCard, StyledModal } from './style';
@@ -11,20 +10,19 @@ import { AgentModalCard, StyledModal } from './style';
 export default function AgentModal() {
   const [selectedTab, setSelectedTab] = useState('1');
   const { selectedAgent, isAgentModalOpen } = useAgent();
-  const [modalAgent] = useState<AgentType | null>(selectedAgent);
 
   const handleChange = (event: React.SyntheticEvent, newVal: string) => {
     setSelectedTab(newVal);
   };
 
-  if (!isAgentModalOpen || !modalAgent) return <></>;
+  if (!isAgentModalOpen || !selectedAgent) return <></>;
 
   return (
     <StyledModal open={isAgentModalOpen}>
       <AgentModalCard>
         <Typography color="#c3c3c3" variant="h2" sx={{ textAlign: 'center' }}>
-          {`${modalAgent?.generalData?.name.toUpperCase() || ''} - `}
-          {modalAgent?.generalData?.ip || ''}
+          {`${selectedAgent.generalData.name.toUpperCase()} - `}
+          {selectedAgent.generalData.ip}
         </Typography>
         <TabContext value={selectedTab}>
           <Box>
@@ -34,10 +32,10 @@ export default function AgentModal() {
             </Tabs>
           </Box>
           <TabPanel sx={{ flex: 1 }} value="1">
-            <Overview agent={modalAgent} />
+            <Overview />
           </TabPanel>
           <TabPanel value="2">
-            <Events agent={modalAgent} />
+            <Events />
           </TabPanel>
         </TabContext>
       </AgentModalCard>

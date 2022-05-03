@@ -25,13 +25,13 @@ const options: ApexOptions = {
 };
 
 describe('Histogram', () => {
-  it('should render the component for the best case', () => {
+  it('must render the component for the best case', () => {
     const { container } = render(<Histogram options={options} />);
 
     expect(container.children.length).toBeGreaterThan(0);
   });
 
-  it('should render an empty div if no series are passed', () => {
+  it('must render an empty div if no series are passed', () => {
     const { container } = render(<Histogram options={{}} />);
 
     expect(container.children.length).toBe(0);

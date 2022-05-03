@@ -2,7 +2,13 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Container } from './style';
 
-const AnyReactComponent = ({ text }: { text: string }) => <div>{text}</div>;
+interface AnyReactComponentInterface {
+  text: string;
+}
+
+const AnyReactComponent = ({ text }: AnyReactComponentInterface) => (
+  <div>{text}</div>
+);
 
 const Heatmap = () => {
   const defaultProps = {
@@ -12,7 +18,6 @@ const Heatmap = () => {
     },
     zoom: 11,
   };
-  // @ts-ignore
   return (
     <Container>
       <GoogleMapReact
@@ -20,8 +25,7 @@ const Heatmap = () => {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        {/* @ts-ignore} */}
-        <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+        <AnyReactComponent text="My Marker" />
       </GoogleMapReact>
     </Container>
   );

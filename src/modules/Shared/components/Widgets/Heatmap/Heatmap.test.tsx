@@ -1,10 +1,9 @@
 import { render } from '@testing-library/react';
-import Top from './index';
+import Heatmap from './index';
 
-describe('Top', () => {
-  const topRender = render(<Top />);
+describe('Heatmap', () => {
   it('must render the component', () => {
-    const { container } = topRender;
+    const { container } = render(<Heatmap />);
 
     expect(container);
   });
