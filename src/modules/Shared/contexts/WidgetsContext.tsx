@@ -15,11 +15,12 @@ import {
   WidgetType,
 } from 'modules/Shared/types/WidgetsTypes';
 import {
+  AlertsEvolutionOverTime,
   AttacksByTechnique,
   TechniquesByAgent,
   TopTactics,
+  TopTacticsByAgent,
 } from 'modules/Mitre/components';
-import TopTechniquesByAgent from '../../Mitre/components/TopTacticsByAgent';
 
 const widgetsMap: WidgetsMapType = {
   /* mostAffectedAgents: {
@@ -48,7 +49,11 @@ const widgetsMap: WidgetsMapType = {
   },
   topTacticsByAgent: {
     ...CoreWidgetsConfig.topTacticsByAgent,
-    builder: () => <TopTechniquesByAgent />,
+    builder: () => <TopTacticsByAgent />,
+  },
+  alertsEvolutionOverTime: {
+    ...CoreWidgetsConfig.alertsEvolutionOverTime,
+    builder: () => <AlertsEvolutionOverTime />,
   },
 };
 

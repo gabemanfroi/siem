@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import { AgentType } from 'modules/Shared/types';
 import {
+  IAlertsEvolutionOverTime,
   IAttacksByTechnique,
   ITechniquesByAgent,
   ITopTactics,
@@ -15,20 +16,22 @@ import {
 } from 'modules/Mitre/interfaces';
 
 interface DashboardContextInterface {
+  alertsEvolutionOverTime: IAlertsEvolutionOverTime | undefined;
+  attacksByTechniques: IAttacksByTechnique | undefined;
   groupedByAgent: AgentType[];
   setGroupedByAgent: Dispatch<SetStateAction<AgentType[]>>;
   techniquesByAgent: ITechniquesByAgent | undefined;
-  attacksByTechniques: IAttacksByTechnique | undefined;
   topTactics: ITopTactics | undefined;
   topTacticsByAgent: ITopTacticsByAgent | undefined;
   widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
 }
 
 const dashboardContextDefaultValues = {
+  alertsEvolutionOverTime: undefined,
+  attacksByTechniques: undefined,
   groupedByAgent: [],
   setGroupedByAgent: () => {},
   techniquesByAgent: undefined,
-  attacksByTechniques: undefined,
   topTactics: undefined,
   topTacticsByAgent: undefined,
   widgetsHandlersMap: {},
@@ -39,12 +42,15 @@ const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 export const DashboardProvider: React.FC = ({ children }) => {
+  const [attacksByTechniques, setAttacksByTechnique] = useState<
+    IAttacksByTechnique | undefined
+  >();
+  const [alertsEvolutionOverTime, setAlertsEvolutionOverTime] = useState<
+    IAlertsEvolutionOverTime | undefined
+  >();
   const [groupedByAgent, setGroupedByAgent] = useState<AgentType[]>([]);
   const [techniquesByAgent, setTechniquesByAgent] = useState<
     ITechniquesByAgent | undefined
-  >();
-  const [attacksByTechniques, setAttacksByTechnique] = useState<
-    IAttacksByTechnique | undefined
   >();
   const [topTactics, setTopTactics] = useState<ITopTactics | undefined>();
   const [topTacticsByAgent, setTopTechniquesByAgent] = useState<
@@ -55,15 +61,17 @@ export const DashboardProvider: React.FC = ({ children }) => {
     techniquesByAgent: setTechniquesByAgent,
     attacksByTechniques: setAttacksByTechnique,
     topTactics: setTopTactics,
-    topTechniquesByAgent: setTopTechniquesByAgent,
+    topTacticsByAgent: setTopTechniquesByAgent,
+    alertsEvolutionOverTime: setAlertsEvolutionOverTime,
   };
 
   const value = useMemo(
     () => ({
       groupedByAgent,
+      alertsEvolutionOverTime,
+      attacksByTechniques,
       setGroupedByAgent,
       techniquesByAgent,
-      attacksByTechniques,
       topTactics,
       topTacticsByAgent,
       widgetsHandlersMap,

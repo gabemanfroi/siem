@@ -16,10 +16,11 @@ export type WidgetType = {
 };
 
 export type WidgetsMapType = {
+  alertsEvolutionOverTime?: WidgetType;
+  attacksByTechnique?: WidgetType;
   mostAffectedAgents?: WidgetType;
   mostCommonCVE?: WidgetType;
   packagesByCVE?: WidgetType;
-  attacksByTechnique?: WidgetType;
   techniquesByAgent?: WidgetType;
   topTactics?: WidgetType;
   topTacticsByAgent?: WidgetType;
@@ -110,6 +111,19 @@ export const CoreWidgetsConfig = {
       active: true,
       lg: {
         i: 'topTacticsByAgent',
+        x: 0,
+        y: 0,
+        w: 6,
+        h: 2,
+      },
+    },
+  },
+  alertsEvolutionOverTime: {
+    label: 'Alerts Evolution Over Time',
+    options: {
+      active: true,
+      lg: {
+        i: 'alertsEvolutionOverTime',
         x: 0,
         y: 0,
         w: 6,
