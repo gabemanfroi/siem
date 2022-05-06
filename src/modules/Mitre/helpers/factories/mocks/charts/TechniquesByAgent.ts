@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { ChartSeriesType } from '../../../../../types/charts/Core';
+import { IChartSeries } from 'modules/Shared/types/charts/Core';
 
 const TechniquesByAgentMockFactory = (agentAmount = 7) => {
   const exampleTechniques = [
@@ -20,7 +20,7 @@ const TechniquesByAgentMockFactory = (agentAmount = 7) => {
     exampleAffectedAgents.push(faker.internet.url());
   }
 
-  const series: ChartSeriesType[] = exampleTechniques.map((p) => ({
+  const series: IChartSeries[] = exampleTechniques.map((p) => ({
     name: p,
     data: exampleAffectedAgents.map(() =>
       faker.datatype.number({ min: 0, max: 100, precision: 1 })
