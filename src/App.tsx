@@ -8,21 +8,24 @@ import {
   LoadingProvider,
   DashboardProvider,
   WidgetsProvider,
+  WebsocketProvider,
 } from 'modules/Shared/contexts';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LoadingProvider>
-        <AgentProvider>
-          <DashboardProvider>
-            <WidgetsProvider>
-              <Router />
-              <ErrorSnackbar />
-            </WidgetsProvider>
-          </DashboardProvider>
-        </AgentProvider>
-      </LoadingProvider>
+      <WebsocketProvider>
+        <LoadingProvider>
+          <AgentProvider>
+            <DashboardProvider>
+              <WidgetsProvider>
+                <Router />
+                <ErrorSnackbar />
+              </WidgetsProvider>
+            </DashboardProvider>
+          </AgentProvider>
+        </LoadingProvider>
+      </WebsocketProvider>
     </ThemeProvider>
   );
 }

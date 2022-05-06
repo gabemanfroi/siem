@@ -7,14 +7,6 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-
-import {
-  AttacksByTechnique,
-  MostAffectedAgents,
-  MostCommonCVE,
-  PackagesByCVE,
-  TechniquesByAgent,
-} from 'modules/Shared/components';
 import { Layout } from 'react-grid-layout';
 import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
 import {
@@ -22,20 +14,26 @@ import {
   WidgetsMapType,
   WidgetType,
 } from 'modules/Shared/types/WidgetsTypes';
+import {
+  AttacksByTechnique,
+  TechniquesByAgent,
+  TopTactics,
+} from 'modules/Mitre/components';
+import TopTechniquesByAgent from '../../Mitre/components/TopTacticsByAgent';
 
 const widgetsMap: WidgetsMapType = {
-  mostAffectedAgents: {
-    ...CoreWidgetsConfig.mostAffectedAgents,
-    builder: () => <MostAffectedAgents />,
-  },
-  mostCommonCVE: {
-    ...CoreWidgetsConfig.mostCommonCVE,
-    builder: () => <MostCommonCVE />,
-  },
-  packagesByCVE: {
-    ...CoreWidgetsConfig.packagesByCVE,
-    builder: () => <PackagesByCVE />,
-  },
+  /* mostAffectedAgents: {
+     ...CoreWidgetsConfig.mostAffectedAgents,
+     builder: () => <MostAffectedAgents />,
+   },
+   mostCommonCVE: {
+     ...CoreWidgetsConfig.mostCommonCVE,
+     builder: () => <MostCommonCVE />,
+   },
+   packagesByCVE: {
+     ...CoreWidgetsConfig.packagesByCVE,
+     builder: () => <PackagesByCVE />,
+   }, */
   attacksByTechnique: {
     ...CoreWidgetsConfig.attacksByTechnique,
     builder: () => <AttacksByTechnique />,
@@ -44,6 +42,14 @@ const widgetsMap: WidgetsMapType = {
     ...CoreWidgetsConfig.techniquesByAgent,
     builder: () => <TechniquesByAgent />,
   },
+  topTactics: {
+    ...CoreWidgetsConfig.topTactics,
+    builder: () => <TopTactics />,
+  },
+  topTacticsByAgent: {
+    ...CoreWidgetsConfig.topTacticsByAgent,
+    builder: () => <TopTechniquesByAgent />,
+  },
 };
 
 type WidgetsMapKeys =
@@ -51,7 +57,9 @@ type WidgetsMapKeys =
   | 'mostCommonCVE'
   | 'packagesByCVE'
   | 'attacksByTechnique'
-  | 'techniquesByAgent';
+  | 'techniquesByAgent'
+  | 'topTactics'
+  | 'topTacticsByAgent';
 
 interface WidgetsContextInterface {
   defaultWidgets: WidgetsMapType;

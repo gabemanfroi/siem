@@ -21,6 +21,8 @@ export type WidgetsMapType = {
   packagesByCVE?: WidgetType;
   attacksByTechnique?: WidgetType;
   techniquesByAgent?: WidgetType;
+  topTactics?: WidgetType;
+  topTacticsByAgent?: WidgetType;
 };
 
 export const CoreWidgetsConfig = {
@@ -66,7 +68,7 @@ export const CoreWidgetsConfig = {
   attacksByTechnique: {
     label: 'Attacks by Technique',
     options: {
-      active: false,
+      active: true,
       lg: {
         i: 'attacksByTechnique',
         x: 6,
@@ -78,13 +80,38 @@ export const CoreWidgetsConfig = {
   },
   techniquesByAgent: {
     label: 'Techniques by Agent',
-
     options: {
-      active: false,
+      active: true,
       lg: {
         i: 'techniquesByAgent',
         x: 0,
         y: 5,
+        w: 6,
+        h: 2,
+      },
+    },
+  },
+  topTactics: {
+    label: 'Top Tactics',
+    options: {
+      active: true,
+      lg: {
+        i: 'topTactics',
+        x: 0,
+        y: 0,
+        w: 6,
+        h: 2,
+      },
+    },
+  },
+  topTacticsByAgent: {
+    label: 'Top Tactics by Agent',
+    options: {
+      active: true,
+      lg: {
+        i: 'topTacticsByAgent',
+        x: 0,
+        y: 0,
         w: 6,
         h: 2,
       },
