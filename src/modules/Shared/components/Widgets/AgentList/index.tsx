@@ -15,7 +15,7 @@ export default function AgentList() {
           groupedByAgent.map((agent: AgentType) => (
             <Agent key={agent.generalData.id} agent={agent} />
           ))}
-        {process.env.REACT_APP_ENVIRONMENT === 'development' &&
+        {(process.env.REACT_APP_ENVIRONMENT === 'development' || 'test') &&
           createAgentListMock(7).map((agent: AgentType) => (
             <Agent key={agent.generalData.id} agent={agent} />
           ))}

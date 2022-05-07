@@ -10,20 +10,23 @@ import {
   WidgetsProvider,
   WebsocketProvider,
 } from 'modules/Shared/contexts';
+import { MitreProvider } from 'modules/Shared/contexts/MitreContext';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <WebsocketProvider>
         <LoadingProvider>
-          <AgentProvider>
-            <DashboardProvider>
+          <MitreProvider>
+            <AgentProvider>
               <WidgetsProvider>
-                <Router />
-                <ErrorSnackbar />
+                <DashboardProvider>
+                  <Router />
+                  <ErrorSnackbar />
+                </DashboardProvider>
               </WidgetsProvider>
-            </DashboardProvider>
-          </AgentProvider>
+            </AgentProvider>
+          </MitreProvider>
         </LoadingProvider>
       </WebsocketProvider>
     </ThemeProvider>

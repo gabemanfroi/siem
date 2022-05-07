@@ -1,24 +1,17 @@
-import { useEffect, useState } from 'react';
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { ApexOptions } from 'apexcharts';
-import { useDashboard } from 'modules/Shared/contexts';
+import { useMitre } from 'modules/Shared/contexts';
 
 const TopTactics = () => {
-  const [series, setSeries] = useState<number[]>([]);
-  const [labels, setLabels] = useState<string[]>([]);
-  const [options, setOptions] = useState<ApexOptions>({});
-  const { topTactics } = useDashboard();
+  const { topTactics } = useMitre();
 
-  useEffect(() => {
-    if (topTactics) {
-      setSeries(topTactics.series);
-      setLabels(topTactics.labels);
-    }
-  }, [topTactics]);
+  if (!topTactics) return <></>;
 
-  useEffect(() => {
-    setOptions({ ...options, series, labels, title: { text: 'Top Tactics' } });
-  }, [series]);
+  const { labels, series } = topTactics;
+  const options = {
+    series,
+    labels,
+    title: { text: 'Top Tactics' },
+  };
 
   return <DonutChart options={options} />;
 };

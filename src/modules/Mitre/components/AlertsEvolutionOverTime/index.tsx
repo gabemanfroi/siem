@@ -1,32 +1,22 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { useDashboard } from 'modules/Shared/contexts';
-import { useEffect, useState } from 'react';
+import { useMitre } from 'modules/Shared/contexts';
 import { ApexOptions } from 'apexcharts';
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
 
 const AlertsEvolutionOverTime = () => {
-  const { alertsEvolutionOverTime } = useDashboard();
-  const [options, setOptions] = useState<ApexOptions>({
+  const { alertsEvolutionOverTime } = useMitre();
+
+  if (!alertsEvolutionOverTime) return <></>;
+  const { categories, series } = alertsEvolutionOverTime;
+  const options: ApexOptions = {
     xaxis: {
       type: 'datetime',
+      categories,
     },
     title: {
       text: 'Alerts Evolution Over Time',
     },
-  });
-  const [series, setSeries] = useState<IChartSeries[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
-
-  useEffect(() => {
-    if (alertsEvolutionOverTime) {
-      setSeries(alertsEvolutionOverTime.series);
-      setCategories(alertsEvolutionOverTime.categories);
-    }
-  }, [alertsEvolutionOverTime]);
-
-  useEffect(() => {
-    setOptions({ ...options, series, xaxis: { categories } });
-  }, [categories, series]);
+    series,
+  };
 
   return <Histogram options={options} />;
 };
