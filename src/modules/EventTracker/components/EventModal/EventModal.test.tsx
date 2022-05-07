@@ -3,7 +3,7 @@ import EventModal from './index';
 
 describe('EventModal', () => {
   const eventModalRender = render(<EventModal />);
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = eventModalRender;
 
     expect(container);

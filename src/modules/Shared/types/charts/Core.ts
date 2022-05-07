@@ -1,4 +1,4 @@
-export type ChartSeriesType = {
-  name:string,
-  data: number[]
+export interface IChartSeries {
+  name: string;
+  data: number[];
 }

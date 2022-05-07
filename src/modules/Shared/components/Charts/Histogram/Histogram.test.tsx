@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { AttacksByTechniqueMockFactory } from 'modules/Shared/helpers/factories';
+import { AttacksByTechniqueMockFactory } from 'modules/Mitre/helpers/factories';
 import { ApexOptions } from 'apexcharts';
 import Histogram from './index';
 
@@ -7,6 +7,8 @@ jest.mock('react-apexcharts', () => ({
   __esModule: true,
   default: () => <div />,
 }));
+
+afterAll(() => jest.unmock('react-apexcharts'));
 const { categories, series } = AttacksByTechniqueMockFactory();
 const options: ApexOptions = {
   title: {
@@ -25,13 +27,13 @@ const options: ApexOptions = {
 };
 
 describe('Histogram', () => {
-  it('should render the component for the best case', () => {
+  it('must render the component for the best case', () => {
     const { container } = render(<Histogram options={options} />);
 
     expect(container.children.length).toBeGreaterThan(0);
   });
 
-  it('should render an empty div if no series are passed', () => {
+  it('must render an empty div if no series are passed', () => {
     const { container } = render(<Histogram options={{}} />);
 
     expect(container.children.length).toBe(0);

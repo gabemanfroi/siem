@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { createRandomAgent } from 'modules/Shared/helpers/factories/tests/AgentFactory';
 import AgentModal from './index';
 
@@ -61,6 +61,24 @@ describe('AgentModal', () => {
 
     const { getByRole } = render(<AgentModal />);
 
-    getByRole('presentation');
+    expect(getByRole('presentation'));
+  });
+  it('must initialize withing the General Data tab', () => {
+    mockSelectedAgent.mockImplementation(() => createRandomAgent());
+    mockIsAgentModalOpen.mockImplementation(() => true);
+
+    const { getByText } = render(<AgentModal />);
+
+    expect(getByText('Informações Gerais')).toHaveClass('Mui-selected');
+  });
+  it('must be possible to change tabs', () => {
+    mockSelectedAgent.mockImplementation(() => createRandomAgent());
+    mockIsAgentModalOpen.mockImplementation(() => true);
+
+    const { getByText } = render(<AgentModal />);
+    const eventsTab = getByText('Eventos');
+
+    fireEvent.click(eventsTab);
+    expect(getByText('Eventos')).toHaveClass('Mui-selected');
   });
 });

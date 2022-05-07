@@ -1,1 +1,1 @@
-export { default as camelize } from './Camelize';
+export { default as TokenUtil } from './TokenUtil';

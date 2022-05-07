@@ -20,7 +20,7 @@ afterAll(() => {
 });
 
 describe('LoadingHandler', () => {
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = render(
       <LoadingHandler>
         <div>Test</div>
@@ -29,7 +29,7 @@ describe('LoadingHandler', () => {
 
     expect(container);
   });
-  it('should render a Skeleton if in loading state', () => {
+  it('must render a Skeleton if in loading state', () => {
     mockIsLoading.mockImplementation(() => true);
     const { container } = render(
       <LoadingHandler>
@@ -40,7 +40,7 @@ describe('LoadingHandler', () => {
     expect(container.firstChild).toHaveClass('MuiSkeleton-root');
     expect(container.firstChild).not.toHaveClass('myElementClass');
   });
-  it('should render the children if not in loading state', () => {
+  it('must render the children if not in loading state', () => {
     mockIsLoading.mockImplementation(() => false);
     const { container } = render(
       <LoadingHandler>
@@ -51,7 +51,7 @@ describe('LoadingHandler', () => {
     expect(container.firstChild).not.toHaveClass('MuiSkeleton-root');
     expect(container.firstChild).toHaveClass('myElementClass');
   });
-  it('should respond to the state changing', () => {
+  it('must respond to the state changing', () => {
     mockIsLoading.mockImplementation(() => false);
     const { container } = render(
       <LoadingHandler>

@@ -1,3 +1,3 @@
 describe('DonutChart', () => {
-  it('should render the component', () => {});
+  it('must render the component', () => {});
 });

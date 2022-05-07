@@ -3,11 +3,15 @@ import WidgetsGrid from './index';
 
 const mockWidgetsList = jest.fn();
 const mockSaveCurrentLayout = jest.fn();
+const mockDashboardWidgetsHandlerMap = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
   useWidgets: () => ({
     widgetsList: mockWidgetsList(),
     saveCurrentLayout: mockSaveCurrentLayout(),
+  }),
+  useDashboard: () => ({
+    dashboardWidgetsHandlerMap: mockDashboardWidgetsHandlerMap(),
   }),
 }));
 
@@ -27,6 +31,7 @@ beforeEach(() => {
     },
   ]);
   mockSaveCurrentLayout.mockImplementation(() => {});
+  mockDashboardWidgetsHandlerMap.mockImplementation(() => {});
 });
 
 afterEach(cleanup);
@@ -36,19 +41,19 @@ afterAll(() => {
 });
 
 describe('WidgetsGrid', () => {
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = render(<WidgetsGrid />);
 
     expect(container);
   });
 
-  it('should render a layout containing widgets if there are widgets', () => {
+  it('must render a layout containing widgets if there are widgets', () => {
     const { container } = render(<WidgetsGrid />);
 
     expect(container.firstChild).toHaveClass('react-grid-layout');
   });
 
-  it('should render an empty container if there is no widget', () => {
+  it('must render an empty container if there is no widget', () => {
     mockWidgetsList.mockImplementation(() => []);
     const { container } = render(<WidgetsGrid />);
 

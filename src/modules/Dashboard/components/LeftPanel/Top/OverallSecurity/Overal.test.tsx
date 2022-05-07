@@ -3,7 +3,7 @@ import { OverallSecurity } from './index';
 
 describe('OverallSecurity', () => {
   const overallSecurityRender = render(<OverallSecurity />);
-  it('should render the component', () => {
+  it('must render the component', () => {
     const { container } = overallSecurityRender;
 
     expect(container);
