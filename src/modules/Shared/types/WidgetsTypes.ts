@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
+import { IMitreWidgets } from 'modules/Mitre/interfaces/Widgets';
 
-export type WidgetType = {
+export interface IWidget {
   label: string;
   builder: () => ReactElement;
   options: {
@@ -13,18 +14,13 @@ export type WidgetType = {
       h: number;
     };
   };
-};
+}
 
-export type WidgetsMapType = {
-  alertsEvolutionOverTime?: WidgetType;
-  attacksByTechnique?: WidgetType;
-  mostAffectedAgents?: WidgetType;
-  mostCommonCVE?: WidgetType;
-  packagesByCVE?: WidgetType;
-  techniquesByAgent?: WidgetType;
-  topTactics?: WidgetType;
-  topTacticsByAgent?: WidgetType;
-};
+export interface IAllWidgets extends IMitreWidgets {
+  mostAffectedAgents?: IWidget;
+  mostCommonCVE?: IWidget;
+  packagesByCVE?: IWidget;
+}
 
 export const CoreWidgetsConfig = {
   mostAffectedAgents: {
@@ -66,69 +62,11 @@ export const CoreWidgetsConfig = {
       },
     },
   },
-  attacksByTechnique: {
-    label: 'Attacks by Technique',
-    options: {
-      active: true,
-      lg: {
-        i: 'attacksByTechnique',
-        x: 6,
-        y: 3,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
-  techniquesByAgent: {
-    label: 'Techniques by Agent',
-    options: {
-      active: true,
-      lg: {
-        i: 'techniquesByAgent',
-        x: 0,
-        y: 5,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
-  topTactics: {
-    label: 'Top Tactics',
-    options: {
-      active: true,
-      lg: {
-        i: 'topTactics',
-        x: 0,
-        y: 0,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
-  topTacticsByAgent: {
-    label: 'Top Tactics by Agent',
-    options: {
-      active: true,
-      lg: {
-        i: 'topTacticsByAgent',
-        x: 0,
-        y: 0,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
-  alertsEvolutionOverTime: {
-    label: 'Alerts Evolution Over Time',
-    options: {
-      active: true,
-      lg: {
-        i: 'alertsEvolutionOverTime',
-        x: 0,
-        y: 0,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
 };
+
+export type MitreWidgetKeys =
+  | 'attacksByTechnique'
+  | 'techniquesByAgent'
+  | 'topTactics'
+  | 'topTacticsByAgent'
+  | 'alertsEvolutionOverTime';

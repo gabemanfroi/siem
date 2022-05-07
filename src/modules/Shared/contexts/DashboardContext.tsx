@@ -7,34 +7,18 @@ import React, {
   useState,
 } from 'react';
 import { AgentType } from 'modules/Shared/types';
-import {
-  IAlertsEvolutionOverTime,
-  IAttacksByTechnique,
-  ITechniquesByAgent,
-  ITopTactics,
-  ITopTacticsByAgent,
-} from 'modules/Mitre/interfaces';
+import { useMitre } from './MitreContext';
 
 interface DashboardContextInterface {
-  alertsEvolutionOverTime: IAlertsEvolutionOverTime | undefined;
-  attacksByTechniques: IAttacksByTechnique | undefined;
   groupedByAgent: AgentType[];
   setGroupedByAgent: Dispatch<SetStateAction<AgentType[]>>;
-  techniquesByAgent: ITechniquesByAgent | undefined;
-  topTactics: ITopTactics | undefined;
-  topTacticsByAgent: ITopTacticsByAgent | undefined;
-  widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
+  dashboardWidgetsHandlerMap: { [key: string]: Dispatch<SetStateAction<any>> };
 }
 
 const dashboardContextDefaultValues = {
-  alertsEvolutionOverTime: undefined,
-  attacksByTechniques: undefined,
   groupedByAgent: [],
   setGroupedByAgent: () => {},
-  techniquesByAgent: undefined,
-  topTactics: undefined,
-  topTacticsByAgent: undefined,
-  widgetsHandlersMap: {},
+  dashboardWidgetsHandlerMap: {},
 };
 
 const DashboardContext = createContext<DashboardContextInterface>(
@@ -42,41 +26,20 @@ const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 export const DashboardProvider: React.FC = ({ children }) => {
-  const [attacksByTechniques, setAttacksByTechnique] = useState<
-    IAttacksByTechnique | undefined
-  >();
-  const [alertsEvolutionOverTime, setAlertsEvolutionOverTime] = useState<
-    IAlertsEvolutionOverTime | undefined
-  >();
   const [groupedByAgent, setGroupedByAgent] = useState<AgentType[]>([]);
-  const [techniquesByAgent, setTechniquesByAgent] = useState<
-    ITechniquesByAgent | undefined
-  >();
-  const [topTactics, setTopTactics] = useState<ITopTactics | undefined>();
-  const [topTacticsByAgent, setTopTechniquesByAgent] = useState<
-    ITopTacticsByAgent | undefined
-  >();
+  const { widgetsHandlersMap } = useMitre();
 
-  const widgetsHandlersMap = {
-    techniquesByAgent: setTechniquesByAgent,
-    attacksByTechniques: setAttacksByTechnique,
-    topTactics: setTopTactics,
-    topTacticsByAgent: setTopTechniquesByAgent,
-    alertsEvolutionOverTime: setAlertsEvolutionOverTime,
+  const dashboardWidgetsHandlerMap = {
+    ...widgetsHandlersMap,
   };
 
   const value = useMemo(
     () => ({
       groupedByAgent,
-      alertsEvolutionOverTime,
-      attacksByTechniques,
       setGroupedByAgent,
-      techniquesByAgent,
-      topTactics,
-      topTacticsByAgent,
-      widgetsHandlersMap,
+      dashboardWidgetsHandlerMap,
     }),
-    [techniquesByAgent, attacksByTechniques, topTactics]
+    []
   );
 
   return (
