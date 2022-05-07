@@ -7,6 +7,8 @@ jest.mock('react-apexcharts', () => ({
   __esModule: true,
   default: () => <div />,
 }));
+
+afterAll(() => jest.unmock('react-apexcharts'));
 const { categories, series } = AttacksByTechniqueMockFactory();
 const options: ApexOptions = {
   title: {

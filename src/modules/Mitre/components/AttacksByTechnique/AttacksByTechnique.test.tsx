@@ -1,0 +1,47 @@
+import { cleanup, render } from '@testing-library/react';
+import { AttacksByTechniqueMockFactory } from 'modules/Mitre/helpers/factories';
+import AttacksByTechnique from './index';
+
+const mockAttacksByTechniques = jest.fn();
+const mockIsLoading = jest.fn();
+
+jest.mock('react-apexcharts', () => ({
+  __esModule: true,
+  default: () => <div />,
+}));
+
+jest.mock('modules/Shared/contexts', () => ({
+  useMitre: () => ({
+    attacksByTechniques: mockAttacksByTechniques(),
+  }),
+  useLoading: () => ({
+    isLoading: mockIsLoading(),
+  }),
+}));
+
+beforeEach(() => {
+  mockAttacksByTechniques.mockImplementation(() => {});
+  mockIsLoading.mockImplementation(() => false);
+});
+
+afterEach(cleanup);
+
+afterAll(() => jest.unmock('modules/Shared/contexts'));
+
+describe('AttacksByTechnique', () => {
+  const componentRenderer = () => render(<AttacksByTechnique />);
+
+  it('should render the component', () => {
+    const { series, categories } = AttacksByTechniqueMockFactory();
+    mockAttacksByTechniques.mockImplementation(() => ({ series, categories }));
+    const { container } = componentRenderer();
+    expect(container.children.length).toBeGreaterThan(0);
+  });
+
+  it('should render and empty div in case of no data', () => {
+    mockAttacksByTechniques.mockImplementation(() => undefined);
+    const { container } = componentRenderer();
+
+    expect(container.children.length).toBe(0);
+  });
+});
