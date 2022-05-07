@@ -6,13 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {
-  IAlertsEvolutionOverTime,
-  IAttacksByTechnique,
-  ITechniquesByAgent,
-  ITopTactics,
-  ITopTacticsByAgent,
-} from 'modules/Mitre/interfaces';
+
 import {
   AlertsEvolutionOverTime,
   AttacksByTechnique,
@@ -25,6 +19,13 @@ import {
   IMitreWidgets,
   MitreWidgetsDefaultConfig,
 } from 'modules/Mitre/interfaces/Widgets';
+import {
+  IAlertsEvolutionOverTime,
+  IAttacksByTechnique,
+  ITechniquesByAgent,
+  ITopTactics,
+  ITopTacticsByAgent,
+} from 'modules/Mitre/interfaces';
 
 export const mitreWidgets: IMitreWidgets = {
   attacksByTechnique: {

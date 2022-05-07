@@ -1,16 +1,18 @@
 import { cleanup, render } from '@testing-library/react';
+import { AlertsEvolutionOverTimeMockFactory } from 'modules/Mitre/helpers/factories';
 import AlertsEvolutionOverTime from './index';
-import { AlertsEvolutionOverTimeMockFactory } from '../../helpers/factories';
 
 const mockAlertsEvolutionOverTime = jest.fn();
 const mockIsLoading = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
-  useMitre: () => ({
-    alertsEvolutionOverTime: mockAlertsEvolutionOverTime(),
-  }),
   useLoading: () => ({
     isLoading: mockIsLoading(),
+  }),
+}));
+jest.mock('modules/Mitre/contexts', () => ({
+  useMitre: () => ({
+    alertsEvolutionOverTime: mockAlertsEvolutionOverTime(),
   }),
 }));
 
@@ -21,7 +23,10 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-afterAll(() => jest.unmock('modules/Shared/contexts'));
+afterAll(() => {
+  jest.unmock('modules/Shared/contexts');
+  jest.unmock('modules/Mitre/contexts');
+});
 
 describe('AlertsEvolutionOverTime', () => {
   const componentRenderer = () => render(<AlertsEvolutionOverTime />);

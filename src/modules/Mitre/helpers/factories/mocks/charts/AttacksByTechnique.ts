@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
+import { IChartSeries } from 'modules/Shared/interfaces/charts/Core';
 
 const AttacksByTechniqueMockFactory = () => {
   const exampleTechniques = [

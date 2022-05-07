@@ -1,8 +1,5 @@
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
+import { IBasicHistogram } from 'modules/Shared/interfaces/charts';
 
-interface ITopTacticsByAgent {
-  categories: string[];
-  series: IChartSeries[];
-}
+interface ITopTacticsByAgent extends IBasicHistogram {}
 
 export default ITopTacticsByAgent;
