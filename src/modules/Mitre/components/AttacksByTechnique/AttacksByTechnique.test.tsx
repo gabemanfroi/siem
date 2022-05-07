@@ -5,17 +5,14 @@ import AttacksByTechnique from './index';
 const mockAttacksByTechniques = jest.fn();
 const mockIsLoading = jest.fn();
 
-jest.mock('react-apexcharts', () => ({
-  __esModule: true,
-  default: () => <div />,
-}));
-
 jest.mock('modules/Shared/contexts', () => ({
-  useMitre: () => ({
-    attacksByTechniques: mockAttacksByTechniques(),
-  }),
   useLoading: () => ({
     isLoading: mockIsLoading(),
+  }),
+}));
+jest.mock('modules/Mitre/contexts', () => ({
+  useMitre: () => ({
+    attacksByTechniques: mockAttacksByTechniques(),
   }),
 }));
 
@@ -26,7 +23,10 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-afterAll(() => jest.unmock('modules/Shared/contexts'));
+afterAll(() => {
+  jest.unmock('modules/Shared/contexts');
+  jest.unmock('modules/Mitre/contexts');
+});
 
 describe('AttacksByTechnique', () => {
   const componentRenderer = () => render(<AttacksByTechnique />);

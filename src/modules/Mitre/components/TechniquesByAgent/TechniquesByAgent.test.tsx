@@ -5,17 +5,14 @@ import TechniquesByAgent from './index';
 const mockTechniquesByAgent = jest.fn();
 const mockIsLoading = jest.fn();
 
-jest.mock('react-apexcharts', () => ({
-  __esModule: true,
-  default: () => <div />,
-}));
-
 jest.mock('modules/Shared/contexts', () => ({
-  useMitre: () => ({
-    techniquesByAgent: mockTechniquesByAgent(),
-  }),
   useLoading: () => ({
     isLoading: mockIsLoading(),
+  }),
+}));
+jest.mock('modules/Mitre/contexts', () => ({
+  useMitre: () => ({
+    techniquesByAgent: mockTechniquesByAgent(),
   }),
 }));
 
@@ -28,7 +25,7 @@ afterEach(cleanup);
 
 afterAll(() => {
   jest.unmock('modules/Shared/contexts');
-  jest.unmock('react-apexcharts');
+  jest.unmock('modules/Mitre/contexts');
 });
 
 describe('TechniquesByAgent', () => {
