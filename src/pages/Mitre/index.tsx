@@ -1,11 +1,11 @@
-import {
-  AttacksByTechnique,
-  DefaultPageContainer,
-  TechniquesByAgent,
-  GridItem,
-} from 'modules/Shared/components';
+import { DefaultPageContainer, GridItem } from 'modules/Shared/components';
+
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
+import {
+  AttacksByTechnique,
+  TechniquesByAgent,
+} from 'modules/Mitre/components';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 

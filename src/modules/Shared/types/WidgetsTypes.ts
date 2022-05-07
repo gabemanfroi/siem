@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
+import { IMitreWidgets } from 'modules/Mitre/interfaces/Widgets';
 
-export type WidgetType = {
+export interface IWidget {
   label: string;
   builder: () => ReactElement;
   options: {
@@ -13,15 +14,13 @@ export type WidgetType = {
       h: number;
     };
   };
-};
+}
 
-export type WidgetsMapType = {
-  mostAffectedAgents?: WidgetType;
-  mostCommonCVE?: WidgetType;
-  packagesByCVE?: WidgetType;
-  attacksByTechnique?: WidgetType;
-  techniquesByAgent?: WidgetType;
-};
+export interface IAllWidgets extends IMitreWidgets {
+  mostAffectedAgents?: IWidget;
+  mostCommonCVE?: IWidget;
+  packagesByCVE?: IWidget;
+}
 
 export const CoreWidgetsConfig = {
   mostAffectedAgents: {
@@ -63,31 +62,11 @@ export const CoreWidgetsConfig = {
       },
     },
   },
-  attacksByTechnique: {
-    label: 'Attacks by Technique',
-    options: {
-      active: false,
-      lg: {
-        i: 'attacksByTechnique',
-        x: 6,
-        y: 3,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
-  techniquesByAgent: {
-    label: 'Techniques by Agent',
-
-    options: {
-      active: false,
-      lg: {
-        i: 'techniquesByAgent',
-        x: 0,
-        y: 5,
-        w: 6,
-        h: 2,
-      },
-    },
-  },
 };
+
+export type MitreWidgetKeys =
+  | 'attacksByTechnique'
+  | 'techniquesByAgent'
+  | 'topTactics'
+  | 'topTacticsByAgent'
+  | 'alertsEvolutionOverTime';

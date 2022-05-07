@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { AttacksByTechniqueMockFactory } from 'modules/Shared/helpers/factories';
+import { AttacksByTechniqueMockFactory } from 'modules/Mitre/helpers/factories';
 import { ApexOptions } from 'apexcharts';
 import Histogram from './index';
 
@@ -7,6 +7,8 @@ jest.mock('react-apexcharts', () => ({
   __esModule: true,
   default: () => <div />,
 }));
+
+afterAll(() => jest.unmock('react-apexcharts'));
 const { categories, series } = AttacksByTechniqueMockFactory();
 const options: ApexOptions = {
   title: {

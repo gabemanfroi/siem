@@ -1,23 +1,21 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
-import { PackagesByCVEMockFactory } from 'modules/Shared/helpers/factories';
+import { useMitre } from 'modules/Shared/contexts';
 
 const TechniquesByAgent = () => {
-  const { categories, series } = PackagesByCVEMockFactory();
+  const { techniquesByAgent } = useMitre();
+
+  if (!techniquesByAgent) return <></>;
+
+  const { series, categories } = techniquesByAgent;
+
   const options: ApexOptions = {
     title: {
       text: 'Techniques By Agent',
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    chart: {
-      stacked: true,
-    },
-    xaxis: {
-      categories,
+      style: { color: '#fff' },
     },
     series,
+    xaxis: { categories },
   };
 
   return <Histogram options={options} />;

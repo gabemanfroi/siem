@@ -7,57 +7,34 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-
-import {
-  AttacksByTechnique,
-  MostAffectedAgents,
-  MostCommonCVE,
-  PackagesByCVE,
-  TechniquesByAgent,
-} from 'modules/Shared/components';
 import { Layout } from 'react-grid-layout';
 import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
-import {
-  CoreWidgetsConfig,
-  WidgetsMapType,
-  WidgetType,
-} from 'modules/Shared/types/WidgetsTypes';
+import { IAllWidgets, IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { mitreWidgets } from './MitreContext';
 
-const widgetsMap: WidgetsMapType = {
-  mostAffectedAgents: {
-    ...CoreWidgetsConfig.mostAffectedAgents,
-    builder: () => <MostAffectedAgents />,
-  },
-  mostCommonCVE: {
-    ...CoreWidgetsConfig.mostCommonCVE,
-    builder: () => <MostCommonCVE />,
-  },
-  packagesByCVE: {
-    ...CoreWidgetsConfig.packagesByCVE,
-    builder: () => <PackagesByCVE />,
-  },
-  attacksByTechnique: {
-    ...CoreWidgetsConfig.attacksByTechnique,
-    builder: () => <AttacksByTechnique />,
-  },
-  techniquesByAgent: {
-    ...CoreWidgetsConfig.techniquesByAgent,
-    builder: () => <TechniquesByAgent />,
-  },
+const widgetsMap: IAllWidgets = {
+  /* mostAffectedAgents: {
+     ...CoreWidgetsConfig.mostAffectedAgents,
+     builder: () => <MostAffectedAgents />,
+   },
+   mostCommonCVE: {
+     ...CoreWidgetsConfig.mostCommonCVE,
+     builder: () => <MostCommonCVE />,
+   },
+   packagesByCVE: {
+     ...CoreWidgetsConfig.packagesByCVE,
+     builder: () => <PackagesByCVE />,
+   }, */
+  ...mitreWidgets,
 };
 
-type WidgetsMapKeys =
-  | 'mostAffectedAgents'
-  | 'mostCommonCVE'
-  | 'packagesByCVE'
-  | 'attacksByTechnique'
-  | 'techniquesByAgent';
+type WidgetsMapKeys = 'mostAffectedAgents' | 'mostCommonCVE' | 'packagesByCVE';
 
 interface WidgetsContextInterface {
-  defaultWidgets: WidgetsMapType;
-  setDefaultWidgets: Dispatch<SetStateAction<WidgetsMapType>>;
-  widgetsList: WidgetType[];
-  setWidgetsList: Dispatch<SetStateAction<WidgetType[]>>;
+  defaultWidgets: IAllWidgets;
+  setDefaultWidgets: Dispatch<SetStateAction<IAllWidgets>>;
+  widgetsList: IWidget[];
+  setWidgetsList: Dispatch<SetStateAction<IWidget[]>>;
   // eslint-disable-next-line no-unused-vars
   saveCurrentLayout: (layouts: Layout[]) => void;
 }
@@ -76,7 +53,7 @@ interface FormattedWidgetsInterface {
   [key: string]: {};
 }
 
-const getLocalStorageConfig = (): WidgetsMapType | null => {
+const getLocalStorageConfig = (): IAllWidgets | null => {
   const localStorageStringified = localStorage.getItem(
     process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
       LOCAL_STORAGE_WIDGETS_CONFIG_NAME
@@ -99,11 +76,11 @@ const getLocalStorageConfig = (): WidgetsMapType | null => {
 };
 
 export const WidgetsProvider: React.FC = ({ children }) => {
-  const [defaultWidgets, setDefaultWidgets] = useState<WidgetsMapType>(
+  const [defaultWidgets, setDefaultWidgets] = useState<IAllWidgets>(
     getLocalStorageConfig() || widgetsMap
   );
 
-  const [widgetsList, setWidgetsList] = useState<WidgetType[]>(
+  const [widgetsList, setWidgetsList] = useState<IWidget[]>(
     Object.values(defaultWidgets).map((v) => v)
   );
 

@@ -3,11 +3,15 @@ import WidgetsGrid from './index';
 
 const mockWidgetsList = jest.fn();
 const mockSaveCurrentLayout = jest.fn();
+const mockDashboardWidgetsHandlerMap = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
   useWidgets: () => ({
     widgetsList: mockWidgetsList(),
     saveCurrentLayout: mockSaveCurrentLayout(),
+  }),
+  useDashboard: () => ({
+    dashboardWidgetsHandlerMap: mockDashboardWidgetsHandlerMap(),
   }),
 }));
 
@@ -27,6 +31,7 @@ beforeEach(() => {
     },
   ]);
   mockSaveCurrentLayout.mockImplementation(() => {});
+  mockDashboardWidgetsHandlerMap.mockImplementation(() => {});
 });
 
 afterEach(cleanup);
