@@ -7,7 +7,8 @@ import React, {
   useState,
 } from 'react';
 import { AgentType } from 'modules/Shared/types';
-import { useMitre } from './MitreContext';
+import { useMitre } from 'modules/Mitre/contexts/MitreContext';
+import { useVulnerability } from 'modules/Vulnerability/contexts';
 
 interface DashboardContextInterface {
   groupedByAgent: AgentType[];
@@ -27,10 +28,13 @@ const DashboardContext = createContext<DashboardContextInterface>(
 
 export const DashboardProvider: React.FC = ({ children }) => {
   const [groupedByAgent, setGroupedByAgent] = useState<AgentType[]>([]);
-  const { widgetsHandlersMap } = useMitre();
+  const { widgetsHandlersMap: mitreWidgetsHandlerMap } = useMitre();
+  const { widgetsHandlersMap: vulnerabilityWidgetsHandlersMap } =
+    useVulnerability();
 
   const dashboardWidgetsHandlerMap = {
-    ...widgetsHandlersMap,
+    ...mitreWidgetsHandlerMap,
+    ...vulnerabilityWidgetsHandlersMap,
   };
 
   const value = useMemo(

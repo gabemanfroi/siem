@@ -10,7 +10,8 @@ import {
   WidgetsProvider,
   WebsocketProvider,
 } from 'modules/Shared/contexts';
-import { MitreProvider } from 'modules/Shared/contexts/MitreContext';
+import { MitreProvider } from 'modules/Mitre/contexts/MitreContext';
+import { VulnerabilityProvider } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 
 export default function App() {
   return (
@@ -18,14 +19,16 @@ export default function App() {
       <WebsocketProvider>
         <LoadingProvider>
           <MitreProvider>
-            <AgentProvider>
-              <WidgetsProvider>
-                <DashboardProvider>
-                  <Router />
-                  <ErrorSnackbar />
-                </DashboardProvider>
-              </WidgetsProvider>
-            </AgentProvider>
+            <VulnerabilityProvider>
+              <AgentProvider>
+                <WidgetsProvider>
+                  <DashboardProvider>
+                    <Router />
+                    <ErrorSnackbar />
+                  </DashboardProvider>
+                </WidgetsProvider>
+              </AgentProvider>
+            </VulnerabilityProvider>
           </MitreProvider>
         </LoadingProvider>
       </WebsocketProvider>

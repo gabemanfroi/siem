@@ -10,21 +10,11 @@ import React, {
 import { Layout } from 'react-grid-layout';
 import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
 import { IAllWidgets, IWidget } from 'modules/Shared/types/WidgetsTypes';
-import { mitreWidgets } from './MitreContext';
+import { mitreWidgets } from 'modules/Mitre/contexts';
+import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts';
 
 const widgetsMap: IAllWidgets = {
-  /* mostAffectedAgents: {
-     ...CoreWidgetsConfig.mostAffectedAgents,
-     builder: () => <MostAffectedAgents />,
-   },
-   mostCommonCVE: {
-     ...CoreWidgetsConfig.mostCommonCVE,
-     builder: () => <MostCommonCVE />,
-   },
-   packagesByCVE: {
-     ...CoreWidgetsConfig.packagesByCVE,
-     builder: () => <PackagesByCVE />,
-   }, */
+  ...vulnerabilityWidgets,
   ...mitreWidgets,
 };
 
