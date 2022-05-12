@@ -9,6 +9,7 @@ import React, {
 import { AgentType } from 'modules/Shared/types';
 import { useMitre } from 'modules/Mitre/contexts/MitreContext';
 import { useVulnerability } from 'modules/Vulnerability/contexts';
+import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 
 interface DashboardContextInterface {
   groupedByAgent: AgentType[];
@@ -31,10 +32,13 @@ export const DashboardProvider: React.FC = ({ children }) => {
   const { widgetsHandlersMap: mitreWidgetsHandlerMap } = useMitre();
   const { widgetsHandlersMap: vulnerabilityWidgetsHandlersMap } =
     useVulnerability();
+  const { widgetsHandlersMap: integrityMonitoringHandlersMap } =
+    useIntegrityMonitoring();
 
   const dashboardWidgetsHandlerMap = {
     ...mitreWidgetsHandlerMap,
     ...vulnerabilityWidgetsHandlersMap,
+    ...integrityMonitoringHandlersMap,
   };
 
   const value = useMemo(

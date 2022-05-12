@@ -12,10 +12,12 @@ import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants
 import { IAllWidgets, IWidget } from 'modules/Shared/types/WidgetsTypes';
 import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts';
+import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 
 const widgetsMap: IAllWidgets = {
-  ...vulnerabilityWidgets,
+  ...integrityMonitoringWidgets,
   ...mitreWidgets,
+  ...vulnerabilityWidgets,
 };
 
 type WidgetsMapKeys = 'mostAffectedAgents' | 'mostCommonCVE' | 'packagesByCVE';
