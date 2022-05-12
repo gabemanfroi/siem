@@ -10,11 +10,14 @@ jest.mock('modules/Shared/contexts', () => ({
     isLoading: mockIsLoading(),
   }),
 }));
-jest.mock('modules/IntegrityMonitoring/contexts', () => ({
-  useIntegrityMonitoring: () => ({
-    actionsTypes: mockActionsTypes(),
-  }),
-}));
+jest.mock(
+  'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext',
+  () => ({
+    useIntegrityMonitoring: () => ({
+      actionsTypes: mockActionsTypes(),
+    }),
+  })
+);
 
 beforeEach(() => {
   mockActionsTypes.mockImplementation(() => {});
@@ -25,7 +28,9 @@ afterEach(cleanup);
 
 afterAll(() => {
   jest.unmock('modules/Shared/contexts');
-  jest.unmock('modules/IntegrityMonitoring/contexts');
+  jest.unmock(
+    'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext'
+  );
 });
 
 describe('ActionsTypes', () => {
