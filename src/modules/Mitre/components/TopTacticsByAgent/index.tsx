@@ -1,7 +1,7 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { useEffect, useState } from 'react';
 import { ApexOptions } from 'apexcharts';
-import { IChartSeries } from 'modules/Shared/interfaces/charts/Core';
+import { IChartSeries } from 'modules/Shared/interfaces/charts/IChartSeries';
 import { useMitre } from 'modules/Mitre/contexts';
 
 const TopTechniquesByAgent = () => {

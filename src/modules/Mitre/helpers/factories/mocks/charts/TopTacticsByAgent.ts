@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { IChartSeries } from 'modules/Shared/interfaces/charts/Core';
+import { IChartSeries } from 'modules/Shared/interfaces/charts/IChartSeries';
 
 const TopTacticsByAgentMockFactory = (agentAmount = 7) => {
   const exampleTechniques = [

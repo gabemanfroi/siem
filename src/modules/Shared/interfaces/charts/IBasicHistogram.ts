@@ -1,4 +1,4 @@
-import { IChartSeries } from './Core';
+import { IChartSeries } from './IChartSeries';
 
 interface IBasicHistogram {
   categories: string[];

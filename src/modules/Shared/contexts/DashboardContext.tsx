@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { AgentType } from 'modules/Shared/types';
 import { useMitre } from 'modules/Mitre/contexts/MitreContext';
-import { useVulnerability } from 'modules/Vulnerability/contexts';
+import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 
 interface DashboardContextInterface {
