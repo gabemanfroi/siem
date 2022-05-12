@@ -11,6 +11,30 @@ import {
   ILastScannedFiles,
   IUniqueMaliciousFilesPerAgent,
 } from 'modules/VirusTotal/interfaces';
+import {
+  AlertsEvolutionByAgents,
+  LastScannedFiles,
+  UniqueMaliciousFilesPerAgent,
+} from 'modules/VirusTotal/components';
+import {
+  IVirusTotalWidgets,
+  VirusTotalWidgetsDefaultConfig,
+} from '../interfaces/Widgets';
+
+export const virusTotalWidgets: IVirusTotalWidgets = {
+  alertsEvolutionByAgents: {
+    ...VirusTotalWidgetsDefaultConfig.alertsEvolutionByAgents,
+    builder: () => <AlertsEvolutionByAgents />,
+  },
+  lastScannedFiles: {
+    ...VirusTotalWidgetsDefaultConfig.lastScannedFiles,
+    builder: () => <LastScannedFiles />,
+  },
+  uniqueMaliciousFilesPerAgent: {
+    ...VirusTotalWidgetsDefaultConfig.uniqueMaliciousFilesPerAgent,
+    builder: () => <UniqueMaliciousFilesPerAgent />,
+  },
+};
 
 interface IVirusTotalContext {
   alertsEvolutionByAgents: IAlertsEvolutionByAgents | undefined;
