@@ -52,7 +52,7 @@ export const mitreWidgets: IMitreWidgets = {
 
 interface MitreContextInterface {
   alertsEvolutionOverTime: IAlertsEvolutionOverTime | undefined;
-  attacksByTechniques: IAttacksByTechnique | undefined;
+  attacksByTechnique: IAttacksByTechnique | undefined;
   techniquesByAgent: ITechniquesByAgent | undefined;
   topTactics: ITopTactics | undefined;
   topTacticsByAgent: ITopTacticsByAgent | undefined;
@@ -61,7 +61,7 @@ interface MitreContextInterface {
 
 const mitreContextDefaultValues = {
   alertsEvolutionOverTime: undefined,
-  attacksByTechniques: undefined,
+  attacksByTechnique: undefined,
   techniquesByAgent: undefined,
   topTactics: undefined,
   topTacticsByAgent: undefined,
@@ -73,7 +73,7 @@ const MitreContext = createContext<MitreContextInterface>(
 );
 
 export const MitreProvider: React.FC = ({ children }) => {
-  const [attacksByTechniques, setAttacksByTechnique] = useState<
+  const [attacksByTechnique, setAttacksByTechnique] = useState<
     IAttacksByTechnique | undefined
   >();
   const [alertsEvolutionOverTime, setAlertsEvolutionOverTime] = useState<
@@ -89,7 +89,7 @@ export const MitreProvider: React.FC = ({ children }) => {
 
   const widgetsHandlersMap = {
     techniquesByAgent: setTechniquesByAgent,
-    attacksByTechniques: setAttacksByTechnique,
+    attacksByTechnique: setAttacksByTechnique,
     topTactics: setTopTactics,
     topTacticsByAgent: setTopTechniquesByAgent,
     alertsEvolutionOverTime: setAlertsEvolutionOverTime,
@@ -98,7 +98,7 @@ export const MitreProvider: React.FC = ({ children }) => {
   const value = useMemo(
     () => ({
       alertsEvolutionOverTime,
-      attacksByTechniques,
+      attacksByTechnique,
       techniquesByAgent,
       topTactics,
       topTacticsByAgent,
@@ -106,7 +106,7 @@ export const MitreProvider: React.FC = ({ children }) => {
     }),
     [
       alertsEvolutionOverTime,
-      attacksByTechniques,
+      attacksByTechnique,
       techniquesByAgent,
       topTactics,
       topTacticsByAgent,
