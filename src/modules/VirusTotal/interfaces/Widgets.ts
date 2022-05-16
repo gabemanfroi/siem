@@ -9,10 +9,11 @@ export interface IVirusTotalWidgets {
 export const VirusTotalWidgetsDefaultConfig = {
   alertsEvolutionByAgents: {
     label: 'Alerts Evolution by Agent',
+    identifier: 'alertsEvolutionByAgents',
     options: {
       active: true,
       lg: {
-        i: 'alertsEvolutionByAgent',
+        i: 'alertsEvolutionByAgents',
         w: 6,
         h: 2,
         x: 0,
@@ -22,6 +23,7 @@ export const VirusTotalWidgetsDefaultConfig = {
   },
   lastScannedFiles: {
     label: 'Last Scanned Files',
+    identifier: 'lastScannedFiles',
     options: {
       active: true,
       lg: {
@@ -35,10 +37,11 @@ export const VirusTotalWidgetsDefaultConfig = {
   },
   uniqueMaliciousFilesPerAgent: {
     label: 'Most Common CVEs',
+    identifier: 'uniqueMaliciousFilesPerAgent',
     options: {
       active: true,
       lg: {
-        i: 'Unique Malicious Files Per Agent',
+        i: 'uniqueMaliciousFilesPerAgent',
         w: 6,
         h: 2,
         x: 0,

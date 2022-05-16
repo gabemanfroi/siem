@@ -4,13 +4,14 @@ export interface IIntegrityMonitoring {
   actionsTypes?: IWidget;
   alertsByActionOverTime?: IWidget;
   ruleDistribution?: IWidget;
-  top5Agents?: IWidget;
+  integrityMonitoringTop5Agents?: IWidget;
   widgetsHandlersMap?: IWidget;
 }
 
 export const IntegrityMonitoringWidgetsDefaultConfig = {
   actionsTypes: {
     label: 'Actions Types',
+    identifier: 'actionsTypes',
     options: {
       active: true,
       lg: {
@@ -24,6 +25,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
   },
   alertsByActionOverTime: {
     label: 'Alerts by Action Over Time',
+    identifier: 'alertsByActionOverTime',
     options: {
       active: true,
       lg: {
@@ -37,6 +39,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
   },
   ruleDistribution: {
     label: 'Rule Distribution',
+    identifier: 'ruleDistribution',
     options: {
       active: true,
       lg: {
@@ -48,12 +51,13 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
       },
     },
   },
-  top5Agents: {
+  integrityMonitoringTop5Agents: {
     label: 'Top 5 Agents',
+    identifier: 'integrityMonitoringTop5Agents',
     options: {
       active: true,
       lg: {
-        i: 'top5Agents',
+        i: 'integrityMonitoringTop5Agents',
         w: 6,
         h: 2,
         x: 6,
