@@ -22,7 +22,7 @@ const WidgetsGrid = () => {
       }
       if (websocket) {
         websocket.onopen = () => {
-          const widgetsToGetFromBackend = widgetsList.map((w) => w.label);
+          const widgetsToGetFromBackend = widgetsList.map((w) => w.identifier);
           websocket.send(
             JSON.stringify({ selectedWidgets: widgetsToGetFromBackend })
           );
@@ -58,7 +58,7 @@ const WidgetsGrid = () => {
       layouts={layouts}
     >
       {widgetsList.map((w) => (
-        <GridItem key={w.options.lg.i}>{w.builder()}</GridItem>
+        <GridItem key={w.identifier}>{w.builder()}</GridItem>
       ))}
     </ResponsiveGridLayout>
   );
