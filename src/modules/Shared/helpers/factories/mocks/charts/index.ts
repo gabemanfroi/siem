@@ -1,2 +1,2 @@
-export { default as createCriticalityDateHistogramMock } from './CriticalityDateHistogram';
-export { default as createGdprDateHistogramMock } from './GdprDateHistogram';
+export { default as BasicDonutChartMockFactory } from './BasicDonutChart';
+export { default as BasicHistogramMockFactory } from './BasicHistogram';
