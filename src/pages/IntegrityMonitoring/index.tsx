@@ -1,13 +1,12 @@
-import 'react-grid-layout/css/styles.css';
 import { DefaultPageContainer, GridItem } from 'modules/Shared/components';
-import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
+import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
 import { IWidget } from 'modules/Shared/types/WidgetsTypes';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const Vulnerability = () => {
-  const widgets: IWidget[] = Object.values(vulnerabilityWidgets).map(
+const IntegrityMonitoring = () => {
+  const widgets: IWidget[] = Object.values(integrityMonitoringWidgets).map(
     (w: IWidget) => w
   );
 
@@ -33,4 +32,4 @@ const Vulnerability = () => {
   );
 };
 
-export default Vulnerability;
+export default IntegrityMonitoring;

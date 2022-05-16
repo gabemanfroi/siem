@@ -19,7 +19,7 @@ import {
 import {
   IVirusTotalWidgets,
   VirusTotalWidgetsDefaultConfig,
-} from '../interfaces/Widgets';
+} from 'modules/VirusTotal/interfaces/Widgets';
 
 export const virusTotalWidgets: IVirusTotalWidgets = {
   alertsEvolutionByAgents: {

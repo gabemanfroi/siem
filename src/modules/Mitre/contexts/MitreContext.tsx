@@ -9,7 +9,7 @@ import React, {
 
 import {
   AlertsEvolutionOverTime,
-  AttacksByTechnique,
+  AttacksByTechniques,
   TechniquesByAgent,
   TopTactics,
   TopTacticsByAgent,
@@ -30,7 +30,7 @@ import {
 export const mitreWidgets: IMitreWidgets = {
   attacksByTechnique: {
     ...MitreWidgetsDefaultConfig.attacksByTechnique,
-    builder: () => <AttacksByTechnique />,
+    builder: () => <AttacksByTechniques />,
   },
   techniquesByAgent: {
     ...MitreWidgetsDefaultConfig.techniquesByAgent,

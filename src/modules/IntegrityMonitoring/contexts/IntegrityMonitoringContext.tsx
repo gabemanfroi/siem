@@ -17,10 +17,12 @@ import {
   IRuleDistribution,
   ITop5Agents,
 } from 'modules/IntegrityMonitoring/interfaces';
-import Top5Agents from '../components/Top5Agents';
-import ActionsTypes from '../components/ActionsTypes';
-import AlertsByActionOverTime from '../components/AlertsByActionOverTime';
-import RuleDistribution from '../components/RuleDistribution';
+import {
+  Top5Agents,
+  ActionsTypes,
+  AlertsByActionOverTime,
+  RuleDistribution,
+} from 'modules/IntegrityMonitoring/components';
 
 export const integrityMonitoringWidgets: IIntegrityMonitoring = {
   actionsTypes: {
@@ -35,8 +37,8 @@ export const integrityMonitoringWidgets: IIntegrityMonitoring = {
     ...IntegrityMonitoringWidgetsDefaultConfig.ruleDistribution,
     builder: () => <RuleDistribution />,
   },
-  top5Agents: {
-    ...IntegrityMonitoringWidgetsDefaultConfig.top5Agents,
+  integrityMonitoringTop5Agents: {
+    ...IntegrityMonitoringWidgetsDefaultConfig.integrityMonitoringTop5Agents,
     builder: () => <Top5Agents />,
   },
 };
@@ -45,7 +47,7 @@ interface IntegrityMonitoringContextInterface {
   actionsTypes: IActionsTypes | undefined;
   alertsByActionOverTime: IAlertsByActionOverTime | undefined;
   ruleDistribution: IRuleDistribution | undefined;
-  top5Agents: ITop5Agents | undefined;
+  integrityMonitoringTop5Agents: ITop5Agents | undefined;
   widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
 }
 
@@ -53,7 +55,7 @@ const integrityMonitoringContextDefaultValues = {
   actionsTypes: undefined,
   alertsByActionOverTime: undefined,
   ruleDistribution: undefined,
-  top5Agents: undefined,
+  integrityMonitoringTop5Agents: undefined,
   widgetsHandlersMap: {},
 };
 
@@ -70,13 +72,14 @@ export const IntegrityMonitoringProvider: React.FC = ({ children }) => {
   const [ruleDistribution, setRuleDistribution] = useState<
     IRuleDistribution | undefined
   >();
-  const [top5Agents, setTop5Agents] = useState<ITop5Agents | undefined>();
+  const [integrityMonitoringTop5Agents, setIntegrityMonitoringTop5Agents] =
+    useState<ITop5Agents | undefined>();
 
   const widgetsHandlersMap = {
     actionsTypes: setActionsTypes,
     alertsByActionOverTime: setAlertsByActionOverTime,
     ruleDistribution: setRuleDistribution,
-    top5Agents: setTop5Agents,
+    integrityMonitoringTop5Agents: setIntegrityMonitoringTop5Agents,
   };
 
   const value = useMemo(
@@ -84,10 +87,15 @@ export const IntegrityMonitoringProvider: React.FC = ({ children }) => {
       actionsTypes,
       alertsByActionOverTime,
       ruleDistribution,
-      top5Agents,
+      integrityMonitoringTop5Agents,
       widgetsHandlersMap,
     }),
-    [actionsTypes, alertsByActionOverTime, ruleDistribution, top5Agents]
+    [
+      actionsTypes,
+      alertsByActionOverTime,
+      ruleDistribution,
+      integrityMonitoringTop5Agents,
+    ]
   );
   return (
     <IntegrityMonitoringContext.Provider value={value}>
