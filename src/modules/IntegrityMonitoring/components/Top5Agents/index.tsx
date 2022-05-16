@@ -3,10 +3,10 @@ import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/Int
 import { ApexOptions } from 'apexcharts';
 
 const Top5Agents = () => {
-  const { top5Agents } = useIntegrityMonitoring();
-  if (!top5Agents) return <></>;
+  const { integrityMonitoringTop5Agents } = useIntegrityMonitoring();
+  if (!integrityMonitoringTop5Agents) return <></>;
 
-  const { labels, series } = top5Agents;
+  const { labels, series } = integrityMonitoringTop5Agents;
   const options: ApexOptions = {
     series,
     labels,
