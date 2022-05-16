@@ -1,4 +1,5 @@
 import faker from '@faker-js/faker';
+import BasicHistogram from 'modules/Shared/helpers/factories/mocks/charts/BasicHistogram';
 
 const AlertsEvolutionByAgentsMockFactory = (agentAmount = 7) => {
   const exampleAgents = [];
@@ -6,18 +7,11 @@ const AlertsEvolutionByAgentsMockFactory = (agentAmount = 7) => {
   for (let i = 0; i < agentAmount; i += 1) {
     exampleAgents.push(faker.internet.url());
   }
-  const dates: number[] = [];
+  const dates: string[] = [];
   for (let i = 0; i < 15; i += 1) {
-    dates.push(faker.date.soon(1).getTime());
+    dates.push(String(faker.date.soon(1).getTime()));
   }
 
-  const series = exampleAgents.map((a) => ({
-    name: a,
-    data: dates.map(() =>
-      faker.datatype.number({ min: 0, max: 100, precision: 1 })
-    ),
-  }));
-
-  return { categories: dates, series };
+  return BasicHistogram(dates, exampleAgents);
 };
 export default AlertsEvolutionByAgentsMockFactory;

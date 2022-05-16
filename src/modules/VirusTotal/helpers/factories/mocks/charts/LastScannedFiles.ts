@@ -1,4 +1,4 @@
-import faker from '@faker-js/faker';
+import { BasicDonutChartMockFactory } from 'modules/Shared/helpers/factories';
 
 const LastScannedFilesMockFactory = () => {
   const exampleFiles = [
@@ -9,11 +9,7 @@ const LastScannedFilesMockFactory = () => {
     '/tmp/virus/notavirus',
   ];
 
-  const series = exampleFiles.map(() =>
-    faker.datatype.number({ min: 0, max: 100, precision: 1 })
-  );
-
-  return { series, labels: exampleFiles };
+  return BasicDonutChartMockFactory(exampleFiles);
 };
 
 export default LastScannedFilesMockFactory;

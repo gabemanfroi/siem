@@ -1,21 +1,15 @@
 import faker from '@faker-js/faker';
+import { BasicHistogramMockFactory } from 'modules/Shared/helpers/factories';
 
 const AlertsByActionOverTimeMockFactory = () => {
-  const exampleAttacks = ['added', 'deleted', 'modifiend'];
+  const exampleAttacks = ['added', 'deleted', 'modified'];
 
-  const dates: number[] = [];
+  const dates: string[] = [];
   for (let i = 0; i < 15; i += 1) {
-    dates.push(faker.date.soon(1).getTime());
+    dates.push(String(faker.date.soon(1).getTime()));
   }
 
-  const series = exampleAttacks.map((a) => ({
-    name: a,
-    data: dates.map(() =>
-      faker.datatype.number({ min: 0, max: 100, precision: 1 })
-    ),
-  }));
-
-  return { categories: dates, series };
+  return BasicHistogramMockFactory(dates, exampleAttacks);
 };
 
 export default AlertsByActionOverTimeMockFactory;

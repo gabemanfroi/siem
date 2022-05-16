@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { IChartSeries } from 'modules/Shared/interfaces/charts/IChartSeries';
+import { BasicHistogramMockFactory } from 'modules/Shared/helpers/factories';
 
 const TechniquesByAgentMockFactory = (agentAmount = 7) => {
   const exampleTechniques = [
@@ -14,22 +14,13 @@ const TechniquesByAgentMockFactory = (agentAmount = 7) => {
     'Collection',
   ];
 
-  const exampleAffectedAgents: string[] = [];
+  const exampleAgents: string[] = [];
 
   for (let i = 0; i < agentAmount; i += 1) {
-    exampleAffectedAgents.push(faker.internet.url());
+    exampleAgents.push(faker.internet.url());
   }
 
-  const series: IChartSeries[] = exampleTechniques.map((p) => ({
-    name: p,
-    data: exampleAffectedAgents.map(() =>
-      faker.datatype.number({ min: 0, max: 100, precision: 1 })
-    ),
-  }));
-
-  const categories: string[] = exampleAffectedAgents;
-
-  return { categories, series };
+  return BasicHistogramMockFactory(exampleTechniques, exampleAgents);
 };
 
 export default TechniquesByAgentMockFactory;

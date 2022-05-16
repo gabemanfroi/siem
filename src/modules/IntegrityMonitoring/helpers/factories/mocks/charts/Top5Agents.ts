@@ -1,4 +1,5 @@
 import faker from '@faker-js/faker';
+import { BasicDonutChartMockFactory } from 'modules/Shared/helpers/factories';
 
 const Top5AgentsMockFactory = (agentAmount = 7) => {
   const exampleAffectedAgents = [];
@@ -7,11 +8,7 @@ const Top5AgentsMockFactory = (agentAmount = 7) => {
     exampleAffectedAgents.push(faker.internet.url());
   }
 
-  const series = exampleAffectedAgents.map(() =>
-    faker.datatype.number({ min: 0, max: 100, precision: 1 })
-  );
-
-  return { series, labels: exampleAffectedAgents };
+  return BasicDonutChartMockFactory(exampleAffectedAgents);
 };
 
 export default Top5AgentsMockFactory;
