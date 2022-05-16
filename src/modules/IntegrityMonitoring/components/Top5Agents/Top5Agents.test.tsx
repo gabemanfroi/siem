@@ -14,7 +14,7 @@ jest.mock(
   'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext',
   () => ({
     useIntegrityMonitoring: () => ({
-      securityEventTop5Agents: mockTop5Agents(),
+      integrityMonitoringTop5Agents: mockTop5Agents(),
     }),
   })
 );
