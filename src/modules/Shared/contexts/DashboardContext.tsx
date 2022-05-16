@@ -10,7 +10,8 @@ import { AgentType } from 'modules/Shared/types';
 import { useMitre } from 'modules/Mitre/contexts/MitreContext';
 import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
-import { useVirusTotal } from '../../VirusTotal/contexts/VirusTotalContext';
+import { useVirusTotal } from 'modules/VirusTotal/contexts/VirusTotalContext';
+import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 
 interface DashboardContextInterface {
   groupedByAgent: AgentType[];
@@ -36,10 +37,12 @@ export const DashboardProvider: React.FC = ({ children }) => {
   const { widgetsHandlersMap: integrityMonitoringHandlersMap } =
     useIntegrityMonitoring();
   const { widgetsHandlersMap: virusTotalHandlersMap } = useVirusTotal();
+  const { widgetsHandlersMap: securityEventHandlersMap } = useSecurityEvent();
 
   const dashboardWidgetsHandlerMap = {
     ...integrityMonitoringHandlersMap,
     ...mitreWidgetsHandlerMap,
+    ...securityEventHandlersMap,
     ...vulnerabilityWidgetsHandlersMap,
     ...virusTotalHandlersMap,
   };

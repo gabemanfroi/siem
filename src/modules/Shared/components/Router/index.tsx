@@ -1,9 +1,9 @@
 import {
   Dashboard,
-  EventTracker,
-  AgentTracker,
+  IntegrityMonitoring,
   Login,
   Mitre,
+  SecurityEvent,
   Vulnerability,
 } from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -20,22 +20,7 @@ const Router = () => (
           </PrivateRoute>
         }
       />
-      <Route
-        path="/central-de-eventos"
-        element={
-          <PrivateRoute>
-            <EventTracker />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/central-de-agentes"
-        element={
-          <PrivateRoute>
-            <AgentTracker />
-          </PrivateRoute>
-        }
-      />
+
       <Route
         path="/mitre"
         element={
@@ -49,6 +34,22 @@ const Router = () => (
         element={
           <PrivateRoute>
             <Vulnerability />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/monitoramento-de-integridade"
+        element={
+          <PrivateRoute>
+            <IntegrityMonitoring />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/eventos-de-seguranca"
+        element={
+          <PrivateRoute>
+            <SecurityEvent />
           </PrivateRoute>
         }
       />

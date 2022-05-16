@@ -13,6 +13,7 @@ import { MitreProvider } from 'modules/Mitre/contexts/MitreContext';
 import { VulnerabilityProvider } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { IntegrityMonitoringProvider } from 'modules/IntegrityMonitoring/contexts';
 import { VirusTotalProvider } from 'modules/VirusTotal/contexts/VirusTotalContext';
+import { SecurityEventProvider } from './modules/SecurityEvent/contexts/SecurityEventContext';
 
 export default function App() {
   return (
@@ -22,14 +23,16 @@ export default function App() {
           <VulnerabilityProvider>
             <IntegrityMonitoringProvider>
               <VirusTotalProvider>
-                <AgentProvider>
-                  <WidgetsProvider>
-                    <DashboardProvider>
-                      <Router />
-                      <ErrorSnackbar />
-                    </DashboardProvider>
-                  </WidgetsProvider>
-                </AgentProvider>
+                <SecurityEventProvider>
+                  <AgentProvider>
+                    <WidgetsProvider>
+                      <DashboardProvider>
+                        <Router />
+                        <ErrorSnackbar />
+                      </DashboardProvider>
+                    </WidgetsProvider>
+                  </AgentProvider>
+                </SecurityEventProvider>
               </VirusTotalProvider>
             </IntegrityMonitoringProvider>
           </VulnerabilityProvider>

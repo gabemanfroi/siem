@@ -13,13 +13,13 @@ import { IAllWidgets, IWidget } from 'modules/Shared/types/WidgetsTypes';
 import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
-import { virusTotalWidgets } from 'modules/VirusTotal/contexts/VirusTotalContext';
+import { securityEventWidgets } from '../../SecurityEvent/contexts/SecurityEventContext';
 
 const widgetsMap: IAllWidgets = {
   ...integrityMonitoringWidgets,
+  ...securityEventWidgets,
   ...mitreWidgets,
   ...vulnerabilityWidgets,
-  ...virusTotalWidgets,
 };
 
 type WidgetsMapKeys = 'mostAffectedAgents' | 'mostCommonCVE' | 'packagesByCVE';
