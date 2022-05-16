@@ -1,12 +1,12 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { useMitre } from 'modules/Mitre/contexts';
 
-const AttacksByTechnique = () => {
-  const { attacksByTechniques } = useMitre();
+const AttacksByTechniques = () => {
+  const { attacksByTechnique } = useMitre();
 
-  if (!attacksByTechniques) return <></>;
+  if (!attacksByTechnique) return <></>;
 
-  const { series, categories } = attacksByTechniques;
+  const { series, categories } = attacksByTechnique;
 
   const options = {
     title: {
@@ -22,4 +22,4 @@ const AttacksByTechnique = () => {
   return <Histogram options={options} />;
 };
 
-export default AttacksByTechnique;
+export default AttacksByTechniques;
