@@ -1,6 +1,6 @@
 import { cleanup, render } from '@testing-library/react';
 import { AttacksByTechniqueMockFactory } from 'modules/Mitre/helpers/factories';
-import AttacksByTechnique from './index';
+import AttacksByTechniques from './index';
 
 const mockAttacksByTechniques = jest.fn();
 const mockIsLoading = jest.fn();
@@ -12,7 +12,7 @@ jest.mock('modules/Shared/contexts', () => ({
 }));
 jest.mock('modules/Mitre/contexts', () => ({
   useMitre: () => ({
-    attacksByTechniques: mockAttacksByTechniques(),
+    attacksByTechnique: mockAttacksByTechniques(),
   }),
 }));
 
@@ -28,8 +28,8 @@ afterAll(() => {
   jest.unmock('modules/Mitre/contexts');
 });
 
-describe('AttacksByTechnique', () => {
-  const componentRenderer = () => render(<AttacksByTechnique />);
+describe('AttacksByTechniques', () => {
+  const componentRenderer = () => render(<AttacksByTechniques />);
 
   it('should render the component', () => {
     const { series, categories } = AttacksByTechniqueMockFactory();
