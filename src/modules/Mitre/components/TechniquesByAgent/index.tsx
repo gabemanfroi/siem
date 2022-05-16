@@ -1,6 +1,6 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
-import { useMitre } from 'modules/Shared/contexts';
+import { useMitre } from 'modules/Mitre/contexts';
 
 const TechniquesByAgent = () => {
   const { techniquesByAgent } = useMitre();

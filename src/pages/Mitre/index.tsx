@@ -2,19 +2,16 @@ import { DefaultPageContainer, GridItem } from 'modules/Shared/components';
 
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
-import {
-  AttacksByTechnique,
-  TechniquesByAgent,
-} from 'modules/Mitre/components';
+import { mitreWidgets } from 'modules/Mitre/contexts';
+import { IWidget } from 'modules/Shared/types/WidgetsTypes';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const Mitre = () => {
+  const widgets: IWidget[] = Object.values(mitreWidgets).map((w: IWidget) => w);
+
   const layouts = {
-    lg: [
-      { i: 'AttacksByTechnique', x: 0, y: 0, w: 6, h: 2 },
-      { i: 'TechniquesByAgent', x: 6, y: 0, w: 6, h: 2 },
-    ],
+    lg: Object.values(mitreWidgets).map((w: IWidget) => w.options.lg),
   };
   return (
     <DefaultPageContainer>
@@ -26,12 +23,9 @@ const Mitre = () => {
         style={{ flex: 1 }}
         layouts={layouts}
       >
-        <GridItem key="AttacksByTechnique">
-          <AttacksByTechnique />
-        </GridItem>
-        <GridItem key="TechniquesByAgent">
-          <TechniquesByAgent />
-        </GridItem>
+        {widgets.map((w) => (
+          <GridItem key={w.identifier}>{w.builder()}</GridItem>
+        ))}
       </ResponsiveGridLayout>
     </DefaultPageContainer>
   );

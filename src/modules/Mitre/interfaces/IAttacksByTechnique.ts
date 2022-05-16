@@ -1,8 +1,5 @@
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
+import { IBasicHistogram } from 'modules/Shared/interfaces/charts';
 
-interface IAttacksByTechnique {
-  categories: string[];
-  series: IChartSeries[];
-}
+interface IAttacksByTechnique extends IBasicHistogram {}
 
 export default IAttacksByTechnique;

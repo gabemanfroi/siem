@@ -6,11 +6,13 @@ const mockTopTactics = jest.fn();
 const mockIsLoading = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
-  useMitre: () => ({
-    topTactics: mockTopTactics(),
-  }),
   useLoading: () => ({
     isLoading: mockIsLoading(),
+  }),
+}));
+jest.mock('modules/Mitre/contexts', () => ({
+  useMitre: () => ({
+    topTactics: mockTopTactics(),
   }),
 }));
 
@@ -21,7 +23,10 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-afterAll(() => jest.unmock('modules/Shared/contexts'));
+afterAll(() => {
+  jest.unmock('modules/Shared/contexts');
+  jest.unmock('modules/Mitre/contexts');
+});
 
 describe('TopTactics', () => {
   const componentRenderer = () => render(<TopTactics />);
