@@ -1,8 +1,5 @@
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
+import { IBasicHistogram } from 'modules/Shared/interfaces/charts';
 
-interface IAlertsEvolutionOverTime {
-  categories: string[];
-  series: IChartSeries[];
-}
+interface IAlertsEvolutionOverTime extends IBasicHistogram {}
 
 export default IAlertsEvolutionOverTime;

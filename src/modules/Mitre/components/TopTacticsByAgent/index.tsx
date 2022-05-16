@@ -1,34 +1,23 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { useEffect, useState } from 'react';
-import { ApexOptions } from 'apexcharts';
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
-import { useMitre } from 'modules/Shared/contexts';
+import { useMitre } from 'modules/Mitre/contexts';
 
 const TopTechniquesByAgent = () => {
   const { topTacticsByAgent } = useMitre();
 
   if (!topTacticsByAgent) return <></>;
 
-  const [options, setOptions] = useState<ApexOptions>({
+  const { series, categories } = topTacticsByAgent;
+
+  const options = {
     title: {
       text: 'Top Techniques By Agent',
       style: {
         color: '#fff',
       },
     },
-  });
-
-  const [categories, setCategories] = useState<string[]>([]);
-  const [series, setSeries] = useState<IChartSeries[]>([]);
-
-  useEffect(() => {
-    setSeries(topTacticsByAgent.series);
-    setCategories(topTacticsByAgent.categories);
-  }, [topTacticsByAgent]);
-
-  useEffect(() => {
-    setOptions({ ...options, series, xaxis: { categories } });
-  }, [categories, series]);
+    series,
+    xaxis: { categories },
+  };
 
   return <Histogram options={options} />;
 };

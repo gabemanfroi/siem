@@ -1,7 +1,10 @@
-import { MdDashboard, MdDevices } from 'react-icons/md';
-import { BiRadar } from 'react-icons/bi';
-import { FiTarget } from 'react-icons/fi';
-import { FaClipboardList } from 'react-icons/fa';
+import {
+  MdDashboard,
+  MdOutlineSecurity,
+  MdPolicy,
+  MdReportGmailerrorred,
+  MdViewList,
+} from 'react-icons/md';
 import { Drawer, List, useTheme } from '@mui/material';
 
 import NavigationItem from './NavigationItem';
@@ -25,17 +28,20 @@ export default function Sidebar() {
         <NavigationItem path="/" title="Dashboard">
           <MdDashboard size={30} color={theme.palette.text.primary} />
         </NavigationItem>
-        <NavigationItem path="/central-de-eventos" title="Eventos">
-          <BiRadar size={30} color={theme.palette.text.primary} />
-        </NavigationItem>
-        <NavigationItem path="/central-de-agentes" title="Agentes">
-          <MdDevices size={30} color={theme.palette.text.primary} />
-        </NavigationItem>
         <NavigationItem path="/vulnerabilidades" title="Vulnerabilidades">
-          <FiTarget size={30} color={theme.palette.text.primary} />
+          <MdPolicy size={30} color={theme.palette.text.primary} />
         </NavigationItem>
         <NavigationItem path="/mitre" title="Mitre ATT&CK">
-          <FaClipboardList size={30} color={theme.palette.text.primary} />
+          <MdReportGmailerrorred size={30} color={theme.palette.text.primary} />
+        </NavigationItem>
+        <NavigationItem
+          path="/monitoramento-de-integridade"
+          title="Integridade"
+        >
+          <MdOutlineSecurity size={30} color={theme.palette.text.primary} />
+        </NavigationItem>
+        <NavigationItem path="/eventos-de-seguranca" title="Eventos">
+          <MdViewList size={30} color={theme.palette.text.primary} />
         </NavigationItem>
       </List>
     </Drawer>

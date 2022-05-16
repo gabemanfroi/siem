@@ -1,6 +1,5 @@
-interface ITopTactics {
-  labels: string[];
-  series: number[];
-}
+import { IBasicDonutChart } from 'modules/Shared/interfaces/charts';
+
+interface ITopTactics extends IBasicDonutChart {}
 
 export default ITopTactics;

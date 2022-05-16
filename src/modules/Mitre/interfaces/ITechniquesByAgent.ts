@@ -1,8 +1,5 @@
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
+import { IBasicHistogram } from 'modules/Shared/interfaces/charts';
 
-interface ITechniquesByAgent {
-  categories: string[];
-  series: IChartSeries[];
-}
+interface ITechniquesByAgent extends IBasicHistogram {}
 
 export default ITechniquesByAgent;

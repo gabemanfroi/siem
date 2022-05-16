@@ -1,4 +1,4 @@
-import faker from '@faker-js/faker';
+import { BasicDonutChartMockFactory } from 'modules/Shared/helpers/factories';
 
 const TopTacticsMockFactory = () => {
   const exampleTechniques = [
@@ -13,11 +13,7 @@ const TopTacticsMockFactory = () => {
     'Collection',
   ];
 
-  const series = exampleTechniques.map(() =>
-    faker.datatype.number({ min: 0, max: 100, precision: 1 })
-  );
-
-  return { labels: exampleTechniques, series };
+  return BasicDonutChartMockFactory(exampleTechniques);
 };
 
 export default TopTacticsMockFactory;

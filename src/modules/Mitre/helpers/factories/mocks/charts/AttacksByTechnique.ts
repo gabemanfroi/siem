@@ -1,5 +1,4 @@
-import faker from '@faker-js/faker';
-import { IChartSeries } from 'modules/Shared/types/charts/Core';
+import { BasicHistogramMockFactory } from 'modules/Shared/helpers/factories';
 
 const AttacksByTechniqueMockFactory = () => {
   const exampleTechniques = [
@@ -21,17 +20,7 @@ const AttacksByTechniqueMockFactory = () => {
     'Stored Data Manipulation',
     'Brute Force',
   ];
-
-  const series: IChartSeries[] = exampleAttacks.map((a) => ({
-    name: a,
-    data: exampleTechniques.map(() =>
-      faker.datatype.number({ min: 0, max: 100, precision: 1 })
-    ),
-  }));
-
-  const categories: string[] = exampleTechniques;
-
-  return { categories, series };
+  return BasicHistogramMockFactory(exampleTechniques, exampleAttacks);
 };
 
 export default AttacksByTechniqueMockFactory;
