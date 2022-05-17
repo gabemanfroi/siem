@@ -8145,10 +8145,10 @@ react-circular-progressbar@^2.0.4:
   resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-2.0.4.tgz#5b04a9cf6be8c522c180e4e99ec6db63677335b0"
   integrity sha512-OfX0ThSxRYEVGaQSt0DlXfyl5w4DbXHsXetyeivmoQrh9xA9bzVPHNf8aAhOIiwiaxX2WYWpLDB3gcpsDJ9oww==
 
-react-data-table-component@^7.4.6:
-  version "7.4.7"
-  resolved "https://registry.yarnpkg.com/react-data-table-component/-/react-data-table-component-7.4.7.tgz#18067a2ac1dcb01bf3a010c03ab1c975061c496c"
-  integrity sha512-S4iaArrcYvJcIdOBsdUeBgEDfLFghI/G5Oykr5ZbfrUA282JTeQAQtGwutsIs6TKfXQAwMVUs2R+bu3S8oZfWA==
+react-data-table-component@^7.5.0:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/react-data-table-component/-/react-data-table-component-7.5.2.tgz#42d0af2a923e05887baadf8f4718bbb133c6db83"
+  integrity sha512-sOmeEEZiORJcnzf8fwcwA5+JbhIChjf+tQV/dLYvlhU8UT8rJZ33aBSOJNjNYq/5+t3lj/xCJXtSa2kgoZTDVQ==
   dependencies:
     deepmerge "^4.2.2"
 
