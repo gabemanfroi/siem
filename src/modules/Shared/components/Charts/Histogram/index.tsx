@@ -1,6 +1,5 @@
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { LoadingHandler } from 'modules/Shared/components';
 import { HistogramOptionsFactory } from 'modules/Shared/helpers/factories/chartsOptions';
 
 interface HistogramPropsInterface {
@@ -13,15 +12,13 @@ const Histogram = ({ options }: HistogramPropsInterface) => {
   if (!series) return <></>;
 
   return (
-    <LoadingHandler>
-      <ReactApexChart
-        options={HistogramOptionsFactory(options)}
-        series={series}
-        type="bar"
-        width="100%"
-        height="100%"
-      />
-    </LoadingHandler>
+    <ReactApexChart
+      options={HistogramOptionsFactory(options)}
+      series={series}
+      type="bar"
+      width="100%"
+      height="100%"
+    />
   );
 };
 

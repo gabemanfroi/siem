@@ -31,10 +31,7 @@ export const LoadingProvider = ({ children }: LoadingProviderInterface) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (
-      process.env.REACT_APP_ENVIRONMENT === 'development' ||
-      process.env.REACT_APP_ENVIRONMENT === 'local'
-    ) {
+    if (process.env.REACT_APP_ENVIRONMENT === 'local') {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);

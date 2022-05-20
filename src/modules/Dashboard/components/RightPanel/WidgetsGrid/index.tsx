@@ -2,12 +2,14 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import GridItem from 'modules/Shared/components/GridItem';
 import { useEffect, useState } from 'react';
-import { useDashboard, useWidgets } from 'modules/Shared/contexts';
+import { useDashboard, useLoading, useWidgets } from 'modules/Shared/contexts';
 import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const WidgetsGrid = () => {
+  const { setIsLoading, isLoading } = useLoading();
   const { widgetsList, saveCurrentLayout } = useWidgets();
   const { dashboardWidgetsHandlerMap } = useDashboard();
 
@@ -15,6 +17,7 @@ const WidgetsGrid = () => {
 
   if (process.env.REACT_APP_ENVIRONMENT !== 'test') {
     useEffect(() => {
+      setIsLoading(true);
       if (!websocket) {
         setWebsocket(
           new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}/dashboard`)
@@ -33,6 +36,7 @@ const WidgetsGrid = () => {
           Object.keys(parsedData).forEach((key) => {
             dashboardWidgetsHandlerMap[key](parsedData[key]);
           });
+          if (isLoading) setIsLoading(false);
         };
       }
       return () => {
@@ -58,7 +62,9 @@ const WidgetsGrid = () => {
       layouts={layouts}
     >
       {widgetsList.map((w) => (
-        <GridItem key={w.identifier}>{w.builder()}</GridItem>
+        <GridItem key={w.identifier}>
+          <LoadingHandler>{w.builder()}</LoadingHandler>
+        </GridItem>
       ))}
     </ResponsiveGridLayout>
   );

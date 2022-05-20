@@ -1,9 +1,16 @@
-import { DefaultPageContainer, GridItem } from 'modules/Shared/components';
+import {
+  DefaultPageContainer,
+  GridItem,
+  LoadingHandler,
+} from 'modules/Shared/components';
 
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
-import { mitreWidgets } from 'modules/Mitre/contexts';
+import { mitreWidgets, useMitre } from 'modules/Mitre/contexts';
 import { IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { useEffect, useState } from 'react';
+import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
+import { useLoading } from 'modules/Shared/contexts';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -13,6 +20,34 @@ const Mitre = () => {
   const layouts = {
     lg: Object.values(mitreWidgets).map((w: IWidget) => w.options.lg),
   };
+
+  const { widgetsHandlersMap } = useMitre();
+  const { setIsLoading, isLoading } = useLoading();
+
+  const [websocket, setWebsocket] = useState<w3cwebsocket>();
+  if (process.env.REACT_APP_ENVIRONMENT !== 'test') {
+    useEffect(() => {
+      setIsLoading(true);
+      if (!websocket) {
+        setWebsocket(
+          new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}/mitre`)
+        );
+      }
+      if (websocket) {
+        websocket.onmessage = ({ data }) => {
+          const parsedData = JSON.parse(String(data));
+          Object.keys(parsedData).forEach((key) => {
+            widgetsHandlersMap[key](parsedData[key]);
+          });
+          if (isLoading) setIsLoading(false);
+        };
+      }
+      return () => {
+        websocket?.close();
+      };
+    }, [websocket]);
+  }
+
   return (
     <DefaultPageContainer>
       <ResponsiveGridLayout
@@ -24,7 +59,9 @@ const Mitre = () => {
         layouts={layouts}
       >
         {widgets.map((w) => (
-          <GridItem key={w.identifier}>{w.builder()}</GridItem>
+          <GridItem key={w.identifier}>
+            <LoadingHandler>{w.builder()}</LoadingHandler>
+          </GridItem>
         ))}
       </ResponsiveGridLayout>
     </DefaultPageContainer>
