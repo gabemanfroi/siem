@@ -4,6 +4,7 @@ import WidgetsGrid from './index';
 const mockWidgetsList = jest.fn();
 const mockSaveCurrentLayout = jest.fn();
 const mockDashboardWidgetsHandlerMap = jest.fn();
+const mockIsLoading = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
   useWidgets: () => ({
@@ -12,6 +13,9 @@ jest.mock('modules/Shared/contexts', () => ({
   }),
   useDashboard: () => ({
     dashboardWidgetsHandlerMap: mockDashboardWidgetsHandlerMap(),
+  }),
+  useLoading: () => ({
+    isLoading: mockIsLoading(),
   }),
 }));
 
@@ -32,6 +36,7 @@ beforeEach(() => {
   ]);
   mockSaveCurrentLayout.mockImplementation(() => {});
   mockDashboardWidgetsHandlerMap.mockImplementation(() => {});
+  mockIsLoading.mockImplementation(() => false);
 });
 
 afterEach(cleanup);
