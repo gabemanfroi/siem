@@ -10,10 +10,14 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const WidgetsGrid = () => {
   const { setIsLoading, isLoading } = useLoading();
-  const { widgetsList, saveCurrentLayout } = useWidgets();
+  const { selectedWidgets, saveCurrentLayout } = useWidgets();
   const { dashboardWidgetsHandlerMap } = useDashboard();
 
   const [websocket, setWebsocket] = useState<w3cwebsocket>();
+
+  const [layouts, setLayouts] = useState({
+    lg: selectedWidgets.map((w) => w.options.lg),
+  });
 
   if (process.env.REACT_APP_ENVIRONMENT !== 'test') {
     useEffect(() => {
@@ -25,7 +29,9 @@ const WidgetsGrid = () => {
       }
       if (websocket) {
         websocket.onopen = () => {
-          const widgetsToGetFromBackend = widgetsList.map((w) => w.identifier);
+          const widgetsToGetFromBackend = selectedWidgets.map(
+            (w) => w.identifier
+          );
           websocket.send(
             JSON.stringify({ selectedWidgets: widgetsToGetFromBackend })
           );
@@ -43,13 +49,15 @@ const WidgetsGrid = () => {
         websocket?.close();
       };
     }, [websocket]);
+
+    useEffect(() => {
+      setLayouts({
+        lg: selectedWidgets.map((w) => w.options.lg),
+      });
+    }, [selectedWidgets]);
   }
 
-  const [layouts] = useState({
-    lg: widgetsList.map((w) => w.options.lg),
-  });
-
-  if (widgetsList.length === 0) return <></>;
+  if (selectedWidgets.length === 0) return <></>;
 
   return (
     <ResponsiveGridLayout
@@ -61,7 +69,7 @@ const WidgetsGrid = () => {
       style={{ flex: 1 }}
       layouts={layouts}
     >
-      {widgetsList.map((w) => (
+      {selectedWidgets.map((w) => (
         <GridItem key={w.identifier}>
           <LoadingHandler>{w.builder()}</LoadingHandler>
         </GridItem>

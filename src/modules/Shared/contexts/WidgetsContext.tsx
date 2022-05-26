@@ -9,11 +9,15 @@ import React, {
 } from 'react';
 import { Layout } from 'react-grid-layout';
 import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
-import { IAllWidgets, IWidget } from 'modules/Shared/types/WidgetsTypes';
+import {
+  IAllWidgets,
+  IWidget,
+  WidgetsMapKeys,
+} from 'modules/Shared/interfaces/Widgets';
 import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
-import { securityEventWidgets } from '../../SecurityEvent/contexts/SecurityEventContext';
+import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 
 const widgetsMap: IAllWidgets = {
   ...integrityMonitoringWidgets,
@@ -22,23 +26,23 @@ const widgetsMap: IAllWidgets = {
   ...vulnerabilityWidgets,
 };
 
-type WidgetsMapKeys = 'mostAffectedAgents' | 'mostCommonCVE' | 'packagesByCVE';
-
 interface WidgetsContextInterface {
   defaultWidgets: IAllWidgets;
   setDefaultWidgets: Dispatch<SetStateAction<IAllWidgets>>;
-  widgetsList: IWidget[];
-  setWidgetsList: Dispatch<SetStateAction<IWidget[]>>;
+  selectedWidgets: IWidget[];
+  setSelectedWidgets: Dispatch<SetStateAction<IWidget[]>>;
   // eslint-disable-next-line no-unused-vars
   saveCurrentLayout: (layouts: Layout[]) => void;
+  widgetsMap: IAllWidgets;
 }
 
 const defaultValue = {
   defaultWidgets: {},
   setDefaultWidgets: () => {},
-  widgetsList: Object.values(widgetsMap).map((v) => v),
+  selectedWidgets: Object.values(widgetsMap).map((v) => v),
   saveCurrentLayout: () => {},
-  setWidgetsList: () => {},
+  setSelectedWidgets: () => {},
+  widgetsMap,
 };
 
 const WidgetsContext = createContext<WidgetsContextInterface>(defaultValue);
@@ -71,10 +75,10 @@ const getLocalStorageConfig = (): IAllWidgets | null => {
 
 export const WidgetsProvider: React.FC = ({ children }) => {
   const [defaultWidgets, setDefaultWidgets] = useState<IAllWidgets>(
-    getLocalStorageConfig() || widgetsMap
+    getLocalStorageConfig() || {}
   );
 
-  const [widgetsList, setWidgetsList] = useState<IWidget[]>(
+  const [selectedWidgets, setSelectedWidgets] = useState<IWidget[]>(
     Object.values(defaultWidgets).map((v) => v)
   );
 
@@ -92,18 +96,19 @@ export const WidgetsProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    setWidgetsList(Object.values(defaultWidgets).map((v) => v));
+    setSelectedWidgets(Object.values(defaultWidgets).map((v) => v));
   }, [defaultWidgets]);
 
   const providerValue = useMemo(
     () => ({
       defaultWidgets,
       setDefaultWidgets,
-      widgetsList,
+      selectedWidgets,
       saveCurrentLayout,
-      setWidgetsList,
+      setSelectedWidgets,
+      widgetsMap,
     }),
-    [defaultWidgets]
+    [defaultWidgets, saveCurrentLayout]
   );
 
   return (

@@ -7,7 +7,7 @@ import {
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import { mitreWidgets, useMitre } from 'modules/Mitre/contexts';
-import { IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { useEffect, useState } from 'react';
 import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
 import { useLoading } from 'modules/Shared/contexts';
