@@ -1,4 +1,4 @@
-import { IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import {
   securityEventWidgets,
   useSecurityEvent,

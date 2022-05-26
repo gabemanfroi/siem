@@ -4,7 +4,7 @@ import {
   LoadingHandler,
 } from 'modules/Shared/components';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
-import { IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useLoading } from 'modules/Shared/contexts';
 import { useEffect, useState } from 'react';

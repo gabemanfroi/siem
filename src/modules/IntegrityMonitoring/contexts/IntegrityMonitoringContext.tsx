@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 
 import {
-  IIntegrityMonitoring,
+  IIntegrityMonitoringWidgets,
   IntegrityMonitoringWidgetsDefaultConfig,
 } from 'modules/IntegrityMonitoring/interfaces/Widgets';
 import {
@@ -24,7 +24,7 @@ import {
   RuleDistribution,
 } from 'modules/IntegrityMonitoring/components';
 
-export const integrityMonitoringWidgets: IIntegrityMonitoring = {
+export const integrityMonitoringWidgets: IIntegrityMonitoringWidgets = {
   actionsTypes: {
     ...IntegrityMonitoringWidgetsDefaultConfig.actionsTypes,
     builder: () => <ActionsTypes />,
