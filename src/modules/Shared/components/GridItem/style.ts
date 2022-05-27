@@ -1,7 +1,20 @@
 import { Paper, styled } from '@mui/material';
 
 export const Container = styled(Paper)`
-  & > * {
-    height: 100% !important;
+  display: flex;
+  flex-direction: column;
+
+  & > :last-child {
+    flex: 1;
+  }
+
+  .drag-icon {
+    &:hover {
+      cursor: grab;
+    }
+  }
+
+  .close-icon {
+    cursor: pointer;
   }
 `;

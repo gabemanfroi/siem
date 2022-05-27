@@ -62,7 +62,7 @@ const IntegrityMonitoring = () => {
         layouts={layouts}
       >
         {widgets.map((w) => (
-          <GridItem key={w.identifier}>
+          <GridItem key={w.identifier} widget={w}>
             <LoadingHandler>{w.builder()}</LoadingHandler>
           </GridItem>
         ))}
