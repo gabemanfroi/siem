@@ -68,9 +68,10 @@ const WidgetsGrid = () => {
       cols={{ lg: 12, md: 120, sm: 6, xs: 4, xxs: 2 }}
       style={{ flex: 1 }}
       layouts={layouts}
+      draggableHandle=".drag-icon"
     >
       {selectedWidgets.map((w) => (
-        <GridItem key={w.identifier}>
+        <GridItem key={w.identifier} widget={w}>
           <LoadingHandler>{w.builder()}</LoadingHandler>
         </GridItem>
       ))}

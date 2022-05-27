@@ -12,9 +12,8 @@ const DonutChart = ({ options }: DonutChartPropsInterface) => {
   return (
     <ReactApexChart
       options={DonutChartOptionsFactory({ ...options, labels })}
-      width="100%"
-      height="100%"
       type="donut"
+      height="100%"
       series={series}
     />
   );

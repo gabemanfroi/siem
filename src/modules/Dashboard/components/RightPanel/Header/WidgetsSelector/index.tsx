@@ -6,6 +6,7 @@ import {
 } from 'modules/Shared/interfaces/Widgets';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
 import { useWidgets } from 'modules/Shared/contexts';
+import { useEffect } from 'react';
 import { AutocompleteBox, StyledButton } from './style';
 import WidgetsSelectorPopper from './Popper';
 
@@ -17,15 +18,19 @@ const WidgetsSelector = () => {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const currentlySelectedWidgetsLabels = selectedWidgets
-    .map((w) =>
-      ALL_WIDGETS_LABELS.find((label) => label.identifier === w.identifier)
-    )
-    .filter(isWidget) as IAutoCompleteWidget[];
+  const [value, setValue] = React.useState<IAutoCompleteWidget[]>([]);
 
-  const [value, setValue] = React.useState<IAutoCompleteWidget[]>(
-    currentlySelectedWidgetsLabels || []
-  );
+  useEffect(() => {
+    setPendingValue(
+      selectedWidgets
+        .map((w) =>
+          ALL_WIDGETS_LABELS.find((label) => label.identifier === w.identifier)
+        )
+        .filter(isWidget) as IAutoCompleteWidget[]
+    );
+  }, [selectedWidgets]);
+
+  useEffect(() => {}, [selectedWidgets]);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);
