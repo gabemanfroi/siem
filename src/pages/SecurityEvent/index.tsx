@@ -1,4 +1,4 @@
-import { IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import {
   securityEventWidgets,
   useSecurityEvent,
@@ -62,7 +62,7 @@ const SecurityEvent = () => {
         layouts={layouts}
       >
         {widgets.map((w) => (
-          <GridItem key={w.identifier}>
+          <GridItem widget={w} key={w.identifier}>
             <LoadingHandler>{w.builder()}</LoadingHandler>
           </GridItem>
         ))}

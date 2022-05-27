@@ -1,5 +1,6 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
 import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { ApexOptions } from 'apexcharts';
 
 const ActionsTypes = () => {
   const { actionsTypes } = useIntegrityMonitoring();
@@ -7,10 +8,12 @@ const ActionsTypes = () => {
   if (!actionsTypes) return <></>;
 
   const { labels, series } = actionsTypes;
-  const options = {
+  const options: ApexOptions = {
     series,
     labels,
-    title: { text: 'Actions Types' },
+    title: {
+      text: 'Actions Types',
+    },
   };
 
   return <DonutChart options={options} />;

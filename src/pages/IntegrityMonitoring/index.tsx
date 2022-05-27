@@ -4,7 +4,7 @@ import {
   LoadingHandler,
 } from 'modules/Shared/components';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
-import { IWidget } from 'modules/Shared/types/WidgetsTypes';
+import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useLoading } from 'modules/Shared/contexts';
 import { useEffect, useState } from 'react';
@@ -62,7 +62,7 @@ const IntegrityMonitoring = () => {
         layouts={layouts}
       >
         {widgets.map((w) => (
-          <GridItem key={w.identifier}>
+          <GridItem key={w.identifier} widget={w}>
             <LoadingHandler>{w.builder()}</LoadingHandler>
           </GridItem>
         ))}

@@ -1,14 +1,14 @@
 import { cleanup, render } from '@testing-library/react';
 import WidgetsGrid from './index';
 
-const mockWidgetsList = jest.fn();
+const mockSelectedWidgets = jest.fn();
 const mockSaveCurrentLayout = jest.fn();
 const mockDashboardWidgetsHandlerMap = jest.fn();
 const mockIsLoading = jest.fn();
 
 jest.mock('modules/Shared/contexts', () => ({
   useWidgets: () => ({
-    widgetsList: mockWidgetsList(),
+    selectedWidgets: mockSelectedWidgets(),
     saveCurrentLayout: mockSaveCurrentLayout(),
   }),
   useDashboard: () => ({
@@ -20,7 +20,7 @@ jest.mock('modules/Shared/contexts', () => ({
 }));
 
 beforeEach(() => {
-  mockWidgetsList.mockImplementation(() => [
+  mockSelectedWidgets.mockImplementation(() => [
     {
       options: {
         lg: {
@@ -59,7 +59,7 @@ describe('WidgetsGrid', () => {
   });
 
   it('must render an empty container if there is no widget', () => {
-    mockWidgetsList.mockImplementation(() => []);
+    mockSelectedWidgets.mockImplementation(() => []);
     const { container } = render(<WidgetsGrid />);
 
     expect(container.children.length).toBe(0);
