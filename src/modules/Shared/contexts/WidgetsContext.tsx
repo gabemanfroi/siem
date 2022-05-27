@@ -51,6 +51,10 @@ interface FormattedWidgetsInterface {
   [key: string]: {};
 }
 
+const LOCAL_STORAGE_KEY =
+  process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
+  LOCAL_STORAGE_WIDGETS_CONFIG_NAME;
+
 const getLocalStorageConfig = (): IAllWidgets | null => {
   const localStorageStringified = localStorage.getItem(
     process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
@@ -82,17 +86,19 @@ export const WidgetsProvider: React.FC = ({ children }) => {
     Object.values(defaultWidgets).map((v) => v)
   );
 
+  useEffect(() => {
+    if (selectedWidgets.length === 0) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({}));
+    }
+  }, [selectedWidgets]);
+
   const saveCurrentLayout = (layouts: Layout[]) => {
     const auxiliaryMap: { [key: string]: Layout } = {};
     layouts.forEach((l) => {
       auxiliaryMap[l.i] = l;
     });
 
-    localStorage.setItem(
-      process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
-        LOCAL_STORAGE_WIDGETS_CONFIG_NAME,
-      JSON.stringify(auxiliaryMap)
-    );
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(auxiliaryMap));
   };
 
   useEffect(() => {
