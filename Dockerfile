@@ -10,7 +10,7 @@ COPY . /app
 RUN yarn build
 
 #serves the application
-FROM nginx:1.20-alpine
+FROM nginx:1.22.0-alpine
 
 COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 80
