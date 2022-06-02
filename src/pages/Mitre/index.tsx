@@ -11,6 +11,7 @@ import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { useEffect, useState } from 'react';
 import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
 import { useLoading } from 'modules/Shared/contexts';
+import { TokenUtil } from 'modules/Shared/utils';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -30,7 +31,11 @@ const Mitre = () => {
       setIsLoading(true);
       if (!websocket) {
         setWebsocket(
-          new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}/mitre`)
+          new W3CWebSocket(
+            `${
+              process.env.REACT_APP_WS_API_URL
+            }/mitre?jwt=${TokenUtil().getToken()}`
+          )
         );
       }
       if (websocket) {

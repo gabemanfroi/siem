@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDashboard, useLoading, useWidgets } from 'modules/Shared/contexts';
 import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
 import { LoadingHandler } from 'modules/Shared/components';
+import { TokenUtil } from 'modules/Shared/utils';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -24,7 +25,11 @@ const WidgetsGrid = () => {
       setIsLoading(true);
       if (!websocket) {
         setWebsocket(
-          new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}/dashboard`)
+          new W3CWebSocket(
+            `${
+              process.env.REACT_APP_WS_API_URL
+            }/bragi/dashboard?jwt=${TokenUtil().getToken()}`
+          )
         );
       }
       if (websocket) {
