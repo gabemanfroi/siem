@@ -8,16 +8,15 @@ ARG REACT_APP_WIDGETS_CONFIG_NAME
 ARG REACT_APP_WS_API_URL
 
 WORKDIR /app
-
-COPY .env .env
-
 COPY package.json /app/package.json
-
-
 COPY yarn.lock /app/yarn.lock
 RUN yarn
 COPY . /app
-RUN yarn build
+RUN VIRONMENT=${REACT_APP_ENVIRONMENT} \
+  REACT_APP_HTTP_API_URL=${REACT_APP_HTTP_API_URL} \
+  REACT_APP_TOKEN_KEY_NAME=${REACT_APP_TOKEN_KEY_NAME} \
+  REACT_APP_WIDGETS_CONFIG_NAME=${REACT_APP_WIDGETS_CONFIG_NAME} \
+  REACT_APP_WS_API_URL=${REACT_APP_WS_API_URL} yarn build
 
 FROM nginx:latest
 COPY --from=builder /app/build /usr/share/nginx/html
