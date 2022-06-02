@@ -30,7 +30,21 @@ const WidgetsSelector = () => {
     );
   }, [selectedWidgets]);
 
-  useEffect(() => {}, [selectedWidgets]);
+  useEffect(() => {
+    if (JSON.stringify(value) !== JSON.stringify(pendingValue)) {
+      setValue(pendingValue);
+    }
+  }, [pendingValue]);
+
+  useEffect(() => {
+    setValue(
+      selectedWidgets
+        .map((w) =>
+          ALL_WIDGETS_LABELS.find((label) => label.identifier === w.identifier)
+        )
+        .filter(isWidget) as IAutoCompleteWidget[]
+    );
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);
