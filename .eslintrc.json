@@ -73,6 +73,8 @@
     "react/jsx-curly-newline": "off",
     "react/require-default-props": "off",
     "function-paren-newline": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "semi": "off",
     "react/jsx-filename-extension": [
       1,
       {
