@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import 'react-grid-layout/css/styles.css';
 
 import { Stack } from '@mui/material';
@@ -33,16 +33,17 @@ const GridItem = ({ widget, children, ...props }: IGridItem) => {
           justifyContent: 'space-between',
         }}
       >
+        <MdOutlineDragIndicator className="drag-icon" size={18} />
         <MdOutlineClose
           className="close-icon"
-          size={24}
+          size={18}
           onClick={handleClose}
         />
-        <MdOutlineDragIndicator className="drag-icon" size={30} />
       </Stack>
-      {children}
+      <Stack className="react-grid-item">{children}</Stack>
     </Container>
   );
 };
+const forwardedGridItemRef = forwardRef(GridItem);
 
-export default GridItem;
+export default forwardedGridItemRef;

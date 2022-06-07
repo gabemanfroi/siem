@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { MdSettings } from 'react-icons/md';
 import {
   IAutoCompleteWidget,
@@ -6,7 +7,6 @@ import {
 } from 'modules/Shared/interfaces/Widgets';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
 import { useWidgets } from 'modules/Shared/contexts';
-import { useEffect } from 'react';
 import { AutocompleteBox, StyledButton } from './style';
 import WidgetsSelectorPopper from './Popper';
 
