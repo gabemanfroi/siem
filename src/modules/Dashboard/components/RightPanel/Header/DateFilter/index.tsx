@@ -17,10 +17,12 @@ const DateFilter = () => {
   );
 
   const onInitialDateChange = (newValue: Date | null) => {
-    if (newValue) setPendingInitialValue(newValue.getTime());
+    if (!newValue) return;
+    setPendingInitialValue(newValue.getTime());
   };
   const onEndDateChange = (newValue: Date | null) => {
-    if (newValue) setPendingEndDate(newValue.getTime());
+    if (!newValue) return;
+    setPendingEndDate(newValue.getTime());
   };
 
   const applyNewFilters = () => {
@@ -35,13 +37,17 @@ const DateFilter = () => {
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
       <DatePicker
         label="Initial Date"
-        renderInput={(params) => <TextField size="small" {...params} />}
+        renderInput={(params) => (
+          <TextField data-testid="initialDatePicker" size="small" {...params} />
+        )}
         value={pendingInitialValue}
         onChange={onInitialDateChange}
       />
       <DatePicker
-        label="Final Date"
-        renderInput={(params) => <TextField size="small" {...params} />}
+        label="End Date"
+        renderInput={(params) => (
+          <TextField data-testid="endDatePicker" size="small" {...params} />
+        )}
         value={pendingEndDate}
         onChange={onEndDateChange}
       />
