@@ -48,7 +48,7 @@ const defaultValue = {
 const WidgetsContext = createContext<WidgetsContextInterface>(defaultValue);
 
 interface FormattedWidgetsInterface {
-  [key: string]: {};
+  [key: string]: Record<string, unknown>;
 }
 
 const LOCAL_STORAGE_KEY =
