@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  ICloseEvent,
-  w3cwebsocket as W3CWebSocket,
-  w3cwebsocket,
-} from 'websocket';
+import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
 
 import { useLoading, useWidgets } from 'modules/Shared/contexts';
 import { TokenUtil } from 'modules/Shared/utils';
@@ -33,9 +29,7 @@ const useWidgetsGrid = () => {
   if (process.env.REACT_APP_ENVIRONMENT !== 'test') {
     useEffect(() => {
       setIsLoading(true);
-      if (!websocket) {
-        createConnection();
-      }
+
       if (websocket) {
         websocket.onopen = () => {
           const widgetsToGetFromBackend = selectedWidgets.map(
@@ -57,12 +51,6 @@ const useWidgetsGrid = () => {
           });
           setIsLoading(false);
         };
-
-        websocket.onclose = (event: ICloseEvent) => {
-          if (event.reason === 'refresh filters') {
-            createConnection();
-          }
-        };
       }
       return () => {
         websocket?.close();
@@ -71,6 +59,7 @@ const useWidgetsGrid = () => {
 
     useEffect(() => {
       websocket?.close(1000, 'refresh filters');
+      createConnection();
     }, [filters]);
 
     useEffect(() => {
