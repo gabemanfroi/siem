@@ -17,7 +17,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.6.0",
     "@faker-js/faker": "^6.2.0",
-    "@googlemaps/react-wrapper": "^1.1.31",
+    "@googlemaps/react-wrapper": "^1.1.33",
     "@mui/lab": "^5.0.0-alpha.71",
     "@mui/material": "^5.6.1",
     "@mui/styled-engine-sc": "^5.6.1",
