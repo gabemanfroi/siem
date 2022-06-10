@@ -19,9 +19,8 @@ const useWidgetsGrid = () => {
   const createConnection = () => {
     setWebsocket(
       new W3CWebSocket(
-        `${
-          process.env.REACT_APP_WS_API_URL
-        }/api/dashboard?jwt=${TokenUtil().getToken()}`
+        `${process.env.REACT_APP_WS_API_URL
+        }/bragi/api/dashboard?jwt=${TokenUtil().getToken()}`
       )
     );
   };
