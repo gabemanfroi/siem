@@ -6,8 +6,4 @@ export const Container = styled(ColumnContainer)`
   flex: 0 0 15%;
   padding: 32px 16px;
   background: ${dark200};
-
-  > * {
-    flex: 1;
-  }
 `;
