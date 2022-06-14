@@ -7,6 +7,7 @@ export const primary500 = '#1a759f';
 export const primary600 = '#1e6091';
 export const primary700 = '#1e6091';
 export const primary800 = '#144367';
+export const dark50 = '#393a3a';
 export const dark100 = '#313232';
 export const dark200 = '#252525';
 export const dark300 = '#1E1E1E';

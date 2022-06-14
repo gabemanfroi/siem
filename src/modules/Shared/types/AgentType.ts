@@ -7,6 +7,13 @@ export interface AgentType extends MetricsTypes {
     name: string;
     ip: string;
     alias: string;
+    deviceType: 'server' | 'desktop' | 'laptop';
   };
   events: EventType[];
+  eventsByLevel: {
+    low: number;
+    medium: number;
+    high: number;
+  };
+  trustLevel: number;
 }

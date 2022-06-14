@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { BasicHistogramMockFactory } from '../../../../../Shared/helpers/factories';
+import { BasicHistogramMockFactory } from 'modules/Shared/helpers/factories';
 
 const TopTacticsByAgentMockFactory = (agentAmount = 7) => {
   const exampleTechniques = [

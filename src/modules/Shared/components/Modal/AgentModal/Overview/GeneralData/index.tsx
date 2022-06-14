@@ -9,12 +9,14 @@ import {
 } from '@mui/material';
 import {
   MdDevices,
+  MdDone,
   MdOutlineModeEditOutline,
   MdOutlinePersonOutline,
 } from 'react-icons/md';
 import { FaNetworkWired } from 'react-icons/fa';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import React, { useState } from 'react';
+import { dark50 } from 'modules/Shared/helpers/styles/Colors';
 
 interface GeneralDataPropsInterface {
   agent: AgentType;
@@ -36,69 +38,88 @@ const GeneralData = ({
       <Grid item>
         <Paper
           sx={{
-            background: '#c3c3c3',
+            background: dark50,
             display: 'flex',
             alignItems: 'center',
+            padding: '8px',
             gap: '8px',
-            padding: '16px',
             justifyContent: 'space-between',
+            minWidth: 200,
           }}
         >
           <>
-            <MdDevices size={32} color={theme.palette.text.disabled} />
+            <MdDevices size={22} color={theme.palette.text.disabled} />
             {editMode && (
-              <TextField
-                size="small"
-                value={agentState.generalData.alias}
-                onKeyPress={(e) => {
-                  if (e.code === 'Enter') {
-                    setEditMode(!editMode);
+              <>
+                <TextField
+                  sx={{ fontSize: '16px' }}
+                  size="small"
+                  value={agentState.generalData.alias}
+                  onKeyPress={(e) => {
+                    if (e.code === 'Enter') {
+                      setEditMode(!editMode);
+                    }
+                  }}
+                  onChange={(e) =>
+                    setAgentState({
+                      ...agent,
+                      generalData: {
+                        ...agentState.generalData,
+                        alias: e.target.value,
+                      },
+                    })
                   }
-                }}
-                onChange={(e) =>
-                  setAgentState({
-                    ...agent,
-                    generalData: {
-                      ...agentState.generalData,
-                      alias: e.target.value,
-                    },
-                  })
-                }
-              />
+                />
+                <IconButton
+                  sx={{ padding: 0, width: 22, height: 22 }}
+                  onClick={() => setEditMode(!editMode)}
+                >
+                  <MdDone size={22} color={theme.palette.text.disabled} />
+                </IconButton>
+              </>
             )}
             {!editMode && (
-              <Typography
-                align="left"
-                color={theme.palette.text.disabled}
-                variant="h5"
-              >
-                {agentState.generalData.alias}
-              </Typography>
+              <>
+                <Typography
+                  fontSize="18px"
+                  align="left"
+                  color={theme.palette.text.disabled}
+                  variant="h5"
+                >
+                  {agentState.generalData.alias}
+                </Typography>
+                <IconButton
+                  sx={{ padding: 0, width: 22, height: 22 }}
+                  onClick={() => setEditMode(!editMode)}
+                >
+                  <MdOutlineModeEditOutline
+                    size={24}
+                    color={theme.palette.text.disabled}
+                  />
+                </IconButton>
+              </>
             )}
           </>
-          <IconButton
-            sx={{ padding: 0 }}
-            onClick={() => setEditMode(!editMode)}
-          >
-            <MdOutlineModeEditOutline
-              size={32}
-              color={theme.palette.text.disabled}
-            />
-          </IconButton>
         </Paper>
       </Grid>
       <Grid item>
         <Paper
           sx={{
-            background: '#c3c3c3',
+            background: dark50,
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            padding: '16px',
+            padding: '8px',
+            gap: 3,
+            justifyContent: 'flex-start',
           }}
         >
-          <FaNetworkWired size={32} color={theme.palette.text.disabled} />
-          <Typography color={theme.palette.text.disabled} variant="h5">
+          <FaNetworkWired size={22} color={theme.palette.text.disabled} />
+
+          <Typography
+            fontSize="16px"
+            color={theme.palette.text.disabled}
+            variant="h5"
+          >
             {agent.generalData.ip}
           </Typography>
         </Paper>
@@ -106,18 +127,23 @@ const GeneralData = ({
       <Grid item>
         <Paper
           sx={{
-            background: '#c3c3c3',
+            background: dark50,
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            padding: '16px',
+            padding: '8px',
+            gap: 3,
+            justifyContent: 'flex-start',
           }}
         >
           <MdOutlinePersonOutline
-            size={32}
+            size={22}
             color={theme.palette.text.disabled}
           />
-          <Typography color={theme.palette.text.disabled} variant="h5">
+          <Typography
+            sx={{ fontSize: '18px' }}
+            color={theme.palette.text.disabled}
+            variant="h5"
+          >
             Responsável
           </Typography>
         </Paper>
@@ -125,15 +151,20 @@ const GeneralData = ({
       <Grid item>
         <Paper
           sx={{
-            background: '#c3c3c3',
+            background: dark50,
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            padding: '16px',
+            padding: '8px',
+            gap: 3,
+            justifyContent: 'flex-start',
           }}
         >
-          <HiOutlineUserGroup size={32} color={theme.palette.text.disabled} />
-          <Typography color={theme.palette.text.disabled} variant="h5">
+          <HiOutlineUserGroup size={22} color={theme.palette.text.disabled} />
+          <Typography
+            fontSize="18px"
+            color={theme.palette.text.disabled}
+            variant="h5"
+          >
             Grupo
           </Typography>
         </Paper>
