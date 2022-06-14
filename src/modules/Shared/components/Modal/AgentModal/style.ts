@@ -1,4 +1,5 @@
 import { Card, Modal, styled } from '@mui/material';
+import { dark200 } from 'modules/Shared/helpers/styles/Colors'
 
 export const AgentModalCard = styled(Card)`
   height: 80vh;
@@ -8,7 +9,7 @@ export const AgentModalCard = styled(Card)`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  background: #252525;
+  background: ${dark200};
 `;
 
 export const StyledModal = styled(Modal)`
