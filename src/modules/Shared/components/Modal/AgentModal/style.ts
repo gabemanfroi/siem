@@ -8,6 +8,7 @@ export const AgentModalCard = styled(Card)`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  background: #252525;
 `;
 
 export const StyledModal = styled(Modal)`

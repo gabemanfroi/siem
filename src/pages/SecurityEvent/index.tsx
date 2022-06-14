@@ -57,7 +57,7 @@ const SecurityEvent = () => {
         isResizable={false}
         isDraggable={false}
         breakpoints={{ lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 }}
-        cols={{ lg: 12, md: 120, sm: 6, xs: 4, xxs: 2 }}
+        cols={{ lg: 12, md: 12, sm: 6, xs: 4, xxs: 2 }}
         style={{ flex: 1 }}
         layouts={layouts}
       >
