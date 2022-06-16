@@ -66,14 +66,15 @@ export const WidgetsSelectorPopper = ({
     setAnchorEl(null);
   };
 
-  const handleAutoCompleteClose = (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
+  const handleAutoCompleteClose = (event: React.ChangeEvent<{}>,
+    reason: AutocompleteCloseReason) => {
     if (reason === 'escape') {
       handleClose();
     }
   };
 
   return (
-    <StyledPopper open={open} anchorEl={anchorEl} placement="bottom-start">
+    <StyledPopper open={open} anchorEl={anchorEl} placement='bottom-start'>
       <ClickAwayListener onClickAway={handleClose}>
         <div>
           <Box
@@ -105,7 +106,7 @@ export const WidgetsSelectorPopper = ({
             disableCloseOnSelect
             PopperComponent={PopperComponent}
             renderTags={() => null}
-            noOptionsText="No labels"
+            noOptionsText='No labels'
             renderOption={(props, option, { selected }) => (
               <li {...props}>
                 <Box
@@ -142,7 +143,7 @@ export const WidgetsSelectorPopper = ({
                 ref={params.InputProps.ref}
                 inputProps={params.inputProps}
                 autoFocus
-                placeholder="Filter Widgets"
+                placeholder='Filter Widgets'
               />
             )}
           />
