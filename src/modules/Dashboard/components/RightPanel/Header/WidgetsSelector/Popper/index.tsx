@@ -66,7 +66,8 @@ export const WidgetsSelectorPopper = ({
     setAnchorEl(null);
   };
 
-  const handleAutoCompleteClose = (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
+  const handleAutoCompleteClose = (event: React.ChangeEvent<{}>,
+    reason: AutocompleteCloseReason) => {
     if (reason === 'escape') {
       handleClose();
     }
