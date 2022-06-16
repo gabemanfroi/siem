@@ -1,10 +1,6 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import DateFilter from './index';
 
-jest.mock('@mui/lab/DatePicker', () =>
-  jest.requireActual('@mui/lab/DesktopDatePicker')
-);
-
 afterEach(cleanup);
 
 describe('DateFilter', () => {
@@ -30,7 +26,6 @@ describe('DateFilter', () => {
     const { getByTestId } = renderer();
     const endDatePicker =
       getByTestId('endDatePicker').querySelector('input[type="tel"]');
-
     if (!endDatePicker) throw new Error('element not found');
 
     fireEvent.change(endDatePicker, { target: { value: '12/12/2001' } });
