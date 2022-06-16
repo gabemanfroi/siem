@@ -15,15 +15,18 @@ interface IGridItem {
 }
 
 const GridItem = ({
-  widget, children, isDraggable,
-  isResizable, ...props
+  widget,
+  children,
+  isDraggable,
+  isResizable,
+  ...props
 }: IGridItem) => {
   const { setSelectedWidgets, selectedWidgets } = useWidgets();
 
   const handleClose = () => {
     const updatedWidgets = [...selectedWidgets];
     const index = updatedWidgets.findIndex(
-      (w) => w.identifier === widget.identifier,
+      (w) => w.identifier === widget.identifier
     );
 
     updatedWidgets.splice(index, 1);
@@ -31,21 +34,23 @@ const GridItem = ({
   };
   return (
     <Container {...props}>
-      {isResizable && isDraggable && <Stack
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <MdOutlineDragIndicator className='drag-icon' size={18} />
-        <MdOutlineClose
-          className='close-icon'
-          size={18}
-          onClick={handleClose}
-        />
-      </Stack>}
-      <Stack className='react-grid-item'>{children}</Stack>
+      {isResizable && isDraggable && (
+        <Stack
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <MdOutlineDragIndicator className="drag-icon" size={18} />
+          <MdOutlineClose
+            className="close-icon"
+            size={18}
+            onClick={handleClose}
+          />
+        </Stack>
+      )}
+      <Stack className="react-grid-item">{children}</Stack>
     </Container>
   );
 };
