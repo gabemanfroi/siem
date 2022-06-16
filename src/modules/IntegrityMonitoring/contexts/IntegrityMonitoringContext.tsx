@@ -6,11 +6,6 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-
-import {
-  IIntegrityMonitoringWidgets,
-  IntegrityMonitoringWidgetsDefaultConfig,
-} from 'modules/IntegrityMonitoring/interfaces/Widgets';
 import {
   IActionsTypes,
   IAlertsByActionOverTime,
@@ -18,11 +13,15 @@ import {
   ITop5Agents,
 } from 'modules/IntegrityMonitoring/interfaces';
 import {
-  Top5Agents,
+  IIntegrityMonitoringWidgets,
+  IntegrityMonitoringWidgetsDefaultConfig,
+} from '../interfaces/Widgets';
+import {
   ActionsTypes,
   AlertsByActionOverTime,
   RuleDistribution,
-} from 'modules/IntegrityMonitoring/components';
+  Top5Agents,
+} from '../components';
 
 export const integrityMonitoringWidgets: IIntegrityMonitoringWidgets = {
   actionsTypes: {
