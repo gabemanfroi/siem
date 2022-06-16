@@ -5,7 +5,9 @@ import theme from 'modules/Shared/theme';
 import './sass/main.scss';
 import {
   AgentProvider,
+  FilterProvider,
   LoadingProvider,
+  WebSocketProvider,
   WidgetsProvider,
 } from 'modules/Shared/contexts';
 import { DashboardProvider } from 'modules/Dashboard/contexts/DashboardContext';
@@ -19,24 +21,28 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <LoadingProvider>
-        <MitreProvider>
-          <VulnerabilityProvider>
-            <IntegrityMonitoringProvider>
-              <VirusTotalProvider>
-                <SecurityEventProvider>
-                  <AgentProvider>
-                    <WidgetsProvider>
-                      <DashboardProvider>
-                        <Router />
-                        <ErrorSnackbar />
-                      </DashboardProvider>
-                    </WidgetsProvider>
-                  </AgentProvider>
-                </SecurityEventProvider>
-              </VirusTotalProvider>
-            </IntegrityMonitoringProvider>
-          </VulnerabilityProvider>
-        </MitreProvider>
+        <WebSocketProvider>
+          <FilterProvider>
+            <MitreProvider>
+              <VulnerabilityProvider>
+                <IntegrityMonitoringProvider>
+                  <VirusTotalProvider>
+                    <SecurityEventProvider>
+                      <AgentProvider>
+                        <WidgetsProvider>
+                          <DashboardProvider>
+                            <Router />
+                            <ErrorSnackbar />
+                          </DashboardProvider>
+                        </WidgetsProvider>
+                      </AgentProvider>
+                    </SecurityEventProvider>
+                  </VirusTotalProvider>
+                </IntegrityMonitoringProvider>
+              </VulnerabilityProvider>
+            </MitreProvider>
+          </FilterProvider>
+        </WebSocketProvider>
       </LoadingProvider>
     </ThemeProvider>
   );

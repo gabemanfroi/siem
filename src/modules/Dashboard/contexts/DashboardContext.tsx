@@ -1,46 +1,17 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import { AgentType } from 'modules/Shared/types';
+import React, { createContext, useContext, useMemo } from 'react';
 import { useMitre } from 'modules/Mitre/contexts/MitreContext';
 import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { useVirusTotal } from 'modules/VirusTotal/contexts/VirusTotalContext';
 import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
-import { IDashboardFilters } from 'modules/Dashboard/interfaces';
-import DateFnsAdapter from '@date-io/date-fns';
-import { useWidgets } from 'modules/Shared/contexts';
-
-const dateFns = new DateFnsAdapter();
+import { IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
 
 interface DashboardContextInterface {
-  groupedByAgent: AgentType[];
-  setGroupedByAgent: Dispatch<SetStateAction<AgentType[]>>;
-  dashboardWidgetsHandlerMap: { [key: string]: Dispatch<SetStateAction<any>> };
-  filters: IDashboardFilters;
-  setFilters: Dispatch<SetStateAction<IDashboardFilters>>;
+  dashboardWidgetsHandler: IWidgetsHandler;
 }
 
-const now = new Date();
-
-const initialFiltersState: IDashboardFilters = {
-  endDate: now.getTime(),
-  initialDate: dateFns.addDays(now, -7).getTime(),
-  selectedWidgets: [],
-};
-
 const dashboardContextDefaultValues = {
-  groupedByAgent: [],
-  setGroupedByAgent: () => {},
-  dashboardWidgetsHandlerMap: {},
-  filters: initialFiltersState,
-  setFilters: () => {},
+  dashboardWidgetsHandler: {},
 };
 
 const DashboardContext = createContext<DashboardContextInterface>(
@@ -48,9 +19,6 @@ const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 export const DashboardProvider: React.FC = ({ children }) => {
-  const [groupedByAgent, setGroupedByAgent] = useState<AgentType[]>([]);
-  const [filters, setFilters] =
-    useState<IDashboardFilters>(initialFiltersState);
   const { widgetsHandlersMap: mitreWidgetsHandlerMap } = useMitre();
   const { widgetsHandlersMap: vulnerabilityWidgetsHandlersMap } =
     useVulnerability();
@@ -59,9 +27,7 @@ export const DashboardProvider: React.FC = ({ children }) => {
   const { widgetsHandlersMap: virusTotalHandlersMap } = useVirusTotal();
   const { widgetsHandlersMap: securityEventHandlersMap } = useSecurityEvent();
 
-  const { selectedWidgets } = useWidgets();
-
-  const dashboardWidgetsHandlerMap = {
+  const dashboardWidgetsHandler = {
     ...integrityMonitoringHandlersMap,
     ...mitreWidgetsHandlerMap,
     ...securityEventHandlersMap,
@@ -69,23 +35,7 @@ export const DashboardProvider: React.FC = ({ children }) => {
     ...virusTotalHandlersMap,
   };
 
-  useEffect(() => {
-    setFilters({
-      ...filters,
-      selectedWidgets: selectedWidgets.map((w) => w.identifier),
-    });
-  }, [selectedWidgets]);
-
-  const value = useMemo(
-    () => ({
-      groupedByAgent,
-      setGroupedByAgent,
-      dashboardWidgetsHandlerMap,
-      filters,
-      setFilters,
-    }),
-    [filters]
-  );
+  const value = useMemo(() => ({ dashboardWidgetsHandler }), []);
 
   return (
     <DashboardContext.Provider value={value}>

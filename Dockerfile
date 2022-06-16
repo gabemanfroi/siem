@@ -23,5 +23,9 @@ FROM nginx:latest
 COPY --from=builder /app/build /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
+RUN mkdir /etc/nginx/certs
+COPY nginx/seclab.inf.br.key /etc/nginx/certs
+COPY nginx/seclab.inf.br.cer /etc/nginx/certs
 EXPOSE 80
+EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]

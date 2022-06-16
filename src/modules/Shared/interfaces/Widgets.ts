@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { Dispatch, ReactElement, SetStateAction } from 'react';
 import { IMitreWidgets } from 'modules/Mitre/interfaces/Widgets';
 import { IVulnerabilityWidgets } from 'modules/Vulnerability/interfaces/Widgets';
 import { ISecurityEventWidgets } from 'modules/SecurityEvent/interfaces/Widgets';
@@ -53,3 +53,7 @@ export type WidgetsMapKeys =
 export const isWidget = (
   obj: IAutoCompleteWidget | IWidget | undefined
 ): obj is IWidget => obj !== undefined;
+
+export interface IWidgetsHandler {
+  [key: string]: Dispatch<SetStateAction<any>>;
+}

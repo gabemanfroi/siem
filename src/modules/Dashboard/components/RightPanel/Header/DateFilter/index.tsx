@@ -3,11 +3,11 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { MdRefresh } from 'react-icons/md';
-import { useDashboard } from 'modules/Dashboard/contexts';
 import { ptBR } from 'date-fns/locale';
+import { useFilter } from 'modules/Shared/contexts/FilterContext';
 
 const DateFilter = () => {
-  const { filters, setFilters } = useDashboard();
+  const { filters, setFilters } = useFilter();
 
   const [pendingInitialValue, setPendingInitialValue] = useState<number | null>(
     filters.initialDate
