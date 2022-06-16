@@ -20,7 +20,6 @@ const Router = () => (
           </PrivateRoute>
         }
       />
-
       <Route
         path="/mitre"
         element={

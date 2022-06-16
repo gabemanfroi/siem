@@ -4,7 +4,7 @@ import { mitreWidgets, useMitre } from 'modules/Mitre/contexts';
 import { DefaultPageContainer } from 'modules/Shared/components';
 import { getWidgetsListFromMap } from '../../modules/Shared/helpers/getWidgetsListFromMap';
 
-const Vulnerability = () => {
+const Mitre = () => {
   const { widgetsHandlersMap } = useMitre();
 
   return (
@@ -18,4 +18,4 @@ const Vulnerability = () => {
   );
 };
 
-export default Vulnerability;
+export default Mitre;

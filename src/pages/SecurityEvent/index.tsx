@@ -4,7 +4,7 @@ import { securityEventWidgets, useSecurityEvent } from 'modules/SecurityEvent/co
 import { DefaultPageContainer } from 'modules/Shared/components';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
 
-const Vulnerability = () => {
+const SecurityEvent = () => {
   const { widgetsHandlersMap } = useSecurityEvent();
 
   return (
@@ -18,4 +18,4 @@ const Vulnerability = () => {
   );
 };
 
-export default Vulnerability;
+export default SecurityEvent;
