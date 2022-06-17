@@ -1,16 +1,14 @@
 import { BaseService } from 'modules/Shared/services/BaseService';
+import { routes } from 'modules/Shared/core/Constants';
 
 const AuthService = () => {
-  const service = BaseService('/api/auth');
+  const service = BaseService(routes.auth.BASE_ENDPOINT);
 
   const authenticate = async (username: string, password: string) =>
-    service.post('/login', { email: username, password });
-
-  const verifyToken = async () => service.post('/login');
+    service.post(routes.auth.LOGIN, { email: username, password });
 
   return {
     authenticate,
-    verifyToken,
   };
 };
 
