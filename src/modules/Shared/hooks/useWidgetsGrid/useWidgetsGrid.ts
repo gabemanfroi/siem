@@ -5,30 +5,30 @@ import { useWebsocket } from 'modules/Shared/contexts/WebSocketContext';
 import { useFilter } from 'modules/Shared/contexts/FilterContext';
 import { w3cwebsocket } from 'websocket';
 import { IWidget, IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
+import { routes } from 'modules/Shared/core/Constants';
 import { TokenUtil } from '../../utils';
-import { routes } from '../../core/Constants';
 
 const W3CWebSocket = w3cwebsocket;
 
 const useWidgetsGrid = (
   widgets: IWidget[],
   widgetsHandler: IWidgetsHandler,
-  apiEndpoint: string,
+  apiEndpoint: string
 ) => {
   const { setIsLoading } = useLoading();
   const { websocket, setWebsocket } = useWebsocket();
   const { filters } = useFilter();
-  const [connectionTimeout, setConnectionTimeout] =
-    useState<ReturnType<typeof setTimeout> | null>(null);
+  const [connectionTimeout, setConnectionTimeout] = useState<ReturnType<
+    typeof setTimeout
+  > | null>(null);
   const [layouts, setLayouts] = useState({
     lg: widgets.map((w) => w.options.lg),
   });
 
   function createWebSocketConnection() {
-    setIsLoading(true);
+    setIsLoading(true)
     setWebsocket(
-      new W3CWebSocket(
-        `${process.env.REACT_APP_WS_API_URL}/${routes.bragi.BASE_ENDPOINT}/${apiEndpoint}?jwt=${TokenUtil().getToken()}`),
+      new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}${routes.bragi.BASE_ENDPOINT}${apiEndpoint}?jwt=${TokenUtil().getToken()}`)
     );
     if (websocket) {
       websocket.onopen = () => {
@@ -38,7 +38,7 @@ const useWidgetsGrid = (
             selectedWidgets: widgetsToGetFromBackend,
             initialDate: filters.initialDate,
             endDate: filters.endDate,
-          }),
+          })
         );
       };
       websocket.onmessage = ({ data }) => {
