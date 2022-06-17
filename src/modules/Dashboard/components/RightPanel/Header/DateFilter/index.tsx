@@ -1,13 +1,13 @@
-import { DatePicker, LocalizationProvider } from '@mui/lab';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { MdRefresh } from 'react-icons/md';
-import { useDashboard } from 'modules/Dashboard/contexts';
 import { ptBR } from 'date-fns/locale';
+import { useFilter } from 'modules/Shared/contexts/FilterContext';
 
 const DateFilter = () => {
-  const { filters, setFilters } = useDashboard();
+  const { filters, setFilters } = useFilter();
 
   const [pendingInitialValue, setPendingInitialValue] = useState<number | null>(
     filters.initialDate
@@ -35,7 +35,7 @@ const DateFilter = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
-      <DatePicker
+      <DesktopDatePicker
         label="Initial Date"
         renderInput={(params) => (
           <TextField data-testid="initialDatePicker" size="small" {...params} />
@@ -43,7 +43,7 @@ const DateFilter = () => {
         value={pendingInitialValue}
         onChange={onInitialDateChange}
       />
-      <DatePicker
+      <DesktopDatePicker
         label="End Date"
         renderInput={(params) => (
           <TextField data-testid="endDatePicker" size="small" {...params} />

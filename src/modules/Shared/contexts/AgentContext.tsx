@@ -22,7 +22,7 @@ const defaultValue = {
   isAgentModalOpen: false,
   setIsAgentModalOpen: () => {},
 };
-export const AgentContext = createContext<AgentContextInterface>(defaultValue);
+const AgentContext = createContext<AgentContextInterface>(defaultValue);
 
 export const AgentProvider: React.FC = ({ children }) => {
   const [selectedAgent, setSelectedAgent] = useState<AgentType | null>(null);
@@ -35,7 +35,7 @@ export const AgentProvider: React.FC = ({ children }) => {
       setSelectedAgent,
       selectedAgent,
     }),
-    []
+    [isAgentModalOpen, selectedAgent]
   );
 
   return (

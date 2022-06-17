@@ -1,7 +1,7 @@
 import { BaseService } from 'modules/Shared/services/BaseService';
 
 const AuthService = () => {
-  const service = BaseService('/auth/auth');
+  const service = BaseService('/api/auth');
 
   const authenticate = async (username: string, password: string) =>
     service.post('/login', { email: username, password });

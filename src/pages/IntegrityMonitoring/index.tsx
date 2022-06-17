@@ -1,74 +1,24 @@
+import 'react-grid-layout/css/styles.css';
+import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
+import { DefaultPageContainer } from 'modules/Shared/components';
 import {
-  DefaultPageContainer,
-  GridItem,
-  LoadingHandler,
-} from 'modules/Shared/components';
-import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
-import { IWidget } from 'modules/Shared/interfaces/Widgets';
-import { Responsive, WidthProvider } from 'react-grid-layout';
-import { useLoading } from 'modules/Shared/contexts';
-import { useEffect, useState } from 'react';
-import { w3cwebsocket as W3CWebSocket, w3cwebsocket } from 'websocket';
-import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+  integrityMonitoringWidgets,
+  useIntegrityMonitoring,
+} from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
 
-const ResponsiveGridLayout = WidthProvider(Responsive);
-
-const IntegrityMonitoring = () => {
+const Vulnerability = () => {
   const { widgetsHandlersMap } = useIntegrityMonitoring();
-  const widgets: IWidget[] = Object.values(integrityMonitoringWidgets).map(
-    (w: IWidget) => w
-  );
-
-  const layouts = {
-    lg: Object.values(widgets).map((w: IWidget) => w.options.lg),
-  };
-
-  const { setIsLoading, isLoading } = useLoading();
-
-  const [websocket, setWebsocket] = useState<w3cwebsocket>();
-  if (process.env.REACT_APP_ENVIRONMENT !== 'test') {
-    useEffect(() => {
-      setIsLoading(true);
-      if (!websocket) {
-        setWebsocket(
-          new W3CWebSocket(
-            `${process.env.REACT_APP_WS_API_URL}/integrityMonitoring`
-          )
-        );
-      }
-      if (websocket) {
-        websocket.onmessage = ({ data }) => {
-          const parsedData = JSON.parse(String(data));
-          Object.keys(parsedData).forEach((key) => {
-            widgetsHandlersMap[key](parsedData[key]);
-          });
-          if (isLoading) setIsLoading(false);
-        };
-      }
-      return () => {
-        websocket?.close();
-      };
-    }, [websocket]);
-  }
 
   return (
     <DefaultPageContainer>
-      <ResponsiveGridLayout
-        isResizable={false}
-        isDraggable={false}
-        breakpoints={{ lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 }}
-        cols={{ lg: 12, md: 120, sm: 6, xs: 4, xxs: 2 }}
-        style={{ flex: 1 }}
-        layouts={layouts}
-      >
-        {widgets.map((w) => (
-          <GridItem key={w.identifier} widget={w}>
-            <LoadingHandler>{w.builder()}</LoadingHandler>
-          </GridItem>
-        ))}
-      </ResponsiveGridLayout>
+      <WidgetsGrid
+        widgets={getWidgetsListFromMap(integrityMonitoringWidgets)}
+        widgetsHandler={widgetsHandlersMap}
+        apiEndpoint="/integridade"
+      />
     </DefaultPageContainer>
   );
 };
 
-export default IntegrityMonitoring;
+export default Vulnerability;

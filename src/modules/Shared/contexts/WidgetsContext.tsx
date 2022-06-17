@@ -1,23 +1,12 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { Layout } from 'react-grid-layout';
 import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
-import {
-  IAllWidgets,
-  IWidget,
-  WidgetsMapKeys,
-} from 'modules/Shared/interfaces/Widgets';
+import { IAllWidgets, IWidget, WidgetsMapKeys } from 'modules/Shared/interfaces/Widgets';
 import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
-import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+
 import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
 
 const widgetsMap: IAllWidgets = {
   ...integrityMonitoringWidgets,
@@ -27,18 +16,19 @@ const widgetsMap: IAllWidgets = {
 };
 
 interface WidgetsContextInterface {
-  defaultWidgets: IAllWidgets;
-  setDefaultWidgets: Dispatch<SetStateAction<IAllWidgets>>;
+  selectedWidgetsMap: IAllWidgets;
+  setSelectedWidgetsMap: Dispatch<SetStateAction<IAllWidgets>>;
   selectedWidgets: IWidget[];
   setSelectedWidgets: Dispatch<SetStateAction<IWidget[]>>;
   // eslint-disable-next-line no-unused-vars
   saveCurrentLayout: (layouts: Layout[]) => void;
   widgetsMap: IAllWidgets;
+
 }
 
 const defaultValue = {
-  defaultWidgets: {},
-  setDefaultWidgets: () => {},
+  selectedWidgetsMap: {},
+  setSelectedWidgetsMap: () => {},
   selectedWidgets: Object.values(widgetsMap).map((v) => v),
   saveCurrentLayout: () => {},
   setSelectedWidgets: () => {},
@@ -78,13 +68,21 @@ const getLocalStorageConfig = (): IAllWidgets | null => {
 };
 
 export const WidgetsProvider: React.FC = ({ children }) => {
-  const [defaultWidgets, setDefaultWidgets] = useState<IAllWidgets>(
+  const [selectedWidgetsMap, setSelectedWidgetsMap] = useState<IAllWidgets>(
     getLocalStorageConfig() || {}
   );
 
   const [selectedWidgets, setSelectedWidgets] = useState<IWidget[]>(
-    Object.values(defaultWidgets).map((v) => v)
+    Object.values(selectedWidgetsMap).map((v) => v)
   );
+
+  const saveCurrentLayout = (layouts: Layout[]) => {
+    const auxiliaryMap: { [key: string]: Layout } = {};
+    layouts.forEach((l) => {
+      auxiliaryMap[l.i] = l;
+    });
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(auxiliaryMap));
+  };
 
   useEffect(() => {
     if (selectedWidgets.length === 0) {
@@ -92,29 +90,20 @@ export const WidgetsProvider: React.FC = ({ children }) => {
     }
   }, [selectedWidgets]);
 
-  const saveCurrentLayout = (layouts: Layout[]) => {
-    const auxiliaryMap: { [key: string]: Layout } = {};
-    layouts.forEach((l) => {
-      auxiliaryMap[l.i] = l;
-    });
-
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(auxiliaryMap));
-  };
-
   useEffect(() => {
-    setSelectedWidgets(Object.values(defaultWidgets).map((v) => v));
-  }, [defaultWidgets]);
+    setSelectedWidgets(Object.values(selectedWidgetsMap).map((v) => v));
+  }, [selectedWidgetsMap]);
 
   const providerValue = useMemo(
     () => ({
-      defaultWidgets,
-      setDefaultWidgets,
+      selectedWidgetsMap,
+      setSelectedWidgetsMap,
       selectedWidgets,
       saveCurrentLayout,
       setSelectedWidgets,
       widgetsMap,
     }),
-    [defaultWidgets, saveCurrentLayout]
+    [selectedWidgets]
   );
 
   return (

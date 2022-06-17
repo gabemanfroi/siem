@@ -13,7 +13,7 @@ export function OverallSecurity() {
   const trustLevel = 50;
   return (
     <Container>
-      <LoadingHandler sx={{ flex: '0 0 20%' }}>
+      <LoadingHandler sx={{ flex: 1 }}>
         <Paper sx={{ flex: 0 }}>
           <ReactApexChart
             options={radialBarOptions}

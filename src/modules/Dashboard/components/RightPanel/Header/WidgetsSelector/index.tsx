@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { MdSettings } from 'react-icons/md';
 import {
   IAutoCompleteWidget,
@@ -11,40 +11,26 @@ import { AutocompleteBox, StyledButton } from './style';
 import WidgetsSelectorPopper from './Popper';
 
 const WidgetsSelector = () => {
-  const [pendingValue, setPendingValue] = React.useState<IAutoCompleteWidget[]>(
-    []
-  );
   const { selectedWidgets } = useWidgets();
+  const getValueFromSelectedWidgets = useCallback(
+    () =>
+      selectedWidgets
+        .map((w) =>
+          ALL_WIDGETS_LABELS.find((label) => label.identifier === w.identifier)
+        )
+        .filter(isWidget) as IAutoCompleteWidget[],
+    [selectedWidgets]
+  );
+  const [pendingValue, setPendingValue] = React.useState<IAutoCompleteWidget[]>(
+    getValueFromSelectedWidgets()
+  );
 
+  const [value, setValue] = React.useState<IAutoCompleteWidget[]>(pendingValue);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const [value, setValue] = React.useState<IAutoCompleteWidget[]>([]);
-
   useEffect(() => {
-    setPendingValue(
-      selectedWidgets
-        .map((w) =>
-          ALL_WIDGETS_LABELS.find((label) => label.identifier === w.identifier)
-        )
-        .filter(isWidget) as IAutoCompleteWidget[]
-    );
+    setPendingValue(getValueFromSelectedWidgets());
   }, [selectedWidgets]);
-
-  useEffect(() => {
-    if (JSON.stringify(value) !== JSON.stringify(pendingValue)) {
-      setValue(pendingValue);
-    }
-  }, [pendingValue]);
-
-  useEffect(() => {
-    setValue(
-      selectedWidgets
-        .map((w) =>
-          ALL_WIDGETS_LABELS.find((label) => label.identifier === w.identifier)
-        )
-        .filter(isWidget) as IAutoCompleteWidget[]
-    );
-  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);

@@ -3,6 +3,8 @@ import GridItem from './index';
 
 const componentToBeRendered = (
   <GridItem
+    isDraggable
+    isResizable
     widget={{
       options: { lg: { w: 6, i: '0', h: 6, x: 0, y: 0 }, active: true },
       builder: () => <div />,
