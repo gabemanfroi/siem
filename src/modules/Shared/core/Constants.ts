@@ -72,12 +72,12 @@ export const ALL_WIDGETS_LABELS = [
   },
 ];
 const authRoutes = {
-  BASE_ENDPOINT: '/api/auth',
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/auth/auth' : '/auth',
   LOGIN: '/login',
 };
 
 const bragiRoutes = {
-  BASE_ENDPOINT: '/api/auth',
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/bragi/api' : '/api',
   DASHBOARD: '/dashboard',
   INTEGRITY_MONITORING: '/integridade',
   MITRE: '/mitre',
