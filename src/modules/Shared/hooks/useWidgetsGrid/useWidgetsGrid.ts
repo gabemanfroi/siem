@@ -30,6 +30,9 @@ const useWidgetsGrid = (
     setWebsocket(
       new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}${routes.bragi.BASE_ENDPOINT}${apiEndpoint}?jwt=${TokenUtil().getToken()}`)
     );
+  }
+
+  useEffect(() => {
     if (websocket) {
       websocket.onopen = () => {
         const widgetsToGetFromBackend = widgets.map((w) => w.identifier);
@@ -49,7 +52,7 @@ const useWidgetsGrid = (
         setIsLoading(false);
       };
     }
-  }
+  }, [websocket])
 
   function refreshConnection() {
     if (websocket) websocket.close();
