@@ -3,6 +3,7 @@ import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
 import { securityEventWidgets, useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { DefaultPageContainer } from 'modules/Shared/components';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
+import { routes } from 'modules/Shared/core/Constants';
 
 const SecurityEvent = () => {
   const { widgetsHandlersMap } = useSecurityEvent();
@@ -12,7 +13,7 @@ const SecurityEvent = () => {
       <WidgetsGrid
         widgets={getWidgetsListFromMap(securityEventWidgets)}
         widgetsHandler={widgetsHandlersMap}
-        apiEndpoint="/eventos"
+        apiEndpoint={routes.bragi.SECURITY_EVENT}
       />
     </DefaultPageContainer>
   );

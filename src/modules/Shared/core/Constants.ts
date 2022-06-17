@@ -71,3 +71,22 @@ export const ALL_WIDGETS_LABELS = [
     identifier: 'topAffectedPackagesByCVEs',
   },
 ];
+const authRoutes = {
+  BASE_ENDPOINT: '/api/auth',
+  LOGIN: '/login',
+};
+
+const bragiRoutes = {
+  BASE_ENDPOINT: '/api/auth',
+  DASHBOARD: '/dashboard',
+  INTEGRITY_MONITORING: '/integridade',
+  MITRE: '/mitre',
+  SECURITY_EVENT: '/eventos',
+  VIRUS_TOTAL: '/virus-total',
+  VULNERABILITY: '/vunerabilidade'
+};
+
+export const routes = {
+  auth: { ...authRoutes },
+  bragi: { ...bragiRoutes }
+}
