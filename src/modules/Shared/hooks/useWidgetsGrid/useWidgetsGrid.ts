@@ -28,10 +28,7 @@ const useWidgetsGrid = (
     setIsLoading(true);
     setWebsocket(
       new W3CWebSocket(
-        `${process.env.REACT_APP_WS_API_URL}/
-        ${routes.bragi.BASE_ENDPOINT}/
-        ${apiEndpoint}?jwt=${TokenUtil().getToken()}
-        `),
+        `${process.env.REACT_APP_WS_API_URL}/${routes.bragi.BASE_ENDPOINT}/${apiEndpoint}?jwt=${TokenUtil().getToken()}`),
     );
     if (websocket) {
       websocket.onopen = () => {
