@@ -5,6 +5,8 @@ import { useWebsocket } from 'modules/Shared/contexts/WebSocketContext';
 import { useFilter } from 'modules/Shared/contexts/FilterContext';
 import { w3cwebsocket } from 'websocket';
 import { IWidget, IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
+import { routes } from 'modules/Shared/core/Constants';
+import { TokenUtil } from '../../utils';
 
 const W3CWebSocket = w3cwebsocket;
 
@@ -26,8 +28,11 @@ const useWidgetsGrid = (
   function createWebSocketConnection() {
     setIsLoading(true)
     setWebsocket(
-      new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}${apiEndpoint}`)
+      new W3CWebSocket(`${process.env.REACT_APP_WS_API_URL}${routes.bragi.BASE_ENDPOINT}${apiEndpoint}?jwt=${TokenUtil().getToken()}`)
     );
+  }
+
+  useEffect(() => {
     if (websocket) {
       websocket.onopen = () => {
         const widgetsToGetFromBackend = widgets.map((w) => w.identifier);
@@ -47,7 +52,7 @@ const useWidgetsGrid = (
         setIsLoading(false);
       };
     }
-  }
+  }, [websocket])
 
   function refreshConnection() {
     if (websocket) websocket.close();

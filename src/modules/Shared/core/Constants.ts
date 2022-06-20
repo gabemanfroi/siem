@@ -71,3 +71,22 @@ export const ALL_WIDGETS_LABELS = [
     identifier: 'topAffectedPackagesByCVEs',
   },
 ];
+const authRoutes = {
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/auth/auth' : '/auth',
+  LOGIN: '/login',
+};
+
+const bragiRoutes = {
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/bragi/api' : '/api',
+  DASHBOARD: '/dashboard',
+  INTEGRITY_MONITORING: '/integridade',
+  MITRE: '/mitre',
+  SECURITY_EVENT: '/eventos',
+  VIRUS_TOTAL: '/virus-total',
+  VULNERABILITY: '/vunerabilidade'
+};
+
+export const routes = {
+  auth: { ...authRoutes },
+  bragi: { ...bragiRoutes }
+}

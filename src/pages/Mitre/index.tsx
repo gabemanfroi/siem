@@ -2,7 +2,8 @@ import 'react-grid-layout/css/styles.css';
 import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
 import { mitreWidgets, useMitre } from 'modules/Mitre/contexts';
 import { DefaultPageContainer } from 'modules/Shared/components';
-import { getWidgetsListFromMap } from '../../modules/Shared/helpers/getWidgetsListFromMap';
+import { routes } from 'modules/Shared/core/Constants';
+import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
 
 const Mitre = () => {
   const { widgetsHandlersMap } = useMitre();
@@ -12,7 +13,7 @@ const Mitre = () => {
       <WidgetsGrid
         widgets={getWidgetsListFromMap(mitreWidgets)}
         widgetsHandler={widgetsHandlersMap}
-        apiEndpoint="/mitre"
+        apiEndpoint={routes.bragi.MITRE}
       />
     </DefaultPageContainer>
   );
