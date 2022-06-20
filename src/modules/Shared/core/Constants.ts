@@ -77,7 +77,7 @@ const authRoutes = {
 };
 
 const bragiRoutes = {
-  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/api' : '/api',
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/bragi/api' : '/api',
   DASHBOARD: '/dashboard',
   INTEGRITY_MONITORING: '/integridade',
   MITRE: '/mitre',
