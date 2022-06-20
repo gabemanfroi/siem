@@ -77,13 +77,13 @@ const authRoutes = {
 };
 
 const bragiRoutes = {
-  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/bragi/api' : '/api',
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/api' : '/api',
   DASHBOARD: '/dashboard',
   INTEGRITY_MONITORING: '/integridade',
   MITRE: '/mitre',
   SECURITY_EVENT: '/eventos',
   VIRUS_TOTAL: '/virus-total',
-  VULNERABILITY: '/vunerabilidade'
+  VULNERABILITY: '/vunerabilidades'
 };
 
 export const routes = {
