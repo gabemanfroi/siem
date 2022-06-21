@@ -6,14 +6,17 @@ import {
   useIntegrityMonitoring,
 } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
+import { useMemo } from 'react';
 
 const Vulnerability = () => {
   const { widgetsHandlersMap } = useIntegrityMonitoring();
 
+  const widgets = useMemo(() => getWidgetsListFromMap(integrityMonitoringWidgets), [])
+
   return (
     <DefaultPageContainer>
       <WidgetsGrid
-        widgets={getWidgetsListFromMap(integrityMonitoringWidgets)}
+        widgets={widgets}
         widgetsHandler={widgetsHandlersMap}
         apiEndpoint="/integridade"
       />

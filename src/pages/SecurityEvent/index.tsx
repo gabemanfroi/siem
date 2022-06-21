@@ -4,14 +4,17 @@ import { securityEventWidgets, useSecurityEvent } from 'modules/SecurityEvent/co
 import { DefaultPageContainer } from 'modules/Shared/components';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
 import { routes } from 'modules/Shared/core/Constants';
+import { useMemo } from 'react';
 
 const SecurityEvent = () => {
   const { widgetsHandlersMap } = useSecurityEvent();
 
+  const widgets = useMemo(() => getWidgetsListFromMap(securityEventWidgets), [])
+
   return (
     <DefaultPageContainer>
       <WidgetsGrid
-        widgets={getWidgetsListFromMap(securityEventWidgets)}
+        widgets={widgets}
         widgetsHandler={widgetsHandlersMap}
         apiEndpoint={routes.bragi.SECURITY_EVENT}
       />

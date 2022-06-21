@@ -4,14 +4,17 @@ import { mitreWidgets, useMitre } from 'modules/Mitre/contexts';
 import { DefaultPageContainer } from 'modules/Shared/components';
 import { routes } from 'modules/Shared/core/Constants';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
+import { useMemo } from 'react';
 
 const Mitre = () => {
   const { widgetsHandlersMap } = useMitre();
 
+  const widgets = useMemo(() => getWidgetsListFromMap(mitreWidgets), [])
+
   return (
     <DefaultPageContainer>
       <WidgetsGrid
-        widgets={getWidgetsListFromMap(mitreWidgets)}
+        widgets={widgets}
         widgetsHandler={widgetsHandlersMap}
         apiEndpoint={routes.bragi.MITRE}
       />
