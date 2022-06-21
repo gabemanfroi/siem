@@ -6,6 +6,9 @@ const DonutChartOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     ...options?.chart,
     height: 300,
     type: 'donut',
+    animations: {
+      enabled: false
+    }
   },
   legend: {
     ...options?.legend,

@@ -72,7 +72,7 @@ export const ALL_WIDGETS_LABELS = [
   },
 ];
 const authRoutes = {
-  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/auth/auth' : '/auth',
+  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/auth/auth' : '/api/auth',
   LOGIN: '/login',
 };
 
@@ -83,7 +83,7 @@ const bragiRoutes = {
   MITRE: '/mitre',
   SECURITY_EVENT: '/eventos',
   VIRUS_TOTAL: '/virus-total',
-  VULNERABILITY: '/vunerabilidades'
+  VULNERABILITY: '/vulnerabilidades'
 };
 
 export const routes = {

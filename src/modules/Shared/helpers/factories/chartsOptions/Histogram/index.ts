@@ -18,6 +18,9 @@ const HistogramOptionsFactory = (options?: ApexOptions): ApexOptions => ({
       },
     },
     type: 'bar',
+    animations: {
+      enabled: false
+    }
   },
   grid: {
     borderColor: '#ffffff',
