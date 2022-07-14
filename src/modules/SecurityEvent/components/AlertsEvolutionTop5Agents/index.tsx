@@ -17,6 +17,9 @@ const AlertsEvolutionTop5Agents = () => {
       },
     },
     series,
+    chart: {
+      stacked: true
+    },
     xaxis: { categories, type: 'datetime' },
   };
 

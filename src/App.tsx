@@ -16,34 +16,39 @@ import { MitreProvider } from 'modules/Mitre/contexts/MitreContext';
 import { VirusTotalProvider } from 'modules/VirusTotal/contexts/VirusTotalContext';
 import { VulnerabilityProvider } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { SecurityEventProvider } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LoadingProvider>
-        <WebSocketProvider>
-          <FilterProvider>
-            <MitreProvider>
-              <VulnerabilityProvider>
-                <IntegrityMonitoringProvider>
-                  <VirusTotalProvider>
-                    <SecurityEventProvider>
-                      <AgentProvider>
-                        <WidgetsProvider>
-                          <DashboardProvider>
-                            <Router />
-                            <ErrorSnackbar />
-                          </DashboardProvider>
-                        </WidgetsProvider>
-                      </AgentProvider>
-                    </SecurityEventProvider>
-                  </VirusTotalProvider>
-                </IntegrityMonitoringProvider>
-              </VulnerabilityProvider>
-            </MitreProvider>
-          </FilterProvider>
-        </WebSocketProvider>
-      </LoadingProvider>
+      <QueryClientProvider client={queryClient}>
+        <LoadingProvider>
+          <WebSocketProvider>
+            <FilterProvider>
+              <MitreProvider>
+                <VulnerabilityProvider>
+                  <IntegrityMonitoringProvider>
+                    <VirusTotalProvider>
+                      <SecurityEventProvider>
+                        <AgentProvider>
+                          <WidgetsProvider>
+                            <DashboardProvider>
+                              <Router />
+                              <ErrorSnackbar />
+                            </DashboardProvider>
+                          </WidgetsProvider>
+                        </AgentProvider>
+                      </SecurityEventProvider>
+                    </VirusTotalProvider>
+                  </IntegrityMonitoringProvider>
+                </VulnerabilityProvider>
+              </MitreProvider>
+            </FilterProvider>
+          </WebSocketProvider>
+        </LoadingProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

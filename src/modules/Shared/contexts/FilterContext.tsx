@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, Dispatch, SetStateAction, useContext, useMemo, useState } from 'react';
 import DateFnsAdapter from '@date-io/date-fns';
 
 const dateFns = new DateFnsAdapter();
@@ -18,7 +11,7 @@ interface IFilters {
 
 const initialFiltersState: IFilters = {
   endDate: now.getTime(),
-  initialDate: dateFns.addDays(now, -7).getTime(),
+  initialDate: dateFns.addDays(now, -1).getTime(),
 };
 
 const initialValues = {

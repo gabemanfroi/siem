@@ -7,6 +7,7 @@ import { IIntegrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfa
 export interface IWidget {
   identifier: string;
   builder: () => ReactElement;
+  framework: string;
   options: {
     active: boolean;
     lg: {

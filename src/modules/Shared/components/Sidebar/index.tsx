@@ -1,10 +1,4 @@
-import {
-  MdDashboard,
-  MdOutlineSecurity,
-  MdPolicy,
-  MdReportGmailerrorred,
-  MdViewList,
-} from 'react-icons/md';
+import { MdDashboard, MdOutlineSecurity, MdPolicy, MdReportGmailerrorred, MdViewList } from 'react-icons/md';
 import { Drawer, List, useTheme } from '@mui/material';
 
 import NavigationItem from './NavigationItem';
@@ -40,7 +34,7 @@ export default function Sidebar() {
         >
           <MdOutlineSecurity size={30} color={theme.palette.text.primary} />
         </NavigationItem>
-        <NavigationItem path="/eventos-de-seguranca" title="Eventos">
+        <NavigationItem path="/eventos" title="Eventos">
           <MdViewList size={30} color={theme.palette.text.primary} />
         </NavigationItem>
       </List>

@@ -1,27 +1,12 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, Dispatch, SetStateAction, useContext, useMemo, useState } from 'react';
 import {
   IActionsTypes,
   IAlertsByActionOverTime,
   IRuleDistribution,
   ITop5Agents,
 } from 'modules/IntegrityMonitoring/interfaces';
-import {
-  IIntegrityMonitoringWidgets,
-  IntegrityMonitoringWidgetsDefaultConfig,
-} from '../interfaces/Widgets';
-import {
-  ActionsTypes,
-  AlertsByActionOverTime,
-  RuleDistribution,
-  Top5Agents,
-} from '../components';
+import { IIntegrityMonitoringWidgets, IntegrityMonitoringWidgetsDefaultConfig } from '../interfaces/Widgets';
+import { ActionsTypes, AlertsByActionOverTime, RuleDistribution, Top5Agents } from '../components';
 
 export const integrityMonitoringWidgets: IIntegrityMonitoringWidgets = {
   actionsTypes: {

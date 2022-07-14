@@ -15,6 +15,9 @@ const TopTechniquesByAgent = () => {
         color: '#fff',
       },
     },
+    chart: {
+      stacked: true
+    },
     series,
     xaxis: { categories },
   };

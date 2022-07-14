@@ -1,9 +1,9 @@
-import { AxiosClient } from './AxiosClient';
+import AxiosClient from './AxiosClient';
 
 export const BaseService = (baseEndpoint: string) => {
-  const axios = AxiosClient();
+  const axios = AxiosClient;
   return {
-    get: (url = '') => axios.get(`${baseEndpoint}${url}`),
+    get: <T>(url = '') => axios.get<T>(`${baseEndpoint}${url}`),
     post: <T>(url?: string, data?: T) =>
       axios.post(`${baseEndpoint}${url || ''}`, data),
   };

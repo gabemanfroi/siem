@@ -10,6 +10,7 @@ export const SecurityEventWidgetsDefaultConfig = {
   alertLevelEvolution: {
     label: 'Alert Level Evolution',
     identifier: 'alertLevelEvolution',
+    framework: 'securityEvent',
     options: {
       active: true,
       lg: {
@@ -24,6 +25,7 @@ export const SecurityEventWidgetsDefaultConfig = {
   alertsEvolutionTop5Agents: {
     label: 'Alert Evolution Top 5 Agents',
     identifier: 'alertsEvolutionTop5Agents',
+    framework: 'securityEvent',
     options: {
       active: true,
       lg: {
@@ -38,6 +40,7 @@ export const SecurityEventWidgetsDefaultConfig = {
   topMitre: {
     label: 'Top Mitre',
     identifier: 'topMitre',
+    framework: 'securityEvent',
     options: {
       active: true,
       lg: {

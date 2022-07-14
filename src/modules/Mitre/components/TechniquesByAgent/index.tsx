@@ -14,6 +14,9 @@ const TechniquesByAgent = () => {
       text: 'Techniques By Agent',
       style: { color: '#fff' },
     },
+    chart: {
+      stacked: true
+    },
     series,
     xaxis: { categories },
   };

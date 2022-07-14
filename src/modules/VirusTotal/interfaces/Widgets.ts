@@ -10,6 +10,7 @@ export const VirusTotalWidgetsDefaultConfig = {
   alertsEvolutionByAgents: {
     label: 'Alerts Evolution by Agent',
     identifier: 'alertsEvolutionByAgents',
+    framework: 'virusTotal',
     options: {
       active: true,
       lg: {
@@ -24,6 +25,7 @@ export const VirusTotalWidgetsDefaultConfig = {
   lastScannedFiles: {
     label: 'Last Scanned Files',
     identifier: 'lastScannedFiles',
+    framework: 'virusTotal',
     options: {
       active: true,
       lg: {
@@ -38,6 +40,7 @@ export const VirusTotalWidgetsDefaultConfig = {
   uniqueMaliciousFilesPerAgent: {
     label: 'Most Common CVEs',
     identifier: 'uniqueMaliciousFilesPerAgent',
+    framework: 'virusTotal',
     options: {
       active: true,
       lg: {

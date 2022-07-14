@@ -16,7 +16,7 @@ const SecurityEvent = () => {
       <WidgetsGrid
         widgets={widgets}
         widgetsHandler={widgetsHandlersMap}
-        apiEndpoint={routes.bragi.SECURITY_EVENT}
+        apiEndpoint={routes.BRAGI.SECURITY_EVENT}
       />
     </DefaultPageContainer>
   );

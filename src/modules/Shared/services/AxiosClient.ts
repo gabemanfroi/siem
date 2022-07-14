@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { camelizeKeys } from 'humps';
 import TokenUtil from '../utils/TokenUtil';
 
-export const AxiosClient = (baseURL?: string) => {
+const AxiosClient = (baseURL?: string) => {
   const axiosInstance = axios.create({
     baseURL: baseURL || process.env.REACT_APP_HTTP_API_URL,
     headers: {
@@ -10,11 +9,6 @@ export const AxiosClient = (baseURL?: string) => {
       'Access-Control-Allow-Origin': '*',
     },
   });
-
-  axiosInstance.interceptors.response.use(
-    (response) => camelizeKeys(response.data),
-    (error) => Promise.reject(error)
-  );
 
   axiosInstance.interceptors.request.use(async (config) => {
     const token = TokenUtil().getToken();
@@ -25,3 +19,5 @@ export const AxiosClient = (baseURL?: string) => {
 
   return axiosInstance;
 };
+
+export default AxiosClient()

@@ -17,6 +17,10 @@ const AlertLevelEvolution = () => {
       },
     },
     series,
+    chart: {
+      type: 'bar',
+      stacked: true,
+    },
     xaxis: { categories, type: 'datetime' },
   };
 

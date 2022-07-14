@@ -87,6 +87,6 @@ const bragiRoutes = {
 };
 
 export const routes = {
-  auth: { ...authRoutes },
-  bragi: { ...bragiRoutes }
+  AUTH: { ...authRoutes },
+  BRAGI: { ...bragiRoutes }
 }

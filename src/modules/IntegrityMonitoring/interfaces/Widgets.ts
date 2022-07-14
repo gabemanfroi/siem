@@ -11,6 +11,7 @@ export interface IIntegrityMonitoringWidgets {
 export const IntegrityMonitoringWidgetsDefaultConfig = {
   actionsTypes: {
     identifier: 'actionsTypes',
+    framework: 'integrityMonitoring',
     options: {
       active: true,
       lg: {
@@ -24,6 +25,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
   },
   alertsByActionOverTime: {
     identifier: 'alertsByActionOverTime',
+    framework: 'integrityMonitoring',
     options: {
       active: true,
       lg: {
@@ -37,6 +39,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
   },
   ruleDistribution: {
     identifier: 'ruleDistribution',
+    framework: 'integrityMonitoring',
     options: {
       active: true,
       lg: {
@@ -50,6 +53,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
   },
   integrityMonitoringTop5Agents: {
     identifier: 'integrityMonitoringTop5Agents',
+    framework: 'integrityMonitoring',
     options: {
       active: true,
       lg: {
