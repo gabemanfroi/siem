@@ -1,4 +1,4 @@
-import { HEXADECIMAL_REGEX } from 'modules/Shared/core/Constants';
+import { HEXADECIMAL_REGEX } from 'modules/Shared/constants/regex';
 import { ApexOptions } from 'apexcharts';
 import RadialBarOptionsFactory from './index';
 

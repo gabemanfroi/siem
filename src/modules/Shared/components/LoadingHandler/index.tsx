@@ -1,6 +1,7 @@
 import React from 'react';
-import { useLoading } from 'modules/Shared/contexts';
+
 import { Skeleton, SkeletonProps } from '@mui/material';
+import { useLoading } from 'modules/Shared/hooks';
 
 interface LoadingHandlerPropsInterface extends SkeletonProps {
   children: React.ReactNode;

@@ -12,6 +12,8 @@ import {
   ITop5Agents,
   ITopMitre,
 } from 'modules/SecurityEvent/interfaces';
+import { IEvent, IThreat } from 'modules/Shared/interfaces';
+import EventModal from 'modules/Shared/components/Modal/EventModal';
 import {
   ISecurityEventWidgets,
   SecurityEventWidgetsDefaultConfig,
@@ -21,19 +23,24 @@ import {
   AlertsEvolutionTop5Agents,
   TopMitre,
 } from '../components';
+import LatestThreats from '../components/LatestThreats';
 
 export const securityEventWidgets: ISecurityEventWidgets = {
   topMitre: {
     ...SecurityEventWidgetsDefaultConfig.topMitre,
-    builder: () => <TopMitre />,
+    builder: <TopMitre />,
   },
   alertsEvolutionTop5Agents: {
     ...SecurityEventWidgetsDefaultConfig.alertsEvolutionTop5Agents,
-    builder: () => <AlertsEvolutionTop5Agents />,
+    builder: <AlertsEvolutionTop5Agents />,
   },
   alertLevelEvolution: {
     ...SecurityEventWidgetsDefaultConfig.alertLevelEvolution,
-    builder: () => <AlertLevelEvolution />,
+    builder: <AlertLevelEvolution />,
+  },
+  latestThreats: {
+    ...SecurityEventWidgetsDefaultConfig.latestThreats,
+    builder: <LatestThreats />,
   },
 };
 
@@ -42,7 +49,12 @@ interface ISecurityEventContext {
   alertsEvolutionTop5Agents: IAlertsEvolutionTop5Agents | undefined;
   securityEventTop5Agents: ITop5Agents | undefined;
   topMitre: ITopMitre | undefined;
-  widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
+  latestThreats: IThreat[];
+  widgetsHandler: { [key: string]: Dispatch<SetStateAction<any>> };
+  selectedEventId: string | null;
+  setSelectedEventId: Dispatch<SetStateAction<string | null>>;
+  selectedEvent: IEvent | null;
+  setSelectedEvent: Dispatch<SetStateAction<IEvent | null>>;
 }
 
 const securityEventContextDefaultValues: ISecurityEventContext = {
@@ -50,7 +62,12 @@ const securityEventContextDefaultValues: ISecurityEventContext = {
   alertsEvolutionTop5Agents: undefined,
   securityEventTop5Agents: undefined,
   topMitre: undefined,
-  widgetsHandlersMap: {},
+  latestThreats: [],
+  widgetsHandler: {},
+  selectedEventId: null,
+  setSelectedEventId: () => {},
+  selectedEvent: null,
+  setSelectedEvent: () => {},
 };
 
 const SecurityEventContext = createContext<ISecurityEventContext>(
@@ -58,6 +75,8 @@ const SecurityEventContext = createContext<ISecurityEventContext>(
 );
 
 export const SecurityEventProvider: React.FC = ({ children }) => {
+  const [selectedEvent, setSelectedEvent] = useState<null | IEvent>(null);
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [alertLevelEvolution, setAlertLevelEvolution] = useState<
     IAlertLevelEvolution | undefined
   >();
@@ -68,32 +87,43 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
     ITop5Agents | undefined
   >();
   const [topMitre, setTopMitre] = useState<ITopMitre | undefined>();
+  const [latestThreats, setLatestThreats] = useState<IThreat[]>([]);
 
-  const widgetsHandlersMap = {
+  const widgetsHandler = {
     alertLevelEvolution: setAlertLevelEvolution,
+
     alertsEvolutionTop5Agents: setAlertsEvolutionTop5Agents,
     securityEventTop5Agents: setSecurityEventTop5Agents,
     topMitre: setTopMitre,
+    latestThreats: setLatestThreats,
   };
 
   const value = useMemo(
     () => ({
+      selectedEventId,
+      setSelectedEventId,
       alertLevelEvolution,
       alertsEvolutionTop5Agents,
       securityEventTop5Agents,
       topMitre,
-      widgetsHandlersMap,
+      widgetsHandler,
+      latestThreats,
+      selectedEvent,
+      setSelectedEvent,
     }),
     [
+      selectedEventId,
       alertLevelEvolution,
       alertsEvolutionTop5Agents,
       securityEventTop5Agents,
       topMitre,
+      latestThreats,
     ]
   );
 
   return (
     <SecurityEventContext.Provider value={value}>
+      {selectedEventId && <EventModal />}
       {children}
     </SecurityEventContext.Provider>
   );

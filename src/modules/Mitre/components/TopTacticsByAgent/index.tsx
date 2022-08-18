@@ -9,11 +9,8 @@ const TopTechniquesByAgent = () => {
   const { series, categories } = topTacticsByAgent;
 
   const options = {
-    title: {
-      text: 'Top Techniques By Agent',
-      style: {
-        color: '#fff',
-      },
+    chart: {
+      stacked: true,
     },
     series,
     xaxis: { categories },

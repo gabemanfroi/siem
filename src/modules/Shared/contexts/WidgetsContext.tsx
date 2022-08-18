@@ -1,18 +1,31 @@
-import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Layout } from 'react-grid-layout';
 import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
-import { IAllWidgets, IWidget, WidgetsMapKeys } from 'modules/Shared/interfaces/Widgets';
+import {
+  IAllWidgets,
+  IWidget,
+  WidgetsMapKeys,
+} from 'modules/Shared/interfaces/Widgets';
 import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 
 import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
+import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
 
 const widgetsMap: IAllWidgets = {
   ...integrityMonitoringWidgets,
   ...securityEventWidgets,
   ...mitreWidgets,
   ...vulnerabilityWidgets,
+  ...agentWidgets,
 };
 
 interface WidgetsContextInterface {
@@ -23,7 +36,8 @@ interface WidgetsContextInterface {
   // eslint-disable-next-line no-unused-vars
   saveCurrentLayout: (layouts: Layout[]) => void;
   widgetsMap: IAllWidgets;
-
+  customizeMode: boolean;
+  setCustomizeMode: Dispatch<SetStateAction<boolean>>;
 }
 
 const defaultValue = {
@@ -33,9 +47,12 @@ const defaultValue = {
   saveCurrentLayout: () => {},
   setSelectedWidgets: () => {},
   widgetsMap,
+  customizeMode: false,
+  setCustomizeMode: () => {},
 };
 
-const WidgetsContext = createContext<WidgetsContextInterface>(defaultValue);
+export const WidgetsContext =
+  createContext<WidgetsContextInterface>(defaultValue);
 
 interface FormattedWidgetsInterface {
   [key: string]: Record<string, unknown>;
@@ -72,6 +89,8 @@ export const WidgetsProvider: React.FC = ({ children }) => {
     getLocalStorageConfig() || {}
   );
 
+  const [customizeMode, setCustomizeMode] = useState(false);
+
   const [selectedWidgets, setSelectedWidgets] = useState<IWidget[]>(
     Object.values(selectedWidgetsMap).map((v) => v)
   );
@@ -102,6 +121,8 @@ export const WidgetsProvider: React.FC = ({ children }) => {
       saveCurrentLayout,
       setSelectedWidgets,
       widgetsMap,
+      customizeMode,
+      setCustomizeMode,
     }),
     [selectedWidgets]
   );
@@ -112,5 +133,3 @@ export const WidgetsProvider: React.FC = ({ children }) => {
     </WidgetsContext.Provider>
   );
 };
-
-export const useWidgets = () => useContext(WidgetsContext);

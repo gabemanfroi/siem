@@ -4,7 +4,7 @@ import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { MdRefresh } from 'react-icons/md';
 import { ptBR } from 'date-fns/locale';
-import { useFilter } from 'modules/Shared/contexts/FilterContext';
+import { useFilter } from 'modules/Shared/hooks';
 
 const DateFilter = () => {
   const { filters, setFilters } = useFilter();
@@ -55,9 +55,7 @@ const DateFilter = () => {
         variant="contained"
         endIcon={<MdRefresh />}
         onClick={applyNewFilters}
-      >
-        Send
-      </Button>
+      />
     </LocalizationProvider>
   );
 };

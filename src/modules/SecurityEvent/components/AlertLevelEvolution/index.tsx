@@ -10,13 +10,11 @@ const AlertLevelEvolution = () => {
   const { series, categories } = alertLevelEvolution;
 
   const options: ApexOptions = {
-    title: {
-      text: 'Alert Level Evolution',
-      style: {
-        color: '#fff',
-      },
-    },
     series,
+    chart: {
+      type: 'bar',
+      stacked: true,
+    },
     xaxis: { categories, type: 'datetime' },
   };
 

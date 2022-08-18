@@ -10,7 +10,6 @@ const TopMitre = () => {
   const options = {
     series,
     labels,
-    title: { text: 'Top Mitre' },
   };
 
   return <DonutChart options={options} />;

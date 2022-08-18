@@ -9,11 +9,8 @@ const AttacksByTechniques = () => {
   const { series, categories } = attacksByTechnique;
 
   const options = {
-    title: {
-      text: 'Attacks By Technique',
-      style: {
-        color: '#fff',
-      },
+    style: {
+      color: '#fff',
     },
     series,
     xaxis: { categories },

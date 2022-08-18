@@ -4,12 +4,29 @@ export interface ISecurityEventWidgets {
   alertLevelEvolution?: IWidget;
   topMitre?: IWidget;
   alertsEvolutionTop5Agents?: IWidget;
+  latestThreats?: IWidget;
 }
 
 export const SecurityEventWidgetsDefaultConfig = {
+  latestThreats: {
+    label: 'Security Event - Latest Threats',
+    identifier: 'latestThreats',
+    framework: 'securityEvent',
+    options: {
+      active: true,
+      lg: {
+        i: 'latestThreats',
+        w: 6,
+        h: 2,
+        x: 0,
+        y: 0,
+      },
+    },
+  },
   alertLevelEvolution: {
-    label: 'Alert Level Evolution',
+    label: 'Security Event - Alert Level Evolution',
     identifier: 'alertLevelEvolution',
+    framework: 'securityEvent',
     options: {
       active: true,
       lg: {
@@ -22,8 +39,9 @@ export const SecurityEventWidgetsDefaultConfig = {
     },
   },
   alertsEvolutionTop5Agents: {
-    label: 'Alert Evolution Top 5 Agents',
+    label: 'Security Event - Alert Evolution Top 5 Agents',
     identifier: 'alertsEvolutionTop5Agents',
+    framework: 'securityEvent',
     options: {
       active: true,
       lg: {
@@ -36,8 +54,9 @@ export const SecurityEventWidgetsDefaultConfig = {
     },
   },
   topMitre: {
-    label: 'Top Mitre',
+    label: 'Security Event - Top Mitre',
     identifier: 'topMitre',
+    framework: 'securityEvent',
     options: {
       active: true,
       lg: {

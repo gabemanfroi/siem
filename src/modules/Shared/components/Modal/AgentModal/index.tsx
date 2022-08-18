@@ -1,65 +1,85 @@
-import { Box, Stack, Tab, Tabs, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { TabContext, TabPanel } from '@mui/lab';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  Stack,
+  TextField,
+} from '@mui/material';
+import React, { useEffect } from 'react';
 
-import { useAgent } from 'modules/Shared/contexts';
-import { AiOutlineClose } from 'react-icons/ai';
-import Overview from './Overview';
-import Events from './Events';
-import { AgentModalCard, StyledModal } from './style';
+import { useAgent } from 'modules/Agent/hooks';
+import { useAgentQuery } from 'modules/Agent/hooks/queries';
 
 export default function AgentModal() {
-  const [selectedTab, setSelectedTab] = useState('1');
   const {
-    selectedAgent,
     isAgentModalOpen,
     setIsAgentModalOpen,
     setSelectedAgent,
+    selectedAgentId,
   } = useAgent();
 
-  const handleChange = (event: React.SyntheticEvent, newVal: string) => {
-    setSelectedTab(newVal);
-  };
+  const { findByElasticsearchIdAgent } = useAgentQuery({
+    elasticsearchId: selectedAgentId!,
+  });
+
+  useEffect(() => {
+    if (findByElasticsearchIdAgent) {
+      setSelectedAgent(findByElasticsearchIdAgent);
+    }
+  }, [findByElasticsearchIdAgent]);
 
   const handleClose = () => {
     setIsAgentModalOpen(false);
     setSelectedAgent(null);
   };
 
-  if (!isAgentModalOpen || !selectedAgent) return <></>;
+  if (!isAgentModalOpen || !findByElasticsearchIdAgent) return <></>;
 
   return (
-    <StyledModal open={isAgentModalOpen} onClose={handleClose}>
-      <AgentModalCard>
-        <Stack>
-          <Box
-            sx={{
-              justifyContent: 'end',
-              display: 'flex',
-            }}
-          >
-            <AiOutlineClose size={24} cursor="pointer" onClick={handleClose} />
-          </Box>
-          <Typography color="#c3c3c3" variant="h2" sx={{ textAlign: 'center' }}>
-            {`${selectedAgent.generalData.name.toUpperCase()} - `}
-            {selectedAgent.generalData.ip}
-          </Typography>
-        </Stack>
-        <TabContext value={selectedTab}>
-          <Box>
-            <Tabs onChange={handleChange} value={selectedTab}>
-              <Tab label="Informações Gerais" value="1" />
-              <Tab label="Eventos" value="2" />
-            </Tabs>
-          </Box>
-          <TabPanel sx={{ flex: 1 }} value="1">
-            <Overview />
-          </TabPanel>
-          <TabPanel value="2">
-            <Events />
-          </TabPanel>
-        </TabContext>
-      </AgentModalCard>
-    </StyledModal>
+    <Dialog
+      open={isAgentModalOpen}
+      onClose={handleClose}
+      maxWidth="lg"
+      fullWidth
+    >
+      <DialogTitle>
+        {findByElasticsearchIdAgent.generalData.elasticsearchName} -{' '}
+        {findByElasticsearchIdAgent.generalData.ip}
+      </DialogTitle>
+      <DialogContent>
+        <Grid container gap={1}>
+          <Grid item xs={3}>
+            <Stack gap={1}>
+              <TextField
+                disabled
+                defaultValue={findByElasticsearchIdAgent.generalData.name}
+                value={findByElasticsearchIdAgent.generalData.name}
+              />
+              <TextField
+                disabled
+                defaultValue={
+                  findByElasticsearchIdAgent.generalData.elasticsearchName
+                }
+                value={findByElasticsearchIdAgent.generalData.elasticsearchName}
+              />
+              <TextField
+                disabled
+                defaultValue={findByElasticsearchIdAgent.generalData.ip}
+                value={findByElasticsearchIdAgent.generalData.ip}
+              />
+              <TextField
+                disabled
+                defaultValue={findByElasticsearchIdAgent.generalData.deviceType}
+                value={findByElasticsearchIdAgent.generalData.deviceType}
+              />
+            </Stack>
+          </Grid>
+          <Grid item xs={8}>
+            <Stack>oi</Stack>
+          </Grid>
+        </Grid>
+      </DialogContent>
+    </Dialog>
   );
 }

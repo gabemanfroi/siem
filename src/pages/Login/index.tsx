@@ -2,27 +2,27 @@ import { Button, Card, TextField, useTheme } from '@mui/material';
 
 import { useFormik } from 'formik';
 import loginSchema from 'modules/Login/schemas';
-
 import { TokenUtil } from 'modules/Shared/utils';
 import { useNavigate } from 'react-router-dom';
-import { AuthService } from 'modules/Shared/api';
+import axios from 'axios';
 import { Form, StyledContainer } from './style';
 
 export default function Login() {
   const navigate = useNavigate();
-  const authService = AuthService();
   const { spacing } = useTheme();
 
   const { handleSubmit, getFieldProps, touched, errors } = useFormik({
     validationSchema: loginSchema,
     initialValues: loginSchema.getDefault(),
     onSubmit: (values) => {
-      authService
-        .authenticate(values.email, values.password)
+      console.log('hi');
+      axios
+        .post('http://localhost:8066/api/auth/login', {
+          email: values.email,
+          password: values.password,
+        })
         .then((res) => {
-          // @ts-ignore
-          const { accessToken: token } = res;
-          TokenUtil().setToken(token);
+          TokenUtil().setToken(res.data.access_token);
           navigate('/');
         })
         .catch(() => {});

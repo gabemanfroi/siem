@@ -10,7 +10,6 @@ const Top5Agents = () => {
   const options: ApexOptions = {
     series,
     labels,
-    title: { text: 'Top 5 Agents - Integrity Monitoring' },
   };
 
   return <DonutChart options={options} />;

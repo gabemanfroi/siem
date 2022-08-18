@@ -1,13 +1,20 @@
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Box from '@mui/material/Box';
-import Autocomplete, { AutocompleteCloseReason } from '@mui/material/Autocomplete';
+import Autocomplete, {
+  AutocompleteCloseReason,
+} from '@mui/material/Autocomplete';
 import * as React from 'react';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { MdOutlineCheck, MdOutlineClose } from 'react-icons/md';
 import { useTheme } from '@mui/material/styles';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
-import { useWidgets } from 'modules/Shared/contexts';
-import { IAutoCompleteWidget, isWidget, IWidget, WidgetsMapKeys } from 'modules/Shared/interfaces/Widgets';
+import { useWidgets } from 'modules/Shared/hooks';
+import {
+  IAutoCompleteWidget,
+  isWidget,
+  IWidget,
+  WidgetsMapKeys,
+} from 'modules/Shared/interfaces/Widgets';
 import { StyledAutocompletePopper, StyledInput, StyledPopper } from './style';
 
 interface PopperComponentProps {
@@ -66,8 +73,10 @@ export const WidgetsSelectorPopper = ({
     setAnchorEl(null);
   };
 
-  const handleAutoCompleteClose = (event: React.ChangeEvent<{}>,
-    reason: AutocompleteCloseReason) => {
+  const handleAutoCompleteClose = (
+    event: React.ChangeEvent<{}>,
+    reason: AutocompleteCloseReason
+  ) => {
     if (reason === 'escape') {
       handleClose();
     }

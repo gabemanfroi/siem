@@ -1,10 +1,10 @@
 import React, { forwardRef, ReactNode } from 'react';
 import 'react-grid-layout/css/styles.css';
 
-import { Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { MdOutlineClose, MdOutlineDragIndicator } from 'react-icons/md';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
-import { useWidgets } from 'modules/Shared/contexts';
+import { useWidgets } from 'modules/Shared/hooks';
 import { Container } from './style';
 
 interface IGridItem {
@@ -22,7 +22,6 @@ const GridItem = ({
   ...props
 }: IGridItem) => {
   const { setSelectedWidgets, selectedWidgets } = useWidgets();
-
   const handleClose = () => {
     const updatedWidgets = [...selectedWidgets];
     const index = updatedWidgets.findIndex(
@@ -50,6 +49,7 @@ const GridItem = ({
           />
         </Stack>
       )}
+      <Typography variant="h5">{widget.label}</Typography>
       <Stack className="react-grid-item">{children}</Stack>
     </Container>
   );

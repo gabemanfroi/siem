@@ -1,21 +1,13 @@
 import 'react-grid-layout/css/styles.css';
-import { useWidgets } from 'modules/Shared/contexts';
-import { useDashboard } from 'modules/Dashboard/contexts';
+import { useWidgets } from 'modules/Shared/hooks';
 import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
 
 const Grid = () => {
   const { selectedWidgets } = useWidgets();
-  const { dashboardWidgetsHandler } = useDashboard();
 
   if (selectedWidgets.length === 0) return <></>;
 
-  return (
-    <WidgetsGrid
-      widgets={selectedWidgets}
-      widgetsHandler={dashboardWidgetsHandler}
-      apiEndpoint="/dashboard"
-    />
-  );
+  return <WidgetsGrid widgets={selectedWidgets} apiEndpoint="/dashboard" />;
 };
 
 export default Grid;

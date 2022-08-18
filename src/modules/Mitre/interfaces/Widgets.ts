@@ -10,8 +10,9 @@ export interface IMitreWidgets {
 
 export const MitreWidgetsDefaultConfig = {
   attacksByTechnique: {
-    label: 'Attacks by Technique',
+    label: 'Mitre ATT&CK - Attacks by Technique',
     identifier: 'attacksByTechnique',
+    framework: 'mitre',
     options: {
       active: true,
       lg: {
@@ -24,8 +25,9 @@ export const MitreWidgetsDefaultConfig = {
     },
   },
   techniquesByAgent: {
-    label: 'Techniques by Agent',
+    label: 'Mitre ATT&CK - Techniques by Agent',
     identifier: 'techniquesByAgent',
+    framework: 'mitre',
     options: {
       active: true,
       lg: {
@@ -38,8 +40,9 @@ export const MitreWidgetsDefaultConfig = {
     },
   },
   topTactics: {
-    label: 'Top Tactics',
+    label: 'Mitre ATT&CK - Top Tactics',
     identifier: 'topTactics',
+    framework: 'mitre',
     options: {
       active: true,
       lg: {
@@ -52,8 +55,9 @@ export const MitreWidgetsDefaultConfig = {
     },
   },
   topTacticsByAgent: {
-    label: 'Top Tactics by Agent',
+    label: 'Mitre ATT&CK - Top Tactics by Agent',
     identifier: 'topTacticsByAgent',
+    framework: 'mitre',
     options: {
       active: true,
       lg: {
@@ -66,8 +70,9 @@ export const MitreWidgetsDefaultConfig = {
     },
   },
   alertsEvolutionOverTime: {
-    label: 'Alerts Evolution Over Time',
+    label: 'Mitre ATT&CK - Alerts Evolution Over Time',
     identifier: 'alertsEvolutionOverTime',
+    framework: 'mitre',
     options: {
       active: true,
       lg: {

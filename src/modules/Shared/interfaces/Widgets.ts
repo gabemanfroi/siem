@@ -3,10 +3,12 @@ import { IMitreWidgets } from 'modules/Mitre/interfaces/Widgets';
 import { IVulnerabilityWidgets } from 'modules/Vulnerability/interfaces/Widgets';
 import { ISecurityEventWidgets } from 'modules/SecurityEvent/interfaces/Widgets';
 import { IIntegrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfaces/Widgets';
+import { IAgentWidgets } from 'modules/Agent/interfaces/Widgets';
 
-export interface IWidget {
+export interface IWidgetDefault {
+  label: string;
   identifier: string;
-  builder: () => ReactElement;
+  framework: string;
   options: {
     active: boolean;
     lg: {
@@ -19,6 +21,14 @@ export interface IWidget {
   };
 }
 
+export interface IWidgetDefaultConfig {
+  [key: string]: IWidgetDefault;
+}
+
+export interface IWidget extends IWidgetDefault {
+  builder: ReactElement;
+}
+
 export interface IAutoCompleteWidget {
   identifier: string;
   label: string;
@@ -28,7 +38,8 @@ export interface IAllWidgets
   extends IMitreWidgets,
     IVulnerabilityWidgets,
     ISecurityEventWidgets,
-    IIntegrityMonitoringWidgets {}
+    IIntegrityMonitoringWidgets,
+    IAgentWidgets {}
 
 export type WidgetsMapKeys =
   | 'alertsEvolutionOverTime'
@@ -48,7 +59,9 @@ export type WidgetsMapKeys =
   | 'alertsByActionOverTime'
   | 'ruleDistribution'
   | 'integrityMonitoringTop5Agents'
-  | 'widgetsHandlersMap';
+  | 'widgetsHandler'
+  | 'latestThreats'
+  | 'notableAgents';
 
 export const isWidget = (
   obj: IAutoCompleteWidget | IWidget | undefined

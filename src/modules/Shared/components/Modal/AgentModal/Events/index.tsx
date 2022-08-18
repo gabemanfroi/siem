@@ -10,16 +10,16 @@ import {
   TableRow,
 } from '@mui/material';
 import React from 'react';
-import { EventType } from 'modules/Shared/types';
-import { useAgent } from 'modules/Shared/contexts';
+import { IEvent } from 'modules/Shared/interfaces';
+import { useAgent } from 'modules/Agent/hooks';
 
-function Row({ event }: { event: EventType }) {
+function Row({ event }: { event: IEvent }) {
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell align="right">{event.level}</TableCell>
-        <TableCell align="right">{event.firedTimes}</TableCell>
-        <TableCell align="right">{event.description}</TableCell>
+        <TableCell align="right">{event.rule.level}</TableCell>
+        <TableCell align="right">{event.rule.firedTimes}</TableCell>
+        <TableCell align="right">{event.rule.description}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -34,10 +34,12 @@ function Row({ event }: { event: EventType }) {
                     <TableCell align="right">Full Message</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell align="right">{event.level}</TableCell>
-                    <TableCell align="right">{event.firedTimes}</TableCell>
-                    <TableCell align="right">{event.description}</TableCell>
-                    <TableCell align="right">{event.message}</TableCell>
+                    <TableCell align="right">{event.rule.level}</TableCell>
+                    <TableCell align="right">{event.rule.firedTimes}</TableCell>
+                    <TableCell align="right">
+                      {event.rule.description}
+                    </TableCell>
+                    <TableCell align="right">{event.win?.message}</TableCell>
                   </TableRow>
                 </TableHead>
               </Table>

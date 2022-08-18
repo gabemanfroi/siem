@@ -6,8 +6,10 @@ const componentToBeRendered = (
     isDraggable
     isResizable
     widget={{
+      label: 'Testing Framework',
       options: { lg: { w: 6, i: '0', h: 6, x: 0, y: 0 }, active: true },
-      builder: () => <div />,
+      framework: 'testingFramework',
+      builder: <div />,
       identifier: 'identifier',
     }}
     key="testKey"

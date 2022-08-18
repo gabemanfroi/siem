@@ -4,10 +4,8 @@ import Router from 'modules/Shared/components/Router';
 import theme from 'modules/Shared/theme';
 import './sass/main.scss';
 import {
-  AgentProvider,
   FilterProvider,
   LoadingProvider,
-  WebSocketProvider,
   WidgetsProvider,
 } from 'modules/Shared/contexts';
 import { DashboardProvider } from 'modules/Dashboard/contexts/DashboardContext';
@@ -16,12 +14,17 @@ import { MitreProvider } from 'modules/Mitre/contexts/MitreContext';
 import { VirusTotalProvider } from 'modules/VirusTotal/contexts/VirusTotalContext';
 import { VulnerabilityProvider } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { SecurityEventProvider } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { AgentProvider } from 'modules/Agent/contexts';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LoadingProvider>
-        <WebSocketProvider>
+      <QueryClientProvider client={queryClient}>
+        <LoadingProvider>
           <FilterProvider>
             <MitreProvider>
               <VulnerabilityProvider>
@@ -42,8 +45,9 @@ export default function App() {
               </VulnerabilityProvider>
             </MitreProvider>
           </FilterProvider>
-        </WebSocketProvider>
-      </LoadingProvider>
+        </LoadingProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

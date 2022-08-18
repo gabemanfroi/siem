@@ -3,7 +3,6 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
-  useContext,
   useEffect,
   useMemo,
   useState,
@@ -23,7 +22,7 @@ interface LoadingProviderInterface {
   children: ReactNode;
 }
 
-const LoadingContext = createContext<LoadingContextInterface>(
+export const LoadingContext = createContext<LoadingContextInterface>(
   loadingContextDefaultValue
 );
 
@@ -51,5 +50,3 @@ export const LoadingProvider = ({ children }: LoadingProviderInterface) => {
     <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
   );
 };
-
-export const useLoading = () => useContext(LoadingContext);

@@ -13,9 +13,10 @@ const AlertsEvolutionOverTime = () => {
       type: 'datetime',
       categories,
     },
-    title: {
-      text: 'Alerts Evolution Over Time',
+    chart: {
+      stacked: true,
     },
+
     series,
   };
 

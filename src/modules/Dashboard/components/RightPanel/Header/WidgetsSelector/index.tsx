@@ -6,7 +6,7 @@ import {
   isWidget,
 } from 'modules/Shared/interfaces/Widgets';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
-import { useWidgets } from 'modules/Shared/contexts';
+import { useWidgets } from 'modules/Shared/hooks';
 import { AutocompleteBox, StyledButton } from './style';
 import WidgetsSelectorPopper from './Popper';
 

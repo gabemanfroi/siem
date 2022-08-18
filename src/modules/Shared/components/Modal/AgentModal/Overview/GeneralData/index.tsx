@@ -1,4 +1,4 @@
-import { AgentType } from 'modules/Shared/types/AgentType';
+import { IAgent } from 'modules/Shared/interfaces';
 import {
   Grid,
   IconButton,
@@ -19,9 +19,9 @@ import React, { useState } from 'react';
 import { dark50 } from 'modules/Shared/helpers/styles/Colors';
 
 interface GeneralDataPropsInterface {
-  agent: AgentType;
-  agentState: AgentType;
-  setAgentState: React.Dispatch<React.SetStateAction<AgentType | null>>;
+  agent: IAgent;
+  agentState: IAgent;
+  setAgentState: React.Dispatch<React.SetStateAction<IAgent | null>>;
 }
 
 const GeneralData = ({
@@ -54,7 +54,7 @@ const GeneralData = ({
                 <TextField
                   sx={{ fontSize: '16px' }}
                   size="small"
-                  value={agentState.generalData.alias}
+                  value={agentState.generalData.name}
                   onKeyPress={(e) => {
                     if (e.code === 'Enter') {
                       setEditMode(!editMode);
@@ -65,7 +65,7 @@ const GeneralData = ({
                       ...agent,
                       generalData: {
                         ...agentState.generalData,
-                        alias: e.target.value,
+                        name: e.target.value,
                       },
                     })
                   }
@@ -86,7 +86,7 @@ const GeneralData = ({
                   color={theme.palette.text.disabled}
                   variant="h5"
                 >
-                  {agentState.generalData.alias}
+                  {agentState.generalData.name}
                 </Typography>
                 <IconButton
                   sx={{ padding: 0, width: 22, height: 22 }}
@@ -161,7 +161,7 @@ const GeneralData = ({
         >
           <HiOutlineUserGroup size={22} color={theme.palette.text.disabled} />
           <Typography
-            fontSize="18px"
+            fontSize={18}
             color={theme.palette.text.disabled}
             variant="h5"
           >
