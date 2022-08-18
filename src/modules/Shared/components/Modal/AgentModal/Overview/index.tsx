@@ -1,12 +1,12 @@
 import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { AgentType } from 'modules/Shared/types/AgentType';
-import { useAgent } from 'modules/Shared/contexts';
+import { IAgent } from 'modules/Shared/interfaces';
+import { useAgent } from 'modules/Agent/hooks';
 import GeneralData from './GeneralData';
 
 const Overview = () => {
   const { selectedAgent } = useAgent();
-  const [agentState, setAgentState] = useState<AgentType | null>(selectedAgent);
+  const [agentState, setAgentState] = useState<IAgent | null>(selectedAgent);
 
   useEffect(() => {
     if (selectedAgent) setAgentState(selectedAgent);

@@ -10,12 +10,8 @@ const TechniquesByAgent = () => {
   const { series, categories } = techniquesByAgent;
 
   const options: ApexOptions = {
-    title: {
-      text: 'Techniques By Agent',
-      style: { color: '#fff' },
-    },
     chart: {
-      stacked: true
+      stacked: true,
     },
     series,
     xaxis: { categories },

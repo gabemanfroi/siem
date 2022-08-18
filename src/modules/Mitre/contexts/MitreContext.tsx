@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 import {
   AlertsEvolutionOverTime,
@@ -26,27 +19,28 @@ import {
   ITopTactics,
   ITopTacticsByAgent,
 } from 'modules/Mitre/interfaces';
+import { IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
 
 export const mitreWidgets: IMitreWidgets = {
   attacksByTechnique: {
     ...MitreWidgetsDefaultConfig.attacksByTechnique,
-    builder: () => <AttacksByTechniques />,
+    builder: <AttacksByTechniques />,
   },
   techniquesByAgent: {
     ...MitreWidgetsDefaultConfig.techniquesByAgent,
-    builder: () => <TechniquesByAgent />,
+    builder: <TechniquesByAgent />,
   },
   topTactics: {
     ...MitreWidgetsDefaultConfig.topTactics,
-    builder: () => <TopTactics />,
+    builder: <TopTactics />,
   },
   topTacticsByAgent: {
     ...MitreWidgetsDefaultConfig.topTacticsByAgent,
-    builder: () => <TopTacticsByAgent />,
+    builder: <TopTacticsByAgent />,
   },
   alertsEvolutionOverTime: {
     ...MitreWidgetsDefaultConfig.alertsEvolutionOverTime,
-    builder: () => <AlertsEvolutionOverTime />,
+    builder: <AlertsEvolutionOverTime />,
   },
 };
 
@@ -56,7 +50,7 @@ interface MitreContextInterface {
   techniquesByAgent: ITechniquesByAgent | undefined;
   topTactics: ITopTactics | undefined;
   topTacticsByAgent: ITopTacticsByAgent | undefined;
-  widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
+  widgetsHandler: IWidgetsHandler;
 }
 
 const mitreContextDefaultValues = {
@@ -65,7 +59,7 @@ const mitreContextDefaultValues = {
   techniquesByAgent: undefined,
   topTactics: undefined,
   topTacticsByAgent: undefined,
-  widgetsHandlersMap: {},
+  widgetsHandler: {},
 };
 
 const MitreContext = createContext<MitreContextInterface>(
@@ -87,7 +81,7 @@ export const MitreProvider: React.FC = ({ children }) => {
     ITopTacticsByAgent | undefined
   >();
 
-  const widgetsHandlersMap = {
+  const widgetsHandler = {
     techniquesByAgent: setTechniquesByAgent,
     attacksByTechnique: setAttacksByTechnique,
     topTactics: setTopTactics,
@@ -102,7 +96,7 @@ export const MitreProvider: React.FC = ({ children }) => {
       techniquesByAgent,
       topTactics,
       topTacticsByAgent,
-      widgetsHandlersMap,
+      widgetsHandler,
     }),
     [
       alertsEvolutionOverTime,

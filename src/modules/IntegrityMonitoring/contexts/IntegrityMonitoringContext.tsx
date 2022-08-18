@@ -1,29 +1,38 @@
-import React, { createContext, Dispatch, SetStateAction, useContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 import {
   IActionsTypes,
   IAlertsByActionOverTime,
   IRuleDistribution,
   ITop5Agents,
 } from 'modules/IntegrityMonitoring/interfaces';
-import { IIntegrityMonitoringWidgets, IntegrityMonitoringWidgetsDefaultConfig } from '../interfaces/Widgets';
-import { ActionsTypes, AlertsByActionOverTime, RuleDistribution, Top5Agents } from '../components';
+import { IwidgetsHandler } from 'modules/Shared/interfaces/IWidgetsHandlerMap';
+import {
+  IIntegrityMonitoringWidgets,
+  IntegrityMonitoringWidgetsDefaultConfig,
+} from '../interfaces/Widgets';
+import {
+  ActionsTypes,
+  AlertsByActionOverTime,
+  RuleDistribution,
+  Top5Agents,
+} from '../components';
 
 export const integrityMonitoringWidgets: IIntegrityMonitoringWidgets = {
   actionsTypes: {
     ...IntegrityMonitoringWidgetsDefaultConfig.actionsTypes,
-    builder: () => <ActionsTypes />,
+    builder: <ActionsTypes />,
   },
   alertsByActionOverTime: {
     ...IntegrityMonitoringWidgetsDefaultConfig.alertsByActionOverTime,
-    builder: () => <AlertsByActionOverTime />,
+    builder: <AlertsByActionOverTime />,
   },
   ruleDistribution: {
     ...IntegrityMonitoringWidgetsDefaultConfig.ruleDistribution,
-    builder: () => <RuleDistribution />,
+    builder: <RuleDistribution />,
   },
   integrityMonitoringTop5Agents: {
     ...IntegrityMonitoringWidgetsDefaultConfig.integrityMonitoringTop5Agents,
-    builder: () => <Top5Agents />,
+    builder: <Top5Agents />,
   },
 };
 
@@ -32,16 +41,17 @@ interface IntegrityMonitoringContextInterface {
   alertsByActionOverTime: IAlertsByActionOverTime | undefined;
   ruleDistribution: IRuleDistribution | undefined;
   integrityMonitoringTop5Agents: ITop5Agents | undefined;
-  widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
+  widgetsHandler: IwidgetsHandler;
 }
 
-const integrityMonitoringContextDefaultValues = {
-  actionsTypes: undefined,
-  alertsByActionOverTime: undefined,
-  ruleDistribution: undefined,
-  integrityMonitoringTop5Agents: undefined,
-  widgetsHandlersMap: {},
-};
+const integrityMonitoringContextDefaultValues: IntegrityMonitoringContextInterface =
+  {
+    actionsTypes: undefined,
+    alertsByActionOverTime: undefined,
+    ruleDistribution: undefined,
+    integrityMonitoringTop5Agents: undefined,
+    widgetsHandler: {},
+  };
 
 const IntegrityMonitoringContext =
   createContext<IntegrityMonitoringContextInterface>(
@@ -59,7 +69,7 @@ export const IntegrityMonitoringProvider: React.FC = ({ children }) => {
   const [integrityMonitoringTop5Agents, setIntegrityMonitoringTop5Agents] =
     useState<ITop5Agents | undefined>();
 
-  const widgetsHandlersMap = {
+  const widgetsHandler = {
     actionsTypes: setActionsTypes,
     alertsByActionOverTime: setAlertsByActionOverTime,
     ruleDistribution: setRuleDistribution,
@@ -72,7 +82,7 @@ export const IntegrityMonitoringProvider: React.FC = ({ children }) => {
       alertsByActionOverTime,
       ruleDistribution,
       integrityMonitoringTop5Agents,
-      widgetsHandlersMap,
+      widgetsHandler,
     }),
     [
       actionsTypes,

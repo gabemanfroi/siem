@@ -1,15 +1,19 @@
-import { IWidget } from 'modules/Shared/interfaces/Widgets';
+import {
+  IWidget,
+  IWidgetDefaultConfig,
+} from 'modules/Shared/interfaces/Widgets';
 
 export interface IIntegrityMonitoringWidgets {
   actionsTypes?: IWidget;
   alertsByActionOverTime?: IWidget;
   ruleDistribution?: IWidget;
   integrityMonitoringTop5Agents?: IWidget;
-  widgetsHandlersMap?: IWidget;
+  widgetsHandler?: IWidget;
 }
 
-export const IntegrityMonitoringWidgetsDefaultConfig = {
+export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
   actionsTypes: {
+    label: 'Integrity Monitoring - Actions Types',
     identifier: 'actionsTypes',
     framework: 'integrityMonitoring',
     options: {
@@ -24,6 +28,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
     },
   },
   alertsByActionOverTime: {
+    label: 'Integrity Monitoring - Alerts By Action Over Time',
     identifier: 'alertsByActionOverTime',
     framework: 'integrityMonitoring',
     options: {
@@ -38,6 +43,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
     },
   },
   ruleDistribution: {
+    label: 'Integrity Monitoring - Rule Distribution',
     identifier: 'ruleDistribution',
     framework: 'integrityMonitoring',
     options: {
@@ -52,6 +58,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig = {
     },
   },
   integrityMonitoringTop5Agents: {
+    label: 'Integrity Monitoring - Top 5 Agents',
     identifier: 'integrityMonitoringTop5Agents',
     framework: 'integrityMonitoring',
     options: {

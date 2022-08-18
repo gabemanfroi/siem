@@ -24,15 +24,15 @@ import {
 export const virusTotalWidgets: IVirusTotalWidgets = {
   alertsEvolutionByAgents: {
     ...VirusTotalWidgetsDefaultConfig.alertsEvolutionByAgents,
-    builder: () => <AlertsEvolutionByAgents />,
+    builder: <AlertsEvolutionByAgents />,
   },
   lastScannedFiles: {
     ...VirusTotalWidgetsDefaultConfig.lastScannedFiles,
-    builder: () => <LastScannedFiles />,
+    builder: <LastScannedFiles />,
   },
   uniqueMaliciousFilesPerAgent: {
     ...VirusTotalWidgetsDefaultConfig.uniqueMaliciousFilesPerAgent,
-    builder: () => <UniqueMaliciousFilesPerAgent />,
+    builder: <UniqueMaliciousFilesPerAgent />,
   },
 };
 
@@ -40,14 +40,14 @@ interface IVirusTotalContext {
   alertsEvolutionByAgents: IAlertsEvolutionByAgents | undefined;
   lastScannedFiles: ILastScannedFiles | undefined;
   uniqueMaliciousFilesPerAgent: IUniqueMaliciousFilesPerAgent | undefined;
-  widgetsHandlersMap: { [key: string]: Dispatch<SetStateAction<any>> };
+  widgetsHandler: { [key: string]: Dispatch<SetStateAction<any>> };
 }
 
 const virusTotalContextDefaultValues: IVirusTotalContext = {
   alertsEvolutionByAgents: undefined,
   lastScannedFiles: undefined,
   uniqueMaliciousFilesPerAgent: undefined,
-  widgetsHandlersMap: {},
+  widgetsHandler: {},
 };
 
 const VirusTotalContext = createContext<IVirusTotalContext>(
@@ -64,7 +64,7 @@ export const VirusTotalProvider: React.FC = ({ children }) => {
   const [uniqueMaliciousFilesPerAgent, setUniqueMaliciousFilesPerAgent] =
     useState<IUniqueMaliciousFilesPerAgent | undefined>();
 
-  const widgetsHandlersMap = {
+  const widgetsHandler = {
     alertsEvolutionByAgents: setAlertsEvolutionByAgents,
     lastScannedFiles: setLastScannedFiles,
     uniqueMaliciousFilesPerAgent: setUniqueMaliciousFilesPerAgent,
@@ -75,7 +75,7 @@ export const VirusTotalProvider: React.FC = ({ children }) => {
       alertsEvolutionByAgents,
       lastScannedFiles,
       uniqueMaliciousFilesPerAgent,
-      widgetsHandlersMap,
+      widgetsHandler,
     }),
     [alertsEvolutionByAgents, lastScannedFiles, uniqueMaliciousFilesPerAgent]
   );

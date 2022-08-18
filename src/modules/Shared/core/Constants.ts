@@ -1,29 +1,28 @@
-export const HEXADECIMAL_REGEX = /^#[a-f0-9]/i;
 export const DEFAULT_CHARTS_PALETTE = 'palette3';
 export const LOCAL_STORAGE_WIDGETS_CONFIG_NAME = '@seclab_widgets_config';
 export const ALL_WIDGETS_LABELS = [
   {
-    label: 'Actions Types',
-    identifier: 'actionsTypes',
+    label: 'Integrity Monitoring - Actions Types',
+    identifier: 'Integrity Monitoring - actionsTypes',
   },
   {
-    label: 'Alerts by Action Over Time',
+    label: 'Integrity Monitoring - Alerts by Action Over Time',
     identifier: 'alertsByActionOverTime',
   },
   {
-    label: 'Rule Distribution',
+    label: 'Integrity Monitoring - Rule Distribution',
     identifier: 'ruleDistribution',
   },
   {
-    label: 'Top 5 Agents',
+    label: 'Integrity Monitoring - Top 5 Agents',
     identifier: 'integrityMonitoringTop5Agents',
   },
   {
-    label: 'Top Mitre',
+    label: 'Mitre ATT&CK - Top Mitre',
     identifier: 'topMitre',
   },
   {
-    label: 'Alert Evolution Top 5 Agents',
+    label: 'Mitre ATT&CK - Alert Evolution Top 5 Agents',
     identifier: 'alertsEvolutionTop5Agents',
   },
   {
@@ -31,62 +30,51 @@ export const ALL_WIDGETS_LABELS = [
     identifier: 'alertLevelEvolution',
   },
   {
-    label: 'Attacks by Technique',
+    label: 'Mitre ATT&CK - Attacks by Technique',
     identifier: 'attacksByTechnique',
   },
   {
-    label: 'Techniques by Agent',
+    label: 'Mitre ATT&CK - Techniques by Agent',
     identifier: 'techniquesByAgent',
   },
   {
-    label: 'Top Tactics',
+    label: 'Mitre ATT&CK - Top Tactics',
     identifier: 'topTactics',
   },
   {
-    label: 'Top Tactics by Agent',
+    label: 'Mitre ATT&CK - Top Tactics by Agent',
     identifier: 'topTacticsByAgent',
   },
   {
-    label: 'Alerts Evolution Over Time',
+    label: 'Mitre ATT&CK - Alerts Evolution Over Time',
     identifier: 'alertsEvolutionOverTime',
   },
   {
-    label: 'Alerts Severity by Time',
+    label: 'Vulnerability - Alerts Severity by Time',
     identifier: 'alertsSeverityByTime',
   },
   {
-    label: 'Most Affected Agents',
+    label: 'Vulnerability - Most Affected Agents',
     identifier: 'mostAffectedAgents',
   },
   {
-    label: 'Most Common CVEs',
+    label: 'Vulnerability - Most Common CVEs',
     identifier: 'mostCommonCVEs',
   },
   {
-    label: 'Most Common CWEs',
+    label: 'Vulnerability - Most Common CWEs',
     identifier: 'mostCommonCWEs',
   },
   {
-    label: 'Top Affected Packages by CVEs',
+    label: 'Vulnerability - Top Affected Packages by CVEs',
     identifier: 'topAffectedPackagesByCVEs',
   },
+  {
+    label: 'Security Event - Latest Threats',
+    identifier: 'latestThreats',
+  },
+  {
+    label: 'Agent - Notable Agents',
+    identifier: 'notableAgents',
+  },
 ];
-const authRoutes = {
-  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/auth/auth' : '/api/auth',
-  LOGIN: '/login',
-};
-
-const bragiRoutes = {
-  BASE_ENDPOINT: process.env.REACT_APP_ENVIRONMENT === 'production' ? '/bragi/api' : '/api',
-  DASHBOARD: '/dashboard',
-  INTEGRITY_MONITORING: '/integridade',
-  MITRE: '/mitre',
-  SECURITY_EVENT: '/eventos',
-  VIRUS_TOTAL: '/virus-total',
-  VULNERABILITY: '/vulnerabilidades'
-};
-
-export const routes = {
-  AUTH: { ...authRoutes },
-  BRAGI: { ...bragiRoutes }
-}

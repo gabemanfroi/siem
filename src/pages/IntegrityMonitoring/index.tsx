@@ -6,20 +6,32 @@ import {
   useIntegrityMonitoring,
 } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import useIntegrityMonitoringQuery from 'modules/IntegrityMonitoring/hooks/useIntegrityMonitoringQuery';
+import { fillWidgetsWithData } from 'modules/Shared/helpers/fillWidgetsWithData';
 
 const Vulnerability = () => {
-  const { widgetsHandlersMap } = useIntegrityMonitoring();
+  const { widgetsHandler } = useIntegrityMonitoring();
+  const widgets = useMemo(
+    () => getWidgetsListFromMap(integrityMonitoringWidgets),
+    []
+  );
 
-  const widgets = useMemo(() => getWidgetsListFromMap(integrityMonitoringWidgets), [])
+  const { integrityMonitoringPageData, integrityMonitoringPageIsLoading } =
+    useIntegrityMonitoringQuery();
+
+  useEffect(() => {
+    if (integrityMonitoringPageData) {
+      const { data } = integrityMonitoringPageData;
+      fillWidgetsWithData(data, widgetsHandler);
+    }
+  }, [integrityMonitoringPageData]);
+
+  if (integrityMonitoringPageIsLoading) return <></>;
 
   return (
     <DefaultPageContainer>
-      <WidgetsGrid
-        widgets={widgets}
-        widgetsHandler={widgetsHandlersMap}
-        apiEndpoint="/integridade"
-      />
+      <WidgetsGrid widgets={widgets} apiEndpoint="/integridade" />
     </DefaultPageContainer>
   );
 };

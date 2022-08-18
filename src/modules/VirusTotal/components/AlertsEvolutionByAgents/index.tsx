@@ -13,9 +13,7 @@ const AlertsEvolutionByAgents = () => {
       type: 'datetime',
       categories,
     },
-    title: {
-      text: 'Alerts Evolution By Agents',
-    },
+
     series,
   };
 

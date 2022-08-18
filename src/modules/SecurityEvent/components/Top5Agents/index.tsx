@@ -10,7 +10,6 @@ const Top5Agents = () => {
   const options = {
     series,
     labels,
-    title: { text: 'Top Tactics' },
   };
 
   return <DonutChart options={options} />;

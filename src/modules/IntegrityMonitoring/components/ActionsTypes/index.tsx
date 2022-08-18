@@ -11,9 +11,6 @@ const ActionsTypes = () => {
   const options: ApexOptions = {
     series,
     labels,
-    title: {
-      text: 'Actions Types',
-    },
   };
 
   return <DonutChart options={options} />;

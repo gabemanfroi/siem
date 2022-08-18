@@ -1,22 +1,22 @@
 import 'react-grid-layout/css/styles.css';
 import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
-import { securityEventWidgets, useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { DefaultPageContainer } from 'modules/Shared/components';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
-import { routes } from 'modules/Shared/core/Constants';
 import { useMemo } from 'react';
+import { ROUTES } from 'modules/Shared/constants/routes';
 
 const SecurityEvent = () => {
-  const { widgetsHandlersMap } = useSecurityEvent();
-
-  const widgets = useMemo(() => getWidgetsListFromMap(securityEventWidgets), [])
+  const widgets = useMemo(
+    () => getWidgetsListFromMap(securityEventWidgets),
+    []
+  );
 
   return (
     <DefaultPageContainer>
       <WidgetsGrid
         widgets={widgets}
-        widgetsHandler={widgetsHandlersMap}
-        apiEndpoint={routes.BRAGI.SECURITY_EVENT}
+        apiEndpoint={ROUTES.BRAGI.SECURITY_EVENT}
       />
     </DefaultPageContainer>
   );

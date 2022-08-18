@@ -13,9 +13,6 @@ const AlertsByActionOverTime = () => {
       type: 'datetime',
       categories,
     },
-    title: {
-      text: 'Alerts by Action Over Time',
-    },
     series,
   };
 

@@ -11,12 +11,6 @@ jest.mock('react-apexcharts', () => ({
 afterAll(() => jest.unmock('react-apexcharts'));
 const { categories, series } = AttacksByTechniqueMockFactory();
 const options: ApexOptions = {
-  title: {
-    text: 'Attacks By Technique',
-    style: {
-      color: '#fff',
-    },
-  },
   chart: {
     stacked: true,
   },

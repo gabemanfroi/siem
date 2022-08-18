@@ -8,7 +8,7 @@ export interface IVirusTotalWidgets {
 
 export const VirusTotalWidgetsDefaultConfig = {
   alertsEvolutionByAgents: {
-    label: 'Alerts Evolution by Agent',
+    label: 'VirusTotal - Alerts Evolution by Agent',
     identifier: 'alertsEvolutionByAgents',
     framework: 'virusTotal',
     options: {
@@ -23,7 +23,7 @@ export const VirusTotalWidgetsDefaultConfig = {
     },
   },
   lastScannedFiles: {
-    label: 'Last Scanned Files',
+    label: 'VirusTotal - Last Scanned Files',
     identifier: 'lastScannedFiles',
     framework: 'virusTotal',
     options: {
@@ -38,7 +38,7 @@ export const VirusTotalWidgetsDefaultConfig = {
     },
   },
   uniqueMaliciousFilesPerAgent: {
-    label: 'Most Common CVEs',
+    label: 'VirusTotal - Most Common CVEs',
     identifier: 'uniqueMaliciousFilesPerAgent',
     framework: 'virusTotal',
     options: {

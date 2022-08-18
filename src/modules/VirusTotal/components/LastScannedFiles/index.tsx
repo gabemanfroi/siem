@@ -9,7 +9,6 @@ const LastScannedFiles = () => {
   const options = {
     series,
     labels,
-    title: { text: 'Last Scanned Files' },
   };
 
   return <DonutChart options={options} />;

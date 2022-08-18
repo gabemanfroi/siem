@@ -10,7 +10,6 @@ const RuleDistribution = () => {
   const options = {
     series,
     labels,
-    title: { text: 'Rule Distribution' },
   };
 
   return <DonutChart options={options} />;

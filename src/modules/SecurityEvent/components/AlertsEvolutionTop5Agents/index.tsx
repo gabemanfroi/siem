@@ -10,15 +10,9 @@ const AlertsEvolutionTop5Agents = () => {
   const { series, categories } = alertsEvolutionTop5Agents;
 
   const options: ApexOptions = {
-    title: {
-      text: 'Alerts Evolution Top 5 Agents',
-      style: {
-        color: '#fff',
-      },
-    },
     series,
     chart: {
-      stacked: true
+      stacked: true,
     },
     xaxis: { categories, type: 'datetime' },
   };

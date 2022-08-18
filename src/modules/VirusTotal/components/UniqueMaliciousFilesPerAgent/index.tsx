@@ -10,7 +10,6 @@ const UniqueMaliciousFilesPerAgent = () => {
   const options = {
     series,
     labels,
-    title: { text: 'Most Affected Agents' },
   };
 
   return <DonutChart options={options} />;

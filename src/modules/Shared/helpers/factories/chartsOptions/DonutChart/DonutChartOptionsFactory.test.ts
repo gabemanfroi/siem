@@ -1,9 +1,14 @@
 import { ApexOptions } from 'apexcharts';
-import { DEFAULT_CHARTS_PALETTE, HEXADECIMAL_REGEX } from 'modules/Shared/core/Constants';
+import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/Constants';
+import { HEXADECIMAL_REGEX } from 'modules/Shared/constants/regex';
 import DonutChartOptionsFactory from '.';
 
 const defaultExpectedObject = {
-  chart: { height: expect.any(Number), type: 'donut', animations: { enabled: false } },
+  chart: {
+    height: expect.any(Number),
+    type: 'donut',
+    animations: { enabled: false },
+  },
   labels: expect.any(Array),
   legend: {
     position: 'right',
