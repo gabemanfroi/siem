@@ -10,7 +10,6 @@ import DateFnsAdapter from '@date-io/date-fns';
 const dateFns = new DateFnsAdapter();
 
 const now = new Date();
-
 interface IFilters {
   initialDate: number | null;
   endDate: number | null;
@@ -18,7 +17,7 @@ interface IFilters {
 
 const initialFiltersState: IFilters = {
   endDate: now.getTime(),
-  initialDate: dateFns.addDays(now, -1).getTime(),
+  initialDate: dateFns.addHours(now, -1).getTime(),
 };
 
 const initialValues = {
