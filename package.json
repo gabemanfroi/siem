@@ -19,7 +19,7 @@
     "@faker-js/faker": "^6.2.0",
     "@googlemaps/react-wrapper": "^1.1.33",
     "@mui/lab": "^5.0.0-alpha.71",
-    "@mui/material": "^5.8.5",
+    "@mui/material": "^5.9.2",
     "@mui/styled-engine-sc": "^5.8.0",
     "@mui/x-date-pickers": "^5.0.0-alpha.6",
     "@tanstack/react-query": "^4.0.10",
