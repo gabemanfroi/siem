@@ -1,6 +1,6 @@
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { Button, TextField } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import { useState } from 'react';
 import { MdRefresh } from 'react-icons/md';
 import { ptBR } from 'date-fns/locale';
@@ -51,11 +51,9 @@ const DateFilter = () => {
         value={pendingEndDate}
         onChange={onEndDateChange}
       />
-      <Button
-        variant="contained"
-        endIcon={<MdRefresh />}
-        onClick={applyNewFilters}
-      />
+      <IconButton onClick={applyNewFilters}>
+        <MdRefresh />
+      </IconButton>
     </LocalizationProvider>
   );
 };

@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import { useMitre } from 'modules/Mitre/contexts/MitreContext';
 import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
@@ -9,10 +16,14 @@ import { useAgent } from 'modules/Agent/hooks';
 
 interface DashboardContextInterface {
   dashboardWidgetsHandler: IWidgetsHandler;
+  isEditMode: boolean;
+  setIsEditMode: Dispatch<SetStateAction<boolean>>;
 }
 
 const dashboardContextDefaultValues = {
   dashboardWidgetsHandler: {},
+  isEditMode: false,
+  setIsEditMode: () => {},
 };
 
 const DashboardContext = createContext<DashboardContextInterface>(
@@ -20,8 +31,9 @@ const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 export const DashboardProvider: React.FC = ({ children }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
   const { widgetsHandler: mitreWidgetsHandlerMap } = useMitre();
-  const { widgetsHandler: vulnerabilitywidgetsHandler } = useVulnerability();
+  const { widgetsHandler: vulnerabilityWidgetsHandler } = useVulnerability();
   const { widgetsHandler: integrityMonitoringHandlersMap } =
     useIntegrityMonitoring();
   const { widgetsHandler: virusTotalHandlersMap } = useVirusTotal();
@@ -32,12 +44,19 @@ export const DashboardProvider: React.FC = ({ children }) => {
     ...integrityMonitoringHandlersMap,
     ...mitreWidgetsHandlerMap,
     ...securityEventHandlersMap,
-    ...vulnerabilitywidgetsHandler,
+    ...vulnerabilityWidgetsHandler,
     ...virusTotalHandlersMap,
     ...agentHandlersMap,
   };
 
-  const value = useMemo(() => ({ dashboardWidgetsHandler }), []);
+  const value = useMemo(
+    () => ({
+      dashboardWidgetsHandler,
+      isEditMode,
+      setIsEditMode,
+    }),
+    [isEditMode]
+  );
 
   return (
     <DashboardContext.Provider value={value}>

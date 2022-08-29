@@ -4,6 +4,7 @@ import GridItem from 'modules/Shared/components/GridItem';
 import { LoadingHandler } from 'modules/Shared/components/index';
 import { useWidgets, useWidgetsGrid } from 'modules/Shared/hooks';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
+import { ROUTES } from 'modules/Shared/constants/routes';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -31,8 +32,8 @@ const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
         <GridItem
           key={w.identifier}
           widget={w}
-          isDraggable={apiEndpoint === '/dashboard' && customizeMode}
-          isResizable={apiEndpoint === '/dashboard' && customizeMode}
+          isDraggable={apiEndpoint === ROUTES.BRAGI.MITRE && customizeMode}
+          isResizable={apiEndpoint === ROUTES.BRAGI.MITRE && customizeMode}
         >
           <LoadingHandler>{w.builder}</LoadingHandler>
         </GridItem>

@@ -26,7 +26,7 @@ const Mitre = () => {
 
   return (
     <DefaultPageContainer>
-      <WidgetsGrid widgets={widgets} apiEndpoint={ROUTES.BRAGI.MITRE.BASE} />
+      <WidgetsGrid widgets={widgets} apiEndpoint={ROUTES.BRAGI.MITRE} />
     </DefaultPageContainer>
   );
 };

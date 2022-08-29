@@ -3,6 +3,7 @@ import SECURITY_EVENT from 'modules/Shared/constants/queries/SecurityEvent';
 import DASHBOARD from 'modules/Shared/constants/queries/Dashboard';
 import MITRE from 'modules/Shared/constants/queries/Mitre';
 import INTEGRITY_MONITORING from 'modules/Shared/constants/queries/IntegrityMonitoring';
+import SCA from 'modules/Shared/constants/queries/SCA';
 
 export const QUERIES = {
   AGENT,
@@ -10,4 +11,5 @@ export const QUERIES = {
   INTEGRITY_MONITORING,
   MITRE,
   SECURITY_EVENT,
+  SCA,
 };

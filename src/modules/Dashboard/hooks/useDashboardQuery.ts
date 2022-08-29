@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERIES } from 'modules/Shared/constants/queries';
-import { useWidgets } from 'modules/Shared/hooks';
+import { useFilter, useWidgets } from 'modules/Shared/hooks';
 import { DashboardService } from 'modules/Dashboard/api';
 import { CACHE_TIME } from 'modules/Shared/constants/utils';
 
-import DateFnsAdapter from '@date-io/date-fns';
-
-const dateFns = new DateFnsAdapter();
-
 const useDashboardQuery = () => {
   const { selectedWidgets } = useWidgets();
+  const { filters } = useFilter();
 
   const getWidgetsToRetrieveFromServer = () => {
     const widgetsToRetrieveFromServer: { [key: string]: string[] } = {};
@@ -26,15 +23,12 @@ const useDashboardQuery = () => {
 
   const { isLoading: getDashboardDataIsLoading, data: getDashboardData } =
     useQuery(
-      [QUERIES.DASHBOARD.GET_DASHBOARD_DATA],
-      () => {
-        const now = new Date();
-        return DashboardService.dynamicPost('', {
-          endDate: now.getTime(),
-          initialDate: dateFns.addDays(now, -1).getTime(),
+      [QUERIES.DASHBOARD.GET_DASHBOARD_DATA, filters, selectedWidgets],
+      () =>
+        DashboardService.dynamicPost('', {
+          ...filters,
           selectedWidgets: getWidgetsToRetrieveFromServer(),
-        });
-      },
+        }),
       {
         cacheTime: CACHE_TIME,
       }

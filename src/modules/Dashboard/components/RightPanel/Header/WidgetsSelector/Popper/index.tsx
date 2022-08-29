@@ -60,15 +60,12 @@ export const WidgetsSelectorPopper = ({
     }
   }, [value]);
 
-  useEffect(() => {
-    if (JSON.stringify(value) !== JSON.stringify(pendingValue)) {
-      setValue(pendingValue);
-    }
-  }, [pendingValue]);
-
   const handleClose = () => {
     if (anchorEl) {
       anchorEl.focus();
+    }
+    if (JSON.stringify(value) !== JSON.stringify(pendingValue)) {
+      setValue(pendingValue);
     }
     setAnchorEl(null);
   };

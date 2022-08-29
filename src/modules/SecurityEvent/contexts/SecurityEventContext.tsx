@@ -13,7 +13,6 @@ import {
   ITopMitre,
 } from 'modules/SecurityEvent/interfaces';
 import { IEvent, IThreat } from 'modules/Shared/interfaces';
-import EventModal from 'modules/Shared/components/Modal/EventModal';
 import {
   ISecurityEventWidgets,
   SecurityEventWidgetsDefaultConfig,
@@ -55,6 +54,8 @@ interface ISecurityEventContext {
   setSelectedEventId: Dispatch<SetStateAction<string | null>>;
   selectedEvent: IEvent | null;
   setSelectedEvent: Dispatch<SetStateAction<IEvent | null>>;
+  isEventModalOpen: boolean;
+  setIsEventModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const securityEventContextDefaultValues: ISecurityEventContext = {
@@ -68,6 +69,8 @@ const securityEventContextDefaultValues: ISecurityEventContext = {
   setSelectedEventId: () => {},
   selectedEvent: null,
   setSelectedEvent: () => {},
+  isEventModalOpen: false,
+  setIsEventModalOpen: () => {},
 };
 
 const SecurityEventContext = createContext<ISecurityEventContext>(
@@ -75,6 +78,7 @@ const SecurityEventContext = createContext<ISecurityEventContext>(
 );
 
 export const SecurityEventProvider: React.FC = ({ children }) => {
+  const [isEventModalOpen, setIsEventModalOpen] = useState<boolean>(false);
   const [selectedEvent, setSelectedEvent] = useState<null | IEvent>(null);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [alertLevelEvolution, setAlertLevelEvolution] = useState<
@@ -110,6 +114,8 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
       latestThreats,
       selectedEvent,
       setSelectedEvent,
+      isEventModalOpen,
+      setIsEventModalOpen,
     }),
     [
       selectedEventId,
@@ -123,7 +129,6 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
 
   return (
     <SecurityEventContext.Provider value={value}>
-      {selectedEventId && <EventModal />}
       {children}
     </SecurityEventContext.Provider>
   );

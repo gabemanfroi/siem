@@ -1,5 +1,6 @@
 const AGENT = {
-  findByElasticsearchId: 'AgentQueries@findByElasticsearchId',
-  findById: 'AgentQueries@findById',
+  FIND_BY_ELASTICSEARCH_ID: 'AgentQueries@findByElasticsearchId',
+  FIND_BY_ID: 'AgentQueries@findById',
+  GET_AGENT_POLICIES: 'AgentQueries@GetAgentPolicies',
 };
 export default AGENT;

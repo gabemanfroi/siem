@@ -2,12 +2,12 @@ import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventCo
 import { Dialog, DialogContent, DialogTitle, Stack } from '@mui/material';
 import useSecurityEventQuery from 'modules/SecurityEvent/hooks/queries/useSecurityEventQuery';
 import { useEffect } from 'react';
-import Vulnerability from 'modules/Shared/components/Modal/EventModal/Vulnerability';
-import Windows from 'modules/Shared/components/Modal/EventModal/Windows';
-import Rule from 'modules/Shared/components/Modal/EventModal/Rule';
-import Mitre from 'modules/Shared/components/Modal/EventModal/Mitre';
+import Vulnerability from 'modules/SecurityEvent/components/EventDialog/Vulnerability';
+import Windows from 'modules/SecurityEvent/components/EventDialog/Windows';
+import Rule from 'modules/SecurityEvent/components/EventDialog/Rule';
+import Mitre from 'modules/SecurityEvent/components/EventDialog/Mitre';
 
-const EventModal = () => {
+const EventDialog = () => {
   const { selectedEventId, setSelectedEventId, setSelectedEvent } =
     useSecurityEvent();
 
@@ -51,4 +51,4 @@ const EventModal = () => {
   );
 };
 
-export default EventModal;
+export default EventDialog;

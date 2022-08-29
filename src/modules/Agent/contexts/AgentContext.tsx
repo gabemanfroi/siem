@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 import { IAgent } from 'modules/Shared/interfaces';
-import AgentModal from 'modules/Shared/components/Modal/AgentModal';
 import {
   AgentWidgetsDefaultConfig,
   IAgentWidgets,
@@ -18,7 +17,6 @@ import { IwidgetsHandler } from 'modules/Shared/interfaces/IWidgetsHandlerMap';
 export const agentWidgets: IAgentWidgets = {
   notableAgents: {
     ...AgentWidgetsDefaultConfig.notableAgents,
-    // @ts-ignore
     builder: <NotableAgents />,
   },
 };
@@ -33,6 +31,8 @@ interface AgentContextInterface {
   widgetsHandler: IwidgetsHandler;
   selectedAgentId: string | null;
   setSelectedAgentId: Dispatch<SetStateAction<string | null>>;
+  isAgentEditMode: boolean;
+  setIsAgentEditMode: Dispatch<SetStateAction<boolean>>;
 }
 
 const agentContextDefaultValues: AgentContextInterface = {
@@ -45,6 +45,8 @@ const agentContextDefaultValues: AgentContextInterface = {
   widgetsHandler: {},
   selectedAgentId: null,
   setSelectedAgentId: () => {},
+  isAgentEditMode: false,
+  setIsAgentEditMode: () => {},
 };
 export const AgentContext = createContext<AgentContextInterface>(
   agentContextDefaultValues
@@ -55,6 +57,7 @@ export const AgentProvider: React.FC = ({ children }) => {
     INotableAgent[] | undefined
   >();
 
+  const [isAgentEditMode, setIsAgentEditMode] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState<IAgent | null>(null);
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(null);
   const [isAgentModalOpen, setIsAgentModalOpen] = useState<boolean>(false);
@@ -75,13 +78,21 @@ export const AgentProvider: React.FC = ({ children }) => {
       widgetsHandler,
       selectedAgentId,
       setSelectedAgentId,
+      isAgentEditMode,
+      setIsAgentEditMode,
     }),
-    [isAgentModalOpen, selectedAgent, agents, notableAgents, selectedAgentId]
+    [
+      isAgentModalOpen,
+      selectedAgent,
+      agents,
+      notableAgents,
+      selectedAgentId,
+      isAgentEditMode,
+    ]
   );
 
   return (
     <AgentContext.Provider value={providerValue}>
-      {(selectedAgent || selectedAgentId) && <AgentModal />}
       {children}
     </AgentContext.Provider>
   );

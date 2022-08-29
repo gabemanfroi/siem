@@ -21,11 +21,12 @@ const threatIconMap = {
 };
 
 const Threat = ({ threat }: ThreatProps) => {
-  const { setSelectedEventId } = useSecurityEvent();
+  const { setSelectedEventId, setIsEventModalOpen } = useSecurityEvent();
   return (
     <Stack
       onClick={() => {
         setSelectedEventId(threat.id);
+        setIsEventModalOpen(true);
       }}
       direction="row"
       justifyContent="space-between"
