@@ -23,7 +23,7 @@ export default function Login() {
           password: values.password,
         }
       );
-      TokenUtil().setToken(response.data.access_token);
+      TokenUtil().setToken(response.data.accessToken);
       navigate('/');
     },
   });
