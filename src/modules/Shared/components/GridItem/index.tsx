@@ -5,21 +5,18 @@ import { Stack, Typography } from '@mui/material';
 import { MdOutlineClose, MdOutlineDragIndicator } from 'react-icons/md';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { useWidgets } from 'modules/Shared/hooks';
+import { useDashboard } from 'modules/Dashboard/contexts';
 import { Container } from './style';
 
 interface IGridItem {
   widget: IWidget;
   children: ReactNode;
-  isDraggable: boolean;
-  isResizable: boolean;
 }
 
 const GridItem = forwardRef(
-  (
-    { widget, children, isDraggable, isResizable, ...props }: IGridItem,
-    ref
-  ) => {
+  ({ widget, children, ...props }: IGridItem, ref) => {
     const { setSelectedWidgets, selectedWidgets } = useWidgets();
+    const { isEditMode } = useDashboard();
     const handleClose = () => {
       const updatedWidgets = [...selectedWidgets];
       const index = updatedWidgets.findIndex(
@@ -31,7 +28,7 @@ const GridItem = forwardRef(
     };
     return (
       <Container ref={ref as React.RefObject<HTMLDivElement>} {...props}>
-        {isResizable && isDraggable && (
+        {isEditMode && (
           <Stack
             sx={{
               display: 'flex',
@@ -48,7 +45,16 @@ const GridItem = forwardRef(
           </Stack>
         )}
         <Typography variant="h5">{widget.label}</Typography>
-        <Stack className="react-grid-item">{children}</Stack>
+        <Stack
+          className="react-grid-item"
+          sx={{
+            '.react-resizable-handle': {
+              display: isEditMode ? 'block' : 'none',
+            },
+          }}
+        >
+          {children}
+        </Stack>
       </Container>
     );
   }

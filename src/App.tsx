@@ -21,7 +21,14 @@ import { AgentProvider } from 'modules/Agent/contexts';
 import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
 import Dialogs from 'modules/Shared/components/Dialogs';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchInterval: 60000,
+    },
+  },
+});
 
 export default function App() {
   return (

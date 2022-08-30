@@ -34,13 +34,7 @@ const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
       draggableHandle=".drag-icon"
     >
       {widgets.map((w) => (
-        <GridItem
-          ref={ref}
-          key={w.identifier}
-          widget={w}
-          isDraggable={isEditMode}
-          isResizable={isEditMode}
-        >
+        <GridItem ref={ref} key={w.identifier} widget={w}>
           <LoadingHandler>{w.builder}</LoadingHandler>
         </GridItem>
       ))}
