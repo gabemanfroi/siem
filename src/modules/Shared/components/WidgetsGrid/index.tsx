@@ -4,7 +4,8 @@ import GridItem from 'modules/Shared/components/GridItem';
 import { LoadingHandler } from 'modules/Shared/components/index';
 import { useWidgets, useWidgetsGrid } from 'modules/Shared/hooks';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
-import { ROUTES } from 'modules/Shared/constants/routes';
+import { useDashboard } from 'modules/Dashboard/contexts';
+import { createRef } from 'react';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -14,13 +15,17 @@ interface WidgetsGridProps {
 }
 
 const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
-  const { saveCurrentLayout, customizeMode } = useWidgets();
+  const { saveCurrentLayout } = useWidgets();
+
+  const { isEditMode } = useDashboard();
+
+  const ref = createRef();
 
   const { layouts } = useWidgetsGrid(widgets, apiEndpoint);
   return (
     <ResponsiveGridLayout
-      isResizable={apiEndpoint === '/dashboard' && customizeMode}
-      isDraggable={apiEndpoint === '/dashboard' && customizeMode}
+      isResizable={isEditMode}
+      isDraggable={isEditMode}
       onLayoutChange={saveCurrentLayout}
       breakpoints={{ lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 }}
       cols={{ lg: 12, md: 12, sm: 6, xs: 4, xxs: 2 }}
@@ -30,10 +35,11 @@ const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
     >
       {widgets.map((w) => (
         <GridItem
+          ref={ref}
           key={w.identifier}
           widget={w}
-          isDraggable={apiEndpoint === ROUTES.BRAGI.MITRE && customizeMode}
-          isResizable={apiEndpoint === ROUTES.BRAGI.MITRE && customizeMode}
+          isDraggable={isEditMode}
+          isResizable={isEditMode}
         >
           <LoadingHandler>{w.builder}</LoadingHandler>
         </GridItem>

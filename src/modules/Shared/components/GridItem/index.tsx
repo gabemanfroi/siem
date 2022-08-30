@@ -14,46 +14,44 @@ interface IGridItem {
   isResizable: boolean;
 }
 
-const GridItem = ({
-  widget,
-  children,
-  isDraggable,
-  isResizable,
-  ...props
-}: IGridItem) => {
-  const { setSelectedWidgets, selectedWidgets } = useWidgets();
-  const handleClose = () => {
-    const updatedWidgets = [...selectedWidgets];
-    const index = updatedWidgets.findIndex(
-      (w) => w.identifier === widget.identifier
+const GridItem = forwardRef(
+  (
+    { widget, children, isDraggable, isResizable, ...props }: IGridItem,
+    ref
+  ) => {
+    const { setSelectedWidgets, selectedWidgets } = useWidgets();
+    const handleClose = () => {
+      const updatedWidgets = [...selectedWidgets];
+      const index = updatedWidgets.findIndex(
+        (w) => w.identifier === widget.identifier
+      );
+
+      updatedWidgets.splice(index, 1);
+      setSelectedWidgets(updatedWidgets);
+    };
+    return (
+      <Container ref={ref as React.RefObject<HTMLDivElement>} {...props}>
+        {isResizable && isDraggable && (
+          <Stack
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <MdOutlineDragIndicator className="drag-icon" size={18} />
+            <MdOutlineClose
+              className="close-icon"
+              size={18}
+              onClick={handleClose}
+            />
+          </Stack>
+        )}
+        <Typography variant="h5">{widget.label}</Typography>
+        <Stack className="react-grid-item">{children}</Stack>
+      </Container>
     );
+  }
+);
 
-    updatedWidgets.splice(index, 1);
-    setSelectedWidgets(updatedWidgets);
-  };
-  return (
-    <Container {...props}>
-      {isResizable && isDraggable && (
-        <Stack
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <MdOutlineDragIndicator className="drag-icon" size={18} />
-          <MdOutlineClose
-            className="close-icon"
-            size={18}
-            onClick={handleClose}
-          />
-        </Stack>
-      )}
-      <Typography variant="h5">{widget.label}</Typography>
-      <Stack className="react-grid-item">{children}</Stack>
-    </Container>
-  );
-};
-const forwardedGridItemRef = forwardRef(GridItem);
-
-export default forwardedGridItemRef;
+export default GridItem;
