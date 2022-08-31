@@ -13,10 +13,10 @@ COPY yarn.lock /app/yarn.lock
 RUN yarn
 COPY . /app
 
-RUN REACT_APP_ENVIRONMENT=${REACT_APP_ENVIRONMENT} \
-  REACT_APP_HTTP_API_URL=${REACT_APP_HTTP_API_URL} \
-  REACT_APP_TOKEN_KEY_NAME=${REACT_APP_TOKEN_KEY_NAME} \
-  REACT_APP_WIDGETS_CONFIG_NAME=${REACT_APP_WIDGETS_CONFIG_NAME} \
+RUN REACT_APP_ENVIRONMENT='production' \
+  REACT_APP_HTTP_API_URL='https://apigw.seclab.inf.br' \
+  REACT_APP_TOKEN_KEY_NAME='@seclab_token' \
+  REACT_APP_WIDGETS_CONFIG_NAME='@seclab_widgets_config' \
   yarn build
 
 FROM nginx:latest
