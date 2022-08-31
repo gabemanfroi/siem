@@ -1,12 +1,6 @@
 #builds the application
 FROM node:16-alpine AS builder
 
-ARG REACT_APP_ENVIRONMENT
-ARG REACT_APP_HTTP_API_URL
-ARG REACT_APP_TOKEN_KEY_NAME
-ARG REACT_APP_WIDGETS_CONFIG_NAME
-ARG REACT_APP_WS_API_URL
-
 WORKDIR /app
 COPY package.json /app/package.json
 COPY yarn.lock /app/yarn.lock
