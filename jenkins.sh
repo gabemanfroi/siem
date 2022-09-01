@@ -1,7 +1,7 @@
 #!/bin/bash
 su - jenkins <<!
 jenkins
-docker build -t front --no-cache  .
+docker build -t gabemanfroi/siem_frontend:production --no-cache  .
 docker tag gabemanfroi/siem_frontend:production gabemanfroi/siem_frontend:production
 docker push gabemanfroi/siem_frontend:production
 microk8s kubectl delete -f /home/gabriel/yggdrasil/kubectl/production/front/deployment.yml
