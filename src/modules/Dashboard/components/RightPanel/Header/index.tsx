@@ -26,10 +26,11 @@ const Header = () => {
           <FormControl>
             <FormControlLabel
               label={isFilterMode ? 'Filtering Data' : 'Real Time Data'}
-              value="isFilterMode"
+              value={!isFilterMode}
               control={
                 <Switch
-                  value={isFilterMode}
+                  defaultChecked={!isFilterMode}
+                  value={!isFilterMode}
                   onClick={() => {
                     setIsFilterMode(!isFilterMode);
                   }}

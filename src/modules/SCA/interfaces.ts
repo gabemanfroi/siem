@@ -9,3 +9,19 @@ export interface IPolicy {
   invalid: number;
   endScan: Date;
 }
+
+interface IPolicyCompliance {
+  rule: string;
+  ruleItem: string;
+}
+
+export interface IPolicyCheckItem {
+  id: number;
+  description: string;
+  title: string;
+  file: string;
+  remediation: string;
+  rationale: string;
+  compliance: IPolicyCompliance[];
+  result: string;
+}

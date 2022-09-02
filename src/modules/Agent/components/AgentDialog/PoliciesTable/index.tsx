@@ -37,6 +37,8 @@ const PoliciesTable = () => {
           <TableBody>
             {getAgentPoliciesData.map((p) => (
               <TableRow
+                hover
+                sx={{ cursor: 'pointer' }}
                 onClick={() => {
                   setSelectedPolicy(p);
                   setIsPolicyDialogOpen(true);
