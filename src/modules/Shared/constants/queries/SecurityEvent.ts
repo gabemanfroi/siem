@@ -1,5 +1,6 @@
 const SECURITY_EVENT = {
-  findByElasticsearchId: 'SecurityEventQueries@findByElasticsearchId',
+  FIND_BY_ELASTICSEARCH_ID: 'SecurityEventQueries@findByElasticsearchId',
+  GET_PAGE_DATA: 'SecurityEventQueries@getPageData',
 };
 
 export default SECURITY_EVENT;

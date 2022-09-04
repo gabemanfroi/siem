@@ -124,7 +124,7 @@ export const WidgetsProvider: React.FC = ({ children }) => {
       customizeMode,
       setCustomizeMode,
     }),
-    [selectedWidgets]
+    [selectedWidgets, customizeMode]
   );
 
   return (

@@ -1,9 +1,9 @@
-import { Container } from 'pages/Dashboard/style';
 import RightPanel from 'modules/Dashboard/components/RightPanel';
 import { useDashboardQuery } from 'modules/Dashboard/hooks';
 import { useEffect } from 'react';
 import { useDashboard } from 'modules/Dashboard/contexts';
 import { fillWidgetsWithData } from 'modules/Shared/helpers/fillWidgetsWithData';
+import DefaultLayout from 'modules/Shared/components/DefaultLayout';
 
 function Dashboard() {
   const { dashboardWidgetsHandler: widgetsHandler } = useDashboard();
@@ -19,9 +19,9 @@ function Dashboard() {
   if (getDashboardDataIsLoading) return <></>;
 
   return (
-    <Container>
+    <DefaultLayout>
       <RightPanel />
-    </Container>
+    </DefaultLayout>
   );
 }
 

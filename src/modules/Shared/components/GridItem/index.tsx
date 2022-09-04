@@ -5,7 +5,6 @@ import { Stack, Typography } from '@mui/material';
 import { MdOutlineClose, MdOutlineDragIndicator } from 'react-icons/md';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { useWidgets } from 'modules/Shared/hooks';
-import { useDashboard } from 'modules/Dashboard/contexts';
 import { Container } from './style';
 
 interface IGridItem {
@@ -15,8 +14,7 @@ interface IGridItem {
 
 const GridItem = forwardRef(
   ({ widget, children, ...props }: IGridItem, ref) => {
-    const { setSelectedWidgets, selectedWidgets } = useWidgets();
-    const { isEditMode } = useDashboard();
+    const { setSelectedWidgets, selectedWidgets, customizeMode } = useWidgets();
     const handleClose = () => {
       const updatedWidgets = [...selectedWidgets];
       const index = updatedWidgets.findIndex(
@@ -28,7 +26,7 @@ const GridItem = forwardRef(
     };
     return (
       <Container ref={ref as React.RefObject<HTMLDivElement>} {...props}>
-        {isEditMode && (
+        {customizeMode && (
           <Stack
             sx={{
               display: 'flex',
@@ -49,7 +47,7 @@ const GridItem = forwardRef(
           className="react-grid-item"
           sx={{
             '.react-resizable-handle': {
-              display: isEditMode ? 'block' : 'none',
+              display: customizeMode ? 'block' : 'none',
             },
           }}
         >

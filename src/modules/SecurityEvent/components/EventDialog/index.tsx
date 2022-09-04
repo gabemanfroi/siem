@@ -11,9 +11,7 @@ const EventDialog = () => {
   const { selectedEventId, setSelectedEventId, setSelectedEvent } =
     useSecurityEvent();
 
-  const { findByElasticsearchIdEvent } = useSecurityEventQuery({
-    elasticsearchId: selectedEventId!,
-  });
+  const { findByElasticsearchIdEvent } = useSecurityEventQuery();
 
   useEffect(() => {
     if (findByElasticsearchIdEvent) {

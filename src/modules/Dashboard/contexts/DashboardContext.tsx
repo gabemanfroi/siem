@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { useMitre } from 'modules/Mitre/contexts/MitreContext';
 import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
@@ -16,14 +9,10 @@ import { useAgent } from 'modules/Agent/hooks';
 
 interface DashboardContextInterface {
   dashboardWidgetsHandler: IWidgetsHandler;
-  isEditMode: boolean;
-  setIsEditMode: Dispatch<SetStateAction<boolean>>;
 }
 
 const dashboardContextDefaultValues = {
   dashboardWidgetsHandler: {},
-  isEditMode: false,
-  setIsEditMode: () => {},
 };
 
 const DashboardContext = createContext<DashboardContextInterface>(
@@ -31,7 +20,6 @@ const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 export const DashboardProvider: React.FC = ({ children }) => {
-  const [isEditMode, setIsEditMode] = useState(false);
   const { widgetsHandler: mitreWidgetsHandlerMap } = useMitre();
   const { widgetsHandler: vulnerabilityWidgetsHandler } = useVulnerability();
   const { widgetsHandler: integrityMonitoringHandlersMap } =
@@ -52,10 +40,8 @@ export const DashboardProvider: React.FC = ({ children }) => {
   const value = useMemo(
     () => ({
       dashboardWidgetsHandler,
-      isEditMode,
-      setIsEditMode,
     }),
-    [isEditMode]
+    []
   );
 
   return (

@@ -7,8 +7,11 @@ import {
 } from 'modules/Shared/interfaces/Widgets';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
 import { useWidgets } from 'modules/Shared/hooks';
-import { AutocompleteBox, StyledButton } from './style';
-import WidgetsSelectorPopper from './Popper';
+import {
+  AutocompleteBox,
+  StyledButton,
+} from 'modules/Shared/components/Header/WidgetsSelector/style';
+import WidgetsSelectorPopper from 'modules/Shared/components/Header/WidgetsSelector/Popper';
 
 const WidgetsSelector = () => {
   const { selectedWidgets } = useWidgets();

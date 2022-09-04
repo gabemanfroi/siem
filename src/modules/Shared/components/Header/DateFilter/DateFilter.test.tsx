@@ -1,5 +1,5 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import DateFilter from './index';
+import DateFilter from 'modules/Shared/components/Header/DateFilter/index';
 
 afterEach(cleanup);
 

@@ -1,6 +1,5 @@
 import 'react-grid-layout/css/styles.css';
 import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
-import { DefaultPageContainer } from 'modules/Shared/components';
 import {
   integrityMonitoringWidgets,
   useIntegrityMonitoring,
@@ -9,6 +8,7 @@ import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFrom
 import { useEffect, useMemo } from 'react';
 import useIntegrityMonitoringQuery from 'modules/IntegrityMonitoring/hooks/useIntegrityMonitoringQuery';
 import { fillWidgetsWithData } from 'modules/Shared/helpers/fillWidgetsWithData';
+import DefaultLayout from 'modules/Shared/components/DefaultLayout';
 
 const Vulnerability = () => {
   const { widgetsHandler } = useIntegrityMonitoring();
@@ -30,9 +30,9 @@ const Vulnerability = () => {
   if (integrityMonitoringPageIsLoading) return <></>;
 
   return (
-    <DefaultPageContainer>
+    <DefaultLayout>
       <WidgetsGrid widgets={widgets} apiEndpoint="/integridade" />
-    </DefaultPageContainer>
+    </DefaultLayout>
   );
 };
 

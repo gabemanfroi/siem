@@ -4,7 +4,6 @@ import GridItem from 'modules/Shared/components/GridItem';
 import { LoadingHandler } from 'modules/Shared/components/index';
 import { useWidgets, useWidgetsGrid } from 'modules/Shared/hooks';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
-import { useDashboard } from 'modules/Dashboard/contexts';
 import { createRef } from 'react';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -15,18 +14,16 @@ interface WidgetsGridProps {
 }
 
 const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
-  const { saveCurrentLayout } = useWidgets();
-
-  const { isEditMode } = useDashboard();
+  const { saveCurrentLayout, customizeMode } = useWidgets();
 
   const ref = createRef();
 
   const { layouts } = useWidgetsGrid(widgets, apiEndpoint);
   return (
     <ResponsiveGridLayout
-      isResizable={isEditMode}
-      isDraggable={isEditMode}
-      onLayoutChange={saveCurrentLayout}
+      isResizable={customizeMode}
+      isDraggable={customizeMode}
+      onLayoutChange={customizeMode ? saveCurrentLayout : () => {}}
       breakpoints={{ lg: 1280, md: 992, sm: 767, xs: 480, xxs: 0 }}
       cols={{ lg: 12, md: 12, sm: 6, xs: 4, xxs: 2 }}
       style={{ flex: 1 }}

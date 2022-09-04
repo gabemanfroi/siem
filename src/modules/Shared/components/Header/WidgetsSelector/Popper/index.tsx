@@ -15,7 +15,11 @@ import {
   IWidget,
   WidgetsMapKeys,
 } from 'modules/Shared/interfaces/Widgets';
-import { StyledAutocompletePopper, StyledInput, StyledPopper } from './style';
+import {
+  StyledAutocompletePopper,
+  StyledInput,
+  StyledPopper,
+} from 'modules/Shared/components/Header/WidgetsSelector/Popper/style';
 
 interface PopperComponentProps {
   anchorEl?: any;

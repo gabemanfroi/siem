@@ -20,6 +20,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AgentProvider } from 'modules/Agent/contexts';
 import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
 import Dialogs from 'modules/Shared/components/Dialogs';
+import { SidebarProvider } from 'modules/Shared/contexts/SidebarContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,11 +45,13 @@ export default function App() {
                       <AgentProvider>
                         <SCAProvider>
                           <WidgetsProvider>
-                            <DashboardProvider>
-                              <Router />
-                              <Dialogs />
-                              <ErrorSnackbar />
-                            </DashboardProvider>
+                            <SidebarProvider>
+                              <DashboardProvider>
+                                <Router />
+                                <Dialogs />
+                                <ErrorSnackbar />
+                              </DashboardProvider>
+                            </SidebarProvider>
                           </WidgetsProvider>
                         </SCAProvider>
                       </AgentProvider>

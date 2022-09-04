@@ -1,4 +1,11 @@
-import { Dashboard, IntegrityMonitoring, Login, Mitre, SecurityEvent, Vulnerability } from 'pages';
+import {
+  Dashboard,
+  IntegrityMonitoring,
+  Login,
+  Mitre,
+  SecurityEvent,
+  Vulnerability,
+} from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from 'modules/Shared/components/';
 
