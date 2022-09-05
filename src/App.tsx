@@ -2,8 +2,8 @@ import { ThemeProvider } from '@mui/material';
 import { ErrorSnackbar } from 'modules/Shared/components/';
 import Router from 'modules/Shared/components/Router';
 import theme from 'modules/Shared/theme';
-import './sass/main.scss';
-import './sass/main.css';
+import './scss/main.scss';
+import './scss/main.css';
 import {
   FilterProvider,
   LoadingProvider,

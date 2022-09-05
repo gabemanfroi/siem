@@ -16,7 +16,7 @@ export const SecurityEventWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'latestThreats',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -31,7 +31,7 @@ export const SecurityEventWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'alertLevelEvolution',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -46,7 +46,7 @@ export const SecurityEventWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'alertsEvolutionTop5Agents',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,
@@ -61,7 +61,7 @@ export const SecurityEventWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'topMitre',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,

@@ -7,16 +7,10 @@ import AgentDialogTitle from 'modules/Agent/components/AgentDialog/DialogTitle';
 import AgentDialogContent from 'modules/Agent/components/AgentDialog/DialogContent';
 
 export default function AgentDialog() {
-  const {
-    isAgentModalOpen,
-    setIsAgentModalOpen,
-    setSelectedAgent,
-    selectedAgentId,
-  } = useAgent();
+  const { isAgentModalOpen, setIsAgentModalOpen, setSelectedAgent } =
+    useAgent();
 
-  const { findByElasticsearchIdAgent } = useAgentQuery({
-    elasticsearchId: selectedAgentId!,
-  });
+  const { findByElasticsearchIdAgent } = useAgentQuery();
   const handleClose = () => {
     setSelectedAgent(null);
     setIsAgentModalOpen(false);

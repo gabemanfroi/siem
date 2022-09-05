@@ -20,7 +20,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
       active: true,
       lg: {
         i: 'actionsTypes',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -35,7 +35,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
       active: true,
       lg: {
         i: 'alertsByActionOverTime',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,
@@ -50,7 +50,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
       active: true,
       lg: {
         i: 'ruleDistribution',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -65,7 +65,7 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
       active: true,
       lg: {
         i: 'integrityMonitoringTop5Agents',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,

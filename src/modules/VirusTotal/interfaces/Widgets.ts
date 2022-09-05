@@ -15,7 +15,7 @@ export const VirusTotalWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'alertsEvolutionByAgents',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -30,7 +30,7 @@ export const VirusTotalWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'lastScannedFiles',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,
@@ -45,7 +45,7 @@ export const VirusTotalWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'uniqueMaliciousFilesPerAgent',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,

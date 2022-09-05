@@ -41,7 +41,7 @@ const Header = () => {
               <MdMenu />
             </IconButton>
           </Stack>
-          <Stack direction="row" justifyContent="flex-end">
+          <Stack direction="row" justifyContent="flex-end" gap={3}>
             {isFilterMode && <DateFilter />}
             <FormControl>
               <FormControlLabel

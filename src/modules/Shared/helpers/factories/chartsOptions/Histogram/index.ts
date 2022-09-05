@@ -6,7 +6,6 @@ const HistogramOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     ...options?.dataLabels,
     enabled: false,
   },
-
   chart: {
     ...options?.chart,
     redrawOnParentResize: true,
@@ -19,8 +18,8 @@ const HistogramOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     },
     type: 'bar',
     animations: {
-      enabled: false
-    }
+      enabled: false,
+    },
   },
   grid: {
     borderColor: '#ffffff',

@@ -13,7 +13,7 @@ export const AgentWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'notableAgents',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,

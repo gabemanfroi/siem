@@ -3,45 +3,50 @@ import { QUERIES } from 'modules/Shared/constants/queries';
 import agentService from 'modules/Agent/api/AgentService';
 import { useFilter } from 'modules/Shared/hooks';
 import { IPolicy } from 'modules/SCA/interfaces';
+import { useAgent } from 'modules/Agent/hooks/index';
 
-interface useAgentQueryProps {
-  elasticsearchId: string;
-}
-
-const useAgentQuery = ({ elasticsearchId }: useAgentQueryProps) => {
+const useAgentQuery = () => {
   const { filters } = useFilter();
+  const { selectedAgentId } = useAgent();
 
   const {
     data: findByElasticsearchIdAgent,
     isLoading: findByElasticsearchIsLoading,
   } = useQuery(
-    [QUERIES.AGENT.FIND_BY_ELASTICSEARCH_ID, elasticsearchId],
+    [QUERIES.AGENT.FIND_BY_ELASTICSEARCH_ID, selectedAgentId],
     () =>
       agentService.getByElasticsearchId({
         endDate: filters.endDate!,
         initialDate: filters.initialDate!,
-        elasticsearchId,
+        elasticsearchId: selectedAgentId!,
       }),
     {
-      enabled: !!elasticsearchId,
+      enabled: !!selectedAgentId,
     }
   );
 
   const { isLoading: getAgentPoliciesIsLoading, data: getAgentPoliciesData } =
     useQuery(
-      [QUERIES.AGENT.GET_AGENT_POLICIES, elasticsearchId],
+      [QUERIES.AGENT.GET_AGENT_POLICIES, selectedAgentId],
       () =>
-        agentService.getDynamic<IPolicy>(`/agent_policies/${elasticsearchId}`),
+        agentService.dynamicGet<IPolicy>(`/agent_policies/${selectedAgentId}`),
       {
-        enabled: !!elasticsearchId,
+        enabled: !!selectedAgentId,
       }
     );
+
+  const { isLoading: getAgentPageIsLoading, data: getAgentPageData } = useQuery(
+    [QUERIES.AGENT.GET_PAGE_DATA],
+    () => agentService.dynamicPost('', { ...filters })
+  );
 
   return {
     findByElasticsearchIdAgent,
     findByElasticsearchIsLoading,
     getAgentPoliciesIsLoading,
     getAgentPoliciesData: getAgentPoliciesData || [],
+    getAgentPageIsLoading,
+    getAgentPageData,
   };
 };
 export default useAgentQuery;

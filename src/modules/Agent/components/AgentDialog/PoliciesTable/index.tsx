@@ -10,16 +10,12 @@ import {
 import { LoadingHandler } from 'modules/Shared/components';
 import React from 'react';
 import { useAgentQuery } from 'modules/Agent/hooks/queries';
-import { useAgent } from 'modules/Agent/hooks';
 import { useSCA } from 'modules/SCA/hooks';
 
 const PoliciesTable = () => {
-  const { selectedAgentId } = useAgent();
   const { setSelectedPolicy, setIsPolicyDialogOpen } = useSCA();
 
-  const { getAgentPoliciesData } = useAgentQuery({
-    elasticsearchId: selectedAgentId!,
-  });
+  const { getAgentPoliciesData } = useAgentQuery();
 
   return (
     <LoadingHandler sx={{ width: '100%', height: '100%' }}>
@@ -31,7 +27,7 @@ const PoliciesTable = () => {
               <TableCell>Pass</TableCell>
               <TableCell>Fail</TableCell>
               <TableCell>Not Applicable</TableCell>
-              <TableCell>Score</TableCell>
+              <TableCell>Score (%)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

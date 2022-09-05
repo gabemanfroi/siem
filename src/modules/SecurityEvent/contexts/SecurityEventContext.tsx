@@ -25,6 +25,10 @@ import {
 import LatestThreats from '../components/LatestThreats';
 
 export const securityEventWidgets: ISecurityEventWidgets = {
+  latestThreats: {
+    ...SecurityEventWidgetsDefaultConfig.latestThreats,
+    builder: <LatestThreats />,
+  },
   topMitre: {
     ...SecurityEventWidgetsDefaultConfig.topMitre,
     builder: <TopMitre />,
@@ -36,10 +40,6 @@ export const securityEventWidgets: ISecurityEventWidgets = {
   alertLevelEvolution: {
     ...SecurityEventWidgetsDefaultConfig.alertLevelEvolution,
     builder: <AlertLevelEvolution />,
-  },
-  latestThreats: {
-    ...SecurityEventWidgetsDefaultConfig.latestThreats,
-    builder: <LatestThreats />,
   },
 };
 

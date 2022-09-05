@@ -3,12 +3,15 @@ import { Stack, Typography } from '@mui/material';
 import { IThreat } from 'modules/Shared/interfaces';
 import { BiTargetLock } from 'react-icons/bi';
 import {
+  chartRed,
   dark200,
   primary700,
-  white,
+  primaryBlue,
+  primaryYellow,
 } from 'modules/Shared/helpers/styles/Colors';
 import { formatDistance } from 'date-fns';
 import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { HIGH, LOW, MEDIUM } from 'modules/Shared/constants/utils';
 
 interface ThreatProps {
   threat: IThreat;
@@ -21,6 +24,22 @@ const threatIconMap = {
 };
 
 const Threat = ({ threat }: ThreatProps) => {
+  const getThreatSeverity = () => {
+    if (threat.level >= 0 && threat.level <= 3) {
+      return LOW;
+    }
+    if (threat.level > 3 && threat.level <= 9) {
+      return MEDIUM;
+    }
+    return HIGH;
+  };
+
+  const severityColorMap = {
+    low: primaryBlue,
+    medium: primaryYellow,
+    high: chartRed,
+  };
+
   const { setSelectedEventId, setIsEventModalOpen } = useSecurityEvent();
   return (
     <Stack
@@ -34,7 +53,7 @@ const Threat = ({ threat }: ThreatProps) => {
       sx={{
         p: 1,
         borderRadius: 2,
-        background: white,
+        background: severityColorMap[getThreatSeverity()],
         color: dark200,
         '&:hover': {
           cursor: 'pointer',

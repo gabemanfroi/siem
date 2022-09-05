@@ -8,6 +8,7 @@ import {
 } from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from 'modules/Shared/components/';
+import Agent from 'pages/Agent';
 
 const Router = () => (
   <BrowserRouter>
@@ -49,6 +50,14 @@ const Router = () => (
         element={
           <PrivateRoute>
             <SecurityEvent />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/agentes"
+        element={
+          <PrivateRoute>
+            <Agent />
           </PrivateRoute>
         }
       />

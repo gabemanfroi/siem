@@ -17,7 +17,7 @@ export const MitreWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'attacksByTechnique',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,
@@ -32,7 +32,7 @@ export const MitreWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'techniquesByAgent',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -47,7 +47,7 @@ export const MitreWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'topTactics',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,
@@ -62,7 +62,7 @@ export const MitreWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'topTacticsByAgent',
-        w: 6,
+        w: 12,
         h: 2,
         x: 0,
         y: 0,
@@ -77,7 +77,7 @@ export const MitreWidgetsDefaultConfig = {
       active: true,
       lg: {
         i: 'alertsEvolutionOverTime',
-        w: 6,
+        w: 12,
         h: 2,
         x: 6,
         y: 0,

@@ -13,7 +13,7 @@ const useSCAquery = () => {
     useQuery(
       [QUERIES.SCA.GET_POLICY_BY_ID, selectedAgentId, selectedPolicy],
       () =>
-        SCAService.getDynamic<IPolicyCheckItem>(
+        SCAService.dynamicGet<IPolicyCheckItem>(
           `/agent_policies/${selectedAgentId}/check/${selectedPolicy?.policyId}`
         ),
       {

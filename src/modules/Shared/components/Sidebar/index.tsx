@@ -1,5 +1,6 @@
 import {
   MdDashboard,
+  MdDevices,
   MdOutlineSecurity,
   MdPolicy,
   MdPowerSettingsNew,
@@ -40,6 +41,9 @@ export default function Sidebar() {
         <List>
           <NavigationItem path="/" title="Dashboard">
             <MdDashboard size={30} color={theme.palette.text.primary} />
+          </NavigationItem>
+          <NavigationItem path="/agentes" title="Agentes">
+            <MdDevices size={30} color={theme.palette.text.primary} />
           </NavigationItem>
           <NavigationItem path="/vulnerabilidades" title="Vulnerabilidades">
             <MdPolicy size={30} color={theme.palette.text.primary} />
