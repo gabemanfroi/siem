@@ -7,7 +7,7 @@ import DefaultLayout from 'modules/Shared/components/DefaultLayout';
 
 function Dashboard() {
   const { dashboardWidgetsHandler: widgetsHandler } = useDashboard();
-  const { getDashboardDataIsLoading, getDashboardData } = useDashboardQuery();
+  const { getDashboardData } = useDashboardQuery();
 
   useEffect(() => {
     if (getDashboardData) {
@@ -15,8 +15,6 @@ function Dashboard() {
       fillWidgetsWithData(data, widgetsHandler);
     }
   }, [getDashboardData]);
-
-  if (getDashboardDataIsLoading) return <></>;
 
   return (
     <DefaultLayout>

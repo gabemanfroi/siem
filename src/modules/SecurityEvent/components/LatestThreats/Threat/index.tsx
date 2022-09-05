@@ -7,7 +7,6 @@ import {
   dark200,
   primary700,
   primaryBlue,
-  primaryYellow,
 } from 'modules/Shared/helpers/styles/Colors';
 import { formatDistance } from 'date-fns';
 import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
@@ -36,7 +35,7 @@ const Threat = ({ threat }: ThreatProps) => {
 
   const severityColorMap = {
     low: primaryBlue,
-    medium: primaryYellow,
+    medium: 'rgba(255,198,61,0.91)',
     high: chartRed,
   };
 

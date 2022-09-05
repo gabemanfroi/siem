@@ -4,7 +4,6 @@ import {
   Login,
   Mitre,
   SecurityEvent,
-  Vulnerability,
 } from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from 'modules/Shared/components/';
@@ -26,14 +25,6 @@ const Router = () => (
         element={
           <PrivateRoute>
             <Mitre />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/vulnerabilidades"
-        element={
-          <PrivateRoute>
-            <Vulnerability />
           </PrivateRoute>
         }
       />

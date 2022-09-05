@@ -5,6 +5,7 @@ import { Stack, Typography } from '@mui/material';
 import { MdOutlineClose, MdOutlineDragIndicator } from 'react-icons/md';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { useWidgets } from 'modules/Shared/hooks';
+import { white } from 'modules/Shared/helpers/styles/Colors';
 import { Container } from './style';
 
 interface IGridItem {
@@ -48,6 +49,9 @@ const GridItem = forwardRef(
           sx={{
             '.react-resizable-handle': {
               display: customizeMode ? 'block' : 'none',
+              '&:after': {
+                borderColor: white,
+              },
             },
           }}
         >

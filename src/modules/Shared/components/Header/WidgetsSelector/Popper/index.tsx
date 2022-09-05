@@ -94,9 +94,10 @@ export const WidgetsSelectorPopper = ({
               }`,
               padding: '8px 10px',
               fontWeight: 600,
+              textTransform: 'uppercase',
             }}
           >
-            Select your own widgets
+            Select your widgets
           </Box>
           <Autocomplete
             open={open}

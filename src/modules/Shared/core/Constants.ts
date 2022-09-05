@@ -74,6 +74,10 @@ export const ALL_WIDGETS_LABELS = [
     identifier: 'latestThreats',
   },
   {
+    label: 'Security Event - Top Mitre',
+    identifier: 'topMitre',
+  },
+  {
     label: 'Agent - Notable Agents',
     identifier: 'notableAgents',
   },

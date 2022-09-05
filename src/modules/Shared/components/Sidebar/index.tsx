@@ -2,7 +2,6 @@ import {
   MdDashboard,
   MdDevices,
   MdOutlineSecurity,
-  MdPolicy,
   MdPowerSettingsNew,
   MdReportGmailerrorred,
   MdViewList,
@@ -44,9 +43,6 @@ export default function Sidebar() {
           </NavigationItem>
           <NavigationItem path="/agentes" title="Agentes">
             <MdDevices size={30} color={theme.palette.text.primary} />
-          </NavigationItem>
-          <NavigationItem path="/vulnerabilidades" title="Vulnerabilidades">
-            <MdPolicy size={30} color={theme.palette.text.primary} />
           </NavigationItem>
           <NavigationItem path="/mitre" title="Mitre ATT&CK">
             <MdReportGmailerrorred
