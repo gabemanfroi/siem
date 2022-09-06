@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { QUERIES } from 'modules/Shared/constants/queries';
 import { useFilter, useWidgets } from 'modules/Shared/hooks';
 import { DashboardService } from 'modules/Dashboard/api';
-import { CACHE_TIME } from 'modules/Shared/constants/utils';
 
 const useDashboardQuery = () => {
   const { selectedWidgets } = useWidgets();
@@ -28,10 +27,7 @@ const useDashboardQuery = () => {
         DashboardService.dynamicPost('', {
           ...filters,
           selectedWidgets: getWidgetsToRetrieveFromServer(),
-        }),
-      {
-        cacheTime: CACHE_TIME,
-      }
+        })
     );
 
   return {

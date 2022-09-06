@@ -21,12 +21,13 @@ import { AgentProvider } from 'modules/Agent/contexts';
 import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
 import Dialogs from 'modules/Shared/components/Dialogs';
 import { SidebarProvider } from 'modules/Shared/contexts/SidebarContext';
+import { CACHE_TIME } from 'modules/Shared/constants/utils';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      refetchInterval: 60000,
+      refetchInterval: CACHE_TIME,
     },
   },
 });

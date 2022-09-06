@@ -4,6 +4,7 @@ import agentService from 'modules/Agent/api/AgentService';
 import { useFilter } from 'modules/Shared/hooks';
 import { IPolicy } from 'modules/SCA/interfaces';
 import { useAgent } from 'modules/Agent/hooks/index';
+import { IVulnerability } from 'modules/Vulnerability/interfaces/IVulnerability';
 
 const useAgentQuery = () => {
   const { filters } = useFilter();
@@ -35,6 +36,20 @@ const useAgentQuery = () => {
       }
     );
 
+  const {
+    isLoading: getAgentVulnerabilitiesIsLoading,
+    data: getAgentVulnerabilitiesData,
+  } = useQuery(
+    [QUERIES.AGENT.GET_AGENT_VULNERABILITIES, selectedAgentId],
+    () =>
+      agentService.dynamicGet<IVulnerability>(
+        `/agent_vulnerabilities/${selectedAgentId}`
+      ),
+    {
+      enabled: !!selectedAgentId,
+    }
+  );
+
   const { isLoading: getAgentPageIsLoading, data: getAgentPageData } = useQuery(
     [QUERIES.AGENT.GET_PAGE_DATA],
     () => agentService.dynamicPost('', { ...filters })
@@ -47,6 +62,8 @@ const useAgentQuery = () => {
     getAgentPoliciesData: getAgentPoliciesData || [],
     getAgentPageIsLoading,
     getAgentPageData,
+    getAgentVulnerabilitiesData: getAgentVulnerabilitiesData || [],
+    getAgentVulnerabilitiesIsLoading,
   };
 };
 export default useAgentQuery;

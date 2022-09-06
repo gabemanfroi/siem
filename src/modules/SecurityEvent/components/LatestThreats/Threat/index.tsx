@@ -24,10 +24,10 @@ const threatIconMap = {
 
 const Threat = ({ threat }: ThreatProps) => {
   const getThreatSeverity = () => {
-    if (threat.level >= 0 && threat.level <= 3) {
+    if (threat.level <= 3) {
       return LOW;
     }
-    if (threat.level > 3 && threat.level <= 9) {
+    if (threat.level <= 9) {
       return MEDIUM;
     }
     return HIGH;

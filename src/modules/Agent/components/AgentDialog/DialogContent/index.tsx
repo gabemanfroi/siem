@@ -1,19 +1,29 @@
-import { DialogContent, Grid } from '@mui/material';
-import Overview from 'modules/Agent/components/AgentDialog/Overview';
-import PoliciesTable from 'modules/Agent/components/AgentDialog/PoliciesTable';
-import React from 'react';
+import { DialogContent, Tab } from '@mui/material';
+import React, { useState } from 'react';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import GeneralData from 'modules/Agent/components/AgentDialog/DialogContent/GeneralData';
 
-const AgentDialogContent = () => (
-  <DialogContent>
-    <Grid container>
-      <Grid item xs={3}>
-        <Overview />
-      </Grid>
-      <Grid item xs={9} sx={{ padding: '0 8px' }}>
-        <PoliciesTable />
-      </Grid>
-    </Grid>
-  </DialogContent>
-);
+const AgentDialogContent = () => {
+  const [tab, setTab] = useState('1');
+  return (
+    <DialogContent>
+      <TabContext value={tab}>
+        <TabList
+          onChange={(e, v) => {
+            setTab(v);
+          }}
+        >
+          <Tab label="General Data" value="1" />
+          <Tab label="Vulnerabilities" value="2" />
+          <Tab label="Events" value="3" />
+        </TabList>
+        <TabPanel value="1">
+          <GeneralData />
+        </TabPanel>
+        <TabPanel value="2" />
+      </TabContext>
+    </DialogContent>
+  );
+};
 
 export default AgentDialogContent;
