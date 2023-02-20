@@ -27,19 +27,19 @@ import LatestThreats from '../components/LatestThreats';
 export const securityEventWidgets: ISecurityEventWidgets = {
   latestThreats: {
     ...SecurityEventWidgetsDefaultConfig.latestThreats,
-    builder: <LatestThreats />,
+    Component: LatestThreats,
   },
   topMitre: {
     ...SecurityEventWidgetsDefaultConfig.topMitre,
-    builder: <TopMitre />,
+    Component: TopMitre,
   },
   alertsEvolutionTop5Agents: {
     ...SecurityEventWidgetsDefaultConfig.alertsEvolutionTop5Agents,
-    builder: <AlertsEvolutionTop5Agents />,
+    Component: AlertsEvolutionTop5Agents,
   },
   alertLevelEvolution: {
     ...SecurityEventWidgetsDefaultConfig.alertLevelEvolution,
-    builder: <AlertLevelEvolution />,
+    Component: AlertLevelEvolution,
   },
 };
 
@@ -54,8 +54,8 @@ interface ISecurityEventContext {
   setSelectedEventId: Dispatch<SetStateAction<string | null>>;
   selectedEvent: IEvent | null;
   setSelectedEvent: Dispatch<SetStateAction<IEvent | null>>;
-  isEventModalOpen: boolean;
-  setIsEventModalOpen: Dispatch<SetStateAction<boolean>>;
+  isEventDialogOpen: boolean;
+  setIsEventDialogOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const securityEventContextDefaultValues: ISecurityEventContext = {
@@ -69,8 +69,8 @@ const securityEventContextDefaultValues: ISecurityEventContext = {
   setSelectedEventId: () => {},
   selectedEvent: null,
   setSelectedEvent: () => {},
-  isEventModalOpen: false,
-  setIsEventModalOpen: () => {},
+  isEventDialogOpen: false,
+  setIsEventDialogOpen: () => {},
 };
 
 const SecurityEventContext = createContext<ISecurityEventContext>(
@@ -78,7 +78,7 @@ const SecurityEventContext = createContext<ISecurityEventContext>(
 );
 
 export const SecurityEventProvider: React.FC = ({ children }) => {
-  const [isEventModalOpen, setIsEventModalOpen] = useState<boolean>(false);
+  const [isEventDialogOpen, setIsEventDialogOpen] = useState<boolean>(false);
   const [selectedEvent, setSelectedEvent] = useState<null | IEvent>(null);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [alertLevelEvolution, setAlertLevelEvolution] = useState<
@@ -95,7 +95,6 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
 
   const widgetsHandler = {
     alertLevelEvolution: setAlertLevelEvolution,
-
     alertsEvolutionTop5Agents: setAlertsEvolutionTop5Agents,
     securityEventTop5Agents: setSecurityEventTop5Agents,
     topMitre: setTopMitre,
@@ -114,8 +113,8 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
       latestThreats,
       selectedEvent,
       setSelectedEvent,
-      isEventModalOpen,
-      setIsEventModalOpen,
+      isEventDialogOpen,
+      setIsEventDialogOpen,
     }),
     [
       selectedEventId,
@@ -124,6 +123,7 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
       securityEventTop5Agents,
       topMitre,
       latestThreats,
+      setLatestThreats,
     ]
   );
 
@@ -134,4 +134,4 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useSecurityEvent = () => useContext(SecurityEventContext);
+export const useSecurityEventContext = () => useContext(SecurityEventContext);

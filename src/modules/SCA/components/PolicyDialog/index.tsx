@@ -5,9 +5,8 @@ import {
   DialogTitle,
   IconButton,
 } from '@mui/material';
-import { useSCA } from 'modules/SCA/hooks';
-import useSCAquery from 'modules/SCA/hooks/useSCAQuery';
-import { useAgent } from 'modules/Agent/hooks';
+import { useSCAContext, useSCAQuery } from 'modules/SCA/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
 import Content from 'modules/SCA/components/PolicyDialog/Content';
 import { MdClose } from 'react-icons/md';
 
@@ -17,11 +16,11 @@ const PolicyDialog = () => {
     setIsPolicyDialogOpen,
     setSelectedPolicy,
     selectedPolicy,
-  } = useSCA();
+  } = useSCAContext();
 
-  const { selectedAgent } = useAgent();
+  const { selectedAgent } = useAgentContext();
 
-  const { getPolicyByIdData } = useSCAquery();
+  const { getPolicyByIdData } = useSCAQuery();
 
   const onClose = () => {
     setSelectedPolicy(null);

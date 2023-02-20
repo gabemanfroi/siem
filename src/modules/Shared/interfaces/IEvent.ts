@@ -1,3 +1,8 @@
+export interface IAgentFromEvent {
+  name: string;
+  ip: string;
+}
+
 export default interface IEvent {
   rule: {
     level: number;
@@ -12,10 +17,7 @@ export default interface IEvent {
     ipPort: number;
   };
   id: string;
-  agent: {
-    name: string;
-    ip: string;
-  };
+  agent: IAgentFromEvent;
   vulnerability?: {
     severity: string;
     references: string[];

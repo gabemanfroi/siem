@@ -1,9 +1,9 @@
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
 
 const AlertsEvolutionTop5Agents = () => {
-  const { alertsEvolutionTop5Agents } = useSecurityEvent();
+  const { alertsEvolutionTop5Agents } = useSecurityEventContext();
 
   if (!alertsEvolutionTop5Agents) return <></>;
 

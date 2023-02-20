@@ -1,4 +1,7 @@
-import { IWidget } from 'modules/Shared/interfaces/Widgets';
+import {
+  IWidget,
+  IWidgetDefaultConfig,
+} from 'modules/Shared/interfaces/Widgets';
 
 export interface ISecurityEventWidgets {
   alertLevelEvolution?: IWidget;
@@ -7,19 +10,30 @@ export interface ISecurityEventWidgets {
   latestThreats?: IWidget;
 }
 
-export const SecurityEventWidgetsDefaultConfig = {
+export const SecurityEventWidgetsDefaultConfig: IWidgetDefaultConfig = {
   latestThreats: {
     label: 'Security Event - Latest Threats',
     identifier: 'latestThreats',
     framework: 'securityEvent',
+    available: true,
     options: {
-      active: true,
-      lg: {
-        i: 'latestThreats',
-        w: 6,
-        h: 2,
-        x: 0,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'latestThreats',
+          w: 6,
+          h: 2,
+          x: 6,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'latestThreats',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 0,
+        },
       },
     },
   },
@@ -28,13 +42,23 @@ export const SecurityEventWidgetsDefaultConfig = {
     identifier: 'alertLevelEvolution',
     framework: 'securityEvent',
     options: {
-      active: true,
-      lg: {
-        i: 'alertLevelEvolution',
-        w: 9,
-        h: 2,
-        x: 3,
-        y: 2,
+      dashboard: {
+        lg: {
+          i: 'latestThreats',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'alertLevelEvolution',
+          w: 9,
+          h: 2,
+          x: 3,
+          y: 2,
+        },
       },
     },
   },
@@ -43,13 +67,23 @@ export const SecurityEventWidgetsDefaultConfig = {
     identifier: 'alertsEvolutionTop5Agents',
     framework: 'securityEvent',
     options: {
-      active: true,
-      lg: {
-        i: 'alertsEvolutionTop5Agents',
-        w: 6,
-        h: 2,
-        x: 6,
-        y: 0,
+      page: {
+        lg: {
+          i: 'alertsEvolutionTop5Agents',
+          w: 6,
+          h: 2,
+          x: 6,
+          y: 0,
+        },
+      },
+      dashboard: {
+        lg: {
+          i: 'alertsEvolutionTop5Agents',
+          w: 6,
+          h: 2,
+          x: 6,
+          y: 0,
+        },
       },
     },
   },
@@ -58,13 +92,37 @@ export const SecurityEventWidgetsDefaultConfig = {
     identifier: 'topMitre',
     framework: 'securityEvent',
     options: {
-      active: true,
-      lg: {
-        i: 'topMitre',
-        w: 3,
-        h: 2,
-        x: 0,
-        y: 3,
+      dashboard: {
+        lg: {
+          i: 'topMitre',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+        md: {
+          i: 'topMitre',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+      },
+      page: {
+        lg: {
+          i: 'topMitre',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+        md: {
+          i: 'topMitre',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
       },
     },
   },

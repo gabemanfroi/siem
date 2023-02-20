@@ -3,7 +3,7 @@ export const LOCAL_STORAGE_WIDGETS_CONFIG_NAME = '@seclab_widgets_config';
 export const ALL_WIDGETS_LABELS = [
   {
     label: 'Integrity Monitoring - Actions Types',
-    identifier: 'Integrity Monitoring - actionsTypes',
+    identifier: 'actionsTypes',
   },
   {
     label: 'Integrity Monitoring - Alerts by Action Over Time',

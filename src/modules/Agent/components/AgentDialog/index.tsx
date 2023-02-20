@@ -1,19 +1,19 @@
 import { Dialog } from '@mui/material';
 import React, { useEffect } from 'react';
 
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
 import { useAgentQuery } from 'modules/Agent/hooks/queries';
 import AgentDialogTitle from 'modules/Agent/components/AgentDialog/DialogTitle';
 import AgentDialogContent from 'modules/Agent/components/AgentDialog/DialogContent';
 
 export default function AgentDialog() {
-  const { isAgentModalOpen, setIsAgentModalOpen, setSelectedAgent } =
-    useAgent();
+  const { isAgentDialogOpen, setIsAgentDialogOpen, setSelectedAgent } =
+    useAgentContext();
 
   const { findByElasticsearchIdAgent } = useAgentQuery();
   const handleClose = () => {
     setSelectedAgent(null);
-    setIsAgentModalOpen(false);
+    setIsAgentDialogOpen(false);
   };
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function AgentDialog() {
 
   return (
     <Dialog
-      open={isAgentModalOpen}
+      open={isAgentDialogOpen}
       onClose={handleClose}
       maxWidth="lg"
       fullWidth

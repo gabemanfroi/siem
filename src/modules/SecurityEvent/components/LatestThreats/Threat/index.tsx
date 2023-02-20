@@ -9,7 +9,7 @@ import {
   primaryBlue,
 } from 'modules/Shared/helpers/styles/Colors';
 import { formatDistance } from 'date-fns';
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { HIGH, LOW, MEDIUM } from 'modules/Shared/constants/utils';
 
 interface ThreatProps {
@@ -39,12 +39,13 @@ const Threat = ({ threat }: ThreatProps) => {
     high: chartRed,
   };
 
-  const { setSelectedEventId, setIsEventModalOpen } = useSecurityEvent();
+  const { setSelectedEventId, setIsEventDialogOpen } =
+    useSecurityEventContext();
   return (
     <Stack
       onClick={() => {
         setSelectedEventId(threat.id);
-        setIsEventModalOpen(true);
+        setIsEventDialogOpen(true);
       }}
       direction="row"
       justifyContent="space-between"

@@ -22,6 +22,7 @@ import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
 import Dialogs from 'modules/Shared/components/Dialogs';
 import { SidebarProvider } from 'modules/Shared/contexts/SidebarContext';
 import { CACHE_TIME } from 'modules/Shared/constants/utils';
+import { AnalysisProvider } from 'modules/Analysis/contexts/AnalysisContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,11 +48,13 @@ export default function App() {
                         <SCAProvider>
                           <WidgetsProvider>
                             <SidebarProvider>
-                              <DashboardProvider>
-                                <Router />
-                                <Dialogs />
-                                <ErrorSnackbar />
-                              </DashboardProvider>
+                              <AnalysisProvider>
+                                <DashboardProvider>
+                                  <Router />
+                                  <Dialogs />
+                                  <ErrorSnackbar />
+                                </DashboardProvider>
+                              </AnalysisProvider>
                             </SidebarProvider>
                           </WidgetsProvider>
                         </SCAProvider>

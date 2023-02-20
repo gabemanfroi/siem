@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { IEvent } from 'modules/Shared/interfaces';
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
 
 function Row({ event }: { event: IEvent }) {
   return (
@@ -52,7 +52,7 @@ function Row({ event }: { event: IEvent }) {
 }
 
 const Events = () => {
-  const { selectedAgent } = useAgent();
+  const { selectedAgent } = useAgentContext();
 
   if (!selectedAgent) return <></>;
 

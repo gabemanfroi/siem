@@ -1,9 +1,9 @@
 import { Stack } from '@mui/material';
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import Threat from 'modules/SecurityEvent/components/LatestThreats/Threat';
 
 const LatestThreats = () => {
-  const { latestThreats } = useSecurityEvent();
+  const { latestThreats } = useSecurityEventContext();
 
   return (
     <Stack spacing={1} sx={{ overflowY: 'hidden' }}>

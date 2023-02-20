@@ -42,8 +42,13 @@ export const FilterProvider: React.FC = ({ children }) => {
   const [isFilterMode, setIsFilterMode] = useState(false);
 
   const value = useMemo(
-    () => ({ filters, setFilters, isFilterMode, setIsFilterMode }),
-    [filters, isFilterMode]
+    () => ({
+      filters,
+      setFilters,
+      isFilterMode,
+      setIsFilterMode,
+    }),
+    [filters, isFilterMode, setIsFilterMode]
   );
   return (
     <FilterContext.Provider value={value}>{children}</FilterContext.Provider>

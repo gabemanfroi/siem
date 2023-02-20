@@ -1,9 +1,9 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { ApexOptions } from 'apexcharts';
 
 const Top5Agents = () => {
-  const { integrityMonitoringTop5Agents } = useIntegrityMonitoring();
+  const { integrityMonitoringTop5Agents } = useIntegrityMonitoringContext();
   if (!integrityMonitoringTop5Agents) return <></>;
 
   const { labels, series } = integrityMonitoringTop5Agents;

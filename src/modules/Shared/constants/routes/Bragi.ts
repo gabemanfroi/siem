@@ -8,5 +8,6 @@ const BRAGI = {
   VULNERABILITY: '/bragi/api/vulnerabilidades',
   AGENT: '/bragi/api/agentes',
   SCA: '/bragi/api/sca',
+  ANALYSIS: '/bragi/api/analise',
 };
 export default BRAGI;

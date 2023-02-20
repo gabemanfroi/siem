@@ -1,9 +1,9 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { ApexOptions } from 'apexcharts';
 
 const ActionsTypes = () => {
-  const { actionsTypes } = useIntegrityMonitoring();
+  const { actionsTypes } = useIntegrityMonitoringContext();
 
   if (!actionsTypes) return <></>;
 

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { WidgetsContext } from 'modules/Shared/contexts/WidgetsContext';
 
-const useWidgets = () => useContext(WidgetsContext);
+const useWidgetsContext = () => useContext(WidgetsContext);
 
-export default useWidgets;
+export default useWidgetsContext;

@@ -37,30 +37,38 @@ const Windows = ({ event }: { event: IEvent }) => {
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="h6" color={gray200}>
-              Target Domain Name
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              color={white}
-              fontSize={16}
-              sx={{ fontWeight: 600 }}
-            >
-              {event.win.targetDomainName}
-            </Typography>
+            {event.win.targetDomainName && (
+              <>
+                <Typography variant="h6" color={gray200}>
+                  Target Domain Name
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  color={white}
+                  fontSize={16}
+                  sx={{ fontWeight: 600 }}
+                >
+                  {event.win.targetDomainName}
+                </Typography>
+              </>
+            )}
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="h6" color={gray200}>
-              IP Port
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              color={white}
-              fontSize={16}
-              sx={{ fontWeight: 600 }}
-            >
-              {event.win.ipPort}
-            </Typography>
+            {event.win.ipPort && (
+              <>
+                <Typography variant="h6" color={gray200}>
+                  IP Port
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  color={white}
+                  fontSize={16}
+                  sx={{ fontWeight: 600 }}
+                >
+                  {event.win.ipPort}
+                </Typography>
+              </>
+            )}
           </Grid>
         </Grid>
         <Grid item container xs={12}>
@@ -72,7 +80,7 @@ const Windows = ({ event }: { event: IEvent }) => {
               variant="subtitle2"
               color={white}
               fontSize={14}
-              sx={{ fontWeight: 600 }}
+              sx={{ fontWeight: 600, overflowWrap: 'break-word' }}
             >
               {event.win.message}
             </Typography>

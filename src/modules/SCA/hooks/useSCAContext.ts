@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { SCAContext } from 'modules/SCA/contexts/SCAContext';
 
-const useSCA = () => useContext(SCAContext);
+const useSCAContext = () => useContext(SCAContext);
 
-export default useSCA;
+export default useSCAContext;

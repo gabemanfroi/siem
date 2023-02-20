@@ -10,10 +10,10 @@ import {
 import { LoadingHandler } from 'modules/Shared/components';
 import React from 'react';
 import { useAgentQuery } from 'modules/Agent/hooks/queries';
-import { useSCA } from 'modules/SCA/hooks';
+import { useSCAContext } from 'modules/SCA/hooks';
 
 const PoliciesTable = () => {
-  const { setSelectedPolicy, setIsPolicyDialogOpen } = useSCA();
+  const { setSelectedPolicy, setIsPolicyDialogOpen } = useSCAContext();
 
   const { getAgentPoliciesData } = useAgentQuery();
 
