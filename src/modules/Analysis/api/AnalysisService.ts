@@ -1,9 +1,26 @@
 import { BaseService } from 'modules/Shared/services/BaseService';
-import { IAnalysis } from 'modules/Shared/interfaces';
+import { AlertWithReports, ICortexReport } from 'modules/Shared/interfaces';
 import { ROUTES } from 'modules/Shared/constants/routes';
+import AxiosClient from 'modules/Shared/services/AxiosClient';
 
-const AnalysisService = () => ({
-  ...BaseService<IAnalysis>(ROUTES.BRAGI.ANALYSIS),
-});
+const AnalysisService = () => {
+  const customEndpoints = {
+    getReportsByEventId: async (eventId: string) =>
+      (
+        await AxiosClient.get<ICortexReport[]>(
+          `${ROUTES.BRAGI.ANALYSIS}/reports/get_by_event_id/${eventId}`
+        )
+      ).data,
+    analyzeByElasticsearchId: async (alertId: string) => {
+      await AxiosClient.post(
+        `${ROUTES.BRAGI.ANALYSIS}/analyze_by_elasticsearch_id/${alertId}`
+      );
+    },
+  };
+  return {
+    ...BaseService<AlertWithReports>(ROUTES.BRAGI.ANALYSIS),
+    ...customEndpoints,
+  };
+};
 
 export default AnalysisService();

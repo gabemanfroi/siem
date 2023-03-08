@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { IAgent } from 'modules/Shared/interfaces';
+import { Agent } from 'modules/Shared/interfaces';
 import {
   AgentWidgetsDefaultConfig,
   IAgentWidgets,
@@ -23,11 +23,11 @@ export const agentWidgets: IAgentWidgets = {
 
 interface AgentContextInterface {
   notableAgents: INotableAgent[] | undefined;
-  selectedAgent: IAgent | null;
-  setSelectedAgent: Dispatch<SetStateAction<IAgent | null>>;
+  selectedAgent: Agent | null;
+  setSelectedAgent: Dispatch<SetStateAction<Agent | null>>;
   isAgentDialogOpen: boolean;
   setIsAgentDialogOpen: Dispatch<SetStateAction<boolean>>;
-  agents: IAgent[];
+  agents: Agent[];
   widgetsHandler: IWidgetsHandler;
   selectedAgentId: string | null;
   setSelectedAgentId: Dispatch<SetStateAction<string | null>>;
@@ -58,10 +58,10 @@ export const AgentProvider: React.FC = ({ children }) => {
   >();
 
   const [isAgentEditMode, setIsAgentEditMode] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState<IAgent | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(null);
   const [isAgentDialogOpen, setIsAgentDialogOpen] = useState<boolean>(false);
-  const [agents] = useState<IAgent[]>([]);
+  const [agents] = useState<Agent[]>([]);
 
   const widgetsHandler = {
     notableAgents: setNotableAgents,

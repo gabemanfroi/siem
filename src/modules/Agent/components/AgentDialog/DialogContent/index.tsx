@@ -2,11 +2,13 @@ import { DialogContent, Tab } from '@mui/material';
 import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import GeneralData from 'modules/Agent/components/AgentDialog/DialogContent/GeneralData';
+import Events from 'modules/Agent/components/AgentDialog/DialogContent/Events';
+import Vulnerabilities from './Vulnerabilities';
 
 const AgentDialogContent = () => {
   const [tab, setTab] = useState('1');
   return (
-    <DialogContent>
+    <DialogContent sx={{ display: 'flex', flexDirection: 'column' }}>
       <TabContext value={tab}>
         <TabList
           onChange={(e, v) => {
@@ -17,10 +19,15 @@ const AgentDialogContent = () => {
           <Tab label="Vulnerabilities" value="2" />
           <Tab label="Events" value="3" />
         </TabList>
-        <TabPanel value="1">
+        <TabPanel sx={{ flex: 1 }} value="1">
           <GeneralData />
         </TabPanel>
-        <TabPanel value="2" />
+        <TabPanel sx={{ flex: 1 }} value="2">
+          <Vulnerabilities />
+        </TabPanel>
+        <TabPanel sx={{ flex: 1 }} value="3">
+          <Events />
+        </TabPanel>
       </TabContext>
     </DialogContent>
   );

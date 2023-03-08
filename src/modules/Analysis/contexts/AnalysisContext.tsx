@@ -10,67 +10,85 @@ import {
   AnalysisWidgetDefaultConfig,
   IAnalysisWidgets,
 } from 'modules/Analysis/interfaces/Widgets';
-import { LatestAnalyses } from 'modules/Analysis/components';
+import {
+  LatestReports,
+  LatestSuspiciousEvents,
+} from 'modules/Analysis/components';
 import { IWidgetsHandler } from 'modules/Shared/interfaces/IWidgetsHandlerMap';
-import ISeclabEvent from 'modules/Shared/interfaces/ISeclabEvent';
+import { AlertWithReports, ICortexReport } from 'modules/Shared/interfaces';
 
 export const analysisWidgets: IAnalysisWidgets = {
-  lastAnalysis: {
-    ...AnalysisWidgetDefaultConfig.latestAnalyses,
-    Component: LatestAnalyses,
+  latestReports: {
+    ...AnalysisWidgetDefaultConfig.latestReports,
+    Component: LatestReports,
+  },
+  latestSuspiciousEvents: {
+    ...AnalysisWidgetDefaultConfig.latestSuspiciousEvents,
+    Component: LatestSuspiciousEvents,
   },
 };
 
 interface IAnalysisContext {
-  latestAnalyses: ISeclabEvent[];
-  setLatestAnalyses: Dispatch<SetStateAction<any[]>>;
+  latestReports: ICortexReport[];
+  setLatestReports: Dispatch<SetStateAction<ICortexReport[]>>;
   widgetsHandler: IWidgetsHandler;
-  isAnalysisDialogOpen: boolean;
-  setIsAnalysisDialogOpen: Dispatch<SetStateAction<boolean>>;
-  selectedAnalysis: ISeclabEvent | null;
-  setSelectedAnalysis: Dispatch<SetStateAction<ISeclabEvent | null>>;
+  isReportDialogOpen: boolean;
+  setIsReportDialogOpen: Dispatch<SetStateAction<boolean>>;
+  selectedReport: ICortexReport | null;
+  setSelectedReport: Dispatch<SetStateAction<ICortexReport | null>>;
+  latestSuspiciousEvents: AlertWithReports[];
+  setLatestSuspiciousEvents: Dispatch<SetStateAction<AlertWithReports[]>>;
 }
 
 const initialValues: IAnalysisContext = {
-  latestAnalyses: [],
-  setLatestAnalyses: () => {},
+  latestReports: [],
+  setLatestReports: () => {},
   widgetsHandler: {},
-  isAnalysisDialogOpen: false,
-  setIsAnalysisDialogOpen: () => {},
-  selectedAnalysis: null,
-  setSelectedAnalysis: () => {},
+  isReportDialogOpen: false,
+  setIsReportDialogOpen: () => {},
+  selectedReport: null,
+  setSelectedReport: () => {},
+  latestSuspiciousEvents: [],
+  setLatestSuspiciousEvents: () => {},
 };
 
 export const AnalysisContext = createContext<IAnalysisContext>(initialValues);
 
 export const AnalysisProvider: FC = ({ children }) => {
-  const [latestAnalyses, setLatestAnalyses] = useState<ISeclabEvent[]>([]);
-  const [isAnalysisDialogOpen, setIsAnalysisDialogOpen] = useState(false);
-  const [selectedAnalysis, setSelectedAnalysis] = useState<ISeclabEvent | null>(
+  const [latestSuspiciousEvents, setLatestSuspiciousEvents] = useState<
+    AlertWithReports[]
+  >([]);
+  const [latestReports, setLatestReports] = useState<ICortexReport[]>([]);
+  const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
+  const [selectedReport, setSelectedReport] = useState<ICortexReport | null>(
     null
   );
   const widgetsHandler = {
-    latestAnalyses: setLatestAnalyses,
+    latestReports: setLatestReports,
+    latestSuspiciousEvents: setLatestSuspiciousEvents,
   };
 
   const value = useMemo(
     () => ({
-      latestAnalyses,
-      setLatestAnalyses,
+      latestReports,
+      setLatestReports,
       widgetsHandler,
-      isAnalysisDialogOpen,
-      setIsAnalysisDialogOpen,
-      selectedAnalysis,
-      setSelectedAnalysis,
+      isReportDialogOpen,
+      setIsReportDialogOpen,
+      selectedReport,
+      setSelectedReport,
+      setLatestSuspiciousEvents,
+      latestSuspiciousEvents,
     }),
     [
-      latestAnalyses,
-      setLatestAnalyses,
+      latestSuspiciousEvents,
+      latestReports,
+      setLatestReports,
       widgetsHandler,
-      isAnalysisDialogOpen,
-      setIsAnalysisDialogOpen,
-      selectedAnalysis,
-      setSelectedAnalysis,
+      isReportDialogOpen,
+      setIsReportDialogOpen,
+      selectedReport,
+      setSelectedReport,
     ]
   );
 

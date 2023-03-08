@@ -6,6 +6,7 @@ import { useVirusTotal } from 'modules/VirusTotal/contexts/VirusTotalContext';
 import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
 import { useAgentContext } from 'modules/Agent/hooks';
+import { useAnalysisContext } from 'modules/Analysis/hooks';
 
 interface DashboardContextInterface {
   dashboardWidgetsHandler: IWidgetsHandler;
@@ -28,6 +29,7 @@ export const DashboardProvider: React.FC = ({ children }) => {
   const { widgetsHandler: securityEventHandlersMap } =
     useSecurityEventContext();
   const { widgetsHandler: agentHandlersMap } = useAgentContext();
+  const { widgetsHandler: analysisHandlerMap } = useAnalysisContext();
 
   const dashboardWidgetsHandler = {
     ...integrityMonitoringHandlersMap,
@@ -36,6 +38,7 @@ export const DashboardProvider: React.FC = ({ children }) => {
     ...vulnerabilityWidgetsHandler,
     ...virusTotalHandlersMap,
     ...agentHandlersMap,
+    ...analysisHandlerMap,
   };
 
   const value = useMemo(

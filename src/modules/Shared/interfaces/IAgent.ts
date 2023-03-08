@@ -1,7 +1,4 @@
-import { MetricsTypes } from 'modules/Shared/types/MetricsTypes';
-import { IEvent } from 'modules/Shared/interfaces';
-
-export default interface IAgent extends MetricsTypes {
+export default interface IAgent {
   generalData: {
     id: number;
     elasticsearchName: string;
@@ -9,11 +6,4 @@ export default interface IAgent extends MetricsTypes {
     name: string;
     deviceType: 'SERVER' | 'DESKTOP' | 'LAPTOP' | 'MOBILE';
   };
-  events: IEvent[];
-  eventsByLevel: {
-    low: number;
-    medium: number;
-    high: number;
-  };
-  trustLevel: number;
 }

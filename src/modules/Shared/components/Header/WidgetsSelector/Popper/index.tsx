@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { MdOutlineCheck, MdOutlineClose } from 'react-icons/md';
 import { useTheme } from '@mui/material/styles';
-import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
+import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/constants';
 import { useWidgetsContext } from 'modules/Shared/hooks';
 import {
   IAutoCompleteWidget,

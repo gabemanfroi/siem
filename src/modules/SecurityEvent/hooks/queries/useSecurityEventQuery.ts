@@ -3,25 +3,44 @@ import { QUERIES } from 'modules/Shared/constants/queries';
 import { useFilter } from 'modules/Shared/hooks';
 import SecurityEventService from 'modules/SecurityEvent/api/SecurityEventService';
 import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useAgentContext } from 'modules/Agent/hooks';
 
 const useSecurityEventQuery = () => {
   const { filters, isFilterMode } = useFilter();
-  const { selectedEventId } = useSecurityEventContext();
+  const { selectedAlertId } = useSecurityEventContext();
+  const { selectedAgentId } = useAgentContext();
   const {
     data: findByElasticsearchIdEvent,
     isLoading: findByElasticsearchIsLoading,
   } = useQuery(
-    [QUERIES.SECURITY_EVENT.FIND_BY_ELASTICSEARCH_ID, selectedEventId],
+    [QUERIES.SECURITY_EVENT.FIND_BY_ELASTICSEARCH_ID, selectedAlertId],
     () =>
       SecurityEventService.getByElasticsearchId({
         endDate: filters.endDate!,
         initialDate: filters.initialDate!,
-        elasticsearchId: selectedEventId!,
+        elasticsearchId: selectedAlertId!,
       }),
     {
-      enabled: !!selectedEventId,
+      enabled: !!selectedAlertId,
     }
   );
+
+  const {
+    data: eventsBelongingToAgent,
+    isLoading: eventsBelongingToAgentIsLoading,
+  } = useQuery(
+    [QUERIES.SECURITY_EVENT.GET_EVENTS_BELONGING_TO_AGENT, selectedAgentId],
+    () =>
+      SecurityEventService.getEventsBelongingToAgent({
+        endDate: filters.endDate!,
+        initialDate: filters.initialDate!,
+        elasticsearchId: selectedAgentId!,
+      }),
+    {
+      enabled: !!selectedAgentId,
+    }
+  );
+
   const { data: pageData, isLoading: pageIsLoading } = useQuery(
     [QUERIES.SECURITY_EVENT.GET_PAGE_DATA, filters],
     () =>
@@ -31,6 +50,8 @@ const useSecurityEventQuery = () => {
   return {
     findByElasticsearchIdEvent,
     findByElasticsearchIsLoading,
+    eventsBelongingToAgent,
+    eventsBelongingToAgentIsLoading,
     pageData,
     pageIsLoading,
   };

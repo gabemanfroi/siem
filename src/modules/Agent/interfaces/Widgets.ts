@@ -2,14 +2,16 @@ import {
   IWidget,
   IWidgetDefaultConfig,
 } from 'modules/Shared/interfaces/Widgets';
+import i18n from 'modules/Shared/core/i18n';
 
 export interface IAgentWidgets {
   notableAgents?: IWidget;
 }
 
+const { t } = i18n;
 export const AgentWidgetsDefaultConfig: IWidgetDefaultConfig = {
   notableAgents: {
-    label: 'Agent - Notable Agents',
+    label: t('Agent - Notable Agents'),
     identifier: 'notableAgents',
     framework: 'agent',
     available: true,

@@ -5,7 +5,7 @@ import {
   IAutoCompleteWidget,
   isWidget,
 } from 'modules/Shared/interfaces/Widgets';
-import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
+import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/constants';
 import { useWidgetsContext } from 'modules/Shared/hooks';
 import {
   AutocompleteBox,

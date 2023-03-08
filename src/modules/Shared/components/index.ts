@@ -5,5 +5,6 @@ export { default as AgentModal } from '../../Agent/components/AgentDialog';
 export { default as Router } from './Router';
 export { default as ErrorSnackbar } from './Snackbar/ErrorSnackbar';
 export { default as LoadingHandler } from './LoadingHandler';
+export { default as DefaultDialog } from './DefaultDialog';
 export * from './Containers';
 export * from './Widgets';

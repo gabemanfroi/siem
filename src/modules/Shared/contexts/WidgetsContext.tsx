@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { Layout } from 'react-grid-layout';
-import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
+import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/constants';
 import {
   IAllWidgets,
   IWidget,

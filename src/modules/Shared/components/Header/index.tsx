@@ -11,10 +11,12 @@ import {
 import { MdMenu } from 'react-icons/md';
 import { useFilter, useSidebar } from 'modules/Shared/hooks';
 import DateFilter from 'modules/Shared/components/Header/DateFilter';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const { isFilterMode, setIsFilterMode } = useFilter();
   const { isOpen, setIsOpen } = useSidebar();
+  const { t } = useTranslation();
 
   return (
     <Box>
@@ -29,7 +31,7 @@ const Header = () => {
             {isFilterMode && <DateFilter />}
             <FormControl>
               <FormControlLabel
-                label={isFilterMode ? 'Filtering Data' : 'Real Time Data'}
+                label={t(isFilterMode ? 'Filtering Data' : 'Real Time Data')}
                 value={!isFilterMode}
                 control={
                   <Switch

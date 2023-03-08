@@ -19,7 +19,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AgentProvider } from 'modules/Agent/contexts';
 import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
-import Dialogs from 'modules/Shared/components/Dialogs';
+import Dialogs from 'modules/Shared/containers/Dialogs';
 import { SidebarProvider } from 'modules/Shared/contexts/SidebarContext';
 import { CACHE_TIME } from 'modules/Shared/constants/utils';
 import { AnalysisProvider } from 'modules/Analysis/contexts/AnalysisContext';

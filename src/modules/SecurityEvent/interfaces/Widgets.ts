@@ -2,6 +2,7 @@ import {
   IWidget,
   IWidgetDefaultConfig,
 } from 'modules/Shared/interfaces/Widgets';
+import i18n from 'modules/Shared/core/i18n';
 
 export interface ISecurityEventWidgets {
   alertLevelEvolution?: IWidget;
@@ -10,9 +11,10 @@ export interface ISecurityEventWidgets {
   latestThreats?: IWidget;
 }
 
+const { t } = i18n;
 export const SecurityEventWidgetsDefaultConfig: IWidgetDefaultConfig = {
   latestThreats: {
-    label: 'Security Event - Latest Threats',
+    label: t('Security Event - Latest Threats'),
     identifier: 'latestThreats',
     framework: 'securityEvent',
     available: true,
@@ -38,7 +40,7 @@ export const SecurityEventWidgetsDefaultConfig: IWidgetDefaultConfig = {
     },
   },
   alertLevelEvolution: {
-    label: 'Security Event - Alert Level Evolution',
+    label: t('Security Event - Alert Level Evolution'),
     identifier: 'alertLevelEvolution',
     framework: 'securityEvent',
     options: {

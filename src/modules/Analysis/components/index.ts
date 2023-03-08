@@ -1,1 +1,2 @@
-export { default as LatestAnalyses } from './LatestAnalyses';
+export { default as LatestReports } from './LatestReports';
+export { default as LatestSuspiciousEvents } from './LatestSuspiciousEvents';
