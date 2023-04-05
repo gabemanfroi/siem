@@ -6,13 +6,17 @@ import { useAnalysisContext } from 'modules/Analysis/hooks';
 import { useAgentContext } from 'modules/Agent/hooks';
 import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { useSCAContext } from 'modules/SCA/hooks';
+import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
+import { VulnerabilityDialog } from 'modules/Vulnerability/components';
 
 const useDialogs = () => {
   const { isAgentDialogOpen } = useAgentContext();
   const { isAlertDialogOpen } = useSecurityEventContext();
   const { isPolicyDialogOpen } = useSCAContext();
   const { isReportDialogOpen } = useAnalysisContext();
+  const { isVulnerabilityDialogOpen } = useVulnerabilityContext();
   return {
+    isVulnerabilityDialogOpen,
     isAgentDialogOpen,
     isAlertDialogOpen,
     isPolicyDialogOpen,
@@ -26,6 +30,7 @@ const Dialogs = () => {
     isAlertDialogOpen,
     isPolicyDialogOpen,
     isReportDialogOpen,
+    isVulnerabilityDialogOpen,
   } = useDialogs();
 
   return (
@@ -34,6 +39,7 @@ const Dialogs = () => {
       {isAlertDialogOpen && <AlertDialog />}
       {isPolicyDialogOpen && <PolicyDialog />}
       {isReportDialogOpen && <AnalysisDialog />}
+      {isVulnerabilityDialogOpen && <VulnerabilityDialog />}
     </>
   );
 };

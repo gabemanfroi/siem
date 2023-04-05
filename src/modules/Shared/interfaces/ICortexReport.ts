@@ -5,7 +5,7 @@ interface ReportSummary {
   value: string;
 }
 
-interface Report {
+export interface Report {
   summary: ReportSummary;
 }
 

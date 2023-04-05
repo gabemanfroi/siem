@@ -5,10 +5,15 @@ import Report from 'modules/Analysis/components/ReportDialog/Report';
 import { DefaultDialog } from 'modules/Shared/components';
 
 const AnalysisDialog = () => {
-  const { selectedReport, setIsReportDialogOpen, isReportDialogOpen } =
-    useAnalysisContext();
+  const {
+    setSelectedReport,
+    selectedReport,
+    setIsReportDialogOpen,
+    isReportDialogOpen,
+  } = useAnalysisContext();
 
   const onClose = () => {
+    setSelectedReport(null);
     setIsReportDialogOpen(false);
   };
 
@@ -21,7 +26,7 @@ const AnalysisDialog = () => {
       title={selectedReport.observable}
     >
       <Stack gap={2}>
-        <Report report={selectedReport} />
+        <Report />
       </Stack>
     </DefaultDialog>
   );

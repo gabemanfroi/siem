@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { useMitreContext } from 'modules/Mitre/contexts/MitreContext';
-import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
+import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { useVirusTotal } from 'modules/VirusTotal/contexts/VirusTotalContext';
 import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
@@ -22,7 +22,8 @@ const DashboardContext = createContext<DashboardContextInterface>(
 
 export const DashboardProvider: React.FC = ({ children }) => {
   const { widgetsHandler: mitreWidgetsHandlerMap } = useMitreContext();
-  const { widgetsHandler: vulnerabilityWidgetsHandler } = useVulnerability();
+  const { widgetsHandler: vulnerabilityWidgetsHandler } =
+    useVulnerabilityContext();
   const { widgetsHandler: integrityMonitoringHandlersMap } =
     useIntegrityMonitoringContext();
   const { widgetsHandler: virusTotalHandlersMap } = useVirusTotal();

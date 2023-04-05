@@ -3,6 +3,7 @@ import { IAlert, IEvent } from 'modules/Shared/interfaces';
 import { ROUTES } from 'modules/Shared/constants/routes';
 import { BaseService } from 'modules/Shared/services/BaseService';
 import { IQueryParams } from 'modules/Shared/interfaces/IQueryParams';
+import { IVulnerability } from 'modules/Vulnerability/interfaces';
 
 const SecurityEventService = () => {
   const customEndpoints = {
@@ -27,6 +28,18 @@ const SecurityEventService = () => {
           {
             initialDate,
             endDate,
+          }
+        )
+      ).data,
+    getEventsByAgentAndVulnerability: async (
+      agentId: string,
+      vulnerability: IVulnerability
+    ) =>
+      (
+        await AxiosClient.post<IEvent[]>(
+          `${ROUTES.BRAGI.SECURITY_EVENT}/get_events_by_agent_and_vulnerability/${agentId}`,
+          {
+            ...vulnerability,
           }
         )
       ).data,

@@ -38,6 +38,8 @@ interface IAnalysisContext {
   setSelectedReport: Dispatch<SetStateAction<ICortexReport | null>>;
   latestSuspiciousEvents: AlertWithReports[];
   setLatestSuspiciousEvents: Dispatch<SetStateAction<AlertWithReports[]>>;
+  selectedReportId: string | null;
+  setSelectedReportId: Dispatch<SetStateAction<string | null>>;
 }
 
 const initialValues: IAnalysisContext = {
@@ -50,11 +52,14 @@ const initialValues: IAnalysisContext = {
   setSelectedReport: () => {},
   latestSuspiciousEvents: [],
   setLatestSuspiciousEvents: () => {},
+  selectedReportId: null,
+  setSelectedReportId: () => {},
 };
 
 export const AnalysisContext = createContext<IAnalysisContext>(initialValues);
 
 export const AnalysisProvider: FC = ({ children }) => {
+  const [selectedReportId, setSelectedReportId] = useState<string | null>(null);
   const [latestSuspiciousEvents, setLatestSuspiciousEvents] = useState<
     AlertWithReports[]
   >([]);
@@ -79,6 +84,8 @@ export const AnalysisProvider: FC = ({ children }) => {
       setSelectedReport,
       setLatestSuspiciousEvents,
       latestSuspiciousEvents,
+      selectedReportId,
+      setSelectedReportId,
     }),
     [
       latestSuspiciousEvents,
@@ -89,6 +96,8 @@ export const AnalysisProvider: FC = ({ children }) => {
       setIsReportDialogOpen,
       selectedReport,
       setSelectedReport,
+      selectedReportId,
+      setSelectedReportId,
     ]
   );
 

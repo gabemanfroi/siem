@@ -27,12 +27,12 @@ const columns: GridColumns<ICortexReport> = [
 ];
 
 const Analysis = () => {
-  const { setIsReportDialogOpen, setSelectedReport } = useAnalysisContext();
+  const { setIsReportDialogOpen, setSelectedReportId } = useAnalysisContext();
   const { getReportsByEventIdLoading, getReportsByEventIdData } =
     useAnalysisQuery();
 
-  const onRowClick = (params: GridRowParams) => {
-    setSelectedReport(params.row as ICortexReport);
+  const onRowClick = (params: GridRowParams<ICortexReport>) => {
+    setSelectedReportId(params.row.jobId);
     setIsReportDialogOpen(true);
   };
 

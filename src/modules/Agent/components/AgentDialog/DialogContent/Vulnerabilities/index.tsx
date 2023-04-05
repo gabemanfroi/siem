@@ -4,6 +4,7 @@ import { DataGrid, GridColumns } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { IVulnerability } from 'modules/Vulnerability/interfaces';
 import { LoadingHandler } from 'modules/Shared/components';
+import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 
 const columns: GridColumns<IVulnerability> = [
   { field: 'name', headerName: 'Name', flex: 1 },
@@ -17,6 +18,8 @@ const columns: GridColumns<IVulnerability> = [
 const Vulnerabilities = () => {
   const { getAgentVulnerabilitiesData, getAgentVulnerabilitiesIsLoading } =
     useAgentQuery();
+  const { setSelectedVulnerability, setIsVulnerabilityDialogOpen } =
+    useVulnerabilityContext();
 
   return (
     <LoadingHandler
@@ -29,6 +32,10 @@ const Vulnerabilities = () => {
           columns={columns}
           rows={getAgentVulnerabilitiesData}
           getRowId={(row) => `${row.name}-${row.detectionTime}`}
+          onRowClick={({ row }) => {
+            setSelectedVulnerability(row);
+            setIsVulnerabilityDialogOpen(true);
+          }}
           sx={{
             '& .MuiDataGrid-row': { cursor: 'pointer' },
           }}

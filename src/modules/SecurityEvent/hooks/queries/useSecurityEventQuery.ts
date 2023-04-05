@@ -4,11 +4,14 @@ import { useFilter } from 'modules/Shared/hooks';
 import SecurityEventService from 'modules/SecurityEvent/api/SecurityEventService';
 import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { useAgentContext } from 'modules/Agent/hooks';
+import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 
 const useSecurityEventQuery = () => {
   const { filters, isFilterMode } = useFilter();
   const { selectedAlertId } = useSecurityEventContext();
   const { selectedAgentId } = useAgentContext();
+  const { selectedVulnerability } = useVulnerabilityContext();
+
   const {
     data: findByElasticsearchIdEvent,
     isLoading: findByElasticsearchIsLoading,
@@ -41,6 +44,22 @@ const useSecurityEventQuery = () => {
     }
   );
 
+  const {
+    data: eventsByAgentAndVulnerability,
+    isLoading: eventsByAgentAndVulnerabilityIsLoading,
+  } = useQuery(
+    [
+      QUERIES.SECURITY_EVENT.GET_EVENTS_BY_AGENT_AND_VULNERABILITY,
+      selectedAgentId,
+      selectedVulnerability,
+    ],
+    () =>
+      SecurityEventService.getEventsByAgentAndVulnerability(
+        selectedAgentId!,
+        selectedVulnerability!
+      )
+  );
+
   const { data: pageData, isLoading: pageIsLoading } = useQuery(
     [QUERIES.SECURITY_EVENT.GET_PAGE_DATA, filters],
     () =>
@@ -50,10 +69,12 @@ const useSecurityEventQuery = () => {
   return {
     findByElasticsearchIdEvent,
     findByElasticsearchIsLoading,
-    eventsBelongingToAgent,
+    eventsBelongingToAgent: eventsBelongingToAgent || [],
     eventsBelongingToAgentIsLoading,
     pageData,
     pageIsLoading,
+    eventsByAgentAndVulnerability: eventsByAgentAndVulnerability || [],
+    eventsByAgentAndVulnerabilityIsLoading,
   };
 };
 

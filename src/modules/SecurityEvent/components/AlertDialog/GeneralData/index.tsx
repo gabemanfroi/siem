@@ -13,11 +13,11 @@ interface Props {
 
 const GeneralData = ({ event }: Props) => (
   <Stack gap={2}>
+    <Agent agent={event.agent} />
     <Rule event={event} />
     <Mitre event={event} />
     <Windows event={event} />
     <Vulnerability event={event} />
-    <Agent agent={event.agent} />
   </Stack>
 );
 
