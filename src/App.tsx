@@ -2,7 +2,8 @@ import { ThemeProvider } from '@mui/material';
 import { ErrorSnackbar } from 'modules/Shared/components/';
 import Router from 'modules/Shared/components/Router';
 import theme from 'modules/Shared/theme';
-import './sass/main.scss';
+import './scss/main.scss';
+import './scss/main.css';
 import {
   FilterProvider,
   LoadingProvider,
@@ -17,8 +18,20 @@ import { SecurityEventProvider } from 'modules/SecurityEvent/contexts/SecurityEv
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AgentProvider } from 'modules/Agent/contexts';
+import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
+import Dialogs from 'modules/Shared/containers/Dialogs';
+import { SidebarProvider } from 'modules/Shared/contexts/SidebarContext';
+import { CACHE_TIME } from 'modules/Shared/constants/utils';
+import { AnalysisProvider } from 'modules/Analysis/contexts/AnalysisContext';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchInterval: CACHE_TIME,
+    },
+  },
+});
 
 export default function App() {
   return (
@@ -32,12 +45,19 @@ export default function App() {
                   <VirusTotalProvider>
                     <SecurityEventProvider>
                       <AgentProvider>
-                        <WidgetsProvider>
-                          <DashboardProvider>
-                            <Router />
-                            <ErrorSnackbar />
-                          </DashboardProvider>
-                        </WidgetsProvider>
+                        <SCAProvider>
+                          <WidgetsProvider>
+                            <SidebarProvider>
+                              <AnalysisProvider>
+                                <DashboardProvider>
+                                  <Router />
+                                  <Dialogs />
+                                  <ErrorSnackbar />
+                                </DashboardProvider>
+                              </AnalysisProvider>
+                            </SidebarProvider>
+                          </WidgetsProvider>
+                        </SCAProvider>
                       </AgentProvider>
                     </SecurityEventProvider>
                   </VirusTotalProvider>

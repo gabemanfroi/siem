@@ -3,8 +3,3 @@ export type EventsByLevelType = {
   medium: number;
   high: number;
 };
-
-export type MetricsTypes = {
-  trustLevel: number;
-  eventsByLevel: EventsByLevelType;
-};

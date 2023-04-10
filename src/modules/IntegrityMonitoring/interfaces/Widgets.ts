@@ -17,13 +17,23 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
     identifier: 'actionsTypes',
     framework: 'integrityMonitoring',
     options: {
-      active: true,
-      lg: {
-        i: 'actionsTypes',
-        w: 6,
-        h: 2,
-        x: 0,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'actionsTypes',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+      },
+      page: {
+        lg: {
+          i: 'actionsTypes',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
       },
     },
   },
@@ -32,13 +42,23 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
     identifier: 'alertsByActionOverTime',
     framework: 'integrityMonitoring',
     options: {
-      active: true,
-      lg: {
-        i: 'alertsByActionOverTime',
-        w: 6,
-        h: 2,
-        x: 6,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'alertsByActionOverTime',
+          w: 9,
+          h: 2,
+          x: 3,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'alertsByActionOverTime',
+          w: 9,
+          h: 2,
+          x: 3,
+          y: 0,
+        },
       },
     },
   },
@@ -47,13 +67,23 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
     identifier: 'ruleDistribution',
     framework: 'integrityMonitoring',
     options: {
-      active: true,
-      lg: {
-        i: 'ruleDistribution',
-        w: 6,
-        h: 2,
-        x: 0,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'ruleDistribution',
+          w: 3,
+          h: 2,
+          x: 3,
+          y: 3,
+        },
+      },
+      page: {
+        lg: {
+          i: 'ruleDistribution',
+          w: 3,
+          h: 2,
+          x: 3,
+          y: 3,
+        },
       },
     },
   },
@@ -62,13 +92,23 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
     identifier: 'integrityMonitoringTop5Agents',
     framework: 'integrityMonitoring',
     options: {
-      active: true,
-      lg: {
-        i: 'integrityMonitoringTop5Agents',
-        w: 6,
-        h: 2,
-        x: 6,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'integrityMonitoringTop5Agents',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'integrityMonitoringTop5Agents',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 0,
+        },
       },
     },
   },

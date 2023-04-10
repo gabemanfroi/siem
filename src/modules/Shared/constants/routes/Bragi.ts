@@ -1,16 +1,13 @@
-import DASHBOARD from 'modules/Shared/constants/routes/Dashboard';
-import MITRE from 'modules/Shared/constants/routes/Mitre';
-import INTEGRITY_MONITORING from 'modules/Shared/constants/routes/IntegrityMonitoring';
-
 const BRAGI = {
-  BASE_ENDPOINT:
-    process.env.REACT_APP_ENVIRONMENT === 'production' ? '/bragi/api' : '/api',
-  DASHBOARD,
-  INTEGRITY_MONITORING,
-  MITRE,
-  SECURITY_EVENT: '/eventos',
-  VIRUS_TOTAL: '/virus-total',
-  VULNERABILITY: '/vulnerabilidades',
-  AGENT: '/agentes',
+  BASE_ENDPOINT: '/bragi/api',
+  DASHBOARD: '/bragi/api/dashboard',
+  INTEGRITY_MONITORING: '/bragi/api/integridade',
+  MITRE: '/bragi/api/mitre',
+  SECURITY_EVENT: '/bragi/api/eventos',
+  VIRUS_TOTAL: '/bragi/api/virus-total',
+  VULNERABILITY: '/bragi/api/vulnerabilidades',
+  AGENT: '/bragi/api/agentes',
+  SCA: '/bragi/api/sca',
+  ANALYSIS: '/bragi/api/analise',
 };
 export default BRAGI;

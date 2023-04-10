@@ -1,8 +1,5 @@
 const AUTH = {
-  BASE_ENDPOINT:
-    process.env.REACT_APP_ENVIRONMENT === 'production'
-      ? '/auth/auth'
-      : '/api/auth',
+  BASE_ENDPOINT: '/auth/api',
   LOGIN: '/login',
 };
 export default AUTH;

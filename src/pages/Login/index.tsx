@@ -4,7 +4,8 @@ import { useFormik } from 'formik';
 import loginSchema from 'modules/Login/schemas';
 import { TokenUtil } from 'modules/Shared/utils';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { ROUTES } from 'modules/Shared/constants/routes';
+import AxiosClient from 'modules/Shared/services/AxiosClient';
 import { Form, StyledContainer } from './style';
 
 export default function Login() {
@@ -14,18 +15,16 @@ export default function Login() {
   const { handleSubmit, getFieldProps, touched, errors } = useFormik({
     validationSchema: loginSchema,
     initialValues: loginSchema.getDefault(),
-    onSubmit: (values) => {
-      console.log('hi');
-      axios
-        .post('http://localhost:8066/api/auth/login', {
+    onSubmit: async (values) => {
+      const response = await AxiosClient.post(
+        `${ROUTES.AUTH.BASE_ENDPOINT}/auth/login`,
+        {
           email: values.email,
           password: values.password,
-        })
-        .then((res) => {
-          TokenUtil().setToken(res.data.access_token);
-          navigate('/');
-        })
-        .catch(() => {});
+        }
+      );
+      TokenUtil().setToken(response.data.accessToken);
+      navigate('/');
     },
   });
 

@@ -1,4 +1,7 @@
-import { IWidget } from 'modules/Shared/interfaces/Widgets';
+import {
+  IWidget,
+  IWidgetDefaultConfig,
+} from 'modules/Shared/interfaces/Widgets';
 
 export interface IMitreWidgets {
   alertsEvolutionOverTime?: IWidget;
@@ -8,19 +11,29 @@ export interface IMitreWidgets {
   topTacticsByAgent?: IWidget;
 }
 
-export const MitreWidgetsDefaultConfig = {
+export const MitreWidgetsDefaultConfig: IWidgetDefaultConfig = {
   attacksByTechnique: {
     label: 'Mitre ATT&CK - Attacks by Technique',
     identifier: 'attacksByTechnique',
     framework: 'mitre',
     options: {
-      active: true,
-      lg: {
-        i: 'attacksByTechnique',
-        w: 6,
-        h: 2,
-        x: 6,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'attacksByTechnique',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 2,
+        },
+      },
+      page: {
+        lg: {
+          i: 'attacksByTechnique',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 2,
+        },
       },
     },
   },
@@ -29,13 +42,23 @@ export const MitreWidgetsDefaultConfig = {
     identifier: 'techniquesByAgent',
     framework: 'mitre',
     options: {
-      active: true,
-      lg: {
-        i: 'techniquesByAgent',
-        w: 6,
-        h: 2,
-        x: 0,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'techniquesByAgent',
+          w: 6,
+          h: 2,
+          x: 6,
+          y: 6,
+        },
+      },
+      page: {
+        lg: {
+          i: 'techniquesByAgent',
+          w: 6,
+          h: 2,
+          x: 6,
+          y: 6,
+        },
       },
     },
   },
@@ -44,13 +67,23 @@ export const MitreWidgetsDefaultConfig = {
     identifier: 'topTactics',
     framework: 'mitre',
     options: {
-      active: true,
-      lg: {
-        i: 'topTactics',
-        w: 6,
-        h: 2,
-        x: 6,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'topTactics',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'topTactics',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 0,
+        },
       },
     },
   },
@@ -59,13 +92,23 @@ export const MitreWidgetsDefaultConfig = {
     identifier: 'topTacticsByAgent',
     framework: 'mitre',
     options: {
-      active: true,
-      lg: {
-        i: 'topTacticsByAgent',
-        w: 6,
-        h: 2,
-        x: 0,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'topTacticsByAgent',
+          w: 9,
+          h: 2,
+          x: 3,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'topTacticsByAgent',
+          w: 9,
+          h: 2,
+          x: 3,
+          y: 0,
+        },
       },
     },
   },
@@ -74,13 +117,23 @@ export const MitreWidgetsDefaultConfig = {
     identifier: 'alertsEvolutionOverTime',
     framework: 'mitre',
     options: {
-      active: true,
-      lg: {
-        i: 'alertsEvolutionOverTime',
-        w: 6,
-        h: 2,
-        x: 6,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'alertsEvolutionOverTime',
+          w: 12,
+          h: 2,
+          x: 6,
+          y: 5,
+        },
+      },
+      page: {
+        lg: {
+          i: 'alertsEvolutionOverTime',
+          w: 12,
+          h: 2,
+          x: 6,
+          y: 5,
+        },
       },
     },
   },

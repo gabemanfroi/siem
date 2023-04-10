@@ -1,1 +1,1 @@
-export { DashboardProvider, useDashboard } from './DashboardContext';
+export { DashboardProvider, useDashboardContext } from './DashboardContext';

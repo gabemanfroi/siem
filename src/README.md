@@ -1,6 +1,7 @@
 # Src
 
-A pasta [src](src) é onde passamos a maior parte do tempo trabalhando, portanto familiariazar-se com sua estrutura facilitará bastante sua vida :D
+A pasta [src](src) é onde passamos a maior parte do tempo trabalhando, portanto familiariazar-se com sua estrutura
+facilitará bastante sua vida :D
 
     src
         ├── modules # Contains all the application modules
@@ -12,13 +13,18 @@ A pasta [src](src) é onde passamos a maior parte do tempo trabalhando, portanto
         ├── setupTests.js
 
 ## [Modules](modules/README.md)
-Nossa aplicação segue algumas das filosofias encontradas no [TAO of React](https://alexkondov.com/tao-of-react/), por esse motivo segmentamos a aplicação em módulos, estes que por sua vez, geralmente estão ligados à alguma rota da aplicação.
+
+Nossa aplicação segue algumas das filosofias encontradas no [TAO of React](https://alexkondov.com/tao-of-react/), por
+esse motivo segmentamos a aplicação em módulos, estes que por sua vez, geralmente estão ligados à alguma rota da
+aplicação.
 
 ## [Pages](pages/README.md)
-Nossas páginas se concentram nesta pasta, vale notar que apenas arquivos referentes às páginas se encontram aqui dentro, enquanto que seus componentes estão dentro do módulo referente à página.
+
+Nossas páginas se concentram nesta pasta, vale notar que apenas arquivos referentes às páginas se encontram aqui dentro,
+enquanto que seus componentes estão dentro do módulo referente à página.
 
 e.g.
-    
+
     modules
         ├── Login
             ├── components
@@ -28,5 +34,8 @@ e.g.
             ├── Login.test.tsx
             ├── style.ts
 
-## [Sass](sass/README.md)
-Nosso projeto utiliza o [sass](https://sass-lang.com/) como pré-processador de arquivos de estilização. Dentro desta pasta ficarão concentrados estilos mais abrangentes para aplicação, como é o caso dos estilos contidos no [__normalize.scss](sass/core/__normalize.scss)  
+## [Sass](scss/README.md)
+
+Nosso projeto utiliza o [sass](https://sass-lang.com/) como pré-processador de arquivos de estilização. Dentro desta
+pasta ficarão concentrados estilos mais abrangentes para aplicação, como é o caso dos estilos contidos
+no [__normalize.scss](scss/core/__normalize.scss)  
