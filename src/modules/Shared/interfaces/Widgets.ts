@@ -9,14 +9,39 @@ export interface IWidgetDefault {
   label: string;
   identifier: string;
   framework: string;
+  available?: boolean;
   options: {
-    active: boolean;
-    lg: {
-      i: string;
-      x: number;
-      y: number;
-      w: number;
-      h: number;
+    dashboard: {
+      lg: {
+        i: string;
+        x: number;
+        y: number;
+        w: number;
+        h: number;
+      };
+      md?: {
+        i: string;
+        x: number;
+        y: number;
+        w: number;
+        h: number;
+      };
+    };
+    page: {
+      md?: {
+        i: string;
+        x: number;
+        y: number;
+        w: number;
+        h: number;
+      };
+      lg: {
+        i: string;
+        x: number;
+        y: number;
+        w: number;
+        h: number;
+      };
     };
   };
 }
@@ -26,7 +51,7 @@ export interface IWidgetDefaultConfig {
 }
 
 export interface IWidget extends IWidgetDefault {
-  builder: ReactElement;
+  Component: () => ReactElement;
 }
 
 export interface IAutoCompleteWidget {
@@ -42,26 +67,25 @@ export interface IAllWidgets
     IAgentWidgets {}
 
 export type WidgetsMapKeys =
-  | 'alertsEvolutionOverTime'
-  | 'attacksByTechnique'
-  | 'techniquesByAgent'
-  | 'topTactics'
-  | 'topTacticsByAgent'
-  | 'alertsSeverityByTime'
-  | 'mostAffectedAgents'
-  | 'mostCommonCVEs'
-  | 'mostCommonCWEs'
-  | 'topAffectedPackagesByCVEs'
-  | 'alertLevelEvolution'
-  | 'topMitre'
-  | 'alertsEvolutionTop5Agents'
-  | 'actionsTypes'
-  | 'alertsByActionOverTime'
-  | 'ruleDistribution'
-  | 'integrityMonitoringTop5Agents'
-  | 'widgetsHandler'
-  | 'latestThreats'
-  | 'notableAgents';
+  /* | 'alertsEvolutionOverTime'
+| 'attacksByTechnique'
+| 'techniquesByAgent'
+| 'topTactics'
+| 'topTacticsByAgent'
+| 'alertsSeverityByTime'
+| 'mostAffectedAgents'
+| 'mostCommonCVEs'
+| 'mostCommonCWEs'
+| 'topAffectedPackagesByCVEs'
+| 'alertLevelEvolution'
+| 'topMitre'
+| 'alertsEvolutionTop5Agents'
+| 'actionsTypes'
+| 'alertsByActionOverTime'
+| 'ruleDistribution'
+| 'integrityMonitoringTop5Agents'
+| 'widgetsHandler' */
+  'latestThreats' | 'notableAgents';
 
 export const isWidget = (
   obj: IAutoCompleteWidget | IWidget | undefined

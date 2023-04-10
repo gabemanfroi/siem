@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { camelizeKeys } from 'humps';
 import TokenUtil from '../utils/TokenUtil';
 
 const AxiosClient = (baseURL?: string) => {
@@ -17,7 +18,14 @@ const AxiosClient = (baseURL?: string) => {
     return config;
   });
 
+  axiosInstance.interceptors.response.use((response: AxiosResponse) => {
+    if (response.data) {
+      response.data = camelizeKeys(response.data);
+    }
+    return response;
+  });
+
   return axiosInstance;
 };
 
-export default AxiosClient()
+export default AxiosClient();

@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { Layout } from 'react-grid-layout';
-import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/Constants';
+import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/constants';
 import {
   IAllWidgets,
   IWidget,
@@ -19,6 +19,7 @@ import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/Vulnerabili
 import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
 import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
+import { analysisWidgets } from 'modules/Analysis/contexts/AnalysisContext';
 
 const widgetsMap: IAllWidgets = {
   ...integrityMonitoringWidgets,
@@ -26,6 +27,7 @@ const widgetsMap: IAllWidgets = {
   ...mitreWidgets,
   ...vulnerabilityWidgets,
   ...agentWidgets,
+  ...analysisWidgets,
 };
 
 interface WidgetsContextInterface {
@@ -86,7 +88,7 @@ const getLocalStorageConfig = (): IAllWidgets | null => {
 
 export const WidgetsProvider: React.FC = ({ children }) => {
   const [selectedWidgetsMap, setSelectedWidgetsMap] = useState<IAllWidgets>(
-    getLocalStorageConfig() || {}
+    getLocalStorageConfig() || widgetsMap
   );
 
   const [customizeMode, setCustomizeMode] = useState(false);
@@ -104,13 +106,10 @@ export const WidgetsProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
+    setSelectedWidgets(Object.values(selectedWidgetsMap).map((v) => v));
     if (selectedWidgets.length === 0) {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({}));
     }
-  }, [selectedWidgets]);
-
-  useEffect(() => {
-    setSelectedWidgets(Object.values(selectedWidgetsMap).map((v) => v));
   }, [selectedWidgetsMap]);
 
   const providerValue = useMemo(
@@ -124,7 +123,7 @@ export const WidgetsProvider: React.FC = ({ children }) => {
       customizeMode,
       setCustomizeMode,
     }),
-    [selectedWidgets]
+    [selectedWidgets, customizeMode]
   );
 
   return (

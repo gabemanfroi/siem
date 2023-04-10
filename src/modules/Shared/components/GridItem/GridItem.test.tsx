@@ -3,13 +3,14 @@ import GridItem from './index';
 
 const componentToBeRendered = (
   <GridItem
-    isDraggable
-    isResizable
     widget={{
       label: 'Testing Framework',
-      options: { lg: { w: 6, i: '0', h: 6, x: 0, y: 0 }, active: true },
+      options: {
+        dashboard: { lg: { w: 12, i: '0', h: 6, x: 0, y: 0 } },
+        page: { lg: { w: 12, i: '0', h: 6, x: 0, y: 0 } },
+      },
       framework: 'testingFramework',
-      builder: <div />,
+      Component: () => <div />,
       identifier: 'identifier',
     }}
     key="testKey"

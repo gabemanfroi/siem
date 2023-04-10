@@ -1,14 +1,14 @@
 import { Stack } from '@mui/material';
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
-import Threat from 'modules/SecurityEvent/components/LatestThreats/Threat';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import LatestThreat from 'modules/SecurityEvent/components/LatestThreats/Threat';
 
 const LatestThreats = () => {
-  const { latestThreats } = useSecurityEvent();
+  const { latestThreats } = useSecurityEventContext();
 
   return (
     <Stack spacing={1} sx={{ overflowY: 'hidden' }}>
       {latestThreats.map((t) => (
-        <Threat key={t.id} threat={t} />
+        <LatestThreat key={t.id} threat={t} />
       ))}
     </Stack>
   );

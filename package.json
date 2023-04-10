@@ -1,6 +1,6 @@
 {
   "name": "seclab_frontend",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": true,
   "jest": {
     "collectCoverageFrom": [
@@ -21,6 +21,8 @@
     "@mui/lab": "^5.0.0-alpha.71",
     "@mui/material": "^5.8.5",
     "@mui/styled-engine-sc": "^5.8.0",
+    "@mui/system": "^5.11.8",
+    "@mui/x-data-grid": "^5.17.25",
     "@mui/x-date-pickers": "^5.0.0-alpha.6",
     "@tanstack/react-query": "^4.0.10",
     "@tanstack/react-query-devtools": "^4.0.10",
@@ -36,7 +38,9 @@
     "google-map-react": "^2.2.0",
     "google-maps-react": "^2.0.6",
     "humps": "^2.0.1",
-    "i18next": "^21.8.11",
+    "i18next": "^21.8.16",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.1.1",
     "module-alias": "^2.2.2",
     "react": "^17.0.2",
     "react-apexcharts": "^1.4.0",
@@ -45,11 +49,14 @@
     "react-dom": "^17.0.2",
     "react-google-maps": "^9.4.5",
     "react-grid-layout": "^1.3.4",
+    "react-i18next": "^12.2.0",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
+
     "sass": "^1.54.0",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.7",
+
     "web-vitals": "^2.1.3",
     "websocket": "^1.0.34",
     "yup": "^0.32.11"
@@ -60,12 +67,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

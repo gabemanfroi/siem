@@ -1,9 +1,9 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
-import { useMitre } from 'modules/Mitre/contexts';
+import { useMitreContext } from 'modules/Mitre/contexts';
 
 const TechniquesByAgent = () => {
-  const { techniquesByAgent } = useMitre();
+  const { techniquesByAgent } = useMitreContext();
 
   if (!techniquesByAgent) return <></>;
 
