@@ -1,22 +1,38 @@
-import { IWidget } from 'modules/Shared/interfaces/Widgets';
+import {
+  IWidget,
+  IWidgetDefaultConfig,
+} from 'modules/Shared/interfaces/Widgets';
+import i18n from 'modules/Shared/core/i18n';
 
 export interface IAgentWidgets {
   notableAgents?: IWidget;
 }
 
-export const AgentWidgetsDefaultConfig = {
+const { t } = i18n;
+export const AgentWidgetsDefaultConfig: IWidgetDefaultConfig = {
   notableAgents: {
-    label: 'Agent - Notable Agents',
+    label: t('Agent - Notable Agents'),
     identifier: 'notableAgents',
     framework: 'agent',
+    available: true,
     options: {
-      active: true,
-      lg: {
-        i: 'notableAgents',
-        w: 6,
-        h: 2,
-        x: 0,
-        y: 0,
+      dashboard: {
+        lg: {
+          i: 'notableAgents',
+          w: 6,
+          h: 4,
+          x: 0,
+          y: 0,
+        },
+      },
+      page: {
+        lg: {
+          i: 'notableAgents',
+          w: 6,
+          h: 4,
+          x: 0,
+          y: 0,
+        },
       },
     },
   },

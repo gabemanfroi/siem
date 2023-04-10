@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { dark200 } from 'modules/Shared/helpers/styles/Colors';
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +13,5 @@ export const ColumnContainer = styled(Container)`
 `;
 
 export const DefaultPageContainer = styled(ColumnContainer)`
-  background: ${dark200};
   overflow-y: scroll;
-  padding: 32px;
 `;

@@ -1,8 +1,8 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useMitre } from 'modules/Mitre/contexts';
+import { useMitreContext } from 'modules/Mitre/contexts';
 
 const TopTactics = () => {
-  const { topTactics } = useMitre();
+  const { topTactics } = useMitreContext();
 
   if (!topTactics) return <></>;
 

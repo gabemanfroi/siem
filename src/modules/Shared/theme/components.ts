@@ -10,6 +10,13 @@ const components: Components = {
       autoHideDuration: 5000,
     },
   },
+  MuiIconButton: {
+    styleOverrides: {
+      root: {
+        borderRadius: '8px',
+      },
+    },
+  },
 };
 
 export default components;

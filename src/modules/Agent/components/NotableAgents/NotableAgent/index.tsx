@@ -6,20 +6,20 @@ import {
 } from 'modules/Shared/helpers/styles/Colors';
 import { Stack, Typography } from '@mui/material';
 import { INotableAgent } from 'modules/Agent/interfaces/INotableAgents';
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
 
 interface NotableAgentProps {
   agent: INotableAgent;
 }
 
 const NotableAgent = ({ agent }: NotableAgentProps) => {
-  const { setSelectedAgentId, setIsAgentModalOpen } = useAgent();
+  const { setSelectedAgentId, setIsAgentDialogOpen } = useAgentContext();
 
   return (
     <Stack
       onClick={() => {
         setSelectedAgentId(agent.elasticsearchId);
-        setIsAgentModalOpen(true);
+        setIsAgentDialogOpen(true);
       }}
       direction="row"
       justifyContent="space-between"

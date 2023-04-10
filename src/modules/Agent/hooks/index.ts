@@ -1,1 +1,1 @@
-export { default as useAgent } from './useAgent';
+export { default as useAgentContext } from './useAgent';

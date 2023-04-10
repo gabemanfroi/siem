@@ -1,39 +1,11 @@
 import 'react-grid-layout/css/styles.css';
-import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
-import { DefaultPageContainer } from 'modules/Shared/components';
-import {
-  integrityMonitoringWidgets,
-  useIntegrityMonitoring,
-} from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
-import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
-import { useEffect, useMemo } from 'react';
-import useIntegrityMonitoringQuery from 'modules/IntegrityMonitoring/hooks/useIntegrityMonitoringQuery';
-import { fillWidgetsWithData } from 'modules/Shared/helpers/fillWidgetsWithData';
+import { PAGES } from 'modules/Shared/enums';
+import useWidgets from 'modules/Shared/hooks/useWidgets';
 
-const Vulnerability = () => {
-  const { widgetsHandler } = useIntegrityMonitoring();
-  const widgets = useMemo(
-    () => getWidgetsListFromMap(integrityMonitoringWidgets),
-    []
-  );
+const IntegrityMonitoring = () => {
+  const Component = useWidgets(PAGES.INTEGRITY_MONITORING);
 
-  const { integrityMonitoringPageData, integrityMonitoringPageIsLoading } =
-    useIntegrityMonitoringQuery();
-
-  useEffect(() => {
-    if (integrityMonitoringPageData) {
-      const { data } = integrityMonitoringPageData;
-      fillWidgetsWithData(data, widgetsHandler);
-    }
-  }, [integrityMonitoringPageData]);
-
-  if (integrityMonitoringPageIsLoading) return <></>;
-
-  return (
-    <DefaultPageContainer>
-      <WidgetsGrid widgets={widgets} apiEndpoint="/integridade" />
-    </DefaultPageContainer>
-  );
+  return <Component />;
 };
 
-export default Vulnerability;
+export default IntegrityMonitoring;

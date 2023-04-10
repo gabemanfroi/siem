@@ -1,8 +1,8 @@
-import { IAgent } from 'modules/Shared/interfaces';
+import { Agent } from 'modules/Shared/interfaces';
 import { createRandomAgent } from 'modules/Shared/helpers/factories/tests/AgentFactory';
 
-const createAgentListMock = (amount: number): IAgent[] => {
-  const agentsToReturn: IAgent[] = [];
+export const createAgentListMock = (amount: number): Agent[] => {
+  const agentsToReturn: Agent[] = [];
 
   for (let i = 0; i < amount; i += 1) {
     agentsToReturn.push(createRandomAgent());
@@ -10,5 +10,3 @@ const createAgentListMock = (amount: number): IAgent[] => {
 
   return agentsToReturn;
 };
-
-export { createAgentListMock };
