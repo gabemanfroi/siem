@@ -1,8 +1,8 @@
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { DonutChart } from 'modules/Shared/components/Charts';
 
 const TopMitre = () => {
-  const { topMitre } = useSecurityEvent();
+  const { topMitre } = useSecurityEventContext();
 
   if (!topMitre) return <></>;
 

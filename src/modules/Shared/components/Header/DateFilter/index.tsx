@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { MdRefresh } from 'react-icons/md';
 import { ptBR } from 'date-fns/locale';
 import { useFilter } from 'modules/Shared/hooks';
+import { useTranslation } from 'react-i18next';
 
 const DateFilter = () => {
   const { filters, setFilters } = useFilter();
-
+  const { t } = useTranslation();
   const [pendingInitialValue, setPendingInitialValue] = useState<number | null>(
     filters.initialDate
   );
@@ -36,7 +37,7 @@ const DateFilter = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
       <DesktopDatePicker
-        label="Initial Date"
+        label={t('Initial Date')}
         renderInput={(params) => (
           <TextField data-testid="initialDatePicker" size="small" {...params} />
         )}
@@ -44,7 +45,7 @@ const DateFilter = () => {
         onChange={onInitialDateChange}
       />
       <DesktopDatePicker
-        label="End Date"
+        label={t('End Date')}
         renderInput={(params) => (
           <TextField data-testid="endDatePicker" size="small" {...params} />
         )}

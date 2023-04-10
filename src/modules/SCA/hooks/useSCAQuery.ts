@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERIES } from 'modules/Shared/constants/queries';
 import { SCAService } from 'modules/SCA/api';
-import { useAgent } from 'modules/Agent/hooks';
-import { useSCA } from 'modules/SCA/hooks/index';
+import { useAgentContext } from 'modules/Agent/hooks';
+import { useSCAContext } from 'modules/SCA/hooks/index';
 import { IPolicyCheckItem } from 'modules/SCA/interfaces';
 
 const useSCAquery = () => {
-  const { selectedAgentId } = useAgent();
-  const { selectedPolicy } = useSCA();
+  const { selectedAgentId } = useAgentContext();
+  const { selectedPolicy } = useSCAContext();
 
   const { isLoading: getPolicyByIdIsLoading, data: getPolicyByIdData } =
     useQuery(

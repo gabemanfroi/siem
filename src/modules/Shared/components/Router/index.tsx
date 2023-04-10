@@ -1,4 +1,5 @@
 import {
+  Analysis,
   Dashboard,
   IntegrityMonitoring,
   Login,
@@ -53,6 +54,14 @@ const Router = () => (
         }
       />
       <Route path="/login" element={<Login />} />
+      <Route
+        path="/analise"
+        element={
+          <PrivateRoute>
+            <Analysis />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   </BrowserRouter>
 );

@@ -6,14 +6,19 @@
   box-sizing: border-box;
   font-family: sans-serif;
 
-  scrollbar-width: none;
+
 }
+
 
 body, #root {
   background: $dark500;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 html {

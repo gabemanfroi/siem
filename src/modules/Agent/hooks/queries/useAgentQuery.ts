@@ -3,12 +3,12 @@ import { QUERIES } from 'modules/Shared/constants/queries';
 import agentService from 'modules/Agent/api/AgentService';
 import { useFilter } from 'modules/Shared/hooks';
 import { IPolicy } from 'modules/SCA/interfaces';
-import { useAgent } from 'modules/Agent/hooks/index';
+import { useAgentContext } from 'modules/Agent/hooks/index';
 import { IVulnerability } from 'modules/Vulnerability/interfaces/IVulnerability';
 
 const useAgentQuery = () => {
   const { filters } = useFilter();
-  const { selectedAgentId } = useAgent();
+  const { selectedAgentId } = useAgentContext();
 
   const {
     data: findByElasticsearchIdAgent,

@@ -8,29 +8,15 @@ import {
   Switch,
   Toolbar,
 } from '@mui/material';
-import { MdCheck, MdEdit, MdMenu } from 'react-icons/md';
-import WidgetsSelector from 'modules/Shared/components/Header/WidgetsSelector';
-import { useFilter, useSidebar, useWidgets } from 'modules/Shared/hooks';
+import { MdMenu } from 'react-icons/md';
+import { useFilter, useSidebar } from 'modules/Shared/hooks';
 import DateFilter from 'modules/Shared/components/Header/DateFilter';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
-  const { customizeMode, setCustomizeMode } = useWidgets();
   const { isFilterMode, setIsFilterMode } = useFilter();
   const { isOpen, setIsOpen } = useSidebar();
-
-  const { pathname } = useLocation();
-
-  useEffect(
-    () => () => {
-      setCustomizeMode(false);
-      setIsFilterMode(false);
-    },
-    []
-  );
-
-  useEffect(() => {}, [pathname]);
+  const { t } = useTranslation();
 
   return (
     <Box>
@@ -45,7 +31,7 @@ const Header = () => {
             {isFilterMode && <DateFilter />}
             <FormControl>
               <FormControlLabel
-                label={isFilterMode ? 'Filtering Data' : 'Real Time Data'}
+                label={t(isFilterMode ? 'Filtering Data' : 'Real Time Data')}
                 value={!isFilterMode}
                 control={
                   <Switch
@@ -58,33 +44,6 @@ const Header = () => {
                 }
               />
             </FormControl>
-            {pathname === '/' && (
-              <>
-                {!customizeMode && (
-                  <IconButton
-                    sx={{ borderRadius: '8px' }}
-                    onClick={() => {
-                      setCustomizeMode(!customizeMode);
-                    }}
-                  >
-                    <MdEdit />
-                  </IconButton>
-                )}
-                {customizeMode && (
-                  <>
-                    <WidgetsSelector />
-                    <IconButton
-                      sx={{ borderRadius: '8px' }}
-                      onClick={() => {
-                        setCustomizeMode(!customizeMode);
-                      }}
-                    >
-                      <MdCheck />
-                    </IconButton>
-                  </>
-                )}
-              </>
-            )}
           </Stack>
         </Toolbar>
       </AppBar>

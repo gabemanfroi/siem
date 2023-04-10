@@ -24,23 +24,23 @@ import { IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
 export const mitreWidgets: IMitreWidgets = {
   attacksByTechnique: {
     ...MitreWidgetsDefaultConfig.attacksByTechnique,
-    builder: <AttacksByTechniques />,
+    Component: AttacksByTechniques,
   },
   techniquesByAgent: {
     ...MitreWidgetsDefaultConfig.techniquesByAgent,
-    builder: <TechniquesByAgent />,
+    Component: TechniquesByAgent,
   },
   topTactics: {
     ...MitreWidgetsDefaultConfig.topTactics,
-    builder: <TopTactics />,
+    Component: TopTactics,
   },
   topTacticsByAgent: {
     ...MitreWidgetsDefaultConfig.topTacticsByAgent,
-    builder: <TopTacticsByAgent />,
+    Component: TopTacticsByAgent,
   },
   alertsEvolutionOverTime: {
     ...MitreWidgetsDefaultConfig.alertsEvolutionOverTime,
-    builder: <AlertsEvolutionOverTime />,
+    Component: AlertsEvolutionOverTime,
   },
 };
 
@@ -112,4 +112,4 @@ export const MitreProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useMitre = () => useContext(MitreContext);
+export const useMitreContext = () => useContext(MitreContext);

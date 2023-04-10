@@ -1,10 +1,10 @@
-import React, { forwardRef, ReactNode } from 'react';
+import React, { forwardRef, ReactNode, useMemo } from 'react';
 import 'react-grid-layout/css/styles.css';
 
 import { Stack, Typography } from '@mui/material';
 import { MdOutlineClose, MdOutlineDragIndicator } from 'react-icons/md';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
-import { useWidgets } from 'modules/Shared/hooks';
+import { useWidgetsContext } from 'modules/Shared/hooks';
 import { white } from 'modules/Shared/helpers/styles/Colors';
 import { Container } from './style';
 
@@ -15,7 +15,8 @@ interface IGridItem {
 
 const GridItem = forwardRef(
   ({ widget, children, ...props }: IGridItem, ref) => {
-    const { setSelectedWidgets, selectedWidgets, customizeMode } = useWidgets();
+    const { setSelectedWidgets, selectedWidgets, customizeMode } =
+      useWidgetsContext();
     const handleClose = () => {
       const updatedWidgets = [...selectedWidgets];
       const index = updatedWidgets.findIndex(
@@ -25,39 +26,42 @@ const GridItem = forwardRef(
       updatedWidgets.splice(index, 1);
       setSelectedWidgets(updatedWidgets);
     };
-    return (
-      <Container ref={ref as React.RefObject<HTMLDivElement>} {...props}>
-        {customizeMode && (
+    return useMemo(
+      () => (
+        <Container ref={ref as React.RefObject<HTMLDivElement>} {...props}>
+          {customizeMode && (
+            <Stack
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <MdOutlineDragIndicator className="drag-icon" size={18} />
+              <MdOutlineClose
+                className="close-icon"
+                size={18}
+                onClick={handleClose}
+              />
+            </Stack>
+          )}
+          <Typography variant="h5">{widget.label}</Typography>
           <Stack
+            className="react-grid-item"
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
+              '.react-resizable-handle': {
+                display: customizeMode ? 'block' : 'none',
+                '&:after': {
+                  borderColor: white,
+                },
+              },
             }}
           >
-            <MdOutlineDragIndicator className="drag-icon" size={18} />
-            <MdOutlineClose
-              className="close-icon"
-              size={18}
-              onClick={handleClose}
-            />
+            {children}
           </Stack>
-        )}
-        <Typography variant="h5">{widget.label}</Typography>
-        <Stack
-          className="react-grid-item"
-          sx={{
-            '.react-resizable-handle': {
-              display: customizeMode ? 'block' : 'none',
-              '&:after': {
-                borderColor: white,
-              },
-            },
-          }}
-        >
-          {children}
-        </Stack>
-      </Container>
+        </Container>
+      ),
+      []
     );
   }
 );

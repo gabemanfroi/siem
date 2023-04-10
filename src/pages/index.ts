@@ -4,3 +4,4 @@ export { default as Vulnerability } from './Vulnerability';
 export { default as Login } from './Login';
 export { default as IntegrityMonitoring } from './IntegrityMonitoring';
 export { default as SecurityEvent } from './SecurityEvent';
+export { default as Analysis } from './Analysis';

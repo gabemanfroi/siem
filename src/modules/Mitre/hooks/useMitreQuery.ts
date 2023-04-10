@@ -5,7 +5,8 @@ import { useFilter } from 'modules/Shared/hooks';
 
 const useMitreQuery = () => {
   const { filters } = useFilter();
-  const { isLoading: mitrePageDataIsLoading, data: mitrePageData } = useQuery(
+
+  const { isLoading: pageIsLoading, data: pageData } = useQuery(
     [QUERIES.MITRE.GET_PAGE_DATA, filters],
     () =>
       MitreService.dynamicPost('', {
@@ -13,7 +14,7 @@ const useMitreQuery = () => {
       })
   );
 
-  return { mitrePageData, mitrePageDataIsLoading };
+  return { pageData, pageIsLoading };
 };
 
 export default useMitreQuery;

@@ -5,11 +5,12 @@ import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFrom
 import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
 import { useAgentQuery } from 'modules/Agent/hooks/queries';
 import { fillWidgetsWithData } from 'modules/Shared/helpers/fillWidgetsWithData';
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
+import { PAGES } from 'modules/Shared/enums';
 
 const Agent = () => {
   const widgets = useMemo(() => getWidgetsListFromMap(agentWidgets), []);
-  const { widgetsHandler } = useAgent();
+  const { widgetsHandler } = useAgentContext();
 
   const { getAgentPageData, getAgentPageIsLoading } = useAgentQuery();
 
@@ -24,7 +25,7 @@ const Agent = () => {
 
   return (
     <DefaultLayout>
-      <WidgetsGrid widgets={widgets} apiEndpoint="/agente" />
+      <WidgetsGrid widgets={widgets} page={PAGES.AGENT} />
     </DefaultLayout>
   );
 };
