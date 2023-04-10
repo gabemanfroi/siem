@@ -1,1 +1,1 @@
-export { default as useAgentQuery } from './useAgentQueries';
+export { default as useAgentQuery } from 'modules/Agent/hooks/queries/useAgentQuery';

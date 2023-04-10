@@ -5,7 +5,7 @@ import {
   IRuleDistribution,
   ITop5Agents,
 } from 'modules/IntegrityMonitoring/interfaces';
-import { IwidgetsHandler } from 'modules/Shared/interfaces/IWidgetsHandlerMap';
+import { IWidgetsHandler } from 'modules/Shared/interfaces/IWidgetsHandlerMap';
 import {
   IIntegrityMonitoringWidgets,
   IntegrityMonitoringWidgetsDefaultConfig,
@@ -20,19 +20,19 @@ import {
 export const integrityMonitoringWidgets: IIntegrityMonitoringWidgets = {
   actionsTypes: {
     ...IntegrityMonitoringWidgetsDefaultConfig.actionsTypes,
-    builder: <ActionsTypes />,
+    Component: ActionsTypes,
   },
   alertsByActionOverTime: {
     ...IntegrityMonitoringWidgetsDefaultConfig.alertsByActionOverTime,
-    builder: <AlertsByActionOverTime />,
+    Component: AlertsByActionOverTime,
   },
   ruleDistribution: {
     ...IntegrityMonitoringWidgetsDefaultConfig.ruleDistribution,
-    builder: <RuleDistribution />,
+    Component: RuleDistribution,
   },
   integrityMonitoringTop5Agents: {
     ...IntegrityMonitoringWidgetsDefaultConfig.integrityMonitoringTop5Agents,
-    builder: <Top5Agents />,
+    Component: Top5Agents,
   },
 };
 
@@ -41,7 +41,7 @@ interface IntegrityMonitoringContextInterface {
   alertsByActionOverTime: IAlertsByActionOverTime | undefined;
   ruleDistribution: IRuleDistribution | undefined;
   integrityMonitoringTop5Agents: ITop5Agents | undefined;
-  widgetsHandler: IwidgetsHandler;
+  widgetsHandler: IWidgetsHandler;
 }
 
 const integrityMonitoringContextDefaultValues: IntegrityMonitoringContextInterface =
@@ -98,5 +98,5 @@ export const IntegrityMonitoringProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useIntegrityMonitoring = () =>
+export const useIntegrityMonitoringContext = () =>
   useContext(IntegrityMonitoringContext);

@@ -1,13 +1,19 @@
 import 'react-grid-layout/css/styles.css';
-import { useWidgets } from 'modules/Shared/hooks';
+import { useWidgetsContext } from 'modules/Shared/hooks';
 import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
+import { PAGES } from 'modules/Shared/enums';
 
 const Grid = () => {
-  const { selectedWidgets } = useWidgets();
+  const { selectedWidgets } = useWidgetsContext();
 
   if (selectedWidgets.length === 0) return <></>;
 
-  return <WidgetsGrid widgets={selectedWidgets} apiEndpoint="/dashboard" />;
+  return (
+    <WidgetsGrid
+      widgets={selectedWidgets.filter(({ available }) => available)}
+      page={PAGES.DASHBOARD}
+    />
+  );
 };
 
 export default Grid;

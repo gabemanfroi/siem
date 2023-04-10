@@ -7,6 +7,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { useIsFetching } from '@tanstack/react-query';
 
 interface LoadingContextInterface {
   isLoading: boolean;
@@ -27,7 +28,13 @@ export const LoadingContext = createContext<LoadingContextInterface>(
 );
 
 export const LoadingProvider = ({ children }: LoadingProviderInterface) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(false);
+  const isFetching = useIsFetching();
+
+  const isLoading = useMemo(
+    () => loading || !!isFetching,
+    [isFetching, loading]
+  );
 
   useEffect(() => {
     if (process.env.REACT_APP_ENVIRONMENT === 'local') {
@@ -47,6 +54,9 @@ export const LoadingProvider = ({ children }: LoadingProviderInterface) => {
   );
 
   return (
-    <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
+    <LoadingContext.Provider value={value}>
+      {isLoading && <span className="loader" />}
+      {children}
+    </LoadingContext.Provider>
   );
 };

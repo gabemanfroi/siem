@@ -1,5 +1,5 @@
 import { ApexOptions } from 'apexcharts';
-import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/Constants';
+import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/constants';
 
 const DonutChartOptionsFactory = (options?: ApexOptions): ApexOptions => ({
   chart: {
@@ -7,8 +7,8 @@ const DonutChartOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     height: 300,
     type: 'donut',
     animations: {
-      enabled: false
-    }
+      enabled: false,
+    },
   },
   legend: {
     ...options?.legend,
