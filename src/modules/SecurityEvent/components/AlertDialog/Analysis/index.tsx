@@ -1,6 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { DataGrid, GridColumns, GridRowParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
 import i18n from 'modules/Shared/core/i18n';
 import { Box } from '@mui/material';
 import { ICortexReport } from 'modules/Shared/interfaces';
@@ -10,7 +10,7 @@ import { LoadingHandler } from 'modules/Shared/components';
 
 const { t } = i18n;
 
-const columns: GridColumns<ICortexReport> = [
+const columns: GridColDef<ICortexReport>[] = [
   { field: 'observable', headerName: t('Observable'), flex: 1 },
   {
     field: 'level',

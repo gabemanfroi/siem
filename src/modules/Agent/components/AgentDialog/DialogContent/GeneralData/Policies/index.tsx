@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAgentQuery } from 'modules/Agent/hooks/queries';
 import { useSCAContext } from 'modules/SCA/hooks';
-import { DataGrid, GridColumns, GridRowParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
 import { IPolicy } from 'modules/SCA/interfaces';
 import { LoadingHandler } from 'modules/Shared/components';
 import { Stack, Typography } from '@mui/material';
 
-const columns: GridColumns<IPolicy> = [
+const columns: GridColDef<IPolicy>[] = [
   { field: 'name', headerName: 'Name', flex: 1 },
   { field: 'description', headerName: 'Description', flex: 1 },
   { field: 'score', headerName: 'Score', flex: 1 },

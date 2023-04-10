@@ -1,12 +1,12 @@
 import React from 'react';
 import { IEvent } from 'modules/Shared/interfaces';
-import { DataGrid, GridColumns } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import useSecurityEventQuery from 'modules/SecurityEvent/hooks/queries/useSecurityEventQuery';
 import { LoadingHandler } from 'modules/Shared/components';
 import { Stack } from '@mui/material';
 import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 
-const columns: GridColumns<IEvent> = [
+const columns: GridColDef<IEvent>[] = [
   {
     field: 'description',
     headerName: 'Description',

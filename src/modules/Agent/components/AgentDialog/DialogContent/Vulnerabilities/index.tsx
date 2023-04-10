@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAgentQuery } from 'modules/Agent/hooks/queries';
-import { DataGrid, GridColumns } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { IVulnerability } from 'modules/Vulnerability/interfaces';
 import { LoadingHandler } from 'modules/Shared/components';
 import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 
-const columns: GridColumns<IVulnerability> = [
+const columns: GridColDef<IVulnerability>[] = [
   { field: 'name', headerName: 'Name', flex: 1 },
   { field: 'severity', headerName: 'Severity', flex: 1 },
   { field: 'condition', headerName: 'Condition', flex: 1 },

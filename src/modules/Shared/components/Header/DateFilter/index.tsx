@@ -1,6 +1,6 @@
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconButton, TextField } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import { MdRefresh } from 'react-icons/md';
 import { ptBR } from 'date-fns/locale';
@@ -10,10 +10,10 @@ import { useTranslation } from 'react-i18next';
 const DateFilter = () => {
   const { filters, setFilters } = useFilter();
   const { t } = useTranslation();
-  const [pendingInitialValue, setPendingInitialValue] = useState<number | null>(
-    filters.initialDate
-  );
-  const [pendingEndDate, setPendingEndDate] = useState<number | null>(
+  const [pendingInitialValue, setPendingInitialValue] = useState<
+    number | null | Date
+  >(filters.initialDate);
+  const [pendingEndDate, setPendingEndDate] = useState<number | null | Date>(
     filters.endDate
   );
 
@@ -37,19 +37,15 @@ const DateFilter = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ptBR}>
       <DesktopDatePicker
+        format="dd/MM/yyyy"
         label={t('Initial Date')}
-        renderInput={(params) => (
-          <TextField data-testid="initialDatePicker" size="small" {...params} />
-        )}
-        value={pendingInitialValue}
+        value={new Date(pendingInitialValue!)}
         onChange={onInitialDateChange}
       />
       <DesktopDatePicker
+        format="dd/MM/yyyy"
         label={t('End Date')}
-        renderInput={(params) => (
-          <TextField data-testid="endDatePicker" size="small" {...params} />
-        )}
-        value={pendingEndDate}
+        value={new Date(pendingEndDate!)}
         onChange={onEndDateChange}
       />
       <IconButton onClick={applyNewFilters}>

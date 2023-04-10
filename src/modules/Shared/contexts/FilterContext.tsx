@@ -12,8 +12,8 @@ const dateFns = new DateFnsAdapter();
 const now = new Date();
 
 interface IFilters {
-  initialDate: number | null;
-  endDate: number | null;
+  initialDate: number | null | Date;
+  endDate: number | null | Date;
 }
 
 const initialFiltersState: IFilters = {
