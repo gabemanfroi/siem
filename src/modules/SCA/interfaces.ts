@@ -4,7 +4,7 @@ export interface IPolicy {
   totalChecks: number;
   score: number;
   fail: number;
-  pass: number;
+  passed: number;
   policyId: string;
   invalid: number;
   endScan: Date;

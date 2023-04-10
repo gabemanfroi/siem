@@ -1,7 +1,7 @@
 import { ButtonGroup, DialogTitle, IconButton } from '@mui/material';
 import { MdCheck, MdClose, MdEdit } from 'react-icons/md';
 import React from 'react';
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
 
 interface AgentDialogTitleProps {
   onClose: () => void;
@@ -9,13 +9,13 @@ interface AgentDialogTitleProps {
 
 const AgentDialogTitle = ({ onClose }: AgentDialogTitleProps) => {
   const {
-    isAgentModalOpen,
+    isAgentDialogOpen,
     selectedAgent,
     isAgentEditMode,
     setIsAgentEditMode,
-  } = useAgent();
+  } = useAgentContext();
 
-  if (!isAgentModalOpen || !selectedAgent) return <></>;
+  if (!isAgentDialogOpen || !selectedAgent) return <></>;
 
   return (
     <DialogTitle
@@ -25,7 +25,7 @@ const AgentDialogTitle = ({ onClose }: AgentDialogTitleProps) => {
         alignItems: 'center',
       }}
     >
-      {selectedAgent.generalData.name} - {selectedAgent.generalData.ip}
+      {selectedAgent?.generalData?.name} - {selectedAgent.generalData.ip}
       <ButtonGroup>
         {!isAgentEditMode && (
           <IconButton

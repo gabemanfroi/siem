@@ -1,5 +1,5 @@
 import { ApexOptions } from 'apexcharts';
-import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/Constants';
+import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/constants';
 import { HEXADECIMAL_REGEX } from 'modules/Shared/constants/regex';
 import DonutChartOptionsFactory from '.';
 

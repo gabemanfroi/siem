@@ -1,9 +1,9 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
-import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 
 const AlertsByActionOverTime = () => {
-  const { alertsByActionOverTime } = useIntegrityMonitoring();
+  const { alertsByActionOverTime } = useIntegrityMonitoringContext();
 
   if (!alertsByActionOverTime) return <></>;
 

@@ -1,38 +1,40 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERIES } from 'modules/Shared/constants/queries';
-import { useFilter, useWidgets } from 'modules/Shared/hooks';
+import { useFilter, useWidgetsContext } from 'modules/Shared/hooks';
 import { DashboardService } from 'modules/Dashboard/api';
+import { IWidget } from 'modules/Shared/interfaces/Widgets';
+
+const getWidgetsToRetrieveFromServer = (selectedWidgets: IWidget[]) => {
+  const widgetsToRetrieveFromServer: { [key: string]: string[] } = {};
+
+  selectedWidgets.forEach((w) => {
+    if (widgetsToRetrieveFromServer[w.framework]) {
+      widgetsToRetrieveFromServer[w.framework].push(w.identifier);
+    } else {
+      widgetsToRetrieveFromServer[w.framework] = [w.identifier];
+    }
+  });
+  return widgetsToRetrieveFromServer;
+};
 
 const useDashboardQuery = () => {
-  const { selectedWidgets } = useWidgets();
-  const { filters } = useFilter();
+  const { selectedWidgets } = useWidgetsContext();
+  const { filters, isFilterMode } = useFilter();
 
-  const getWidgetsToRetrieveFromServer = () => {
-    const widgetsToRetrieveFromServer: { [key: string]: string[] } = {};
-
-    selectedWidgets.forEach((w) => {
-      if (widgetsToRetrieveFromServer[w.framework]) {
-        widgetsToRetrieveFromServer[w.framework].push(w.identifier);
-      } else {
-        widgetsToRetrieveFromServer[w.framework] = [];
-      }
-    });
-    return widgetsToRetrieveFromServer;
-  };
-
-  const { isLoading: getDashboardDataIsLoading, data: getDashboardData } =
-    useQuery(
-      [QUERIES.DASHBOARD.GET_DASHBOARD_DATA, filters, selectedWidgets],
-      () =>
-        DashboardService.dynamicPost('', {
-          ...filters,
-          selectedWidgets: getWidgetsToRetrieveFromServer(),
-        })
-    );
+  const { isLoading: pageIsLoading, data: pageData } = useQuery(
+    [QUERIES.DASHBOARD.GET_DASHBOARD_DATA, filters, selectedWidgets],
+    () =>
+      DashboardService.dynamicPost('', {
+        ...(isFilterMode ? filters : {}),
+        selectedWidgets: getWidgetsToRetrieveFromServer(
+          selectedWidgets.filter((w) => w.available)
+        ),
+      })
+  );
 
   return {
-    getDashboardDataIsLoading,
-    getDashboardData,
+    pageIsLoading,
+    pageData,
   };
 };
 

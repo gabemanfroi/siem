@@ -1,9 +1,9 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { useMitre } from 'modules/Mitre/contexts';
+import { useMitreContext } from 'modules/Mitre/contexts';
 import { ApexOptions } from 'apexcharts';
 
 const AlertsEvolutionOverTime = () => {
-  const { alertsEvolutionOverTime } = useMitre();
+  const { alertsEvolutionOverTime } = useMitreContext();
 
   if (!alertsEvolutionOverTime) return <></>;
 

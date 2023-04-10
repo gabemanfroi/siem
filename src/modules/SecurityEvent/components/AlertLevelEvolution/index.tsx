@@ -1,9 +1,9 @@
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
 
 const AlertLevelEvolution = () => {
-  const { alertLevelEvolution } = useSecurityEvent();
+  const { alertLevelEvolution } = useSecurityEventContext();
 
   if (!alertLevelEvolution) return <></>;
 

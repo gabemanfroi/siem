@@ -1,24 +1,25 @@
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import GridItem from 'modules/Shared/components/GridItem';
-import { LoadingHandler } from 'modules/Shared/components/index';
-import { useWidgets, useWidgetsGrid } from 'modules/Shared/hooks';
+import { useWidgetsContext, useWidgetsLayouts } from 'modules/Shared/hooks';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
 import { createRef } from 'react';
+import { PAGES } from 'modules/Shared/enums';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface WidgetsGridProps {
   widgets: IWidget[];
-  apiEndpoint: string;
+  page: PAGES;
 }
 
-const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
-  const { saveCurrentLayout, customizeMode } = useWidgets();
+const WidgetsGrid = ({ widgets, page }: WidgetsGridProps) => {
+  const { saveCurrentLayout, customizeMode } = useWidgetsContext();
 
   const ref = createRef();
 
-  const { layouts } = useWidgetsGrid(widgets, apiEndpoint);
+  const { layouts } = useWidgetsLayouts(widgets, page);
+
   return (
     <ResponsiveGridLayout
       isResizable={customizeMode}
@@ -31,7 +32,7 @@ const WidgetsGrid = ({ widgets, apiEndpoint }: WidgetsGridProps) => {
     >
       {widgets.map((w) => (
         <GridItem ref={ref} key={w.identifier} widget={w}>
-          <LoadingHandler>{w.builder}</LoadingHandler>
+          <w.Component />
         </GridItem>
       ))}
     </ResponsiveGridLayout>

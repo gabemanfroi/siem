@@ -7,8 +7,8 @@ import * as React from 'react';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { MdOutlineCheck, MdOutlineClose } from 'react-icons/md';
 import { useTheme } from '@mui/material/styles';
-import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/Constants';
-import { useWidgets } from 'modules/Shared/hooks';
+import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/constants';
+import { useWidgetsContext } from 'modules/Shared/hooks';
 import {
   IAutoCompleteWidget,
   isWidget,
@@ -28,7 +28,8 @@ interface PopperComponentProps {
 }
 
 const PopperComponent = (props: PopperComponentProps) => {
-  const { disablePortal, anchorEl, open, ...other } = props;
+  const { ...other } = props;
+  // @ts-ignore
   return <StyledAutocompletePopper {...other} />;
 };
 
@@ -51,16 +52,25 @@ export const WidgetsSelectorPopper = ({
   anchorEl,
   setAnchorEl,
 }: IWidgetsSelectorPopper) => {
-  const { setSelectedWidgets, widgetsMap } = useWidgets();
+  const { setSelectedWidgets, selectedWidgets, widgetsMap } =
+    useWidgetsContext();
 
   const theme = useTheme();
 
   useEffect(() => {
     if (value) {
+      const selectedWidgetsIdentifiers = selectedWidgets.map(
+        ({ identifier }) => identifier
+      );
+
       const newSelectedWidgets = value
+        .filter(
+          ({ identifier }) => !selectedWidgetsIdentifiers.includes(identifier)
+        )
         .map((w) => widgetsMap[w.identifier as WidgetsMapKeys])
         .filter(isWidget) as IWidget[];
-      setSelectedWidgets(newSelectedWidgets);
+
+      setSelectedWidgets([...selectedWidgets, ...newSelectedWidgets]);
     }
   }, [value]);
 

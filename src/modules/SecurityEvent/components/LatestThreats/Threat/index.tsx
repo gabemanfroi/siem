@@ -1,6 +1,6 @@
 import { RiBug2Fill, RiSpyFill } from 'react-icons/ri';
 import { Stack, Typography } from '@mui/material';
-import { IThreat } from 'modules/Shared/interfaces';
+import { Threat } from 'modules/Shared/interfaces';
 import { BiTargetLock } from 'react-icons/bi';
 import {
   chartRed,
@@ -9,11 +9,11 @@ import {
   primaryBlue,
 } from 'modules/Shared/helpers/styles/Colors';
 import { formatDistance } from 'date-fns';
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { HIGH, LOW, MEDIUM } from 'modules/Shared/constants/utils';
 
 interface ThreatProps {
-  threat: IThreat;
+  threat: Threat;
 }
 
 const threatIconMap = {
@@ -22,7 +22,7 @@ const threatIconMap = {
   virustotal: <RiBug2Fill size={24} />,
 };
 
-const Threat = ({ threat }: ThreatProps) => {
+const LatestThreat = ({ threat }: ThreatProps) => {
   const getThreatSeverity = () => {
     if (threat.level <= 3) {
       return LOW;
@@ -39,12 +39,13 @@ const Threat = ({ threat }: ThreatProps) => {
     high: chartRed,
   };
 
-  const { setSelectedEventId, setIsEventModalOpen } = useSecurityEvent();
+  const { setSelectedAlertId, setIsAlertDialogOpen } =
+    useSecurityEventContext();
   return (
     <Stack
       onClick={() => {
-        setSelectedEventId(threat.id);
-        setIsEventModalOpen(true);
+        setSelectedAlertId(threat.id);
+        setIsAlertDialogOpen(true);
       }}
       direction="row"
       justifyContent="space-between"
@@ -85,4 +86,4 @@ const Threat = ({ threat }: ThreatProps) => {
   );
 };
 
-export default Threat;
+export default LatestThreat;

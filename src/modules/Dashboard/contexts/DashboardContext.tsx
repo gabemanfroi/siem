@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useMemo } from 'react';
-import { useMitre } from 'modules/Mitre/contexts/MitreContext';
-import { useVulnerability } from 'modules/Vulnerability/contexts/VulnerabilityContext';
-import { useIntegrityMonitoring } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { useMitreContext } from 'modules/Mitre/contexts/MitreContext';
+import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
+import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { useVirusTotal } from 'modules/VirusTotal/contexts/VirusTotalContext';
-import { useSecurityEvent } from 'modules/SecurityEvent/contexts/SecurityEventContext';
+import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { IWidgetsHandler } from 'modules/Shared/interfaces/Widgets';
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
+import { useAnalysisContext } from 'modules/Analysis/hooks';
 
 interface DashboardContextInterface {
   dashboardWidgetsHandler: IWidgetsHandler;
@@ -20,13 +21,16 @@ const DashboardContext = createContext<DashboardContextInterface>(
 );
 
 export const DashboardProvider: React.FC = ({ children }) => {
-  const { widgetsHandler: mitreWidgetsHandlerMap } = useMitre();
-  const { widgetsHandler: vulnerabilityWidgetsHandler } = useVulnerability();
+  const { widgetsHandler: mitreWidgetsHandlerMap } = useMitreContext();
+  const { widgetsHandler: vulnerabilityWidgetsHandler } =
+    useVulnerabilityContext();
   const { widgetsHandler: integrityMonitoringHandlersMap } =
-    useIntegrityMonitoring();
+    useIntegrityMonitoringContext();
   const { widgetsHandler: virusTotalHandlersMap } = useVirusTotal();
-  const { widgetsHandler: securityEventHandlersMap } = useSecurityEvent();
-  const { widgetsHandler: agentHandlersMap } = useAgent();
+  const { widgetsHandler: securityEventHandlersMap } =
+    useSecurityEventContext();
+  const { widgetsHandler: agentHandlersMap } = useAgentContext();
+  const { widgetsHandler: analysisHandlerMap } = useAnalysisContext();
 
   const dashboardWidgetsHandler = {
     ...integrityMonitoringHandlersMap,
@@ -35,6 +39,7 @@ export const DashboardProvider: React.FC = ({ children }) => {
     ...vulnerabilityWidgetsHandler,
     ...virusTotalHandlersMap,
     ...agentHandlersMap,
+    ...analysisHandlerMap,
   };
 
   const value = useMemo(
@@ -51,4 +56,4 @@ export const DashboardProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useDashboard = () => useContext(DashboardContext);
+export const useDashboardContext = () => useContext(DashboardContext);

@@ -1,1 +1,1 @@
-export { MitreProvider, mitreWidgets, useMitre } from './MitreContext';
+export { MitreProvider, mitreWidgets, useMitreContext } from './MitreContext';
