@@ -19,7 +19,7 @@
     "@faker-js/faker": "^6.2.0",
     "@googlemaps/react-wrapper": "^1.1.33",
     "@mui/lab": "^5.0.0-alpha.71",
-    "@mui/material": "^5.8.5",
+    "@mui/material": "^5.9.2",
     "@mui/styled-engine-sc": "^5.8.0",
     "@mui/system": "^5.11.8",
     "@mui/x-data-grid": "^5.17.25",
