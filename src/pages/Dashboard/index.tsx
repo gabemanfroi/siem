@@ -1,27 +1,26 @@
-import { Container } from 'pages/Dashboard/style';
 import RightPanel from 'modules/Dashboard/components/RightPanel';
 import { useDashboardQuery } from 'modules/Dashboard/hooks';
 import { useEffect } from 'react';
-import { useDashboard } from 'modules/Dashboard/contexts';
+
 import { fillWidgetsWithData } from 'modules/Shared/helpers/fillWidgetsWithData';
+import DefaultLayout from 'modules/Shared/components/DefaultLayout';
+import { useDashboardContext } from 'modules/Dashboard/contexts';
 
 function Dashboard() {
-  const { dashboardWidgetsHandler: widgetsHandler } = useDashboard();
-  const { getDashboardDataIsLoading, getDashboardData } = useDashboardQuery();
+  const { dashboardWidgetsHandler: widgetsHandler } = useDashboardContext();
+  const { pageData } = useDashboardQuery();
 
   useEffect(() => {
-    if (getDashboardData) {
-      const { data } = getDashboardData;
+    if (pageData) {
+      const { data } = pageData;
       fillWidgetsWithData(data, widgetsHandler);
     }
-  }, [getDashboardData]);
-
-  if (getDashboardDataIsLoading) return <></>;
+  }, [pageData]);
 
   return (
-    <Container>
+    <DefaultLayout>
       <RightPanel />
-    </Container>
+    </DefaultLayout>
   );
 }
 

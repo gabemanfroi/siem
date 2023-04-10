@@ -5,26 +5,30 @@ import { useLoading } from 'modules/Shared/hooks';
 
 interface LoadingHandlerPropsInterface extends SkeletonProps {
   children: React.ReactNode;
+  loading?: boolean;
 }
 
 const LoadingHandler: React.FC<LoadingHandlerPropsInterface> = ({
   children,
   sx,
   variant = 'rectangular',
+  loading,
   ...rest
 }) => {
   const { isLoading } = useLoading();
 
+  const getLoading = loading === undefined ? isLoading : loading;
+
   return (
     <>
-      {isLoading && (
+      {getLoading && (
         <Skeleton
-          sx={{ flex: 1, borderRadius: '5px', ...sx }}
+          sx={{ height: '100%', borderRadius: 2, width: '100%', ...sx }}
           variant={variant}
           {...rest}
         />
       )}
-      {!isLoading && children}
+      {!getLoading && children}
     </>
   );
 };

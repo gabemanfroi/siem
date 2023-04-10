@@ -1,12 +1,11 @@
 import { ApexOptions } from 'apexcharts';
-import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/Constants';
+import { DEFAULT_CHARTS_PALETTE } from 'modules/Shared/core/constants';
 
 const HistogramOptionsFactory = (options?: ApexOptions): ApexOptions => ({
   dataLabels: {
     ...options?.dataLabels,
     enabled: false,
   },
-
   chart: {
     ...options?.chart,
     redrawOnParentResize: true,
@@ -19,8 +18,8 @@ const HistogramOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     },
     type: 'bar',
     animations: {
-      enabled: false
-    }
+      enabled: false,
+    },
   },
   grid: {
     borderColor: '#ffffff',

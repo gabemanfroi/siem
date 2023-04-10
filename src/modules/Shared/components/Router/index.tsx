@@ -1,6 +1,14 @@
-import { Dashboard, IntegrityMonitoring, Login, Mitre, SecurityEvent, Vulnerability } from 'pages';
+import {
+  Analysis,
+  Dashboard,
+  IntegrityMonitoring,
+  Login,
+  Mitre,
+  SecurityEvent,
+} from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from 'modules/Shared/components/';
+import Agent from 'pages/Agent';
 
 const Router = () => (
   <BrowserRouter>
@@ -22,14 +30,6 @@ const Router = () => (
         }
       />
       <Route
-        path="/vulnerabilidades"
-        element={
-          <PrivateRoute>
-            <Vulnerability />
-          </PrivateRoute>
-        }
-      />
-      <Route
         path="/monitoramento-de-integridade"
         element={
           <PrivateRoute>
@@ -45,7 +45,23 @@ const Router = () => (
           </PrivateRoute>
         }
       />
+      <Route
+        path="/agentes"
+        element={
+          <PrivateRoute>
+            <Agent />
+          </PrivateRoute>
+        }
+      />
       <Route path="/login" element={<Login />} />
+      <Route
+        path="/analise"
+        element={
+          <PrivateRoute>
+            <Analysis />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   </BrowserRouter>
 );

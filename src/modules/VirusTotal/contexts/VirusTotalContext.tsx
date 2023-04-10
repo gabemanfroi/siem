@@ -24,15 +24,15 @@ import {
 export const virusTotalWidgets: IVirusTotalWidgets = {
   alertsEvolutionByAgents: {
     ...VirusTotalWidgetsDefaultConfig.alertsEvolutionByAgents,
-    builder: <AlertsEvolutionByAgents />,
+    Component: AlertsEvolutionByAgents,
   },
   lastScannedFiles: {
     ...VirusTotalWidgetsDefaultConfig.lastScannedFiles,
-    builder: <LastScannedFiles />,
+    Component: LastScannedFiles,
   },
   uniqueMaliciousFilesPerAgent: {
     ...VirusTotalWidgetsDefaultConfig.uniqueMaliciousFilesPerAgent,
-    builder: <UniqueMaliciousFilesPerAgent />,
+    Component: UniqueMaliciousFilesPerAgent,
   },
 };
 

@@ -1,9 +1,9 @@
 import { Stack } from '@mui/material';
 import NotableAgent from 'modules/Agent/components/NotableAgents/NotableAgent';
-import { useAgent } from 'modules/Agent/hooks';
+import { useAgentContext } from 'modules/Agent/hooks';
 
 export const NotableAgents = () => {
-  const { notableAgents } = useAgent();
+  const { notableAgents } = useAgentContext();
 
   if (!notableAgents) return <></>;
 

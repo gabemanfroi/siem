@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import { Navigate, useLocation } from 'react-router-dom';
-import { Sidebar } from 'modules/Shared/components/';
 import { TokenUtil } from 'modules/Shared/utils';
 
 interface PrivateRouteInterface {
@@ -16,11 +15,6 @@ const PrivateRoute = ({ children }: PrivateRouteInterface) => {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
-  return (
-    <>
-      <Sidebar />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 export default PrivateRoute;
