@@ -1,10 +1,10 @@
 import 'react-grid-layout/css/styles.css';
-import { useWidgetsContext } from 'modules/Shared/hooks';
 import WidgetsGrid from 'modules/Shared/components/WidgetsGrid';
 import { PAGES } from 'modules/Shared/enums';
+import { useWidgetsSelectionContext } from 'modules/Shared/hooks/useWidgetsSelectionContext';
 
 const Grid = () => {
-  const { selectedWidgets } = useWidgetsContext();
+  const { selectedWidgets } = useWidgetsSelectionContext();
 
   if (selectedWidgets.length === 0) return <></>;
 
