@@ -1,4 +1,4 @@
-import { useSCAContext, useSCAQuery } from 'modules/SCA/hooks';
+import { useSCAContext } from 'modules/SCA/hooks';
 import { useAgentContext } from 'modules/Agent/hooks';
 import Content from 'modules/SCA/components/PolicyDialog/Content';
 import { DefaultDialog } from 'modules/Shared/components';
@@ -13,14 +13,10 @@ const PolicyDialog = () => {
 
   const { selectedAgent } = useAgentContext();
 
-  const { getPolicyByIdData } = useSCAQuery();
-
   const onClose = () => {
     setSelectedPolicy(null);
     setIsPolicyDialogOpen(false);
   };
-
-  if (!getPolicyByIdData) return <></>;
 
   return (
     <DefaultDialog
@@ -28,7 +24,7 @@ const PolicyDialog = () => {
       open={isPolicyDialogOpen}
       onClose={onClose}
     >
-      <Content policies={getPolicyByIdData} />
+      <Content />
     </DefaultDialog>
   );
 };
