@@ -1,8 +1,9 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 
 const Top5Agents = () => {
-  const { securityEventTop5Agents } = useSecurityEventContext();
+  const { securityEventTop5Agents } = {
+    securityEventTop5Agents: { labels: [], series: [] },
+  };
 
   if (!securityEventTop5Agents) return <></>;
 

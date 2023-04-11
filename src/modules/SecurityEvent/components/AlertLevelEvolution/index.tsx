@@ -1,13 +1,13 @@
-import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
+import { useAlertLevelEvolutionQuery } from 'modules/SecurityEvent/hooks/queries/useAlertLevelEvolutionQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const AlertLevelEvolution = () => {
-  const { alertLevelEvolution } = useSecurityEventContext();
+  const { alertLevelEvolutionData, alertLevelEvolutionIsLoading } =
+    useAlertLevelEvolutionQuery();
 
-  if (!alertLevelEvolution) return <></>;
-
-  const { series, categories } = alertLevelEvolution;
+  const { series, categories } = alertLevelEvolutionData;
 
   const options: ApexOptions = {
     series,
@@ -18,7 +18,11 @@ const AlertLevelEvolution = () => {
     xaxis: { categories, type: 'datetime' },
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={alertLevelEvolutionIsLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default AlertLevelEvolution;

@@ -16,6 +16,8 @@ import { IPolicyCheckItem } from 'modules/SCA/interfaces';
 import { useState } from 'react';
 import { MdKeyboardArrowRight, MdKeyboardArrowUp } from 'react-icons/md';
 import { gray200, white } from 'modules/Shared/helpers/styles/Colors';
+import { useSCAQuery } from 'modules/SCA/hooks';
+import { LoadingHandler } from 'modules/Shared/components';
 
 interface RowProps {
   row: IPolicyCheckItem;
@@ -88,37 +90,47 @@ const Row = ({ row }: RowProps) => {
   );
 };
 
-interface PolicyDialogContentProps {
-  policies: IPolicyCheckItem[];
-}
+const Content = () => {
+  const { getPolicyByIdData, getPolicyByIdIsLoading } = useSCAQuery();
 
-const Content = ({ policies }: PolicyDialogContentProps) => (
-  <>
-    <TableContainer component={Paper}>
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Target</TableCell>
-            <TableCell>Result</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {policies.map((i) => (
-            <Row row={i} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <TablePagination
-      count={0}
-      onPageChange={() => {}}
-      rowsPerPage={5}
-      page={1}
-    />
-  </>
-);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  return (
+    <LoadingHandler loading={getPolicyByIdIsLoading}>
+      <TableContainer component={Paper}>
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Title</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Target</TableCell>
+              <TableCell>Result</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {getPolicyByIdData
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((i) => (
+                <Row row={i} />
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        count={getPolicyByIdData.length}
+        onPageChange={(event, newPage) => setPage(newPage)}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onRowsPerPageChange={(event) => {
+          setRowsPerPage(parseInt(event.target.value, 10));
+          setPage(0);
+        }}
+        rowsPerPageOptions={[5, 10, 25]}
+      />
+    </LoadingHandler>
+  );
+};
 
 export default Content;

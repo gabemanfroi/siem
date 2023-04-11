@@ -1,25 +1,35 @@
-import React, {
+import {
   createContext,
   Dispatch,
+  FC,
   SetStateAction,
   useEffect,
   useMemo,
   useState,
 } from 'react';
-import { Layout } from 'react-grid-layout';
-import { LOCAL_STORAGE_WIDGETS_CONFIG_NAME } from 'modules/Shared/core/constants';
 import {
   IAllWidgets,
   IWidget,
   WidgetsMapKeys,
 } from 'modules/Shared/interfaces/Widgets';
+import {
+  LOCAL_STORAGE_KEY,
+  LOCAL_STORAGE_WIDGETS_CONFIG_NAME,
+} from 'modules/Shared/core/constants';
+import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
+import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
-
-import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
-import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
 import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
 import { analysisWidgets } from 'modules/Analysis/contexts/AnalysisContext';
+
+interface IWidgetsSelectionContext {
+  selectedWidgetsMap: IAllWidgets;
+  setSelectedWidgetsMap: Dispatch<SetStateAction<IAllWidgets>>;
+  selectedWidgets: IWidget[];
+  setSelectedWidgets: Dispatch<SetStateAction<IWidget[]>>;
+  widgetsMap: IAllWidgets;
+}
 
 const widgetsMap: IAllWidgets = {
   ...integrityMonitoringWidgets,
@@ -30,18 +40,6 @@ const widgetsMap: IAllWidgets = {
   ...analysisWidgets,
 };
 
-interface WidgetsContextInterface {
-  selectedWidgetsMap: IAllWidgets;
-  setSelectedWidgetsMap: Dispatch<SetStateAction<IAllWidgets>>;
-  selectedWidgets: IWidget[];
-  setSelectedWidgets: Dispatch<SetStateAction<IWidget[]>>;
-  // eslint-disable-next-line no-unused-vars
-  saveCurrentLayout: (layouts: Layout[]) => void;
-  widgetsMap: IAllWidgets;
-  customizeMode: boolean;
-  setCustomizeMode: Dispatch<SetStateAction<boolean>>;
-}
-
 const defaultValue = {
   selectedWidgetsMap: {},
   setSelectedWidgetsMap: () => {},
@@ -49,20 +47,16 @@ const defaultValue = {
   saveCurrentLayout: () => {},
   setSelectedWidgets: () => {},
   widgetsMap,
-  customizeMode: false,
-  setCustomizeMode: () => {},
+  customizationMode: false,
+  setCustomizationMode: () => {},
 };
 
-export const WidgetsContext =
-  createContext<WidgetsContextInterface>(defaultValue);
+export const WidgetsSelectionContext =
+  createContext<IWidgetsSelectionContext>(defaultValue);
 
 interface FormattedWidgetsInterface {
   [key: string]: Record<string, unknown>;
 }
-
-const LOCAL_STORAGE_KEY =
-  process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
-  LOCAL_STORAGE_WIDGETS_CONFIG_NAME;
 
 const getLocalStorageConfig = (): IAllWidgets | null => {
   const localStorageStringified = localStorage.getItem(
@@ -86,24 +80,14 @@ const getLocalStorageConfig = (): IAllWidgets | null => {
   return formattedWidgets;
 };
 
-export const WidgetsProvider: React.FC = ({ children }) => {
+export const WidgetsSelectionProvider: FC = ({ children }) => {
   const [selectedWidgetsMap, setSelectedWidgetsMap] = useState<IAllWidgets>(
     getLocalStorageConfig() || widgetsMap
   );
 
-  const [customizeMode, setCustomizeMode] = useState(false);
-
   const [selectedWidgets, setSelectedWidgets] = useState<IWidget[]>(
     Object.values(selectedWidgetsMap).map((v) => v)
   );
-
-  const saveCurrentLayout = (layouts: Layout[]) => {
-    const auxiliaryMap: { [key: string]: Layout } = {};
-    layouts.forEach((l) => {
-      auxiliaryMap[l.i] = l;
-    });
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(auxiliaryMap));
-  };
 
   useEffect(() => {
     setSelectedWidgets(Object.values(selectedWidgetsMap).map((v) => v));
@@ -112,23 +96,20 @@ export const WidgetsProvider: React.FC = ({ children }) => {
     }
   }, [selectedWidgetsMap]);
 
-  const providerValue = useMemo(
+  const value = useMemo(
     () => ({
       selectedWidgetsMap,
       setSelectedWidgetsMap,
       selectedWidgets,
-      saveCurrentLayout,
       setSelectedWidgets,
       widgetsMap,
-      customizeMode,
-      setCustomizeMode,
     }),
-    [selectedWidgets, customizeMode]
+    [selectedWidgets]
   );
 
   return (
-    <WidgetsContext.Provider value={providerValue}>
+    <WidgetsSelectionContext.Provider value={value}>
       {children}
-    </WidgetsContext.Provider>
+    </WidgetsSelectionContext.Provider>
   );
 };

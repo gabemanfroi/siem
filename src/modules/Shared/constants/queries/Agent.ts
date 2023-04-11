@@ -4,5 +4,6 @@ const AGENT = {
   FIND_BY_ID: 'AgentQueries@findById',
   GET_AGENT_POLICIES: 'AgentQueries@getAgentPolicies',
   GET_AGENT_VULNERABILITIES: 'AgentQueries@getAgentVulnerabilities',
+  GET_NOTABLE_AGENTS: 'AgentQueries@getNotableAgents',
 };
 export default AGENT;

@@ -6,15 +6,15 @@ import {
   isWidget,
 } from 'modules/Shared/interfaces/Widgets';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/constants';
-import { useWidgetsContext } from 'modules/Shared/hooks';
 import {
   AutocompleteBox,
   StyledButton,
 } from 'modules/Shared/components/Header/WidgetsSelector/style';
 import WidgetsSelectorPopper from 'modules/Shared/components/Header/WidgetsSelector/Popper';
+import { useWidgetsSelectionContext } from 'modules/Shared/hooks/useWidgetsSelectionContext';
 
 const WidgetsSelector = () => {
-  const { selectedWidgets } = useWidgetsContext();
+  const { selectedWidgets } = useWidgetsSelectionContext();
   const getValueFromSelectedWidgets = useCallback(
     () =>
       selectedWidgets

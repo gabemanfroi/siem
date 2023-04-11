@@ -1,13 +1,13 @@
-import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
+import { useAlertEvolutionTop5AgentsQuery } from 'modules/SecurityEvent/hooks/queries/useAlertEvolutionTop5AgentsQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const AlertsEvolutionTop5Agents = () => {
-  const { alertsEvolutionTop5Agents } = useSecurityEventContext();
+  const { top5AgentsData = {}, alertEvolutionTop5AgentsLoading } =
+    useAlertEvolutionTop5AgentsQuery();
 
-  if (!alertsEvolutionTop5Agents) return <></>;
-
-  const { series, categories } = alertsEvolutionTop5Agents;
+  const { series, categories } = top5AgentsData;
 
   const options: ApexOptions = {
     series,
@@ -17,7 +17,11 @@ const AlertsEvolutionTop5Agents = () => {
     xaxis: { categories, type: 'datetime' },
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={alertEvolutionTop5AgentsLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default AlertsEvolutionTop5Agents;

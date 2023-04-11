@@ -82,3 +82,7 @@ export const ALL_WIDGETS_LABELS = [
     identifier: 'notableAgents',
   },
 ];
+
+export const LOCAL_STORAGE_KEY =
+  process.env.REACT_APP_WIDGETS_CONFIG_NAME ||
+  LOCAL_STORAGE_WIDGETS_CONFIG_NAME;

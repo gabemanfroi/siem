@@ -6,13 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {
-  IAlertLevelEvolution,
-  IAlertsEvolutionTop5Agents,
-  ITop5Agents,
-  ITopMitre,
-} from 'modules/SecurityEvent/interfaces';
-import { AlertWithReports, IAlert, Threat } from 'modules/Shared/interfaces';
+import { AlertWithReports, IAlert } from 'modules/Shared/interfaces';
 import {
   ISecurityEventWidgets,
   SecurityEventWidgetsDefaultConfig,
@@ -44,12 +38,6 @@ export const securityEventWidgets: ISecurityEventWidgets = {
 };
 
 interface ISecurityEventContext {
-  alertLevelEvolution: IAlertLevelEvolution | undefined;
-  alertsEvolutionTop5Agents: IAlertsEvolutionTop5Agents | undefined;
-  securityEventTop5Agents: ITop5Agents | undefined;
-  topMitre: ITopMitre | undefined;
-  latestThreats: Threat[];
-  widgetsHandler: { [key: string]: Dispatch<SetStateAction<any>> };
   selectedAlertId: string | null;
   setSelectedAlertId: Dispatch<SetStateAction<string | null>>;
   selectedAlert: IAlert | AlertWithReports | null;
@@ -59,12 +47,6 @@ interface ISecurityEventContext {
 }
 
 const securityEventContextDefaultValues: ISecurityEventContext = {
-  alertLevelEvolution: undefined,
-  alertsEvolutionTop5Agents: undefined,
-  securityEventTop5Agents: undefined,
-  topMitre: undefined,
-  latestThreats: [],
-  widgetsHandler: {},
   selectedAlertId: null,
   setSelectedAlertId: () => {},
   selectedAlert: null,
@@ -83,51 +65,18 @@ export const SecurityEventProvider: React.FC = ({ children }) => {
     null | IAlert | AlertWithReports
   >(null);
   const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
-  const [alertLevelEvolution, setAlertLevelEvolution] = useState<
-    IAlertLevelEvolution | undefined
-  >();
-  const [alertsEvolutionTop5Agents, setAlertsEvolutionTop5Agents] = useState<
-    IAlertsEvolutionTop5Agents | undefined
-  >();
-  const [securityEventTop5Agents, setSecurityEventTop5Agents] = useState<
-    ITop5Agents | undefined
-  >();
-  const [topMitre, setTopMitre] = useState<ITopMitre | undefined>();
-  const [latestThreats, setLatestThreats] = useState<Threat[]>([]);
-
-  const widgetsHandler = {
-    alertLevelEvolution: setAlertLevelEvolution,
-    alertsEvolutionTop5Agents: setAlertsEvolutionTop5Agents,
-    securityEventTop5Agents: setSecurityEventTop5Agents,
-    topMitre: setTopMitre,
-    latestThreats: setLatestThreats,
-  };
 
   const value = useMemo(
     () => ({
       selectedAlertId,
       setSelectedAlertId,
-      alertLevelEvolution,
-      alertsEvolutionTop5Agents,
-      securityEventTop5Agents,
-      topMitre,
-      widgetsHandler,
-      latestThreats,
+
       selectedAlert,
       setSelectedAlert,
       isAlertDialogOpen,
       setIsAlertDialogOpen,
     }),
-    [
-      selectedAlert,
-      selectedAlertId,
-      alertLevelEvolution,
-      alertsEvolutionTop5Agents,
-      securityEventTop5Agents,
-      topMitre,
-      latestThreats,
-      setLatestThreats,
-    ]
+    [selectedAlert, selectedAlertId]
   );
 
   return (
