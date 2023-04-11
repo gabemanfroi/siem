@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AnalysisProvider } from 'modules/Analysis/contexts/AnalysisContext';
 import { ThemeProvider } from '@mui/material';
 import { CACHE_TIME } from 'modules/Shared/constants/utils';
+import { CustomizationProvider } from 'modules/Shared/contexts/CustomizationContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,27 +30,29 @@ export const DefaultProvider: FC = ({ children }) => (
   <ThemeProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
       <LoadingProvider>
-        <FilterProvider>
-          <MitreProvider>
-            <VulnerabilityProvider>
-              <IntegrityMonitoringProvider>
-                <VirusTotalProvider>
-                  <SecurityEventProvider>
-                    <AgentProvider>
-                      <SCAProvider>
-                        <WidgetsSelectionProvider>
-                          <SidebarProvider>
-                            <AnalysisProvider>{children}</AnalysisProvider>
-                          </SidebarProvider>
-                        </WidgetsSelectionProvider>
-                      </SCAProvider>
-                    </AgentProvider>
-                  </SecurityEventProvider>
-                </VirusTotalProvider>
-              </IntegrityMonitoringProvider>
-            </VulnerabilityProvider>
-          </MitreProvider>
-        </FilterProvider>
+        <CustomizationProvider>
+          <FilterProvider>
+            <MitreProvider>
+              <VulnerabilityProvider>
+                <IntegrityMonitoringProvider>
+                  <VirusTotalProvider>
+                    <SecurityEventProvider>
+                      <AgentProvider>
+                        <SCAProvider>
+                          <WidgetsSelectionProvider>
+                            <SidebarProvider>
+                              <AnalysisProvider>{children}</AnalysisProvider>
+                            </SidebarProvider>
+                          </WidgetsSelectionProvider>
+                        </SCAProvider>
+                      </AgentProvider>
+                    </SecurityEventProvider>
+                  </VirusTotalProvider>
+                </IntegrityMonitoringProvider>
+              </VulnerabilityProvider>
+            </MitreProvider>
+          </FilterProvider>
+        </CustomizationProvider>
       </LoadingProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>

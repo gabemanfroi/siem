@@ -1,5 +1,5 @@
 export interface IQueryParams {
-  elasticsearchId: string;
+  elasticsearchId?: string;
   initialDate: number;
   endDate: number;
 }
