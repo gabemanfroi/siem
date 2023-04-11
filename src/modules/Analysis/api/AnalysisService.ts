@@ -6,6 +6,7 @@ import {
 } from 'modules/Shared/interfaces';
 import { ROUTES } from 'modules/Shared/constants/routes';
 import AxiosClient from 'modules/Shared/services/AxiosClient';
+import { IQueryParams } from 'modules/Shared/interfaces/IQueryParams';
 
 const AnalysisService = () => {
   const customEndpoints = {
@@ -24,6 +25,26 @@ const AnalysisService = () => {
       (
         await AxiosClient.get<Report>(
           `${ROUTES.BRAGI.ANALYSIS}/reports/get_by_job_id/${jobId}`
+        )
+      ).data,
+    getLatestSuspiciousEvents: async ({ initialDate, endDate }: IQueryParams) =>
+      (
+        await AxiosClient.post<AlertWithReports[]>(
+          `${ROUTES.BRAGI.ANALYSIS}/latest_suspicious_events`,
+          {
+            initialDate,
+            endDate,
+          }
+        )
+      ).data,
+    getLatestReports: async ({ initialDate, endDate }: IQueryParams) =>
+      (
+        await AxiosClient.post<ICortexReport[]>(
+          `${ROUTES.BRAGI.ANALYSIS}/latest_reports`,
+          {
+            initialDate,
+            endDate,
+          }
         )
       ).data,
   };
