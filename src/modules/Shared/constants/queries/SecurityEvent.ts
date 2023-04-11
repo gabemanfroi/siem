@@ -5,6 +5,11 @@ const SECURITY_EVENT = {
     'SecurityEventQueries@getEventsBelongingToAgent',
   GET_EVENTS_BY_AGENT_AND_VULNERABILITY:
     'SecurityEventQueries@getEventsByAgentAndVulnerability',
+  GET_LATEST_THREATS: 'SecurityEventQueries@getLatestThreats',
+  GET_ALERT_EVOLUTION_TOP_5_AGENTS:
+    'SecurityEventQueries@getAlertEvolutionTop5Agents',
+  GET_TOP_MITRE: 'SecurityEventQueries@getTopMitre',
+  GET_ALERT_LEVEL_EVOLUTION: 'SecurityEventQueries@getAlertLevelEvolution',
 };
 
 export default SECURITY_EVENT;
