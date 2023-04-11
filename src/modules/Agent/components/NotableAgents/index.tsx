@@ -1,17 +1,18 @@
 import { Stack } from '@mui/material';
 import NotableAgent from 'modules/Agent/components/NotableAgents/NotableAgent';
-import { useAgentContext } from 'modules/Agent/hooks';
+import { useNotableAgentsQuery } from 'modules/Agent/hooks/queries/useNotableAgentsQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 export const NotableAgents = () => {
-  const { notableAgents } = useAgentContext();
-
-  if (!notableAgents) return <></>;
+  const { notableAgentsData, notableAgentsLoading } = useNotableAgentsQuery();
 
   return (
-    <Stack spacing={1}>
-      {notableAgents.map((a) => (
-        <NotableAgent key={a.id} agent={a} />
-      ))}
-    </Stack>
+    <LoadingHandler loading={notableAgentsLoading}>
+      <Stack spacing={1}>
+        {notableAgentsData.map((a) => (
+          <NotableAgent key={a.id} agent={a} />
+        ))}
+      </Stack>
+    </LoadingHandler>
   );
 };
