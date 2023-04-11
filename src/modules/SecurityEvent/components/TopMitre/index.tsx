@@ -1,18 +1,21 @@
-import { useSecurityEventContext } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { DonutChart } from 'modules/Shared/components/Charts';
+import { useTopMitreQuery } from 'modules/SecurityEvent/hooks/queries/useTopMitreQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const TopMitre = () => {
-  const { topMitre } = useSecurityEventContext();
+  const { topMitreLoading, topMitreData = {} } = useTopMitreQuery();
 
-  if (!topMitre) return <></>;
-
-  const { labels, series } = topMitre;
+  const { labels, series } = topMitreData;
   const options = {
     series,
     labels,
   };
 
-  return <DonutChart options={options} />;
+  return (
+    <LoadingHandler loading={topMitreLoading}>
+      <DonutChart options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default TopMitre;

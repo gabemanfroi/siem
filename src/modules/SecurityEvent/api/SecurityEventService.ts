@@ -4,6 +4,7 @@ import { ROUTES } from 'modules/Shared/constants/routes';
 import { BaseService } from 'modules/Shared/services/BaseService';
 import { IQueryParams } from 'modules/Shared/interfaces/IQueryParams';
 import { IVulnerability } from 'modules/Vulnerability/interfaces';
+import IThreat from 'modules/Shared/interfaces/IThreat';
 
 const SecurityEventService = () => {
   const customEndpoints = {
@@ -41,6 +42,37 @@ const SecurityEventService = () => {
           {
             ...vulnerability,
           }
+        )
+      ).data,
+    getLatestThreats: async ({ initialDate, endDate }: IQueryParams) =>
+      (
+        await AxiosClient.post<IThreat[]>(
+          `${ROUTES.BRAGI.SECURITY_EVENT}/latest_threats`,
+          { initialDate, endDate }
+        )
+      ).data,
+    getAlertEvolutionTop5Agents: async ({
+      initialDate,
+      endDate,
+    }: IQueryParams) =>
+      (
+        await AxiosClient.post(
+          `${ROUTES.BRAGI.SECURITY_EVENT}/alert_evolution_top_5_agents`,
+          { initialDate, endDate }
+        )
+      ).data,
+    getTopMitre: async ({ initialDate, endDate }: IQueryParams) =>
+      (
+        await AxiosClient.post(`${ROUTES.BRAGI.SECURITY_EVENT}/top_mitre`, {
+          initialDate,
+          endDate,
+        })
+      ).data,
+    getAlertLevelEvolution: async ({ initialDate, endDate }: IQueryParams) =>
+      (
+        await AxiosClient.post(
+          `${ROUTES.BRAGI.SECURITY_EVENT}/alert_level_evolution`,
+          { initialDate, endDate }
         )
       ).data,
   };
