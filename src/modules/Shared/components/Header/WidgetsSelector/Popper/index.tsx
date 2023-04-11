@@ -8,7 +8,6 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 import { MdOutlineCheck, MdOutlineClose } from 'react-icons/md';
 import { useTheme } from '@mui/material/styles';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/constants';
-import { useWidgetsContext } from 'modules/Shared/hooks';
 import {
   IAutoCompleteWidget,
   isWidget,
@@ -20,6 +19,7 @@ import {
   StyledInput,
   StyledPopper,
 } from 'modules/Shared/components/Header/WidgetsSelector/Popper/style';
+import { useWidgetsSelectionContext } from 'modules/Shared/hooks/useWidgetsSelectionContext';
 
 interface PopperComponentProps {
   anchorEl?: any;
@@ -53,7 +53,7 @@ export const WidgetsSelectorPopper = ({
   setAnchorEl,
 }: IWidgetsSelectorPopper) => {
   const { setSelectedWidgets, selectedWidgets, widgetsMap } =
-    useWidgetsContext();
+    useWidgetsSelectionContext();
 
   const theme = useTheme();
 

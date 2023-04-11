@@ -4,8 +4,9 @@ import 'react-grid-layout/css/styles.css';
 import { Stack, Typography } from '@mui/material';
 import { MdOutlineClose, MdOutlineDragIndicator } from 'react-icons/md';
 import { IWidget } from 'modules/Shared/interfaces/Widgets';
-import { useWidgetsContext } from 'modules/Shared/hooks';
 import { white } from 'modules/Shared/helpers/styles/Colors';
+import { useWidgetsSelectionContext } from 'modules/Shared/hooks/useWidgetsSelectionContext';
+import { useCustomizationContext } from 'modules/Shared/hooks/useCustomizationContext';
 import { Container } from './style';
 
 interface IGridItem {
@@ -15,8 +16,9 @@ interface IGridItem {
 
 const GridItem = forwardRef(
   ({ widget, children, ...props }: IGridItem, ref) => {
-    const { setSelectedWidgets, selectedWidgets, customizeMode } =
-      useWidgetsContext();
+    const { setSelectedWidgets, selectedWidgets } =
+      useWidgetsSelectionContext();
+    const { customizationMode } = useCustomizationContext();
     const handleClose = () => {
       const updatedWidgets = [...selectedWidgets];
       const index = updatedWidgets.findIndex(
@@ -29,7 +31,7 @@ const GridItem = forwardRef(
     return useMemo(
       () => (
         <Container ref={ref as React.RefObject<HTMLDivElement>} {...props}>
-          {customizeMode && (
+          {customizationMode && (
             <Stack
               sx={{
                 display: 'flex',
@@ -50,7 +52,7 @@ const GridItem = forwardRef(
             className="react-grid-item"
             sx={{
               '.react-resizable-handle': {
-                display: customizeMode ? 'block' : 'none',
+                display: customizationMode ? 'block' : 'none',
                 '&:after': {
                   borderColor: white,
                 },

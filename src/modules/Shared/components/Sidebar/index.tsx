@@ -1,9 +1,7 @@
 import {
   MdDashboard,
   MdDevices,
-  MdOutlineSecurity,
   MdPowerSettingsNew,
-  MdReportGmailerrorred,
   MdViewList,
 } from 'react-icons/md';
 import { IconButton, List, SwipeableDrawer, useTheme } from '@mui/material';
@@ -44,18 +42,18 @@ export default function Sidebar() {
           <NavigationItem path="/agentes" title="Agentes">
             <MdDevices size={30} color={theme.palette.text.primary} />
           </NavigationItem>
-          <NavigationItem path="/mitre" title="Mitre ATT&CK">
+          {/* <NavigationItem path="/mitre" title="Mitre ATT&CK">
             <MdReportGmailerrorred
               size={30}
               color={theme.palette.text.primary}
             />
-          </NavigationItem>
-          <NavigationItem
+          </NavigationItem> */}
+          {/* <NavigationItem
             path="/monitoramento-de-integridade"
             title="Integridade"
           >
             <MdOutlineSecurity size={30} color={theme.palette.text.primary} />
-          </NavigationItem>
+          </NavigationItem> */}
           <NavigationItem path="/eventos" title="Eventos">
             <MdViewList size={30} color={theme.palette.text.primary} />
           </NavigationItem>
