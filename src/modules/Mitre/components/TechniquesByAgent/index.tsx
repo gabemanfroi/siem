@@ -1,13 +1,13 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
-import { useMitreContext } from 'modules/Mitre/contexts';
+import { useTechniquesByAgentQuery } from 'modules/Mitre/hooks/queries/useTechniquesByAgentQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const TechniquesByAgent = () => {
-  const { techniquesByAgent } = useMitreContext();
+  const { techniquesByAgentIsLoading, techniquesByAgentData } =
+    useTechniquesByAgentQuery();
 
-  if (!techniquesByAgent) return <></>;
-
-  const { series, categories } = techniquesByAgent;
+  const { series, categories } = techniquesByAgentData;
 
   const options: ApexOptions = {
     chart: {
@@ -17,7 +17,11 @@ const TechniquesByAgent = () => {
     xaxis: { categories },
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={techniquesByAgentIsLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default TechniquesByAgent;

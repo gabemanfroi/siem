@@ -5,8 +5,9 @@ import { withDefaultLayout } from 'modules/Shared/hocs';
 import { getWidgetsListFromMap } from 'modules/Shared/helpers/getWidgetsListFromMap';
 import React, { useMemo } from 'react';
 import { analysisWidgets } from 'modules/Analysis/contexts/AnalysisContext';
-import { mitreWidgets } from 'modules/Mitre/contexts';
-import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { mitreWidgets } from 'modules/Mitre/interfaces/Widgets';
+import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
+import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfaces/Widgets';
 
 type ISettingsByPage = {
   [key in keyof typeof PAGES]: {
@@ -27,6 +28,9 @@ const SETTINGS_BY_PAGE: ISettingsByPage = {
   },
   [PAGES.INTEGRITY_MONITORING]: {
     widgetsMap: integrityMonitoringWidgets,
+  },
+  [PAGES.AGENT]: {
+    widgetsMap: agentWidgets,
   },
   [PAGES.DASHBOARD]: {},
 };

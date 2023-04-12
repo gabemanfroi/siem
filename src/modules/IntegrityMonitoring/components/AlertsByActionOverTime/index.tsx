@@ -1,13 +1,13 @@
 import { Histogram } from 'modules/Shared/components/Charts';
 import { ApexOptions } from 'apexcharts';
-import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { useAlertsByActionOverTimeQuery } from 'modules/IntegrityMonitoring/hooks/queries/useAlertsByActionOverTimeQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const AlertsByActionOverTime = () => {
-  const { alertsByActionOverTime } = useIntegrityMonitoringContext();
+  const { alertsByActionOverTimeData, alertsByActionOverTimeIsLoading } =
+    useAlertsByActionOverTimeQuery();
 
-  if (!alertsByActionOverTime) return <></>;
-
-  const { categories, series } = alertsByActionOverTime;
+  const { categories, series } = alertsByActionOverTimeData;
   const options: ApexOptions = {
     xaxis: {
       type: 'datetime',
@@ -16,7 +16,11 @@ const AlertsByActionOverTime = () => {
     series,
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={alertsByActionOverTimeIsLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default AlertsByActionOverTime;

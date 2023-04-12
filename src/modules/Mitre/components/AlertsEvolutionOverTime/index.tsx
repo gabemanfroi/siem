@@ -1,13 +1,13 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { useMitreContext } from 'modules/Mitre/contexts';
 import { ApexOptions } from 'apexcharts';
+import { useAlertsEvolutionOverTimeQuery } from 'modules/Mitre/hooks/queries/useAlertsEvolutionOverTimeQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const AlertsEvolutionOverTime = () => {
-  const { alertsEvolutionOverTime } = useMitreContext();
+  const { alertsEvolutionOverTimeLoading, alertsEvolutionOverTimeData } =
+    useAlertsEvolutionOverTimeQuery();
 
-  if (!alertsEvolutionOverTime) return <></>;
-
-  const { categories, series } = alertsEvolutionOverTime;
+  const { categories, series } = alertsEvolutionOverTimeData;
   const options: ApexOptions = {
     xaxis: {
       type: 'datetime',
@@ -20,7 +20,11 @@ const AlertsEvolutionOverTime = () => {
     series,
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={alertsEvolutionOverTimeLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default AlertsEvolutionOverTime;

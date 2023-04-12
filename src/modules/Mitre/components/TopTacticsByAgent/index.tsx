@@ -1,12 +1,12 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { useMitreContext } from 'modules/Mitre/contexts';
+import { LoadingHandler } from 'modules/Shared/components';
+import { useTopTacticsByAgentQuery } from 'modules/Mitre/hooks/queries/useTopTacticsByAgentQuery';
 
 const TopTechniquesByAgent = () => {
-  const { topTacticsByAgent } = useMitreContext();
+  const { topTacticsByAgentIsLoading, topTacticsByAgentData } =
+    useTopTacticsByAgentQuery();
 
-  if (!topTacticsByAgent) return <></>;
-
-  const { series, categories } = topTacticsByAgent;
+  const { series, categories } = topTacticsByAgentData;
 
   const options = {
     chart: {
@@ -16,7 +16,11 @@ const TopTechniquesByAgent = () => {
     xaxis: { categories },
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={topTacticsByAgentIsLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default TopTechniquesByAgent;
