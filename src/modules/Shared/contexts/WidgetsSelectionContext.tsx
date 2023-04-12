@@ -16,12 +16,12 @@ import {
   LOCAL_STORAGE_KEY,
   LOCAL_STORAGE_WIDGETS_CONFIG_NAME,
 } from 'modules/Shared/core/constants';
-import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/contexts';
 import { securityEventWidgets } from 'modules/SecurityEvent/contexts/SecurityEventContext';
-import { mitreWidgets } from 'modules/Mitre/contexts';
 import { vulnerabilityWidgets } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
 import { analysisWidgets } from 'modules/Analysis/contexts/AnalysisContext';
+import { mitreWidgets } from 'modules/Mitre/interfaces/Widgets';
+import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfaces/Widgets';
 
 interface IWidgetsSelectionContext {
   selectedWidgetsMap: IAllWidgets;
@@ -44,7 +44,6 @@ const defaultValue = {
   selectedWidgetsMap: {},
   setSelectedWidgetsMap: () => {},
   selectedWidgets: Object.values(widgetsMap).map((v) => v),
-  saveCurrentLayout: () => {},
   setSelectedWidgets: () => {},
   widgetsMap,
   customizationMode: false,

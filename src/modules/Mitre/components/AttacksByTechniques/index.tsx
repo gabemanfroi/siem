@@ -1,12 +1,12 @@
 import { Histogram } from 'modules/Shared/components/Charts';
-import { useMitreContext } from 'modules/Mitre/contexts';
+import { useAttacksByTechniqueQuery } from 'modules/Mitre/hooks/queries/useAttacksByTechniqueQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const AttacksByTechniques = () => {
-  const { attacksByTechnique } = useMitreContext();
+  const { attacksByTechniqueData, attacksByTechniqueIsLoading } =
+    useAttacksByTechniqueQuery();
 
-  if (!attacksByTechnique) return <></>;
-
-  const { series, categories } = attacksByTechnique;
+  const { series, categories } = attacksByTechniqueData;
 
   const options = {
     style: {
@@ -16,7 +16,11 @@ const AttacksByTechniques = () => {
     xaxis: { categories },
   };
 
-  return <Histogram options={options} />;
+  return (
+    <LoadingHandler loading={attacksByTechniqueIsLoading}>
+      <Histogram options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default AttacksByTechniques;

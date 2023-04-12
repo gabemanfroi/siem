@@ -2,6 +2,12 @@ import {
   IWidget,
   IWidgetDefaultConfig,
 } from 'modules/Shared/interfaces/Widgets';
+import {
+  ActionsTypes,
+  AlertsByActionOverTime,
+  RuleDistribution,
+  Top5Agents,
+} from 'modules/IntegrityMonitoring/components';
 
 export interface IIntegrityMonitoringWidgets {
   actionsTypes?: IWidget;
@@ -79,9 +85,9 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
       page: {
         lg: {
           i: 'ruleDistribution',
-          w: 3,
+          w: 6,
           h: 2,
-          x: 3,
+          x: 6,
           y: 3,
         },
       },
@@ -111,5 +117,24 @@ export const IntegrityMonitoringWidgetsDefaultConfig: IWidgetDefaultConfig = {
         },
       },
     },
+  },
+};
+
+export const integrityMonitoringWidgets: IIntegrityMonitoringWidgets = {
+  actionsTypes: {
+    ...IntegrityMonitoringWidgetsDefaultConfig.actionsTypes,
+    Component: ActionsTypes,
+  },
+  alertsByActionOverTime: {
+    ...IntegrityMonitoringWidgetsDefaultConfig.alertsByActionOverTime,
+    Component: AlertsByActionOverTime,
+  },
+  ruleDistribution: {
+    ...IntegrityMonitoringWidgetsDefaultConfig.ruleDistribution,
+    Component: RuleDistribution,
+  },
+  integrityMonitoringTop5Agents: {
+    ...IntegrityMonitoringWidgetsDefaultConfig.integrityMonitoringTop5Agents,
+    Component: Top5Agents,
   },
 };

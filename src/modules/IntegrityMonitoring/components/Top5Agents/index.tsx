@@ -1,18 +1,22 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { ApexOptions } from 'apexcharts';
+import { useTop5AgentsQuery } from 'modules/IntegrityMonitoring/hooks/queries/useTop5AgentsQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const Top5Agents = () => {
-  const { integrityMonitoringTop5Agents } = useIntegrityMonitoringContext();
-  if (!integrityMonitoringTop5Agents) return <></>;
+  const { top5AgentsData, top5AgentsIsLoading } = useTop5AgentsQuery();
 
-  const { labels, series } = integrityMonitoringTop5Agents;
+  const { labels, series } = top5AgentsData;
   const options: ApexOptions = {
     series,
     labels,
   };
 
-  return <DonutChart options={options} />;
+  return (
+    <LoadingHandler loading={top5AgentsIsLoading}>
+      <DonutChart options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default Top5Agents;

@@ -1,18 +1,22 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
+import { useRuleDistributionQuery } from 'modules/IntegrityMonitoring/hooks/queries/useRuleDistributionQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const RuleDistribution = () => {
-  const { ruleDistribution } = useIntegrityMonitoringContext();
+  const { ruleDistributionIsLoading, ruleDistributionData } =
+    useRuleDistributionQuery();
 
-  if (!ruleDistribution) return <></>;
-
-  const { labels, series } = ruleDistribution;
+  const { labels, series } = ruleDistributionData;
   const options = {
     series,
     labels,
   };
 
-  return <DonutChart options={options} />;
+  return (
+    <LoadingHandler loading={ruleDistributionIsLoading}>
+      <DonutChart options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default RuleDistribution;

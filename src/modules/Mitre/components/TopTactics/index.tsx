@@ -1,18 +1,21 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useMitreContext } from 'modules/Mitre/contexts';
+import { useTopTacticsQuery } from 'modules/Mitre/hooks/queries/useTopTacticsQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const TopTactics = () => {
-  const { topTactics } = useMitreContext();
+  const { topTacticsData, topTacticsLoading } = useTopTacticsQuery();
 
-  if (!topTactics) return <></>;
-
-  const { labels, series } = topTactics;
+  const { labels, series } = topTacticsData;
   const options = {
     series,
     labels,
   };
 
-  return <DonutChart options={options} />;
+  return (
+    <LoadingHandler loading={topTacticsLoading}>
+      <DonutChart options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default TopTactics;

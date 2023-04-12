@@ -7,9 +7,7 @@ import { SCAProvider } from 'modules/SCA/contexts/SCAContext';
 import { AgentProvider } from 'modules/Agent/contexts';
 import { SecurityEventProvider } from 'modules/SecurityEvent/contexts/SecurityEventContext';
 import { VirusTotalProvider } from 'modules/VirusTotal/contexts/VirusTotalContext';
-import { IntegrityMonitoringProvider } from 'modules/IntegrityMonitoring/contexts';
 import { VulnerabilityProvider } from 'modules/Vulnerability/contexts/VulnerabilityContext';
-import { MitreProvider } from 'modules/Mitre/contexts';
 import { FilterProvider, LoadingProvider } from 'modules/Shared/contexts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AnalysisProvider } from 'modules/Analysis/contexts/AnalysisContext';
@@ -32,25 +30,21 @@ export const DefaultProvider: FC = ({ children }) => (
       <LoadingProvider>
         <CustomizationProvider>
           <FilterProvider>
-            <MitreProvider>
-              <VulnerabilityProvider>
-                <IntegrityMonitoringProvider>
-                  <VirusTotalProvider>
-                    <SecurityEventProvider>
-                      <AgentProvider>
-                        <SCAProvider>
-                          <WidgetsSelectionProvider>
-                            <SidebarProvider>
-                              <AnalysisProvider>{children}</AnalysisProvider>
-                            </SidebarProvider>
-                          </WidgetsSelectionProvider>
-                        </SCAProvider>
-                      </AgentProvider>
-                    </SecurityEventProvider>
-                  </VirusTotalProvider>
-                </IntegrityMonitoringProvider>
-              </VulnerabilityProvider>
-            </MitreProvider>
+            <VulnerabilityProvider>
+              <VirusTotalProvider>
+                <SecurityEventProvider>
+                  <AgentProvider>
+                    <SCAProvider>
+                      <WidgetsSelectionProvider>
+                        <SidebarProvider>
+                          <AnalysisProvider>{children}</AnalysisProvider>
+                        </SidebarProvider>
+                      </WidgetsSelectionProvider>
+                    </SCAProvider>
+                  </AgentProvider>
+                </SecurityEventProvider>
+              </VirusTotalProvider>
+            </VulnerabilityProvider>
           </FilterProvider>
         </CustomizationProvider>
       </LoadingProvider>

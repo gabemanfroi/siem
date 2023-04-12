@@ -2,6 +2,13 @@ import {
   IWidget,
   IWidgetDefaultConfig,
 } from 'modules/Shared/interfaces/Widgets';
+import {
+  AlertsEvolutionOverTime,
+  AttacksByTechniques,
+  TechniquesByAgent,
+  TopTactics,
+  TopTacticsByAgent,
+} from 'modules/Mitre/components';
 
 export interface IMitreWidgets {
   alertsEvolutionOverTime?: IWidget;
@@ -136,5 +143,28 @@ export const MitreWidgetsDefaultConfig: IWidgetDefaultConfig = {
         },
       },
     },
+  },
+};
+
+export const mitreWidgets: IMitreWidgets = {
+  attacksByTechnique: {
+    ...MitreWidgetsDefaultConfig.attacksByTechnique,
+    Component: AttacksByTechniques,
+  },
+  techniquesByAgent: {
+    ...MitreWidgetsDefaultConfig.techniquesByAgent,
+    Component: TechniquesByAgent,
+  },
+  topTactics: {
+    ...MitreWidgetsDefaultConfig.topTactics,
+    Component: TopTactics,
+  },
+  topTacticsByAgent: {
+    ...MitreWidgetsDefaultConfig.topTacticsByAgent,
+    Component: TopTacticsByAgent,
+  },
+  alertsEvolutionOverTime: {
+    ...MitreWidgetsDefaultConfig.alertsEvolutionOverTime,
+    Component: AlertsEvolutionOverTime,
   },
 };

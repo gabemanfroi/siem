@@ -1,19 +1,22 @@
 import { DonutChart } from 'modules/Shared/components/Charts';
-import { useIntegrityMonitoringContext } from 'modules/IntegrityMonitoring/contexts/IntegrityMonitoringContext';
 import { ApexOptions } from 'apexcharts';
+import { useActionsTypesQuery } from 'modules/IntegrityMonitoring/hooks/queries/useActionsTypesQuery';
+import { LoadingHandler } from 'modules/Shared/components';
 
 const ActionsTypes = () => {
-  const { actionsTypes } = useIntegrityMonitoringContext();
+  const { actionsTypesData, actionsTypesIsLoading } = useActionsTypesQuery();
 
-  if (!actionsTypes) return <></>;
-
-  const { labels, series } = actionsTypes;
+  const { labels, series } = actionsTypesData;
   const options: ApexOptions = {
     series,
     labels,
   };
 
-  return <DonutChart options={options} />;
+  return (
+    <LoadingHandler loading={actionsTypesIsLoading}>
+      <DonutChart options={options} />
+    </LoadingHandler>
+  );
 };
 
 export default ActionsTypes;
