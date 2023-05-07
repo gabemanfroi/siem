@@ -22,11 +22,11 @@ const DonutChartOptionsFactory = (options?: ApexOptions): ApexOptions => ({
     palette: DEFAULT_CHARTS_PALETTE,
   },
   dataLabels: {
-    enabled: false,
+    enabled: options?.dataLabels?.enabled,
   },
   title: {
-    ...options?.title,
     align: 'left',
+    ...options?.title,
     style: {
       color: '#fff',
     },

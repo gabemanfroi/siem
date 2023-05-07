@@ -6,7 +6,6 @@ export const BaseService = <T>(baseEndpoint: string) => {
     get: (url = '') => axios.get<T[]>(`${baseEndpoint}${url}`),
     dynamicGet: async <TGet>(url = '') =>
       (await axios.get<TGet[]>(`${baseEndpoint}${url}`)).data,
-    getById: (id: string | number) => axios.get<T>(`${baseEndpoint}${id}`),
     post: (url?: string, data?: T) =>
       axios.post<T>(`${baseEndpoint}${url || ''}`, data),
     dynamicPost: (url?: string, data?: unknown) =>

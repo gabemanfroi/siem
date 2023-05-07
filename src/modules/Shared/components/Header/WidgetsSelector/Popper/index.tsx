@@ -5,7 +5,6 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import * as React from 'react';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { MdOutlineCheck, MdOutlineClose } from 'react-icons/md';
 import { useTheme } from '@mui/material/styles';
 import { ALL_WIDGETS_LABELS } from 'modules/Shared/core/constants';
 import {
@@ -20,6 +19,7 @@ import {
   StyledPopper,
 } from 'modules/Shared/components/Header/WidgetsSelector/Popper/style';
 import { useWidgetsSelectionContext } from 'modules/Shared/hooks/useWidgetsSelectionContext';
+import AutoCompleteItem from 'modules/Shared/components/Header/WidgetsSelector/Popper/AutoCompleteItem';
 
 interface PopperComponentProps {
   anchorEl?: any;
@@ -129,33 +129,11 @@ export const WidgetsSelectorPopper = ({
             renderTags={() => null}
             noOptionsText="No labels"
             renderOption={(props, option, { selected }) => (
-              <li {...props}>
-                <Box
-                  component={MdOutlineCheck}
-                  sx={{ width: 17, height: 17, mr: '5px', ml: '-2px' }}
-                  style={{
-                    visibility: selected ? 'visible' : 'hidden',
-                  }}
-                />
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    '& span': {
-                      color: theme.palette.text.primary,
-                    },
-                  }}
-                >
-                  {option.label}
-                  <br />
-                </Box>
-                <Box
-                  component={MdOutlineClose}
-                  sx={{ opacity: 0.6, width: 18, height: 18 }}
-                  style={{
-                    visibility: selected ? 'visible' : 'hidden',
-                  }}
-                />
-              </li>
+              <AutoCompleteItem
+                selected={selected}
+                option={option}
+                {...props}
+              />
             )}
             options={ALL_WIDGETS_LABELS}
             getOptionLabel={(option) => option.label}

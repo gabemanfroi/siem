@@ -1,10 +1,18 @@
+export interface IPolicySummary {
+  pass: number;
+  fail: number;
+  score: number;
+  totalChecks: number;
+  invalid: number;
+}
+
 export interface IPolicy {
   description: string;
   name: string;
   totalChecks: number;
   score: number;
   fail: number;
-  passed: number;
+  pass: number;
   policyId: string;
   invalid: number;
   endScan: Date;
