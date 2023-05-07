@@ -19,11 +19,12 @@ export default function AgentDialog() {
       PaperProps={{
         sx: {
           height: '90vh',
+          margin: '0 5vh',
         },
       }}
       open={isAgentDialogOpen}
       onClose={handleClose}
-      maxWidth="xl"
+      fullScreen
       fullWidth
     >
       <AgentDialogTitle onClose={handleClose} />

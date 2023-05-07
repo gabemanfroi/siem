@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import GeneralData from 'modules/Agent/components/AgentDialog/DialogContent/GeneralData';
 import Events from 'modules/Agent/components/AgentDialog/DialogContent/Events';
+import SCA from 'modules/Agent/components/AgentDialog/DialogContent/SCA';
 import Vulnerabilities from './Vulnerabilities';
 
 const AgentDialogContent = () => {
@@ -17,16 +18,20 @@ const AgentDialogContent = () => {
         >
           <Tab label="General Data" value="1" />
           <Tab label="Vulnerabilities" value="2" />
-          <Tab label="Events" value="3" />
+          <Tab label="Security Events" value="3" />
+          <Tab label="SCA" value="4" />
         </TabList>
         <TabPanel sx={{ flex: 1 }} value="1">
-          <GeneralData />
+          <GeneralData setTab={setTab} />
         </TabPanel>
         <TabPanel sx={{ flex: 1 }} value="2">
           <Vulnerabilities />
         </TabPanel>
         <TabPanel sx={{ flex: 1 }} value="3">
           <Events />
+        </TabPanel>
+        <TabPanel sx={{ flex: 1 }} value="4">
+          <SCA />
         </TabPanel>
       </TabContext>
     </DialogContent>
