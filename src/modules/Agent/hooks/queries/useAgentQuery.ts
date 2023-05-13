@@ -3,7 +3,6 @@ import { QUERIES } from 'modules/Shared/constants/queries';
 import AgentService from 'modules/Agent/api/AgentService';
 import { useFilter } from 'modules/Shared/hooks';
 import { useAgentContext } from 'modules/Agent/hooks/index';
-import { IVulnerability } from 'modules/Vulnerability/interfaces/IVulnerability';
 
 const useAgentQuery = () => {
   const { filters } = useFilter();
@@ -25,25 +24,9 @@ const useAgentQuery = () => {
     }
   );
 
-  const {
-    isLoading: getAgentVulnerabilitiesIsLoading,
-    data: getAgentVulnerabilitiesData,
-  } = useQuery(
-    [QUERIES.AGENT.GET_AGENT_VULNERABILITIES, selectedAgentId],
-    () =>
-      AgentService.dynamicGet<IVulnerability>(
-        `/agent_vulnerabilities/${selectedAgentId}`
-      ),
-    {
-      enabled: !!selectedAgentId,
-    }
-  );
-
   return {
     findByElasticsearchIdAgent,
     findByElasticsearchIsLoading,
-    getAgentVulnerabilitiesData: getAgentVulnerabilitiesData || [],
-    getAgentVulnerabilitiesIsLoading,
   };
 };
 export default useAgentQuery;

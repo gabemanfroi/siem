@@ -18,7 +18,7 @@ export default function AgentDialog() {
     <Dialog
       PaperProps={{
         sx: {
-          height: '90vh',
+          height: '95vh',
           margin: '0 5vh',
         },
       }}

@@ -1,4 +1,4 @@
-const INTEGRITY_MONITORING = {
+export const INTEGRITY_MONITORING = {
   GET_PAGE_DATA: 'IntegrityMonitoringQueries@GetPageData',
   GET_TOP_5_AGENTS: 'IntegrityMonitoringQueries@GetTop5Agents',
   GET_ALERTS_BY_ACTION_OVER_TIME:

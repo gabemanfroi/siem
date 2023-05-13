@@ -21,7 +21,7 @@ const DefaultDialog = ({ open, onClose, children, title, ...rest }: Props) => (
   <Dialog
     PaperProps={{
       sx: {
-        height: '90vh',
+        height: '95vh',
       },
     }}
     open={open}

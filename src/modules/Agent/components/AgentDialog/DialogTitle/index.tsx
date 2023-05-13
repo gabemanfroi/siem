@@ -25,7 +25,7 @@ const AgentDialogTitle = ({ onClose }: AgentDialogTitleProps) => {
         alignItems: 'center',
       }}
     >
-      {selectedAgent?.generalData?.name} - {selectedAgent.generalData.ip}
+      {selectedAgent.name} - {selectedAgent.ip}
       <ButtonGroup>
         {!isAgentEditMode && (
           <IconButton

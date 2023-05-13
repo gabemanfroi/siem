@@ -25,14 +25,11 @@ const Overview = () => {
           variant="standard"
           size="small"
           disabled={!isAgentEditMode}
-          value={findByElasticsearchIdAgent?.generalData.name}
+          value={findByElasticsearchIdAgent?.name}
           onChange={(e: any) =>
             setSelectedAgent({
-              ...selectedAgent,
-              generalData: {
-                ...selectedAgent!.generalData,
-                name: e.target.value,
-              },
+              ...selectedAgent!,
+              name: e.target.value,
             })
           }
         />
@@ -42,7 +39,7 @@ const Overview = () => {
           size="small"
           variant="standard"
           disabled
-          value={findByElasticsearchIdAgent?.generalData.elasticsearchName}
+          value={findByElasticsearchIdAgent?.elasticsearchName}
         />
         <TextField
           InputProps={{ disableUnderline: true }}
@@ -51,7 +48,7 @@ const Overview = () => {
           placeholder="IP"
           size="small"
           disabled
-          value={findByElasticsearchIdAgent?.generalData.ip || 'N/A'}
+          value={findByElasticsearchIdAgent?.ip || 'N/A'}
         />
         <TextField
           InputProps={{ disableUnderline: true }}
@@ -60,7 +57,7 @@ const Overview = () => {
           placeholder="Device Type"
           size="small"
           disabled
-          value={findByElasticsearchIdAgent?.generalData.deviceType || 'N/A'}
+          value={findByElasticsearchIdAgent?.deviceType || 'N/A'}
         />
       </LoadingHandler>
     </Grid>

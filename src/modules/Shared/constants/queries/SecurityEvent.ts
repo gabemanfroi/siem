@@ -1,4 +1,4 @@
-const SECURITY_EVENT = {
+export const SECURITY_EVENT = {
   FIND_BY_ELASTICSEARCH_ID: 'SecurityEventQueries@findByElasticsearchId',
   GET_PAGE_DATA: 'SecurityEventQueries@getPageData',
   GET_EVENTS_BELONGING_TO_AGENT:
@@ -11,5 +11,3 @@ const SECURITY_EVENT = {
   GET_TOP_MITRE: 'SecurityEventQueries@getTopMitre',
   GET_ALERT_LEVEL_EVOLUTION: 'SecurityEventQueries@getAlertLevelEvolution',
 };
-
-export default SECURITY_EVENT;

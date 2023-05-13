@@ -1,7 +1,7 @@
 import { DialogContent, Tab } from '@mui/material';
 import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import GeneralData from 'modules/Agent/components/AgentDialog/DialogContent/GeneralData';
+import Summary from 'modules/Agent/components/AgentDialog/DialogContent/Summary';
 import Events from 'modules/Agent/components/AgentDialog/DialogContent/Events';
 import SCA from 'modules/Agent/components/AgentDialog/DialogContent/SCA';
 import Vulnerabilities from './Vulnerabilities';
@@ -22,7 +22,7 @@ const AgentDialogContent = () => {
           <Tab label="SCA" value="4" />
         </TabList>
         <TabPanel sx={{ flex: 1 }} value="1">
-          <GeneralData setTab={setTab} />
+          <Summary setTab={setTab} />
         </TabPanel>
         <TabPanel sx={{ flex: 1 }} value="2">
           <Vulnerabilities />

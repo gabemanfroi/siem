@@ -1,14 +1,10 @@
 import { Grid } from '@mui/material';
-import Overview from 'modules/Agent/components/AgentDialog/DialogContent/GeneralData/Overview';
+import Overview from 'modules/Agent/components/AgentDialog/DialogContent/Summary/Overview';
 import React, { Dispatch, SetStateAction } from 'react';
 import SCASummary from 'modules/SCA/components/SCASummary';
 import { dark100, dark50 } from 'modules/Shared/helpers/styles/Colors';
 
-const GeneralData = ({
-  setTab,
-}: {
-  setTab: Dispatch<SetStateAction<string>>;
-}) => (
+const Summary = ({ setTab }: { setTab: Dispatch<SetStateAction<string>> }) => (
   <Grid container direction="column" gap={4} height="100%">
     <Grid
       item
@@ -33,4 +29,4 @@ const GeneralData = ({
   </Grid>
 );
 
-export default GeneralData;
+export default Summary;

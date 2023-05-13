@@ -20,7 +20,7 @@ const PolicyDialog = () => {
 
   return (
     <DefaultDialog
-      title={`${selectedAgent?.generalData.name} - ${selectedPolicy?.name}`}
+      title={`${selectedAgent?.name} - ${selectedPolicy?.name}`}
       open={isPolicyDialogOpen}
       onClose={onClose}
     >
