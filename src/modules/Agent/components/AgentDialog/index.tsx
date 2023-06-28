@@ -1,9 +1,7 @@
-import { Dialog } from '@mui/material';
+import { Box, Dialog, Typography } from '@mui/material';
 import React from 'react';
 
 import { useAgentContext } from 'modules/Agent/hooks';
-import AgentDialogTitle from 'modules/Agent/components/AgentDialog/DialogTitle';
-import AgentDialogContent from 'modules/Agent/components/AgentDialog/DialogContent';
 
 export default function AgentDialog() {
   const { isAgentDialogOpen, setIsAgentDialogOpen, setSelectedAgent } =
@@ -27,8 +25,19 @@ export default function AgentDialog() {
       fullScreen
       fullWidth
     >
-      <AgentDialogTitle onClose={handleClose} />
-      <AgentDialogContent />
+      {/* <AgentDialogTitle onClose={handleClose} />
+      <AgentDialogContent /> */}
+      <Box
+        width="100%"
+        height="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography variant="h3" textTransform="uppercase">
+          Coming soon...
+        </Typography>
+      </Box>
     </Dialog>
   );
 }

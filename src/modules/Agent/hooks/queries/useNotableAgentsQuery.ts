@@ -1,20 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERIES } from 'modules/Shared/constants/queries';
-import { AgentService } from 'modules/Shared/api';
 import { useFilter } from 'modules/Shared/hooks';
+import AgentWidgetsService from 'modules/Agent/api/AgentWidgetsService';
 
 export const useNotableAgentsQuery = () => {
   const { filters } = useFilter();
   const { data: notableAgentsData, isLoading: notableAgentsLoading } = useQuery(
-    [QUERIES.AGENT.GET_NOTABLE_AGENTS, filters],
+    [QUERIES.WIDGETS.AGENT, filters],
     () =>
-      AgentService.getNotableAgents({
-        endDate: filters.endDate! as number,
+      AgentWidgetsService.getNotableAgents({
+        finalDate: filters.finalDate as number,
         initialDate: filters.initialDate! as number,
-      }),
-    {
-      enabled: !!filters.initialDate && !!filters.endDate,
-    }
+      })
   );
   return { notableAgentsData: notableAgentsData || [], notableAgentsLoading };
 };

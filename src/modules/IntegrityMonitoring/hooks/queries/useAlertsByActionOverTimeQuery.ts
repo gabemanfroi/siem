@@ -14,7 +14,7 @@ export const useAlertsByActionOverTimeQuery = () => {
     () =>
       IntegrityMonitoringService.getAlertsByActionOverTime({
         initialDate: filters.initialDate as number,
-        endDate: filters.endDate as number,
+        finalDate: filters.finalDate as number,
       })
   );
 

@@ -8,7 +8,7 @@ export const useLatestSuspiciousEventsQuery = () => {
   const { data: suspiciousEventsData, isLoading: suspiciousEventsLoading } =
     useQuery([QUERIES.ANALYSIS.GET_LATEST_SUSPICIOUS_EVENTS, filters], () =>
       AnalysisService.getLatestSuspiciousEvents({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
     );

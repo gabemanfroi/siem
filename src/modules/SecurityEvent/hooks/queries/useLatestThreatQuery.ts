@@ -9,7 +9,7 @@ export const useLatestThreatQuery = () => {
   const { data: latestThreatsData, isLoading: latestThreatsIsLoading } =
     useQuery([QUERIES.SECURITY_EVENT.GET_LATEST_THREATS, filters], () =>
       SecurityEventService.getLatestThreats({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
     );

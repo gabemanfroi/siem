@@ -11,7 +11,7 @@ export const useAlertsEvolutionOverTimeQuery = () => {
     isLoading: alertsEvolutionOverTimeLoading,
   } = useQuery([QUERIES.MITRE.GET_ALERTS_EVOLUTION_OVER_TIME, filters], () =>
     MitreService.getAlertsEvolutionOverTime({
-      endDate: filters.endDate! as number,
+      finalDate: filters.finalDate! as number,
       initialDate: filters.initialDate! as number,
     })
   );

@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { AlertWithReports, IAlert } from 'modules/Shared/interfaces';
+import { Choropleth } from 'modules/SecurityEvent/components/TotalEventsByCountries';
 import {
   ISecurityEventWidgets,
   SecurityEventWidgetsDefaultConfig,
@@ -34,6 +35,10 @@ export const securityEventWidgets: ISecurityEventWidgets = {
   alertLevelEvolution: {
     ...SecurityEventWidgetsDefaultConfig.alertLevelEvolution,
     Component: AlertLevelEvolution,
+  },
+  choropleth: {
+    ...SecurityEventWidgetsDefaultConfig.choropleth,
+    Component: Choropleth,
   },
 };
 

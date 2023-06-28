@@ -5,44 +5,44 @@ import AxiosClient from 'modules/Shared/services/AxiosClient';
 
 const MitreService = () => {
   const customEndpoints = {
-    getAttacksByTechnique: async ({ initialDate, endDate }: IQueryParams) =>
+    getAttacksByTechnique: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(`${ROUTES.BRAGI.MITRE}/attacks_by_technique`, {
           initialDate,
-          endDate,
+          finalDate,
         })
       ).data,
-    getTopTactics: async ({ initialDate, endDate }: IQueryParams) =>
+    getTopTactics: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(`${ROUTES.BRAGI.MITRE}/top_tactics`, {
           initialDate,
-          endDate,
+          finalDate,
         })
       ).data,
-    getTopTacticsByAgent: async ({ initialDate, endDate }: IQueryParams) =>
+    getTopTacticsByAgent: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(`${ROUTES.BRAGI.MITRE}/top_tactics_by_agent`, {
           initialDate,
-          endDate,
+          finalDate,
         })
       ).data,
-    getTechniquesByAgent: async ({ initialDate, endDate }: IQueryParams) =>
+    getTechniquesByAgent: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(`${ROUTES.BRAGI.MITRE}/techniques_by_agent`, {
           initialDate,
-          endDate,
+          finalDate,
         })
       ).data,
     getAlertsEvolutionOverTime: async ({
       initialDate,
-      endDate,
+      finalDate,
     }: IQueryParams) =>
       (
         await AxiosClient.post(
           `${ROUTES.BRAGI.MITRE}/alerts_evolution_over_time`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,

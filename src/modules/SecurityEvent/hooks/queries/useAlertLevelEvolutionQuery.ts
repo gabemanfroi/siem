@@ -13,7 +13,7 @@ export const useAlertLevelEvolutionQuery = () => {
     [QUERIES.SECURITY_EVENT.GET_ALERT_LEVEL_EVOLUTION, filters],
     () =>
       SecurityEventService.getAlertLevelEvolution({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
   );

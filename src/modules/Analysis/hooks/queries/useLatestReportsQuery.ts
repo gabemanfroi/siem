@@ -10,7 +10,7 @@ export const useLatestReportsQuery = () => {
     [QUERIES.ANALYSIS.GET_LATEST_REPORTS, filters],
     () =>
       AnalysisService.getLatestReports({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
   );

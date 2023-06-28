@@ -11,7 +11,7 @@ export const useActionsTypesQuery = () => {
     () =>
       IntegrityMonitoringService.getActionsTypes({
         initialDate: filters.initialDate as number,
-        endDate: filters.endDate as number,
+        finalDate: filters.finalDate as number,
       })
   );
 

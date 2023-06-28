@@ -9,7 +9,7 @@ export const useTopMitreQuery = () => {
     [QUERIES.SECURITY_EVENT.GET_TOP_MITRE, filters],
     () =>
       SecurityEventService.getTopMitre({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
   );

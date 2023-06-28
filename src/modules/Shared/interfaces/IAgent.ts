@@ -1,10 +1,19 @@
-import { IBase } from 'modules/Shared/interfaces/IBase';
-
-export default interface IAgent extends IBase {
-  id: number;
-  elasticsearchName: string;
-  ip: string;
+export interface IAgent {
+  id: string;
   name: string;
-  deviceType: 'SERVER' | 'DESKTOP' | 'LAPTOP' | 'MOBILE';
-  sensitivityLevel: number;
+  dateAdd?: string;
+  manager?: string;
+  group?: string[];
+  ip?: string;
+  status?: string;
+  os?: {
+    arch?: null;
+    codename?: null;
+    major?: string;
+    minor?: string;
+    name?: string;
+    platform?: string;
+    uname?: string;
+    version?: string;
+  };
 }

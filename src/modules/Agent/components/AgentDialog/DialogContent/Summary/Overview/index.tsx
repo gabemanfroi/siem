@@ -39,7 +39,7 @@ const Overview = () => {
           size="small"
           variant="standard"
           disabled
-          value={findByElasticsearchIdAgent?.elasticsearchName}
+          value={findByElasticsearchIdAgent?.name}
         />
         <TextField
           InputProps={{ disableUnderline: true }}
@@ -49,15 +49,6 @@ const Overview = () => {
           size="small"
           disabled
           value={findByElasticsearchIdAgent?.ip || 'N/A'}
-        />
-        <TextField
-          InputProps={{ disableUnderline: true }}
-          label="Device Type"
-          variant="standard"
-          placeholder="Device Type"
-          size="small"
-          disabled
-          value={findByElasticsearchIdAgent?.deviceType || 'N/A'}
         />
       </LoadingHandler>
     </Grid>

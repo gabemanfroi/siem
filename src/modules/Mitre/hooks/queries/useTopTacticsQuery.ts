@@ -10,7 +10,7 @@ export const useTopTacticsQuery = () => {
     [QUERIES.MITRE.GET_TOP_TACTICS, filters],
     () =>
       MitreService.getTopTactics({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
   );

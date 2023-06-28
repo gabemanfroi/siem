@@ -9,7 +9,7 @@ export const useTechniquesByAgentQuery = () => {
   const { data: techniquesByAgentData, isLoading: techniquesByAgentIsLoading } =
     useQuery([QUERIES.MITRE.GET_TECHNIQUES_BY_AGENT, filters], () =>
       MitreService.getTechniquesByAgent({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
     );

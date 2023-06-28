@@ -9,6 +9,7 @@ export interface ISecurityEventWidgets {
   topMitre?: IWidget;
   alertsEvolutionTop5Agents?: IWidget;
   latestThreats?: IWidget;
+  choropleth?: IWidget;
 }
 
 const { t } = i18n;
@@ -17,7 +18,6 @@ export const SecurityEventWidgetsDefaultConfig: IWidgetDefaultConfig = {
     label: t('Security Event - Latest Threats'),
     identifier: 'latestThreats',
     framework: 'securityEvent',
-    available: true,
     options: {
       dashboard: {
         lg: {
@@ -98,9 +98,9 @@ export const SecurityEventWidgetsDefaultConfig: IWidgetDefaultConfig = {
         lg: {
           i: 'topMitre',
           w: 3,
-          h: 2,
+          h: 3,
           x: 0,
-          y: 3,
+          y: 0,
         },
         md: {
           i: 'topMitre',
@@ -120,6 +120,46 @@ export const SecurityEventWidgetsDefaultConfig: IWidgetDefaultConfig = {
         },
         md: {
           i: 'topMitre',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+      },
+    },
+  },
+  choropleth: {
+    label: 'Security Event - Number of Events By Countries',
+    identifier: 'choropleth',
+    framework: 'securityEvent',
+    available: true,
+    options: {
+      dashboard: {
+        lg: {
+          i: 'choropleth',
+          w: 3,
+          h: 4,
+          x: 7,
+          y: 0,
+        },
+        md: {
+          i: 'choropleth',
+          w: 6,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+      },
+      page: {
+        lg: {
+          i: 'choropleth',
+          w: 3,
+          h: 2,
+          x: 0,
+          y: 3,
+        },
+        md: {
+          i: 'choropleth',
           w: 6,
           h: 2,
           x: 0,

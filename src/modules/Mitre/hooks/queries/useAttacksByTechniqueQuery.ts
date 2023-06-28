@@ -11,7 +11,7 @@ export const useAttacksByTechniqueQuery = () => {
     isLoading: attacksByTechniqueIsLoading,
   } = useQuery([QUERIES.MITRE.GET_ATTACKS_BY_TECHNIQUE, filters], () =>
     MitreService.getAttacksByTechnique({
-      endDate: filters.endDate! as number,
+      finalDate: filters.finalDate! as number,
       initialDate: filters.initialDate! as number,
     })
   );

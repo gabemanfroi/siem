@@ -10,4 +10,6 @@ export const SECURITY_EVENT = {
     'SecurityEventQueries@getAlertEvolutionTop5Agents',
   GET_TOP_MITRE: 'SecurityEventQueries@getTopMitre',
   GET_ALERT_LEVEL_EVOLUTION: 'SecurityEventQueries@getAlertLevelEvolution',
+  GET_TOTAL_EVENTS_BY_COUNTRIES:
+    'SecurityEventQueries@getTotalEventsByCountries',
 };

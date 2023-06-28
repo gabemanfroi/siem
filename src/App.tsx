@@ -4,6 +4,7 @@ import './scss/main.scss';
 import './scss/main.css';
 import Dialogs from 'modules/Shared/containers/Dialogs';
 import { DefaultProvider } from 'modules/Shared/providers/DefaultProvider';
+import 'leaflet/dist/leaflet.css';
 
 export default function App() {
   return (

@@ -15,7 +15,7 @@ const useAgentQuery = () => {
     [QUERIES.AGENT.FIND_BY_ELASTICSEARCH_ID, selectedAgentId],
     () =>
       AgentService.getByElasticsearchId({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
         elasticsearchId: selectedAgentId!,
       }),

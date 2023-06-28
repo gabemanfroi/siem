@@ -19,7 +19,7 @@ const useSecurityEventQuery = () => {
     [QUERIES.SECURITY_EVENT.FIND_BY_ELASTICSEARCH_ID, selectedAlertId],
     () =>
       SecurityEventService.getByElasticsearchId({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
         elasticsearchId: selectedAlertId!,
       }),
@@ -35,7 +35,7 @@ const useSecurityEventQuery = () => {
     [QUERIES.SECURITY_EVENT.GET_EVENTS_BELONGING_TO_AGENT, selectedAgentId],
     () =>
       SecurityEventService.getEventsBelongingToAgent({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
         elasticsearchId: selectedAgentId!,
       }),

@@ -9,7 +9,7 @@ export const useTopTacticsByAgentQuery = () => {
   const { data: topTacticsByAgentData, isLoading: topTacticsByAgentIsLoading } =
     useQuery([QUERIES.MITRE.GET_TOP_TACTICS_BY_AGENT, filters], () =>
       MitreService.getTopTacticsByAgent({
-        endDate: filters.endDate! as number,
+        finalDate: filters.finalDate! as number,
         initialDate: filters.initialDate! as number,
       })
     );

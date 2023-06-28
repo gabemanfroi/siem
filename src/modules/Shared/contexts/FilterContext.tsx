@@ -13,11 +13,11 @@ const now = new Date();
 
 interface IFilters {
   initialDate: number | null | Date;
-  endDate: number | null | Date;
+  finalDate: number | null | Date;
 }
 
 const initialFiltersState: IFilters = {
-  endDate: now.getTime(),
+  finalDate: now.getTime(),
   initialDate: dateFns.addDays(now, -1).getTime(),
 };
 

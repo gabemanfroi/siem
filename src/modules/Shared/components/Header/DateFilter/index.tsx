@@ -14,7 +14,7 @@ const DateFilter = () => {
     number | null | Date
   >(filters.initialDate);
   const [pendingEndDate, setPendingEndDate] = useState<number | null | Date>(
-    filters.endDate
+    filters.finalDate
   );
 
   const onInitialDateChange = (newValue: Date | null) => {
@@ -30,7 +30,7 @@ const DateFilter = () => {
     setFilters({
       ...filters,
       initialDate: pendingInitialValue,
-      endDate: pendingEndDate,
+      finalDate: pendingEndDate,
     });
   };
 

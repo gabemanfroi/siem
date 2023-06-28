@@ -4,6 +4,7 @@ import { IVulnerabilityWidgets } from 'modules/Vulnerability/interfaces/Widgets'
 import { ISecurityEventWidgets } from 'modules/SecurityEvent/interfaces/Widgets';
 import { IIntegrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfaces/Widgets';
 import { IAgentWidgets } from 'modules/Agent/interfaces/Widgets';
+import { IDashboardWidgets } from 'modules/Dashboard/interfaces/Widgets';
 
 export interface IWidgetDefault {
   label: string;
@@ -64,7 +65,8 @@ export interface IAllWidgets
     IVulnerabilityWidgets,
     ISecurityEventWidgets,
     IIntegrityMonitoringWidgets,
-    IAgentWidgets {}
+    IAgentWidgets,
+    IDashboardWidgets {}
 
 export type WidgetsMapKeys =
   /* | 'alertsEvolutionOverTime'

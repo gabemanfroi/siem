@@ -8,6 +8,7 @@ import { analysisWidgets } from 'modules/Analysis/contexts/AnalysisContext';
 import { mitreWidgets } from 'modules/Mitre/interfaces/Widgets';
 import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfaces/Widgets';
+import { dashboardWidgets } from 'modules/Dashboard/contexts/DashboardContext';
 
 type ISettingsByPage = {
   [key in keyof typeof PAGES]: {
@@ -32,7 +33,9 @@ const SETTINGS_BY_PAGE: ISettingsByPage = {
   [PAGES.AGENT]: {
     widgetsMap: agentWidgets,
   },
-  [PAGES.DASHBOARD]: {},
+  [PAGES.DASHBOARD]: {
+    widgetsMap: dashboardWidgets,
+  },
 };
 
 interface IUseWidgetsGrid {

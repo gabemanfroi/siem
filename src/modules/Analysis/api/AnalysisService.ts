@@ -27,23 +27,26 @@ const AnalysisService = () => {
           `${ROUTES.BRAGI.ANALYSIS}/reports/get_by_job_id/${jobId}`
         )
       ).data,
-    getLatestSuspiciousEvents: async ({ initialDate, endDate }: IQueryParams) =>
+    getLatestSuspiciousEvents: async ({
+      initialDate,
+      finalDate,
+    }: IQueryParams) =>
       (
         await AxiosClient.post<AlertWithReports[]>(
           `${ROUTES.BRAGI.ANALYSIS}/latest_suspicious_events`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,
-    getLatestReports: async ({ initialDate, endDate }: IQueryParams) =>
+    getLatestReports: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post<ICortexReport[]>(
           `${ROUTES.BRAGI.ANALYSIS}/latest_reports`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,

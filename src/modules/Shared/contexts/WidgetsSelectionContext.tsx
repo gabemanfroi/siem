@@ -22,6 +22,7 @@ import { agentWidgets } from 'modules/Agent/contexts/AgentContext';
 import { analysisWidgets } from 'modules/Analysis/contexts/AnalysisContext';
 import { mitreWidgets } from 'modules/Mitre/interfaces/Widgets';
 import { integrityMonitoringWidgets } from 'modules/IntegrityMonitoring/interfaces/Widgets';
+import { dashboardWidgets } from 'modules/Dashboard/contexts/DashboardContext';
 
 interface IWidgetsSelectionContext {
   selectedWidgetsMap: IAllWidgets;
@@ -38,6 +39,7 @@ const widgetsMap: IAllWidgets = {
   ...vulnerabilityWidgets,
   ...agentWidgets,
   ...analysisWidgets,
+  ...dashboardWidgets,
 };
 
 const defaultValue = {

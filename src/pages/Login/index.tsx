@@ -19,7 +19,7 @@ export default function Login() {
       const response = await AxiosClient.post(
         `${ROUTES.AUTH.BASE_ENDPOINT}/auth/login`,
         {
-          email: values.email,
+          username: values.username,
           password: values.password,
         }
       );
@@ -42,12 +42,12 @@ export default function Login() {
           <img src="navbar-logo.png" alt="navbar logo" />
           <TextField
             placeholder="Insira seu e-mail"
-            label="E-mail"
-            {...getFieldProps('email')}
+            label="username"
+            {...getFieldProps('username')}
             fullWidth
             // @ts-ignore
             error={touched.email && errors.email}
-            helperText={touched.email ? errors.email : undefined}
+            helperText={touched.username ? errors.username : undefined}
           />
           <TextField
             type="password"

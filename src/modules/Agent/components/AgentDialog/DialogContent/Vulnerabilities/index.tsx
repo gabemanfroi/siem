@@ -6,7 +6,7 @@ import { LoadingHandler } from 'modules/Shared/components';
 import { useVulnerabilityContext } from 'modules/Vulnerability/contexts/VulnerabilityContext';
 import { useAgentVulnerabilitiesQuery } from 'modules/Vulnerability/hooks/queries/useAgentVulnerabilitiesQuery';
 import { useAgentSeveritySummaryQuery } from 'modules/Vulnerability/hooks/queries/useAgentSeveritySummaryQuery';
-import { SeveritySummary } from 'modules/Vulnerability/components/SeveritySummary';
+import { VulnerabilityBySeverity } from 'modules/Vulnerability/components/SeveritySummary';
 import { dark100, dark300, dark50 } from 'modules/Shared/helpers/styles/Colors';
 import { MdClose } from 'react-icons/md';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -47,7 +47,8 @@ const Vulnerabilities = () => {
         xs={2}
       >
         <Grid item xs={4}>
-          <SeveritySummary
+          <VulnerabilityBySeverity
+            title="Summary"
             severitySummaryData={getAgentSeveritySummaryData}
             severitySummaryIsLoading={getAgentSeveritySummaryIsLoading}
           />

@@ -6,6 +6,7 @@ import { INTEGRITY_MONITORING } from 'modules/Shared/constants/queries/Integrity
 import { SCA } from 'modules/Shared/constants/queries/SCA';
 import { ANALYSIS } from 'modules/Shared/constants/queries/Analysis';
 import { VULNERABILITY } from 'modules/Shared/constants/queries/Vulnerability';
+import { WIDGETS } from 'modules/Shared/constants/queries/widgets';
 
 export const QUERIES = {
   AGENT,
@@ -16,4 +17,5 @@ export const QUERIES = {
   SECURITY_EVENT,
   SCA,
   VULNERABILITY,
+  WIDGETS,
 };

@@ -10,7 +10,7 @@ export const NotableAgents = () => {
     <LoadingHandler loading={notableAgentsLoading}>
       <Stack spacing={1}>
         {notableAgentsData.map((a) => (
-          <NotableAgent key={a.elasticsearchId} agent={a} />
+          <NotableAgent key={a.id} notableAgent={a} />
         ))}
       </Stack>
     </LoadingHandler>

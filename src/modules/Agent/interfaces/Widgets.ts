@@ -19,9 +19,9 @@ export const AgentWidgetsDefaultConfig: IWidgetDefaultConfig = {
       dashboard: {
         lg: {
           i: 'notableAgents',
-          w: 6,
-          h: 4,
-          x: 0,
+          w: 4,
+          h: 3,
+          x: 3,
           y: 0,
         },
       },

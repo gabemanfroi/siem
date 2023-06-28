@@ -16,7 +16,6 @@ export const AnalysisWidgetDefaultConfig: IWidgetDefaultConfig = {
     label: t('Analysis - Latest Reports'),
     identifier: 'latestReports',
     framework: 'analysis',
-    available: true,
     options: {
       dashboard: {
         lg: {
@@ -42,7 +41,6 @@ export const AnalysisWidgetDefaultConfig: IWidgetDefaultConfig = {
     label: t('Analysis - Latest Suspicious Events'),
     identifier: 'latestSuspiciousEvents',
     framework: 'analysis',
-    available: true,
     options: {
       dashboard: {
         lg: {

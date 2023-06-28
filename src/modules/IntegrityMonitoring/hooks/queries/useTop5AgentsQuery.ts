@@ -11,7 +11,7 @@ export const useTop5AgentsQuery = () => {
     () =>
       IntegrityMonitoringService.getTop5Agents({
         initialDate: filters.initialDate as number,
-        endDate: filters.endDate as number,
+        finalDate: filters.finalDate as number,
       })
   );
 

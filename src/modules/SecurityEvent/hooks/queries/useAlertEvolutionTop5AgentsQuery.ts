@@ -12,8 +12,8 @@ export const useAlertEvolutionTop5AgentsQuery = () => {
     [QUERIES.SECURITY_EVENT.GET_ALERT_EVOLUTION_TOP_5_AGENTS, filters],
     () =>
       SecurityEventService.getAlertEvolutionTop5Agents({
-        endDate: filters.endDate! as number,
-        initialDate: filters.initialDate! as number,
+        finalDate: filters.finalDate as number,
+        initialDate: filters.initialDate as number,
       })
   );
   return {

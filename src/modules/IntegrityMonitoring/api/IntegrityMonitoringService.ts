@@ -5,43 +5,46 @@ import { IQueryParams } from 'modules/Shared/interfaces/IQueryParams';
 
 const IntegrityMonitoringService = () => {
   const customEndpoints = {
-    getTop5Agents: async ({ initialDate, endDate }: IQueryParams) =>
+    getTop5Agents: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(
           `${ROUTES.BRAGI.INTEGRITY_MONITORING}/top_5_agents`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,
-    getAlertsByActionOverTime: async ({ initialDate, endDate }: IQueryParams) =>
+    getAlertsByActionOverTime: async ({
+      initialDate,
+      finalDate,
+    }: IQueryParams) =>
       (
         await AxiosClient.post(
           `${ROUTES.BRAGI.INTEGRITY_MONITORING}/alerts_by_action_over_time`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,
-    getActionsTypes: async ({ initialDate, endDate }: IQueryParams) =>
+    getActionsTypes: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(
           `${ROUTES.BRAGI.INTEGRITY_MONITORING}/actions_types`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,
-    getRuleDistribution: async ({ initialDate, endDate }: IQueryParams) =>
+    getRuleDistribution: async ({ initialDate, finalDate }: IQueryParams) =>
       (
         await AxiosClient.post(
           `${ROUTES.BRAGI.INTEGRITY_MONITORING}/rule_distribution`,
           {
             initialDate,
-            endDate,
+            finalDate,
           }
         )
       ).data,
