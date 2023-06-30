@@ -14,7 +14,7 @@ const AgentService = () => {
     }: IQueryParams) =>
       (
         await AxiosClient.get<IAgent>(
-          `${ROUTES.BRAGI.AGENT}/get_by_elasticsearch_id/${elasticsearchId}?initial_date=${initialDate}&end_date=${finalDate}`
+          `${ROUTES.BRAGI.AGENT}/${elasticsearchId}?initial_date=${initialDate}&end_date=${finalDate}`
         )
       ).data,
     getNotableAgents: async ({ initialDate, finalDate }: IQueryParams) =>

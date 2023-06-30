@@ -8,7 +8,7 @@ const BRAGI = {
   SECURITY_EVENT_WIDGETS: '/bragi/widgets/security-event',
   VIRUS_TOTAL: '/bragi/api/virus_total',
   VULNERABILITY: '/bragi/api/vulnerability',
-  AGENT: '/bragi/agents',
+  AGENT: '/bragi/agent',
   AGENT_WIDGETS: '/bragi/widgets/agent',
   SCA: '/bragi/api/sca',
   ANALYSIS: '/bragi/api/analysis',

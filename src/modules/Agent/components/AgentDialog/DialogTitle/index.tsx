@@ -2,20 +2,18 @@ import { ButtonGroup, DialogTitle, IconButton } from '@mui/material';
 import { MdCheck, MdClose, MdEdit } from 'react-icons/md';
 import React from 'react';
 import { useAgentContext } from 'modules/Agent/hooks';
+import { useAgentQuery } from 'modules/Agent/hooks/queries';
+import { LoadingHandler } from 'modules/Shared/components';
 
 interface AgentDialogTitleProps {
   onClose: () => void;
 }
 
 const AgentDialogTitle = ({ onClose }: AgentDialogTitleProps) => {
-  const {
-    isAgentDialogOpen,
-    selectedAgent,
-    isAgentEditMode,
-    setIsAgentEditMode,
-  } = useAgentContext();
+  const { isAgentEditMode, setIsAgentEditMode } = useAgentContext();
 
-  if (!isAgentDialogOpen || !selectedAgent) return <></>;
+  const { findByElasticsearchIdAgent, findByElasticsearchIsLoading } =
+    useAgentQuery();
 
   return (
     <DialogTitle
@@ -25,30 +23,32 @@ const AgentDialogTitle = ({ onClose }: AgentDialogTitleProps) => {
         alignItems: 'center',
       }}
     >
-      {selectedAgent.name} - {selectedAgent.ip}
-      <ButtonGroup>
-        {!isAgentEditMode && (
-          <IconButton
-            onClick={() => {
-              setIsAgentEditMode(true);
-            }}
-          >
-            <MdEdit />
+      <LoadingHandler loading={findByElasticsearchIsLoading}>
+        {findByElasticsearchIdAgent?.name} - {findByElasticsearchIdAgent?.ip}
+        <ButtonGroup>
+          {!isAgentEditMode && (
+            <IconButton
+              onClick={() => {
+                setIsAgentEditMode(true);
+              }}
+            >
+              <MdEdit />
+            </IconButton>
+          )}
+          {isAgentEditMode && (
+            <IconButton
+              onClick={() => {
+                setIsAgentEditMode(false);
+              }}
+            >
+              <MdCheck />
+            </IconButton>
+          )}
+          <IconButton onClick={onClose}>
+            <MdClose />
           </IconButton>
-        )}
-        {isAgentEditMode && (
-          <IconButton
-            onClick={() => {
-              setIsAgentEditMode(false);
-            }}
-          >
-            <MdCheck />
-          </IconButton>
-        )}
-        <IconButton onClick={onClose}>
-          <MdClose />
-        </IconButton>
-      </ButtonGroup>
+        </ButtonGroup>
+      </LoadingHandler>
     </DialogTitle>
   );
 };

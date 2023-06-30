@@ -3,6 +3,7 @@ import { QUERIES } from 'modules/Shared/constants/queries';
 import AgentService from 'modules/Agent/api/AgentService';
 import { useFilter } from 'modules/Shared/hooks';
 import { useAgentContext } from 'modules/Agent/hooks/index';
+import { IAgent } from 'modules/Shared/interfaces/IAgent';
 
 const useAgentQuery = () => {
   const { filters } = useFilter();
@@ -25,7 +26,7 @@ const useAgentQuery = () => {
   );
 
   return {
-    findByElasticsearchIdAgent,
+    findByElasticsearchIdAgent: findByElasticsearchIdAgent || ({} as IAgent),
     findByElasticsearchIsLoading,
   };
 };
