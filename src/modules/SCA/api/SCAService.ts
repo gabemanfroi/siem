@@ -8,13 +8,13 @@ const SCAService = () => {
     getAgentPoliciesSummary: async (agentId: string = '') =>
       (
         await AxiosClient.get<IPolicySummary>(
-          `${ROUTES.BRAGI.SCA}/agent_policies/${agentId}/summary`
+          `${ROUTES.BRAGI.SCA}/agent/${agentId}/summary`
         )
       ).data,
     getAgentPolicies: async (selectedAgentId: string | null) =>
       (
         await AxiosClient.get<IPolicy[]>(
-          `${ROUTES.BRAGI.SCA}/agent_policies/${selectedAgentId}`
+          `${ROUTES.BRAGI.SCA}/agent/${selectedAgentId}/policies`
         )
       ).data,
   };

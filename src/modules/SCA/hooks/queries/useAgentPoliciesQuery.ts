@@ -7,8 +7,12 @@ export const useAgentPoliciesQuery = () => {
   const { selectedAgentId } = useAgentContext();
 
   const { data: getAgentPoliciesData, isLoading: getAgentPoliciesIsLoading } =
-    useQuery([QUERIES.SCA.GET_AGENT_POLICIES, selectedAgentId], () =>
-      SCAService.getAgentPolicies(selectedAgentId)
+    useQuery(
+      [QUERIES.SCA.GET_AGENT_POLICIES, selectedAgentId],
+      () => SCAService.getAgentPolicies(selectedAgentId),
+      {
+        enabled: !!selectedAgentId,
+      }
     );
 
   return {
